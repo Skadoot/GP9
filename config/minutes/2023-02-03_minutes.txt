@@ -1,0 +1,79 @@
+Project: Group Project 09 
+Meeting: Weekly Project Meeting 
+Persons present: All project members except cts12, jat92 
+Place and date of meeting: C57a, Friday 3rd February 2023 
+Circulation list: All project members, plus project manager 
+Author: Chris Loftus 
+Date of minutes: 03/02/22
+Version: 1.0
+
+Matters arising 
+===============
+NONE
+
+New business 
+============
+1. Introductions 
+ACTION: ALL
+- ckc2: Craymon Chan
+- cts12: Ciaran Smith (not here)
+- gwh18: Gwion Highes
+- jat92: Jack Thompson (not here)
+- jib16: Jim Brown
+- seh25: Sean Hobson
+- shr27: Shaun Royle
+- tyw1: Tyler Lewis
+
+2. Discuss project brief and intro documents
+ACTION: CWL
+
+3. Role of project manager
+ACTION: CWL
+
+4. Status of group Gitlab repository?
+All good
+ACTION: ALL
+
+5. One or two people to read SE.QA.04 and start working on UI specification
+by making a list of possible use cases based on the requirements document,
+and to report back to the group next week.
+ACTION: SEH25, TYW1
+
+7. Everyone must watch the Panopto recording on how to build the UI specification.
+ACTION: ALL
+
+8. Everyone must read the group project introduction document and the 
+requirements specification. 
+ACTION: ALL
+
+9. one or two people to read SE.QA.06 and to 
+start making system tests for the test specification and to 
+report back to the group next week.
+ACTION: JIB16,CKC2
+
+10. One or two people to think about implementation – what kinds 
+of code will you need? What are the difficult problems? 
+Report back findings next week.
+ACTION:SHR27,GWH18
+
+11. One or two people to try starting to program the on-screen display: 
+that is get up to speed with javafx. Report back next week.
+ACTION:SHR27,GWH18
+
+12. Someone to look into the documents SE.QA.01, 02 and 03, 
+and to explain how QA works on the project.
+ACTION:TYW1
+
+13. Start thinking about who should be project leader and quality
+assurance manager and their deputies. Discuss next week.
+ACTION: ALL
+
+14. Blogs for next tutorial. To be added to gitlab the
+day before the tutorial.
+ACTION: ALL
+
+AOB 
+=== 	
+15. No extra requirements.
+16. Group to arrange an internal meeting. 
+ACTION: ALL

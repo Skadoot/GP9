@@ -1,0 +1,29 @@
+Author: ckc2
+Week: 1 (06/02/23)
+
+Assigned actions
+==============
+
+Action 9: one or two people to read SE.QA.06 and to 
+start making system tests for the test specification and to 
+report back to the group next week.
+
+Read through the test specification quality assurance while created a table with some system tests specification
+
+Hours: 3
+
+Action 7 & 8: Everyone must watch the Panopto recording on how to build the UI specification.
+Say what you did to address the action. / Everyone must read the group project introduction document and the 
+requirements specification. 
+
+Hours: 1
+
+Read and watched through lectures of the documents to have a further understanding of the functionality
+
+Other project work
+================
+Held an internal meeting with the group to discuss the progress while sharing different ideas of implementations and documents 
+
+Hours: 1
+
+Total hours: 5

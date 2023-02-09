@@ -1,5 +1,5 @@
 ## Name
-This is group project 99 "haha funny brooklyn tv show reference"
+Group Porject 9 "Chess Tutor".
 
 ## Description
-Sensible comment 
+A Chess tutor programme made with aim of teaching newbies chess "as they play".

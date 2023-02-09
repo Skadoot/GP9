@@ -1,0 +1,33 @@
+Author: CWL
+Week: 1 (23/01/23)
+
+Assigned actions
+==============
+
+Action 7 & 8: Watching panpoto recording on building UI specification and reading the group document introduction.
+
+Watched the lecture and read document. Constructed some brief notes on requirements.
+
+Hours: 1
+
+Action 10: Think about code implementation. (from minutes of previous week)
+
+Held internal meeting with Jack and Shaun. Constructed a class diagram sketch.
+
+Hours: 2
+
+Action 11: Set up JavaFX screen. (from minutes of previous week)
+
+Set up three classes, two screen handling classes and an interface class for passing data between backend to the frontend.
+Many elements of these classes are still non-functional and incomplete.
+
+Hours: 4
+
+Other project work
+================
+Held an internal meeting. Discussed progress, shared information on documents, further discussed code implementation
+and expected problems ahead of tutor group on Friday.
+
+Hours: 1
+
+Total hours: 8

@@ -8,7 +8,7 @@ Action 9: one or two people to read SE.QA.06 and to
 start making system tests for the test specification and to 
 report back to the group next week.
 
-Read through the test specification quality assurance while created a table with some system tests specification
+Read through the test specification quality assurance while created a table with some system tests specification along with Jim
 
 Hours: 3
 

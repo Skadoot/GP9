@@ -1,0 +1,50 @@
+Author: TYW
+Week: 1 (09/02/23)
+
+Assigned actions
+==============
+
+Action 1: One or two people to read SE.QA.04 and start working on UI specification
+          by making a list of possible use cases based on the requirements document,
+          and to report back to the group next week.
+
+Read over the SE.QA.04 specification and created a list of of possible use cases based on the requirements.
+
+Hours: 2
+
+Action 2: Everyone must watch the Panopto recording on how to build the UI specification.
+
+Watched the Panopto recording on how to build the UI specification.
+
+Hours: 1
+
+Action 3: Everyone must read the group project introduction document and the
+          requirements specification.
+
+Read the project introduction document and the requirements specification.
+
+Hours: 1
+
+Action 4: Someone to look into the documents SE.QA.01, 02 and 03,
+          and to explain how QA works on the project.
+
+Read through each of the SE.QA.01 and 02 and 03 specifications, and have
+begun creating some quality assurance checklists for the team to use.
+
+Hours: 4
+
+Action 5: Start thinking about who should be project leader and quality
+          assurance manager and their deputies. Discuss next week.
+
+The team held an internal meeting this week, in which we concluded that Gwion (gwh18)
+would be Project Leader and that I (tyw1) would be Quality Assurance Manager.
+
+Hours: 1
+
+Other project work
+================
+Attended an internal meeting with the team.
+
+Hours: 1
+
+Total hours: 10

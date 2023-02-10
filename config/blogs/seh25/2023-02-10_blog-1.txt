@@ -1,0 +1,40 @@
+Author: SEH25
+Week: 1 (06/02/23)
+
+Assigned Actions
+================
+Action 1: One or two people to read SE.QA.04 and start working on UI specification
+          by making a list of possible use cases based on the requirements document,
+          and to report back to the group next week.
+
+Read through SE.QA.04 and the requirements document, and begun creating a list of use cases based on the requirements.
+
+Hours: 3
+
+Action 2: Everyone must watch the Panopto recording on how to build the UI specification.
+
+Watched the recording.
+
+Hours: 1
+
+Action 3: Everyone must read the group project introduction document and the
+          requirements specification.
+
+Read through both documents.
+
+Hours: 1
+
+Action 4: Start thinking about who should be project leader and quality 
+	    assurance manager and their deputies. Discuss next week.
+
+Spent some time considering, and the team agreed on two of these roles during our internal meeting.
+
+Hours: 1
+
+Other Project Work
+==================
+Attended an internal team meeting.
+
+Hours: 1
+
+Total Hours: 7

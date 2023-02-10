@@ -1,0 +1,24 @@
+Author: CTS12
+Week: 1 (09/02/23)
+
+Assigned actions
+==============
+
+Action 4: Status of group Gitlab repository?
+
+Annoyingly I encountered some issues after setting up git on my pc and had spent
+way too long trying to fix it before asking for assistance, now it's all set up fine
+Hours: 1
+
+Action 7 & 8: Everyone must watch the Panopto recording on how to build the UI specification./Everyone must read the group project introduction document and the 
+requirements specification.
+
+Watched the Panoto recording/ Read the group project introduction 
+
+Hours: 1
+
+Other project work
+================
+
+
+Total hours: 2

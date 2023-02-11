@@ -1,0 +1,96 @@
+Project: Group Project 09 
+Meeting: Weekly Project Meeting 
+Persons present: All project members 
+Place and date of meeting: C57a, Friday 10th February 2023 
+Circulation list: All project members, plus project manager 
+Author: Chris Loftus 
+Date of minutes: 10/2/23
+Version: 1.0
+
+Team:
+- ckc2: Craymon Chan
+- cts12: Ciaran Smith 
+- gwh18: Gwion Highes
+- jat92: Jack Thompson 
+- jib16: Jim Brown
+- seh25: Sean Hobson
+- shr27: Shaun Royle
+- tyw1: Tyler Lewis
+
+Matters arising 
+===============
+1. One or two people to read SE.QA.04 and start working on UI specification
+by making a list of possible use cases based on the requirements document.
+List of use cases
+ACTION: SEH25, TYW1
+
+2. Everyone must watch the Panopto recording on how to build the UI specification.
+Done
+ACTION: ALL
+
+3. Everyone must read the group project introduction document and the 
+requirements specification. 
+Done
+ACTION: ALL
+
+4. One or two people to read SE.QA.06 and to 
+start making system tests for the test specification.
+Done
+ACTION: JIB16,CKC2
+
+5. One or two people to think about implementation – what kinds 
+of code will you need? What are the difficult problems? 
+Done
+ACTION:SHR27,GWH18
+
+6. One or two people to try starting to program the on-screen display: 
+that is get up to speed with javafx. 
+Done
+ACTION:SHR27,GWH18
+
+7. Someone to look into the documents SE.QA.01, 02 and 03, 
+and to explain how QA works on the project.
+Done
+ACTION:TYW1
+
+8. Start thinking about who should be project leader and quality
+assurance manager and their deputies. 
+Project leader: Gwion, deputy PL: Jack
+QA manager: Tyler, Deputy QA: Sean
+ACTION: ALL
+
+9. Blogs for next tutorial. To be added to gitlab the
+day before the tutorial.
+DONE except SEH25, CTS12
+ACTION: ALL
+
+10. Group to arrange an internal meeting. 
+Yes, and discussed project stuff
+ACTION: ALL
+
+New business 
+============
+11. UI specification
+- Powerpoint slides
+- More detail in UI spec
+ACTION: SEH25, TYW1, JAT92
+
+12. Test specification.
+- Continue adding and refining tests
+ACTION: JIB16,CKC2
+
+13. Implementation issues
+- Start prototype of move logic
+- Representing logic at detailed design level
+ACTION:SHR27,GWH18
+
+14. javafx. 
+- Adding logic to front end
+ACTION:SHR27,GWH18,CTS12
+
+15. Read SE.QA.07/08 and present to group.
+ACTION:	TYW1
+
+AOB 
+=== 	
+17. Scenebuilder tool can be used

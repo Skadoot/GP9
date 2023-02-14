@@ -1,0 +1,29 @@
+Author: shr27
+Week: 1 (23/01/23)
+
+Assigned actions
+==============
+
+Action 1: Thought of the potential issues we could face and possible implementation issues
+
+We disscussed potential hierarchical structure of classes during a lunch break.
+We created a rough document which listed some of the issues we could face while trying to implement the logic of the chess program
+and disscussed some methods of solving it.
+
+Hours: 5
+
+Other project work
+================
+Began structuring some classes for a prototype.
+
+hours: 2
+
+attended a meeting with the whole group on the 8th of febuary.
+
+hours: 1
+
+created a flow diagram which illustrates the potential flow of the program.
+
+Hours: 0.25
+
+Total hours: 8

@@ -7,15 +7,16 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Interface extends Application {
+    Stage primaryStage;
+
     @Override
     public void start(Stage stage) throws IOException {
-        //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        //Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        primaryStage = stage;
 
-        PlayScreen playScreen = new PlayScreen(stage);
+        PlayScreen playScreen = new PlayScreen(this);
         Scene scenePlay = playScreen.constructPlayScreen();
 
-        StartScreen startScreen = new StartScreen(stage);
+        StartScreen startScreen = new StartScreen(this);
         startScreen.setPlayScreen(scenePlay);
         Scene sceneStart = startScreen.constructScreen();
 
@@ -26,5 +27,17 @@ public class Interface extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    public Stage getStage() {
+        return primaryStage;
+    }
+
+    public void click(int column, int row) {
+        // Pass to chessboard the piece that was pressed.
+        // Chessboard does a thing and returns a vector map of possible moves(if any).
+        // Backend will handle the logic like if the player wants to move a different piece.
+        System.out.println(column);
+        System.out.println(row);
     }
 }

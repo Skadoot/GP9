@@ -16,11 +16,11 @@ import javafx.stage.Stage;
  * @version 0.1
  */
 public class StartScreen {
-    private final Stage stage;
+    private final Interface anInterface;
     private Scene playScreen;
 
-    public StartScreen(Stage stage) {
-        this.stage = stage;
+    public StartScreen(Interface anInterface) {
+        this.anInterface = anInterface;
     }
 
     /**
@@ -36,7 +36,7 @@ public class StartScreen {
         ngButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                stage.setScene(playScreen);
+                anInterface.getStage().setScene(playScreen);
             }
         });
         conButton.setText("Continue");

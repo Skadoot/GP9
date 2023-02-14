@@ -1,29 +1,31 @@
 package com.example.screenstuff;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 
+import javafx.scene.control.Button;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 /**
  * @author Gwion Hughes
  * @version 0.1
  */
 public class PlayScreen {
-    private final Stage stage;
+    private final Interface anInterface;
 
-    public PlayScreen(Stage stage) {
-        this.stage = stage;
+    public PlayScreen(Interface anInterface) {
+        this.anInterface = anInterface;
     }
 
     public Scene constructPlayScreen() {
         GridPane layout = new GridPane();
         layout.setPadding(new Insets(10,10,10,10));
+
+        //Setting up column and row width for the layout gridpane. Currently an 18x12 grid.
         for(int counter = 0; counter < 18; counter++) {
             ColumnConstraints cConstraint = new ColumnConstraints(50);
             layout.getColumnConstraints().add(cConstraint);
@@ -36,6 +38,7 @@ public class PlayScreen {
 
 
         GridPane chessboard = chessBoard();
+        //Adding the chessboard to size 5-13x0-8
         layout.add(chessboard, 5, 0, 13, 8);
 
         VBox controls = new VBox();
@@ -64,7 +67,7 @@ public class PlayScreen {
         layout.setAlignment(Pos.CENTER);
 
         //Makes the gridlines visible in layout. Useful for debugging
-        //layout.setGridLinesVisible(true);
+        layout.setGridLinesVisible(true);
 
 
         Scene playScreen = new Scene(layout, 1200, 700);
@@ -83,16 +86,31 @@ public class PlayScreen {
         for(int row = 0; row < 8; row++) {
             check++;
             for(int column = 0; column < 8; column++) {
-                Rectangle square = new Rectangle(50,50,50,50);
+                Button button = new Button();
+                button.setPrefSize(50,50);
+                button.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        int column, row;
+                        actionEvent.getSource();
+                        column = (int) ((Button) actionEvent.getSource()).getProperties().get("gridpane-column");
+                        row = (int) ((Button) actionEvent.getSource()).getProperties().get("gridpane-row");
+                        anInterface.click(column, row);
+                    }
+                });
                 check++;
                 if(check %2 == 1) {
-                    square.setFill(Color.FIREBRICK);
+                    button.setId("blacktile");
                 } else {
-                    square.setFill(Color.WHITE);
+                    button.setId("whitetile");
                 }
-                chessboard.add(square, row, column);
+                chessboard.add(button, row, column);
             }
         }
         return chessboard;
+    }
+
+    public void switchButton(/*A map of buttons that need to be switched on or off*/) {
+        //Iterate through every button to turn on or off.
     }
 }

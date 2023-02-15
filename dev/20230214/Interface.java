@@ -1,3 +1,6 @@
+package com.example.screenstuff;
+
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Screen;

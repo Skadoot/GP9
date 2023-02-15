@@ -111,9 +111,12 @@ public class PlayScreen {
                 if(check %2 == 1) {
 
                     button.setId("blacktile");
+                    button.setStyle("-fx-background-color : #d18b47");
                 } else {
 
                     button.setId("whitetile");
+                    button.setStyle("-fx-background-color : #ffce9e");
+
                 }
 
                 chessboard.add(button, row, column);

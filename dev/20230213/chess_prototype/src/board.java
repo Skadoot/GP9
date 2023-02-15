@@ -101,7 +101,10 @@ public class board
         //initialising the new board state string.
         String new_board_state = "";
 
-        //read the board and create a new board state string.
+        //read the board and update the string to represent the board.
+        new_board_state = "t";
+
+        //set the bard state.
         board_state = new_board_state;
     }
 
@@ -134,18 +137,30 @@ public class board
             {
                 if (board[i][j].get_color().equals(attacking_player.get_color()))
                 {
-                    //first filter squares which have pieces of its own color on already.
-
-                    //second filter out squares that are blocked (knight excluded).
-
-                    //filter out moves that would leave the player in check.
+                    board[i][j].calculate_possible_moves();
+                    filter_piece_legal_moves(board[i][j]);
                 }
             }
         }
     }
 
+    //filter the legal moves for a given piece
+    private void filter_piece_legal_moves(a_piece piece)
+    {
+        for (int i = 0; i < piece.get_possible_moves().size(); i++)
+        {
+            //first filter squares which have pieces of its own color on already.
+
+            //second filter out squares that are blocked (knight excluded).
+
+            //filter out moves that would leave the player in check.
+        }
+    }
+
+    //find out which player is moving.
     private void determine_current_player()
     {
+        //if it's the first half of the move the attacking player is white.
         if (half_of_move == 1)
         {
             attacking_player = new player("white");
@@ -179,6 +194,7 @@ public class board
                 }
             }
         }
+
         //update the threatened squares.
         this.threatened_squares = threatened_squares;
     }

@@ -3,7 +3,7 @@ package pieces;
 import vector.vector2;
 import java.util.ArrayList;
 
-public abstract class a_piece
+public class a_piece
 {
     //storing the pieces color.
     private final String color;
@@ -96,5 +96,6 @@ public abstract class a_piece
 
     public void calculate_possible_moves()
     {
+
     }
 }

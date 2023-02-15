@@ -19,4 +19,10 @@ public class knight extends a_piece
         //calculate the possible moves.
         calculate_possible_moves();
     }
+
+    //calculating the moves for a pieces.king.
+    @Override public void calculate_possible_moves()
+    {
+
+    }
 }

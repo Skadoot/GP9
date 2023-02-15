@@ -43,12 +43,14 @@ public class PlayScreen {
         //Adding the chessboard to size 5-13x0-8
         layout.add(chessboard, 5, 0, 13, 8);
 
+/*
         VBox controls = new VBox();
         Text controlsFill = new Text("Controls");
         controls.setStyle("-fx-border-color: BLACK");
         controls.getChildren().add(controlsFill);
 
         layout.add(controls, 0, 0, 4,8);
+*/
 
         HBox log = new HBox();
         Text logFill = new Text("Log");
@@ -57,23 +59,24 @@ public class PlayScreen {
 
         layout.add(log, 2, 9, 14, 9);
 
+/*
         VBox extraLayout = new VBox();
         Text extraLayoutFill = new Text("Extra Stuff");
         extraLayout.setStyle("-fx-border-color: GREEN");
         extraLayout.getChildren().add(extraLayoutFill);
 
         layout.add(extraLayout, 14, 0, 18, 8);
-
-        layout.setStyle("-fx-background-color: DAE9F3;");
+*/
 
         layout.setAlignment(Pos.CENTER);
 
         //Makes the gridlines visible in layout. Useful for debugging
-        layout.setGridLinesVisible(true);
+        //layout.setGridLinesVisible(true);
 
 
         Scene playScreen = new Scene(layout, 1200, 700);
-        //playScreen.getStylesheets().add("./PlayScreenStyleSheet.css");
+        playScreen.getStylesheets().add(PlayScreen.class.getResource("PlayScreenStyleSheet.css").toExternalForm());
+
 
         return playScreen;
     }
@@ -110,10 +113,10 @@ public class PlayScreen {
                 check++;
                 if(check %2 == 1) {
 
-                    button.setId("blacktile");
+                    button.getStyleClass().add("black-tile");
                 } else {
 
-                    button.setId("whitetile");
+                    button.getStyleClass().add("white-tile");
                 }
 
                 chessboard.add(button, row, column);

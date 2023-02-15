@@ -1,9 +1,11 @@
 package com.example.screenstuff;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 
 import javafx.scene.control.Button;
@@ -16,7 +18,7 @@ import javafx.scene.text.Text;
  */
 public class PlayScreen {
     private final Interface anInterface;
-
+    private GridPane chessboard;
     public PlayScreen(Interface anInterface) {
         this.anInterface = anInterface;
     }
@@ -71,6 +73,7 @@ public class PlayScreen {
 
 
         Scene playScreen = new Scene(layout, 1200, 700);
+        //playScreen.getStylesheets().add("./PlayScreenStyleSheet.css");
 
         return playScreen;
     }
@@ -83,12 +86,16 @@ public class PlayScreen {
         GridPane chessboard = new GridPane();
         chessboard.setPadding(new Insets(0,0,0,0));
         int check = 0;
+
         for(int row = 0; row < 8; row++) {
+
             check++;
             for(int column = 0; column < 8; column++) {
+
                 Button button = new Button();
                 button.setPrefSize(50,50);
                 button.setOnAction(new EventHandler<ActionEvent>() {
+
                     @Override
                     public void handle(ActionEvent actionEvent) {
                         int column, row;
@@ -96,21 +103,33 @@ public class PlayScreen {
                         column = (int) ((Button) actionEvent.getSource()).getProperties().get("gridpane-column");
                         row = (int) ((Button) actionEvent.getSource()).getProperties().get("gridpane-row");
                         anInterface.click(column, row);
+                        switchButton(column, row);
                     }
                 });
+
                 check++;
                 if(check %2 == 1) {
+
                     button.setId("blacktile");
                 } else {
+
                     button.setId("whitetile");
                 }
+
                 chessboard.add(button, row, column);
             }
         }
+
+        this.chessboard = chessboard;
         return chessboard;
     }
 
-    public void switchButton(/*A map of buttons that need to be switched on or off*/) {
-        //Iterate through every button to turn on or off.
+    public void switchButton(int column, int row) {
+        ObservableList<Node> buttons = chessboard.getChildren();
+        for (Node button : buttons) {
+            if (GridPane.getColumnIndex(button) == column && GridPane.getRowIndex(button) == row) {
+                button.setDisable(true);
+            }
+        }
     }
 }

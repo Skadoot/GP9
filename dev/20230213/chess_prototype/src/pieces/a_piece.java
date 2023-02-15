@@ -41,7 +41,7 @@ public class a_piece
     }
 
     //getter for the color, returns color
-    public String getColor()
+    public String get_color()
     {
         return color;
     }

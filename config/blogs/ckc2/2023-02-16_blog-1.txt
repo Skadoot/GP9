@@ -1,0 +1,25 @@
+Author: ckc2
+Week: 1 (16/02/23)
+
+Assigned actions
+==============
+
+Action 1: 
+- further adding and refining the following table of test specifications
+- create the structure of test specification document to get ready for review meeting    
+
+Hours: 5
+
+Action 2:
+- Read and watched through documents to have a further understanding of the functional requirements
+
+Hours: 1
+
+
+Other project work
+================
+Held an internal meeting with the group on 16 February 2023 to keep track of progress and sharing ideas 
+
+Hours: 1
+
+Total hours: 7

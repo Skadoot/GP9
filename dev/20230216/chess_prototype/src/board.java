@@ -38,7 +38,9 @@ public class board
 
         //parse the string to find out which move it is.
 
-        //parse the string to find out which half of the move it is.
+        //parse the string to find out which players turn it is.
+
+        //initialise the state of the board with the new string.
         initialise_board();
     }
 
@@ -50,7 +52,10 @@ public class board
         {
             for (int j = 0; j < 8; j++)
             {
+                //setting to null for now
                 board[i][j] = null;
+
+                //here we parse the board_state string to set each row of the board.
             }
         }
     }
@@ -149,28 +154,22 @@ public class board
     {
         for (int i = 0; i < piece.get_possible_moves().size(); i++)
         {
-            //first filter squares which have pieces of its own color on already.
+            //if the square in the pieces moves has a piece on it that is the same color then it's not a legal move so remove it from the list.
+            if (board[piece.get_possible_moves().get(i).x][piece.get_possible_moves().get(i).y].get_color().equals(piece.get_color()) && board[piece.get_possible_moves().get(i).x][piece.get_possible_moves().get(i).y] != null)
+            {
+                piece.remove_possible_move(i);
+            }
 
             //second filter out squares that are blocked (knight excluded).
+            if (!piece.get_type().equals("k"))
+            {
+                //filter the blocked squares
+            }
 
-            //filter out moves that would leave the player in check.
-        }
-    }
-
-    //find out which player is moving.
-    private void determine_current_player()
-    {
-        //if it's the first half of the move the attacking player is white.
-        if (half_of_move == 1)
-        {
-            attacking_player = new player("white");
-            defending_player = new player("black");
-        }
-        //if it's the second half of the move the attacking player is black.
-        else if (half_of_move == 2)
-        {
-            attacking_player = new player("black");
-            defending_player = new player("white");
+            /* filter out moves that would leave the player in check.
+            /  for each move create a new board where that move was taken and then create a new check map
+            /  and see if its in check if so that move should be removed
+            */
         }
     }
 
@@ -198,5 +197,22 @@ public class board
 
         //update the threatened squares.
         this.threatened_squares = threatened_squares;
+    }
+
+    //find out which player is moving.
+    private void determine_current_player()
+    {
+        //if it's the first half of the move the attacking player is white.
+        if (half_of_move == 1)
+        {
+            attacking_player = new player("white");
+            defending_player = new player("black");
+        }
+        //if it's the second half of the move the attacking player is black.
+        else if (half_of_move == 2)
+        {
+            attacking_player = new player("black");
+            defending_player = new player("white");
+        }
     }
 }

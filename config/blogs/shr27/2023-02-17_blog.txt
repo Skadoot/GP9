@@ -1,0 +1,23 @@
+Author: shr27
+Week: 1 (23/01/23)
+
+Assigned actions
+==============
+
+Action 1: began work on a prototype for the chess logic
+
+action 2: created classes and rules for the movement of each of the pieces
+
+3 hours.
+
+action 3: created a board class and defined all the structure for the logic of the game, need to finish functions for filtering legal moves and created the check map.
+
+4 hours.
+
+Other project work
+================
+attended a meeting with the whole group on the 15th of febuary.
+
+hours: 1
+
+Total hours: 8

@@ -17,7 +17,7 @@ public class a_piece
     //the possible moves for a pieces.piece, ignoring if the moves are legal or not.
     private ArrayList<vector2> possible_moves;
 
-    //to keep track if the pieces.pawn has moved during the course of the game.
+    //to keep track if the pieces.a_piece has moved during the course of the game.
     private boolean has_moved;
 
     //constructor for pieces.
@@ -98,4 +98,10 @@ public class a_piece
     {
 
     }
+
+    public void remove_possible_move(int index)
+    {
+        possible_moves.remove(index);
+    }
+
 }

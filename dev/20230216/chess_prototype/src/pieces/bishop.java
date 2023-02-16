@@ -20,9 +20,20 @@ public class bishop extends a_piece
         calculate_possible_moves();
     }
 
-    //calculating the moves for a pieces.king.
+    //calculating the moves for a pieces.bishop.
     @Override public void calculate_possible_moves()
     {
+        ArrayList<vector2> possible_moves = new ArrayList<>();
 
+        //add all the squares in every diagonal.
+        for (int i = 1; i < 8; i++)
+        {
+            possible_moves.add(new vector2(super.get_position().x + i, super.get_position().y + i));
+            possible_moves.add(new vector2(super.get_position().x - i, super.get_position().y - i));
+            possible_moves.add(new vector2(super.get_position().x + i, super.get_position().y - i));
+            possible_moves.add(new vector2(super.get_position().x - i, super.get_position().y + i));
+        }
+
+        super.set_possible_moves(possible_moves);
     }
 }

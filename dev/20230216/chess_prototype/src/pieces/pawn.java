@@ -34,7 +34,7 @@ public class pawn extends a_piece
         possible_moves.add(new vector2(super.get_position().x, super.get_position().y + 1));
 
         //if it has not moved then it should add the position 2 squares forward to the list.
-        if (super.has_moved())
+        if (!super.has_moved())
         {
             possible_moves.add(new vector2(super.get_position().x, super.get_position().y + 2));
         }

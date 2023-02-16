@@ -23,6 +23,20 @@ public class king extends a_piece
     //calculating the moves for a pieces.king.
     @Override public void calculate_possible_moves()
     {
+        ArrayList<vector2> possible_moves = new ArrayList<>();
 
+        //diagonal king moves.
+        possible_moves.add(new vector2(super.get_position().x + 1, super.get_position().y + 1));
+        possible_moves.add(new vector2(super.get_position().x - 1, super.get_position().y - 1));
+        possible_moves.add(new vector2(super.get_position().x + 1, super.get_position().y - 1));
+        possible_moves.add(new vector2(super.get_position().x - 1, super.get_position().y + 1));
+
+        //horizontal king moves.
+        possible_moves.add(new vector2(super.get_position().x + 1, super.get_position().y));
+        possible_moves.add(new vector2(super.get_position().x - 1, super.get_position().y));
+
+        //vertical king moves.
+        possible_moves.add(new vector2(super.get_position().x, super.get_position().y + 1));
+        possible_moves.add(new vector2(super.get_position().x, super.get_position().y - 1));
     }
 }

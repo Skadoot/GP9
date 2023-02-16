@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="javafx-sdk-17.0">
+    <CLASSES>
+      <root url="file://$USER_HOME$/ProgramFiles/openjfx-17.0.6_linux-aarch64_bin-sdk/javafx-sdk-17.0.6/lib" />
+    </CLASSES>
+    <JAVADOC />
+    <NATIVE>
+      <root url="file://$USER_HOME$/ProgramFiles/openjfx-17.0.6_linux-aarch64_bin-sdk/javafx-sdk-17.0.6/lib" />
+    </NATIVE>
+    <SOURCES />
+    <jarDirectory url="file://$USER_HOME$/ProgramFiles/openjfx-17.0.6_linux-aarch64_bin-sdk/javafx-sdk-17.0.6/lib" recursive="false" />
+  </library>
+</component>

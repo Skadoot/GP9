@@ -1,0 +1,35 @@
+Author: TYW
+Week: 2 (16/02/23)
+
+Assigned actions
+==============
+
+Action 1/11: One or two people to read SE.QA.04 and start working on UI specification
+             by making a list of possible use cases based on the requirements document.
+
+Completed the list of use cases. Completed first draft of the UI Specification Document.
+
+Hours: 4
+
+Action 15: Read SE.QA.07/08 and present to group.
+
+Read both documents. Prepared to present findings to the group.
+
+Hours: 2
+
+Other project work
+================
+Attended an internal meeting with the team.
+
+Hours: 1
+
+Created Google Drive folder with template resources for document creation.
+
+Hours: 1
+
+Continued analyzing QA documents and creating notes/cheat sheets.
+Begun work on creating the list of project deliverables.
+
+Hours: 2
+
+Total hours: 10

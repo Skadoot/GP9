@@ -1,0 +1,27 @@
+Author: CTS12
+Week: 1 (09/02/23)
+
+Assigned actions
+==============
+
+Action 14: JavaFX
+
+I had a quick session with Gwion to catch up to speed with the existing javaFX prototypes
+Hours: 1
+
+I spent an extra hour setting up a test project inside intellij with javaFX screens
+Hours: 1
+
+After i had set up everything I had experimented with potential solutions for the frontend code and added temporary wikimedia commons chess pieces
+to the javaFX board
+Hours: 3
+
+
+
+
+Other project work
+================
+Internal group meeting on 16/02/23 to establish progress and further plans
+Hours: 1
+
+Total hours: 6

@@ -1,0 +1,70 @@
+Project: Group Project 09 
+Meeting: Weekly Project Meeting 
+Persons present: All project members
+Place and date of meeting: C57a, Friday 17th February 2023 
+Circulation list: All project members, plus project manager 
+Author: Tyler Lewis 
+Date of minutes: 17/02/23
+Version: 1.0
+
+Team:
+- ckc2: Craymon Chan
+- cts12: Ciaran Smith 
+- gwh18: Gwion Highes
+- jat92: Jack Thompson 
+- jib16: Jim Brown
+- seh25: Sean Hobson
+- shr27: Shaun Royle
+- tyw1: Tyler Lewis
+
+Matters arising 
+===============
+1. One or two people to read SE.QA.04 and start working on UI specification
+by making a list of possible use cases based on the requirements document.
+ACTION: SEH25, TYW1, JAT92
+
+2. UI specification
+- Powerpoint slides
+- More detail in UI spec
+ACTION: SEH25, TYW1, JAT92
+
+3. Test specification.
+- Continue adding and refining tests
+ACTION: JIB16,CKC2
+
+4. Implementation issues
+- Start prototype of move logic
+- Representing logic at detailed design level
+ACTION:SHR27,GWH18
+
+5. javafx. 
+- Adding logic to front end
+ACTION:SHR27,GWH18,CTS12
+
+6. Read SE.QA.07/08 and present to group.
+ACTION:	TYW1
+
+New business 
+============
+
+7. Add references to functional requirements in the UI Specification.
+ACTION: TYW1, SEH25, JAT92
+
+8. Continue work on the UI Presentation.
+ACTION: TYW1, SEH25, JAT92
+
+9. Continue work on the Test Specification (formatting and structure, additional test cases).
+ACTION: JIB16, CKC2
+
+10. Continue work on general implementation.
+ACTION: SHR27, GWH18
+
+11. Begin creating mock-up screens for New Game, Load Game, etc.
+ACTION: GWH18, CTS12
+
+12. Review time-spent for each member, present at each meeting.
+ACTION: GWH18
+
+AOB 
+=== 	
+No other business.

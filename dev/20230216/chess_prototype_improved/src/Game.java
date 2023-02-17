@@ -1,9 +1,8 @@
 import vector.vector2;
-import pieces.piece;
 
 import java.util.ArrayList;
 
-public class Game
+public class game
 {
     //this is the order of operations that will happen every turn
     private board game_board;
@@ -13,6 +12,11 @@ public class Game
 
     //keep track of which move it is.
     private int move_count;
+
+    public game(String board_state)
+    {
+        game_board = new board(board_state);
+    }
 
     public void move()
     {

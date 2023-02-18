@@ -18,6 +18,9 @@ public class board
     //map of squares threatened by defending player, updated at the start of each turn.
     Map<vector2, vector2> threatened_squares;
 
+    //move directions.
+    vector2[] move_directions = { new vector2(0, 1),  new vector2(0, -1), new vector2(1, 0), new vector2(-1, 0), new vector2(1, 1), new vector2(-1, -1), new vector2(1, -1), new vector2(-1, 1)};
+
     //constructor for the board.
     public board(String initial_board_state)
     {
@@ -30,37 +33,23 @@ public class board
         //initialise the state of the board with the new string.
         int file = 0, rank = 7;
 
-        for (int i = 0; i < board_state.length(); i++)
-        {
-            if (board_state.charAt(i) != ' ')
-            {
-                if (board_state.charAt(i) == '/')
-                {
-                    file = 0;
-                    rank--;
-                }
-                else
-                {
-                    if (Character.isDigit(board_state.charAt(i)))
-                    {
+        for (int i = 0; i < board_state.length(); i++) {
+            if (board_state.charAt(i) != ' ') {
+                if (board_state.charAt(i) == '/') {
+                    file = 0; rank--;
+                } else {
+                    if (Character.isDigit(board_state.charAt(i))) {
                         file += board_state.charAt(i);
-                    }
-                    else
-                    {
-                        if (!Character.isLowerCase(board_state.charAt(i)))
-                        {
+                    } else {
+                        if (!Character.isLowerCase(board_state.charAt(i))) {
                             board[file][rank] = new piece('w', new vector2(file, rank), board_state.charAt(i));
-                        }
-                        else
-                        {
+                        } else {
                             board[file][rank] = new piece('b', new vector2(file, rank), board_state.charAt(i));
                         }
                         file++;
                     }
                 }
-            }
-            else
-            {
+            } else {
                 return;
             }
         }
@@ -120,71 +109,134 @@ public class board
         //loop over each piece that is of a particular color
         for (int file = 0; file < 8; file++) {
             for (int rank = 0; rank < 8; rank++) {
-                if (board[file][rank].get_color() == attacking_player)
-                {
-                    //set up the generated list of legal moves.
-                    ArrayList<vector2> legal_moves = new ArrayList<>();
+                piece p = board[file][rank];
 
-                    vector2[] move_directions = { new vector2(0, 1),  new vector2(0, -1), new vector2(1, 0), new vector2(-1, 0), new vector2(1, 1), new vector2(-1, -1), new vector2(1, -1), new vector2(-1, 1)};
+                if (p.get_type() == ' ') { continue; }
+                if (p.get_color() != attacking_player) { continue; }
 
-                    //if the piece is a rook, queen, or bishop calculate its legal moves.
-                    if (board[file][rank].get_type() == 'r' || board[file][rank].get_type() == 'b' || board[file][rank].get_type() == 'q')
-                    {
-                        int direction_index = (board[file][rank].get_type() == 'b') ? 4 : 0;
-                        int end_direction_index = (board[file][rank].get_type() == 'r') ? 4 : 8;
-
-                        for (int direction = direction_index; direction < end_direction_index; direction++) {
-                            boolean blocked_by_other_piece = false;
-                            for (int n = 0; n < 7; n++) {
-                                vector2 coordinate = new vector2(board[file][rank].get_position().x + (move_directions[direction_index].x * n), board[file][rank].get_position().y + (move_directions[direction_index].y * n));
-                                if (board[coordinate.x][coordinate.y] == null && !(blocked_by_other_piece))
-                                {
-                                    legal_moves.add(coordinate);
-                                }
-                                else if (!(board[coordinate.x][coordinate.y] == null) && (board[coordinate.x][coordinate.y].get_color() == board[file][rank].get_color()))
-                                {
-                                    blocked_by_other_piece = true;
-                                }
-                                else if (!(board[coordinate.x][coordinate.y] == null) && !(board[coordinate.x][coordinate.y].get_color() == board[file][rank].get_color()))
-                                {
-                                    legal_moves.add(coordinate);
-                                    blocked_by_other_piece = true;
-                                }
-                            }
-                        }
-                    }
-                    //if the piece is a king, calculate its legal moves.
-                    else if (board[file][rank].get_type() == 'k')
-                    {
-                        for (int direction = 0; direction < move_directions.length; direction++) {
-                            vector2 coordinate = new vector2(board[file][rank].get_position().x + move_directions[direction].x, board[file][rank].get_position().y + move_directions[direction].y);
-
-                            if (board[coordinate.x][coordinate.y] == null)
-                            {
-                                legal_moves.add(coordinate);
-                            }
-                            else if (!(board[coordinate.x][coordinate.y] == null) && !(board[coordinate.x][coordinate.y].get_color() == board[file][rank].get_color()))
-                            {
-                                legal_moves.add(coordinate);
-                            }
-                        }
-                    }
-                    //if the piece is a knight, calculate its legal moves.
-                    else if (board[file][rank].get_type() == 'n')
-                    {
-
-                    }
-                    //if the piece is a pawn, calculate its legal moves.
-                    else if (board[file][rank].get_type() == 'p')
-                    {
-
-                    }
-
-                    //set the piece's legal moves list to the one generated.
-                    board[file][rank].set_possible_moves(legal_moves);
+                if (p.get_type() == 'p') {
+                    p.set_possible_moves(find_pawn_legal_moves(p));
+                } else if (p.get_type() == 'b') {
+                    p.set_possible_moves(find_bishop_legal_moves(p));
+                } else if (p.get_type() == 'n') {
+                    p.set_possible_moves(find_knight_legal_moves(p));
+                } else if (p.get_type() == 'r') {
+                    p.set_possible_moves(find_rook_legal_moves(p));
+                } else if (p.get_type() == 'q') {
+                    p.set_possible_moves(find_queen_legal_moves(p));
+                } else if (p.get_type() == 'k') {
+                    p.set_possible_moves(find_king_legal_moves(p));
                 }
             }
         }
+    }
+
+    private ArrayList<vector2> find_pawn_legal_moves(piece p) {
+        ArrayList<vector2> pawn_legal_moves = new ArrayList<>();
+        return pawn_legal_moves;
+    }
+
+    private ArrayList<vector2> find_knight_legal_moves(piece p) {
+        ArrayList<vector2> pawn_knight_moves = new ArrayList<>();
+        return pawn_knight_moves;
+    }
+
+    private ArrayList<vector2> find_bishop_legal_moves(piece p) {
+        vector2[] bishop_directions = { new vector2(1, 1), new vector2(-1, -1), new vector2(1, -1), new vector2(-1, 1)} ;
+        ArrayList<vector2> bishop_legal_moves = new ArrayList<>();
+
+        for (vector2 move_direction : bishop_directions) {
+            for (int n = 0; n < 7; n++) {
+                vector2 move = new vector2();
+                move.x = p.get_position().x + (move_direction.x * n);
+                move.y = p.get_position().y + (move_direction.y * n);
+
+                if (move.x > 7 || move.y > 7 || move.x < 0 || move.y < 0) { break; }
+
+                if (get_piece(move) == null) {
+                    bishop_legal_moves.add(move);
+                } else if (!(get_piece(move) == null) && !(get_piece(move).get_color() == p.get_color())) {
+                    bishop_legal_moves.add(move);
+                    break;
+                } else if (!(get_piece(move) == null) && (get_piece(move).get_color() == p.get_color())) {
+                    break;
+                }
+            }
+        }
+        return bishop_legal_moves;
+    }
+
+    private ArrayList<vector2> find_rook_legal_moves(piece p) {
+        vector2[] rook_directions = { new vector2(0, 1),  new vector2(0, -1), new vector2(1, 0), new vector2(-1, 0)} ;
+        ArrayList<vector2> rook_legal_moves = new ArrayList<>();
+
+        for (vector2 move_direction : rook_directions) {
+            for (int n = 0; n < 7; n++) {
+                vector2 move = new vector2();
+                move.x = p.get_position().x + (move_direction.x * n);
+                move.y = p.get_position().y + (move_direction.y * n);
+
+                if (move.x > 7 || move.y > 7 || move.x < 0 || move.y < 0) { break; }
+
+                if (get_piece(move) == null) {
+                    rook_legal_moves.add(move);
+                } else if (!(get_piece(move) == null) && !(get_piece(move).get_color() == p.get_color())) {
+                    rook_legal_moves.add(move);
+                    break;
+                } else if (!(get_piece(move) == null) && (get_piece(move).get_color() == p.get_color())) {
+                    break;
+                }
+            }
+        }
+        return rook_legal_moves;
+    }
+
+    private ArrayList<vector2> find_queen_legal_moves(piece p) {
+        vector2[] queen_directions = { new vector2(0, 1),  new vector2(0, -1), new vector2(1, 0), new vector2(-1, 0), new vector2(1, 1), new vector2(-1, -1), new vector2(1, -1), new vector2(-1, 1)};
+        ArrayList<vector2> queen_legal_moves = new ArrayList<>();
+
+        for (vector2 move_direction : queen_directions) {
+            for (int n = 0; n < 7; n++) {
+                vector2 move = new vector2();
+                move.x = p.get_position().x + (move_direction.x * n);
+                move.y = p.get_position().y + (move_direction.y * n);
+
+                if (move.x > 7 || move.y > 7 || move.x < 0 || move.y < 0) { break; }
+
+                if (get_piece(move) == null) {
+                    queen_legal_moves.add(move);
+                } else if (!(get_piece(move) == null) && !(get_piece(move).get_color() == p.get_color())) {
+                    queen_legal_moves.add(move);
+                    break;
+                } else if (!(get_piece(move) == null) && (get_piece(move).get_color() == p.get_color())) {
+                    break;
+                }
+            }
+        }
+        return queen_legal_moves;
+    }
+
+    private ArrayList<vector2> find_king_legal_moves(piece p) {
+        vector2[] king_directions = { new vector2(0, 1),  new vector2(0, -1), new vector2(1, 0), new vector2(-1, 0), new vector2(1, 1), new vector2(-1, -1), new vector2(1, -1), new vector2(-1, 1)};
+        ArrayList<vector2> king_legal_moves = new ArrayList<>();
+
+        for (vector2 move_direction : king_directions) {
+            vector2 move = new vector2();
+            move.x = p.get_position().x + (move_direction.x);
+            move.y = p.get_position().y + (move_direction.y);
+
+            if (move.x > 7 || move.y > 7 || move.x < 0 || move.y < 0) { break; }
+
+            if (get_piece(move) == null) {
+                king_legal_moves.add(move);
+            } else if (!(get_piece(move) == null) && !(get_piece(move).get_color() == p.get_color())) {
+                king_legal_moves.add(move);
+                break;
+            } else if (!(get_piece(move) == null) && (get_piece(move).get_color() == p.get_color())) {
+                break;
+            }
+        }
+        return king_legal_moves;
     }
 
     //create the map of 'threatened' squares to determine if they are in check.
@@ -194,12 +246,9 @@ public class board
         Map<vector2, vector2> threatened_squares = new HashMap<>();
 
         //here we would create the check map.
-        for (int i = 0; i < 8; i++)
-        {
-            for (int j = 0; j < 8; j++)
-            {
-                if (!(board[i][j].get_color() == attacking_player))
-                {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (!(board[i][j].get_color() == attacking_player)) {
                     //add each of the pieces legal moves to the map. (excluding if the move would put the player in check)
                     //add the vectors to the map.
                 }

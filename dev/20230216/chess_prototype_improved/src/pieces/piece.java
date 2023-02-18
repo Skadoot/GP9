@@ -9,7 +9,7 @@ public class piece
     private final char color;
 
     //storing the type of the pieces.piece for notation.
-    private char type;
+    private char type = ' ';
 
     //the pieces position.
     private vector2 position;

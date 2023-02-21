@@ -57,6 +57,10 @@ public class piece
         this.possible_moves = possible_moves;
     }
 
+    public void add_move(vector2 position){
+        possible_moves.add(position);
+    }
+
     //getter for the type, returns type.
     public char get_type()
     {

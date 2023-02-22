@@ -1,5 +1,7 @@
 package com.example.screenstuff;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,12 +11,15 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class PlayerNameScreen {
+    private Interface anInterface;
+    private Scene scene;
 
-    public PlayerNameScreen() {
-
+    public PlayerNameScreen(Interface anInterface) {
+        this.anInterface = anInterface;
+        createScreen();
     }
 
-    public Scene createScreen() {
+    public void createScreen() {
         VBox panel = new VBox();
         panel.setAlignment(Pos.CENTER);
 
@@ -31,8 +36,23 @@ public class PlayerNameScreen {
         Label labelWhite = new Label("White:");
         Label labelBlack = new Label("Black:");
 
+        //Create a button that on click calls interface to swap scene to chessboard
         Button startGame = new Button("Start Game");
+        startGame.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                anInterface.toNewChessboard(textFieldWhite.getText(), textFieldBlack.getText());
+            }
+        });
         Button back = new Button("Back");
+
+        //Create a button that on click calls the interface to backtrack to thee start screen
+        back.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                anInterface.toMenu();
+            }
+        });
 
         playerWhite.getChildren().addAll(labelWhite,textFieldWhite);
         playerBlack.getChildren().addAll(labelBlack,textFieldBlack);
@@ -42,6 +62,10 @@ public class PlayerNameScreen {
 
         Scene scene = new Scene(panel, 1200, 700);
         scene.getStylesheets().add(PlayerNameScreen.class.getResource("PlayerNameScreen.css").toExternalForm());
+        this.scene = scene;
+    }
+
+    public Scene getScene() {
         return scene;
     }
 }

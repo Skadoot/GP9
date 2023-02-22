@@ -1,11 +1,11 @@
 Project: Group Project 09 
 Meeting: Weekly Project Meeting 
 Persons present: All project members except cts12, jat92 
-Place and date of meeting: C57a, Friday 3rd February 2023 
+Place and date of meeting: 0.30 IBERS, Friday 3rd February 2023
 Circulation list: All project members, plus project manager 
 Author: Chris Loftus 
 Date of minutes: 03/02/22
-Version: 1.0
+Version: 2.0
 
 Matters arising 
 ===============

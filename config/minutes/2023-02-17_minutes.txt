@@ -1,11 +1,11 @@
 Project: Group Project 09 
 Meeting: Weekly Project Meeting 
 Persons present: All project members
-Place and date of meeting: C57a, Friday 17th February 2023 
+Place and date of meeting: 0.30 IBERS, Friday 17th February 2023
 Circulation list: All project members, plus project manager 
 Author: Tyler Lewis 
 Date of minutes: 17/02/23
-Version: 1.0
+Version: 2.0
 
 Team:
 - ckc2: Craymon Chan

@@ -23,8 +23,10 @@ public class piece
     //constructor for pieces.
     public piece(char color, vector2 position, char type)
     {
+        possible_moves = new ArrayList<>();
         this.color = color;
         this.position = position;
+        this.type = type;
     }
 
     //getter for the color, returns color
@@ -55,6 +57,10 @@ public class piece
     public void set_possible_moves(ArrayList<vector2> possible_moves)
     {
         this.possible_moves = possible_moves;
+    }
+
+    public void add_move(vector2 position){
+        possible_moves.add(position);
     }
 
     //getter for the type, returns type.

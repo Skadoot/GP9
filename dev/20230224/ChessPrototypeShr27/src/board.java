@@ -25,35 +25,35 @@ public class board {
                     file = 0; rank--;
                 } else {
                     if (Character.isDigit(board_state.charAt(i))) {
-                        System.out.println("i : " + i);
+                        //System.out.println("i : " + i);
                         //System.out.println(board_state.charAt());
-                        System.out.println(board_state.charAt(i));
+                        //System.out.println(board_state.charAt(i));
                         //System.out.println(file);
                         //System.out.println(board_state.charAt(i));
                         file += Character.getNumericValue(board_state.charAt(i));
                         //System.out.println(board_state.charAt(i));
-                        System.out.println(file);
+                        //System.out.println(file);
                     } else {
                         vector2 board_position = new vector2(file, rank);
                         if (!Character.isLowerCase(board_state.charAt(i))) {
-                            System.out.println(board_state.charAt(i));
-                            System.out.println("adding white piece");
+                            //System.out.println(board_state.charAt(i));
+                            //System.out.println("adding white piece");
                             board[file][rank] = new piece('w', board_position, Character.toLowerCase(board_state.charAt(i)));
                             if(Character.toLowerCase(board_state.charAt(i)) == 'k'){
-                                System.out.println("adding white king");
+                              //  System.out.println("adding white king");
                                 w_king_position = board_position;
                             }
                         } else {
-                            System.out.println("adding black piece");
-                            System.out.println(board_state.charAt(i));
+                            //System.out.println("adding black piece");
+                            //System.out.println(board_state.charAt(i));
                             board[file][rank] = new piece('b', board_position, board_state.charAt(i));
                             if(board_state.charAt(i) == 'k'){
-                                System.out.println("adding black king");
+                              //  System.out.println("adding black king");
                                 b_king_position = board_position;
                             }
                         }
-                        System.out.println("added piece to the board");
-                        System.out.println(board[file][rank].get_type());
+                        //System.out.println("added piece to the board");
+                        //System.out.println(board[file][rank].get_type());
                         file++;
                     }
                 }
@@ -108,13 +108,17 @@ public class board {
     //filtering for legal moves relative to the current board state and current player, called at the start of each turn.
     public void find_legal_moves(char attacking_player) {
         //loop over each piece that is of a particular color
-        for (int rank = 0; rank < 8; rank++) {
+        for (int rank = 7; rank > -1; rank--) {
             System.out.print("\n");
             for (int file = 0; file < 8; file++) {
                 vector2 piece_position = new vector2(file, rank);
                 piece p = get_piece(piece_position);
                 if(!(p == null)) {
-                    System.out.print("  " + p.get_type() + "  ");
+                    if (p.get_color() == 'w') {
+                        System.out.print("  " + Character.toUpperCase(p.get_type()) + "  ");
+                    } else {
+                        System.out.print("  " + p.get_type() + "  ");
+                    }
                 } else {
                     System.out.print("  /  ");
                 }
@@ -129,7 +133,7 @@ public class board {
                 if (piece == null) {continue;}
                 if (piece.get_color() != attacking_player) {continue;}
 
-                System.out.println("looking for piece legal moves (type : " + piece.get_type() + ", color : " + ", (file : " + file + ", rank : " + rank + ")),");
+                System.out.println("looking for piece legal moves (type : " + piece.get_type() + ", color : " + piece.get_color() + " " + file + ", rank : " + rank + ")),");
                 switch (piece.get_type()) {
                     case 'p':
                         System.out.println("looking for pawn moves");
@@ -313,7 +317,7 @@ public class board {
                 if (get_piece(new vector2(file, rank)) == null) {continue;}
                 piece piece = get_piece(new vector2(file, rank));
                 if (piece.get_color() == player) {continue;}
-                System.out.println("looking for piece attacking squares (" + piece.get_type() + ").");
+                //System.out.println("looking for piece attacking squares (" + piece.get_type() + ").");
                 switch (piece.get_type()) {
                     case 'p' :
                         find_pawn_legal_moves(piece, true);

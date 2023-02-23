@@ -11,14 +11,17 @@ public class Interface extends Application {
     private PlayerNameScreen playerNameScreen;
     private PlayScreen playScreen;
     private StartScreen startScreen;
+    private LoadScreen loadScreen;
 
     @Override
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
 
+        //Create instances of the screen handling classes and attach this interface instance to those classes.
         playerNameScreen = new PlayerNameScreen(this);
         playScreen = new PlayScreen(this);
         startScreen = new StartScreen(this);
+        loadScreen = new LoadScreen(this);
 
 
         stage.setTitle("Gorpu Chess!");
@@ -58,5 +61,23 @@ public class Interface extends Application {
         playScreen.setWhitePlayerName(whiteName);
         playScreen.setBlackPlayerName(blackName);
         primaryStage.setScene(playScreen.getScene());
+    }
+
+    /**
+     * Switch scene displayed to a scene that displays all the finished games to view through.
+     */
+    public void loadFGames() {
+        //loadSceen.populateButtonBar(list of finished games);
+        loadScreen.setLabel("Finished Games:");
+        primaryStage.setScene(loadScreen.getScene());
+    }
+
+    /**
+     * Switch the scene displayed to a scene that displays all the unfinished games to pick back up from.
+     */
+    public void loadUFGames() {
+        //loadScreen.populateButtonBar(list of unfinished games);
+        loadScreen.setLabel("Unfinished Games:");
+        primaryStage.setScene(loadScreen.getScene());
     }
 }

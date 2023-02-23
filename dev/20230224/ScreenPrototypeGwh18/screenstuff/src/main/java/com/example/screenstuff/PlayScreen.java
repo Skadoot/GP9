@@ -99,6 +99,7 @@ public class PlayScreen {
             @Override
             public void handle(ActionEvent actionEvent) {
                 anInterface.toMenu();
+                //Make sure to clear chessboard and request game be saved
             }
         });
 

@@ -1,0 +1,21 @@
+Author: SEH25
+Week: 3 (20/02/23)
+
+Assigned Actions
+================
+Action 1: Powerpoint slides and UI specification
+
+Made some formatting and grammatical changes to the powerpoint for readability, and added error condition slides.
+
+Hours: 4
+
+Other Project Work
+==================
+Continued reading QA documents for a better understanding.
+
+Hours: 2
+
+Attended internal group meeting.
+Hours: 1
+
+Total Hours: 7

@@ -1,0 +1,25 @@
+Author: ckc2
+Week: 1 (23/02/23)
+
+Assigned actions
+==============
+
+Action 1: 
+- further adding and refining the following table of test specifications
+- trimming the structure of test specification document for the document approach into in review state   
+
+Hours: 5
+
+Action 2:
+- Examine codes of team members and further understanding of unit testing to prepare for the future
+
+Hours: 1
+
+
+Other project work
+================
+Held an internal meeting with the group on 22 February 2023 to keep track of progress while look further into the review version of ui specification
+
+Hours: 1
+
+Total hours: 7

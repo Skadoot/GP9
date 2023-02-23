@@ -1,0 +1,23 @@
+Author: shr27
+Week: 3 (23/02/23)
+
+Assigned actions
+==============
+
+Action 1: continued work on a chess logic prototype
+
+action 2: implemented the methods for finding legal moves for each piece including making sure that the moves do not leave the player in check (excluding special moves, castling, en passant, promotion)
+
+8 hours
+
+action 3: the board can read in a forsyth edwards string to initialize the board to any position.
+
+3 hours
+
+Other project work
+================
+attended a meeting with the whole group on the 22nd of febuary.
+
+hours: 1
+
+Total hours: 12

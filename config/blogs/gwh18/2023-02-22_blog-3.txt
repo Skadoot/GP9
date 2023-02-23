@@ -1,0 +1,22 @@
+Author: GWH18
+Week: 3 (17/02/23)
+
+Assigned actions
+==============
+
+Action 14: JavaFX
+
+Created two new classes and associated CSS files. Spent time restructuring the relations between the classes in the front-end package
+to make it easier for screens to switch. Can now go between screens.
+
+Hours: 5
+
+
+Other project work
+================
+
+Group Project Meeting
+Hours: 1
+
+
+Total hours: 6

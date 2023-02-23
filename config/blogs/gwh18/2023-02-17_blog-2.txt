@@ -1,0 +1,28 @@
+Author: GWH18
+Week: 2 (10/02/23)
+
+Assigned actions
+==============
+
+Action 14: JavaFX
+
+Added a switch button that turns a button on or off. Incoperated CSS stylesheets for dynamic styling of screens and cutting down
+code soup inside the screen classes.
+Discussed the spike work done so far with Ciaran, targetted areas for comments to prepare code for inspection by other memebers.
+
+Hours: 4
+
+
+Other project work
+================
+Held internal meeting. Discussed milestones, looming deliverable deadlines, and set a target to review UI specification
+deliverable before formal review next week.
+
+Hours: 1
+
+Reviewing progress made on actions, kept in touch with members to keep track of progress, set up excel sheet to track hours,
+and began breaking tasks down into milestones, watched L2E-Group project cycle. General group leader duties.
+
+Hours: 3
+
+Total hours: 8

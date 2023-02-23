@@ -25,20 +25,35 @@ public class board {
                     file = 0; rank--;
                 } else {
                     if (Character.isDigit(board_state.charAt(i))) {
-                        file += board_state.charAt(i);
+                        System.out.println("i : " + i);
+                        //System.out.println(board_state.charAt());
+                        System.out.println(board_state.charAt(i));
+                        //System.out.println(file);
+                        //System.out.println(board_state.charAt(i));
+                        file += Character.getNumericValue(board_state.charAt(i));
+                        //System.out.println(board_state.charAt(i));
+                        System.out.println(file);
                     } else {
                         vector2 board_position = new vector2(file, rank);
                         if (!Character.isLowerCase(board_state.charAt(i))) {
+                            System.out.println(board_state.charAt(i));
+                            System.out.println("adding white piece");
                             board[file][rank] = new piece('w', board_position, Character.toLowerCase(board_state.charAt(i)));
                             if(Character.toLowerCase(board_state.charAt(i)) == 'k'){
+                                System.out.println("adding white king");
                                 w_king_position = board_position;
                             }
                         } else {
+                            System.out.println("adding black piece");
+                            System.out.println(board_state.charAt(i));
                             board[file][rank] = new piece('b', board_position, board_state.charAt(i));
                             if(board_state.charAt(i) == 'k'){
+                                System.out.println("adding black king");
                                 b_king_position = board_position;
                             }
                         }
+                        System.out.println("added piece to the board");
+                        System.out.println(board[file][rank].get_type());
                         file++;
                     }
                 }

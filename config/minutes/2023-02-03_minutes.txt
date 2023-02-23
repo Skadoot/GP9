@@ -17,7 +17,7 @@ New business
 ACTION: ALL
 - ckc2: Craymon Chan
 - cts12: Ciaran Smith (not here)
-- gwh18: Gwion Highes
+- gwh18: Gwion Hughes
 - jat92: Jack Thompson (not here)
 - jib16: Jim Brown
 - seh25: Sean Hobson

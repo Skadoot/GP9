@@ -16,16 +16,17 @@ import javafx.scene.layout.VBox;
  */
 public class StartScreen {
     private final Interface anInterface;
-    private Scene playScreen;
+    private Scene startScreen;
 
     public StartScreen(Interface anInterface) {
         this.anInterface = anInterface;
+        constructScreen();
     }
 
     /**
-     * Creates a scene containing a flow pane and currently three empty buttons. Returns the scene.
+     * Creates a scene containing a flow pane and currently three empty buttons.
      */
-    public Scene constructScreen() {
+    private void constructScreen() {
         VBox btnSelection = new VBox();
         Button ngButton = new Button();
         Button conButton = new Button();
@@ -35,7 +36,7 @@ public class StartScreen {
         ngButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                anInterface.getStage().setScene(playScreen);
+                anInterface.toPNScreen();
             }
         });
         conButton.setText("Continue");
@@ -53,10 +54,10 @@ public class StartScreen {
         Scene menu = new Scene(btnSelection, 1200, 700);
         menu.getStylesheets().add(StartScreen.class.getResource("StartScreenStyleSheet.css").toExternalForm());
 
-        return menu;
+        this.startScreen = menu;
     }
 
-    public void setPlayScreen(Scene playScreen) {
-        this.playScreen = playScreen;
+    public Scene getStartScreen() {
+        return startScreen;
     }
 }

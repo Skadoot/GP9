@@ -9,6 +9,8 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
@@ -18,12 +20,19 @@ import javafx.scene.text.Text;
  */
 public class PlayScreen {
     private final Interface anInterface;
+    private Scene scene;
     private GridPane chessboard;
+    private Text whitePlayerName;
+    private Text blackPlayerName;
     public PlayScreen(Interface anInterface) {
         this.anInterface = anInterface;
+        constructPlayScreen();
     }
 
-    public Scene constructPlayScreen() {
+    /**
+     * Function called in the constructor to create the screen
+     */
+    private void constructPlayScreen() {
         GridPane layout = new GridPane();
         layout.setPadding(new Insets(10,10,10,10));
 
@@ -41,7 +50,24 @@ public class PlayScreen {
 
         GridPane chessboard = chessBoard();
         //Adding the chessboard to size 5-13x0-8
-        layout.add(chessboard, 5, 0, 13, 8);
+        layout.add(chessboard, 5, 1, 8, 8);
+
+        //Adding container to display white player's name
+        Label whiteP = new Label("White: ");
+        Text whiteName = new Text("Joe Bloggs");
+        this.whitePlayerName = whiteName;
+        HBox whiteContainer = new HBox(whiteP, whiteName);
+        whiteContainer.setAlignment(Pos.CENTER);
+        layout.add(whiteContainer, 5, 9, 8, 1);
+
+
+        //Adding container to display Black player's name
+        Label blackP = new Label("Black: ");
+        Text blackName = new Text("Mary Lavender");
+        this.blackPlayerName = blackName;
+        HBox blackContainer = new HBox(blackP, blackName);
+        blackContainer.setAlignment(Pos.CENTER);
+        layout.add(blackContainer, 5, 0, 8, 1);
 
 /*
         VBox controls = new VBox();
@@ -52,12 +78,12 @@ public class PlayScreen {
         layout.add(controls, 0, 0, 4,8);
 */
 
-        HBox log = new HBox();
-        Text logFill = new Text("Log");
-        log.setStyle("-fx-border-color: RED");
-        log.getChildren().add(logFill);
 
-        layout.add(log, 2, 9, 14, 9);
+        HBox log = new HBox();
+
+        ScrollPane logContainer = new ScrollPane(log);
+
+        layout.add(logContainer, 2, 11, 14, 1);
 
 /*
         VBox extraLayout = new VBox();
@@ -68,7 +94,17 @@ public class PlayScreen {
         layout.add(extraLayout, 14, 0, 18, 8);
 */
 
+        Button quitB = new Button("Quit.");
+        quitB.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                anInterface.toMenu();
+            }
+        });
+
         layout.setAlignment(Pos.CENTER);
+
+        layout.add(quitB, 14, 0, 2, 1);
 
         //Makes the gridlines visible in layout. Useful for debugging
         //layout.setGridLinesVisible(true);
@@ -78,7 +114,7 @@ public class PlayScreen {
         playScreen.getStylesheets().add(PlayScreen.class.getResource("PlayScreenStyleSheet.css").toExternalForm());
 
 
-        return playScreen;
+        this.scene = playScreen;
     }
 
     /**
@@ -127,6 +163,12 @@ public class PlayScreen {
         return chessboard;
     }
 
+
+    /**
+     * Function for switching a button at given coordinates off.
+     * @param column
+     * @param row
+     */
     public void switchButton(int column, int row) {
         ObservableList<Node> buttons = chessboard.getChildren();
         for (Node button : buttons) {
@@ -134,5 +176,17 @@ public class PlayScreen {
                 button.setDisable(true);
             }
         }
+    }
+
+    public void setWhitePlayerName(String name) {
+        whitePlayerName.setText(name);
+    }
+
+    public void setBlackPlayerName(String name) {
+        blackPlayerName.setText(name);
+    }
+
+    public Scene getScene() {
+        return scene;
     }
 }

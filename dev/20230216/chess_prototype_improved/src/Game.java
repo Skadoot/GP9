@@ -13,9 +13,9 @@ public class game
     //keep track of which move it is.
     private int move_count;
 
-    public game(String board_state)
-    {
+    public game(String board_state) {
         game_board = new board(board_state);
+        move();
     }
 
     public void move()
@@ -25,6 +25,7 @@ public class game
 
         //filters the moves for every piece of the current player.
         game_board.find_legal_moves(attacking_player);
+        System.out.println("finished");
 
         //wait for the UI to give us a selected piece, here we would set it to be the coordinate that the ui passes back to us.
         vector2 selected_piece_coordinate = new vector2();

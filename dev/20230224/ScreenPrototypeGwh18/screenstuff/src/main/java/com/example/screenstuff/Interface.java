@@ -8,23 +8,21 @@ import java.io.IOException;
 
 public class Interface extends Application {
     private Stage primaryStage;
+    private PlayerNameScreen playerNameScreen;
+    private PlayScreen playScreen;
+    private StartScreen startScreen;
 
     @Override
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
 
-/*        PlayScreen playScreen = new PlayScreen(this);
-        Scene scenePlay = playScreen.constructPlayScreen();
+        playerNameScreen = new PlayerNameScreen(this);
+        playScreen = new PlayScreen(this);
+        startScreen = new StartScreen(this);
 
-        StartScreen startScreen = new StartScreen(this);
-        startScreen.setPlayScreen(scenePlay);
-        Scene sceneStart = startScreen.constructScreen();*/
-
-        PlayerNameScreen playNameScreen = new PlayerNameScreen();
-        Scene pnScreen = playNameScreen.createScreen();
 
         stage.setTitle("Gorpu Chess!");
-        stage.setScene(pnScreen);
+        stage.setScene(startScreen.getStartScreen());
         stage.show();
     }
 
@@ -42,5 +40,23 @@ public class Interface extends Application {
         // Backend will handle the logic like if the player wants to move a different piece.
         System.out.println(column);
         System.out.println(row);
+    }
+
+    public void toMenu() {
+        primaryStage.setScene(startScreen.getStartScreen());
+    }
+
+    public void toPNScreen() {
+        primaryStage.setScene(playerNameScreen.getScene());
+    }
+
+    public void toChessboard() {
+        primaryStage.setScene(playScreen.getScene());
+    }
+
+    public void toNewChessboard(String whiteName, String blackName) {
+        playScreen.setWhitePlayerName(whiteName);
+        playScreen.setBlackPlayerName(blackName);
+        primaryStage.setScene(playScreen.getScene());
     }
 }

@@ -32,15 +32,27 @@ public class StartScreen {
         Button conButton = new Button();
         Button vgButton = new Button();
 
-        ngButton.setText("New Game");
+        ngButton.setText("Start New Game");
         ngButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 anInterface.toPNScreen();
             }
         });
-        conButton.setText("Continue");
-        vgButton.setText("View Game");
+        conButton.setText("Load Unfinished Game");
+        conButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                anInterface.loadUFGames();
+            }
+        });
+        vgButton.setText("View Finished Game");
+        vgButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                anInterface.loadFGames();
+            }
+        });
 
         btnSelection.setPadding(new Insets(5,5,5,5));
         btnSelection.setSpacing(12);

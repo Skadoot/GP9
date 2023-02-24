@@ -1,0 +1,92 @@
+Project: Group Project 09
+Meeting: Weekly Project Meeting
+Persons present: All project members, except Gwion Hughes
+Place and date of meeting: 0.30 IBERS, Friday 24th February 2023
+Circulation list: All project members, plus project manager
+Author: Tyler Lewis
+Date of minutes: 24/02/23
+Version: 1.0
+
+Team:
+- gwh18: Gwion Hughes (Team Leader)
+- jat92: Jack Thompson (Deputy Leader)
+- tyw1 : Tyler Lewis (QA Manager)
+- seh25: Sean Hobson (Deputy QA)
+- ckc2 : Craymon Chan
+- cts12: Ciaran Smith
+- jib16: Jim Brown
+- shr27: Shaun Royle
+
+=================
+ Matters arising
+=================
+
+1. (Recurring) Review time-spent for each member this week, update spreadsheet.
+Assigned to: GWH18
+Status: INCOMPLETE
+Notes: Unable to review.
+
+2. Add references to functional requirements to UI Specification.
+Assigned to: TYW1, SEH25, JAT92
+Status: COMPLETE
+Notes: Use cases now reference specific FRs. UI Specification prepared for review.
+
+3. Continue work on UI Specification Presentation.
+Assigned to: TYW1, SEH25, JAT92
+Status: ONGOING
+Notes: Multiple new screens created, 10-15 slides remaining.
+
+4. Continue work on Test Specification (formatting, structure, additional test cases)
+Assigned to: JIB16, CKC2
+Status: ONGOING
+Notes: Aiming for 100~ test cases.
+
+5. Continue work on general implementation
+Assigned to: SHR27, GWH18
+Status: ONGOING
+Notes: Additional move logic, read game data from String. Add comments to code.
+
+6. Create mockup screens for New Game, Load Game, etc.
+Assigned to: GWH18, CTS12
+Status: COMPLETE
+Notes: New screens created.
+
+7. Read SE.QA.07/08 and present findings to the group.
+Assigned to: TYW1
+Status: COMPLETE
+Notes: SE.QA.07 presented in previous meeting, SE.QA.08 presented at this week's internal meeting.
+
+=================
+ New business
+=================
+
+8. Change blog format and upload blog 3
+Action: JAT92
+
+9. Ensure all blogs are uploaded by 5:00pm on Thursdays
+Action: ALL
+
+10. UI Specification review meeting Wednesday, 2hrs (Book room, distribute documentation)
+Action: TYW1
+
+11. Small code demonstration/walkthrough after UI Specification review on Wednesday.
+Action: SHR27
+
+12. Work on preparing screens for backend logic.
+Action: CTS12, GWH18
+
+=================
+ AOB
+=================
+
+13. Create spreadsheet of time-spent
+Action: GWH18
+
+14. Decide on which version of JUnit to use and how to include it.
+Action: SEH25, CKC2, JIB16
+
+14. Create some simple JUnit test cases.
+Action: SEH25, CKC2, JIB16
+
+15. Begin commenting code and preparing for Wednesday's walkthrough.
+Action: SHR27

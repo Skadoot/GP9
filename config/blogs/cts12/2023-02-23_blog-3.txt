@@ -1,0 +1,26 @@
+Author: CTS12
+Week: 1 (09/02/23)
+
+Assigned actions
+==============
+
+Action 11: Begin creating mock-up screens for New Game, Load Game, etc.
+
+Planning and prototyping methods for piece placement on the chessboard 
+Hours: 1
+
+Planning convergence with the backend code
+Hours: 1
+
+Moving over to and experimenting with JavaFX scenebuilder as opposed to building scenes inside intellij
+Hours: 2
+
+
+
+
+Other project work
+================
+Internal group meeting on 22/02/23 to establish progress and review the ui spec
+Hours: 1
+
+Total hours: 5

@@ -1,29 +1,45 @@
 Author: TYW
-Week: 2 (16/02/23)
+Week: 3 (23/02/23)
 
 Assigned actions
 ==============
 
 1. UI specification
 
-Added more detail and completed document. Added references to functional requirements.
+- Added more detail and completed document.
+- Added references to functional requirements.
+- Document is now prepared for review.
 
-Hours: 5
+Hours: 6
 
 2. (Cont.) Read SE.QA.07/08 and present to group.
 
-Presented remainder of findings to the group.
+- Presented remainder of findings to the group.
 
 Hours: 1
 
 Other project work
 ================
-Attended an internal meeting with the team. Reviewed UI Specification.
+- Attended an internal meeting with the team. Performed internal UI Specification.
 
 Hours: 1
 
-Created config_refs.md file, edited misc. documents to update details (dates, locations, etc.)
+- Created config_refs.md file, edited misc. documents (minutes) to update details (dates, locations, etc.)
 
 Hours: 1
 
-Total hours: 8
+- Continued working on the UI Presentation.
+- Created a number of mockup screens to showcase the use case,
+- Made some edits to the slide content/structure.
+
+Hours: 4
+
+- Revised the UI Specification based on feedback from the internal review.
+
+Hours: 2
+
+- Created checklists and notes in preparation for the formal UI Specification review.
+
+Hours: 1
+
+Total hours: 16

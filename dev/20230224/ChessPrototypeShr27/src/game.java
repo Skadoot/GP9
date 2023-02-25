@@ -2,6 +2,13 @@ import vector.vector2;
 
 import java.util.ArrayList;
 
+/**
+ * A class which stores general game information.
+ *
+ * @version 1.0 general outline of the game loop.
+ *
+ * @author shr27@aber.ac.uk
+ */
 public class game
 {
     //this is the order of operations that will happen every turn
@@ -14,8 +21,9 @@ public class game
     private int moveCount;
 
     /**
+     * Constructor for game.
      *
-     * @param boardState
+     * @param boardState the initial board state string for the game (Forsyth Edwards Notation).
      */
     public game(String boardState) {
         gameBoard = new board();
@@ -24,14 +32,17 @@ public class game
     }
 
     /**
-     *
+     * A method which outlines the general loop of the game.
      */
     public void move() {
         //determine the player making the current move.
-        determine_current_player();
+        determineCurrentPlayer();
 
-        //filters the moves for every piece of the current player.
-        gameBoard.findLegalMovesForPlayer(attackingPlayer);
+        //calculate the legal moves for the board. with the current player.
+        moveCalculator moveCalculator = new moveCalculator(attackingPlayer, gameBoard);
+        moveCalculator.findLegalMovesForPlayer();
+
+        //print the board to the console.
         gameBoard.printBoardStateToConsole();
 
         //wait for the UI to give us a selected piece, here we would set it to be the coordinate that the ui passes back to us.
@@ -63,8 +74,8 @@ public class game
     /**
      *
      */
-    private void determine_current_player() {
-        String boardState = gameBoard.getBoardState();
+    private void determineCurrentPlayer() {
+        String boardState = gameBoard.getBoardStateString();
         //check the board state string to find which player's turn it is.
         for (int i = 0; i < boardState.length(); i++) {
             if (boardState.charAt(i) == ' ') {

@@ -3,347 +3,547 @@ import vector.vector2;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * a class that stores the logical representation of a chess board.
+ *
+ * this class stores the position of each piece on the board.
+ * this class calculates the legal moves of all the pieces on the board.
+ *
+ * @version 1.0 initial development.
+ * @version 1.1 can now calculate legal moves for all pieces of a particular color.
+ * @version 1.2 can now find legal moves of all pieces taking into account if the moves will put the player in check.
+ *
+ * @author shr27@aber.ac.uk.
+ */
+
 public class board {
+
+    //board size.
+    private static final int BOARD_SIZE = 8;
+
+
     //the logical representation of the board.
     private final piece[][] board;
+
+
     //forsyth edwards notation of the board for saving and loading board states.
-    private String board_state;
+    private String boardState;
+
+
     //both king positions.
-    private vector2 w_king_position;
-    private vector2 b_king_position;
-    //constructor for the board.
-    public board(String initial_board_state) {
-        //initialize the logical board.
-        board = new piece[8][8];
-        //set the string of the board state to the one given.
-        this.board_state = initial_board_state;
-        //initialise the state of the board with the new string.
-        int file = 0, rank = 7;
-        for (int i = 0; i < board_state.length(); i++) {
-            if (board_state.charAt(i) != ' ') {
-                if (board_state.charAt(i) == '/') {
-                    file = 0; rank--;
-                } else {
-                    if (Character.isDigit(board_state.charAt(i))) {
-                        //System.out.println("i : " + i);
-                        //System.out.println(board_state.charAt());
-                        //System.out.println(board_state.charAt(i));
-                        //System.out.println(file);
-                        //System.out.println(board_state.charAt(i));
-                        file += Character.getNumericValue(board_state.charAt(i));
-                        //System.out.println(board_state.charAt(i));
-                        //System.out.println(file);
-                    } else {
-                        vector2 board_position = new vector2(file, rank);
-                        if (!Character.isLowerCase(board_state.charAt(i))) {
-                            //System.out.println(board_state.charAt(i));
-                            //System.out.println("adding white piece");
-                            board[file][rank] = new piece('w', board_position, Character.toLowerCase(board_state.charAt(i)));
-                            if(Character.toLowerCase(board_state.charAt(i)) == 'k'){
-                              //  System.out.println("adding white king");
-                                w_king_position = board_position;
-                            }
-                        } else {
-                            //System.out.println("adding black piece");
-                            //System.out.println(board_state.charAt(i));
-                            board[file][rank] = new piece('b', board_position, board_state.charAt(i));
-                            if(board_state.charAt(i) == 'k'){
-                              //  System.out.println("adding black king");
-                                b_king_position = board_position;
-                            }
-                        }
-                        //System.out.println("added piece to the board");
-                        //System.out.println(board[file][rank].get_type());
-                        file++;
-                    }
+    private vector2 whiteKingPosition;
+    private vector2 blackKingPosition;
+
+
+    /**
+     * constructor for board.
+     * initializes the board array.
+     */
+    public board() {
+        board = new piece[BOARD_SIZE][BOARD_SIZE];
+    }
+
+    /**
+     * initializes the pieces in the board based on the Forsyth Edwards Notation string given.
+     *
+     * @param initializingBoardState This is the Forsyth Edwards Notation string.
+     */
+    public void initializeBoardState(String initializingBoardState) {
+        //sets the board state string to the given Forsyth Edwards Notation.
+        this.boardState = initializingBoardState;
+
+        //sets starting positions to access the array from.
+        int file = 0;
+        int rank = 7;
+
+        //iterate through the Forsyth Edwards Notation string.
+        for (int positionInString = 0; positionInString < boardState.length(); positionInString++) {
+            //if we have arrived at a space then we no longer need to read from the string, as the information from this point on is not relevant to this method
+            if (boardState.charAt(positionInString) == ' ') {return;}
+
+            //if we have arrived at a '/', this is the marker for going down a rank, so we decrement the rank and reset the file to the first file.
+            if (boardState.charAt(positionInString) == '/') {file = 0; rank--; continue;}
+
+            //if we have arrived at a digit this is the marker for n amount of empty squares on the rank in a row before we find a piece. so we add this digit to out file variable.
+            if (Character.isDigit(boardState.charAt(positionInString))) { file += Character.getNumericValue(boardState.charAt(positionInString)); continue;}
+
+            //if we arrive here we need to add a piece to the board. at the position file, rank.
+            vector2 boardPosition = new vector2(file, rank);
+
+            //if the character representing the piece is upper case then it is a white piece, else it is a black piece.
+            if (Character.isUpperCase(boardState.charAt(positionInString))) {
+                //create a new white piece that is of the same type as the current character in the string, with the position of boardPosition.
+                piece piece = new piece('w', boardPosition, Character.toLowerCase(boardState.charAt(positionInString)));
+                setPieceOnBoard(boardPosition, piece);
+
+                //if the piece is a king, set the position of the white king to this piece's position.
+                if (Character.toLowerCase(boardState.charAt(positionInString)) == 'k'){
+                    whiteKingPosition = boardPosition;
                 }
             } else {
-                return;
+                //create a new black piece that is of the same type as the current character in the string, with the position of boardPosition.
+                piece piece = new piece('b', boardPosition, boardState.charAt(positionInString));
+                setPieceOnBoard(boardPosition, piece);
+
+                //if the piece is a king, set the position of the black king to this piece's position.
+                if (boardState.charAt(positionInString) == 'k'){
+                    blackKingPosition = boardPosition;
+                }
             }
+            //increment the file for the next position on the board.
+            file++;
         }
     }
 
-    //return a piece on the board.
-    public piece get_piece(vector2 coordinate) {
-        //return a piece on the board.
+    /**
+     * A method to return a piece on the board in a particular index. represented by a vector2 object.
+     *
+     * @param coordinate this is the vector2 which represents a position in the board array to access.
+     *
+     * @return A piece on the board at position coordinate.x, coordinate.y in the board array.
+     */
+    public piece getPiece(vector2 coordinate) {
         return board[coordinate.x][coordinate.y];
     }
 
-    //move selected piece.
-    public void move_piece(piece selected_piece, vector2 coordinate) {
+    /**
+     * A method which sets a piece on the board to a new piece.
+     *
+     * @param piecePosition the position of the piece you want to set.
+     * @param piece the piece that you want to set it to.
+     */
+    private void setPieceOnBoard(vector2 piecePosition, piece piece) {
+        board[piecePosition.x][piecePosition.y] = piece;
+    }
+
+    /**
+     * A method to move a piece on the board.
+     *
+     * @param selectedPiece the selected piece to move.
+     * @param coordinate the vector2 coordinate to move the piece to.
+     */
+    public void movePiece(piece selectedPiece, vector2 coordinate) {
         //sets the square that the piece is currently on to null.
-        board[selected_piece.get_position().x][selected_piece.get_position().y] = null;
+        setPieceOnBoard(selectedPiece.getPosition(), null);
+
         //set the new square to be the piece.
-        board[coordinate.x][coordinate.y] = selected_piece;
-        //if we move a king we need to update the position of the king to track its position.
-        if(selected_piece.get_type() == 'k') {
-            if(selected_piece.get_color() == 'w') {
-                w_king_position = coordinate;
+        setPieceOnBoard(coordinate, selectedPiece);
+
+        //update the piece's position.
+        selectedPiece.setPosition(coordinate);
+
+        //if we move a king we need to update the position of the king to track of its position.
+        if (selectedPiece.getType() == 'k') {
+
+            //if the piece's color is white update the white kings position, else update the black kings position.
+            if (selectedPiece.getColor() == 'w') {
+                whiteKingPosition = coordinate;
             } else {
-                b_king_position = coordinate;
+                blackKingPosition = coordinate;
             }
         }
-        //update the piece's position.
-        selected_piece.set_position(coordinate);
+
         //get the new board state string.
-        update_board_state();
+        updateBoardState();
     }
 
-    //update the notation for the board state.
-    private void update_board_state() {
-        //initialising the new board state string.
-        String new_board_state;
+    /**
+     * A method to update the Forsyth Edwards Notation based on the current state of the board array.
+     */
+    private void updateBoardState() {
+        //initializing the new board state string.
+        String newBoardState;
+
         //read the board and update the string to represent the board.
-        new_board_state = "t";
+        newBoardState = "t";
+
         //set the bard state.
-        board_state = new_board_state;
+        boardState = newBoardState;
     }
 
-    //return the current state of the board.
-    public String get_board_state() {
-        //returns the notation for the state of the board
-        return board_state;
+    /**
+     * A method to return the Forsyth Edwards notation board state string variable.
+     *
+     * @return the Forsyth Edwards notation board state string variable.
+     */
+    public String getBoardState() {
+        return boardState;
     }
 
-    //filtering for legal moves relative to the current board state and current player, called at the start of each turn.
-    public void find_legal_moves(char attacking_player) {
-        //loop over each piece that is of a particular color
+    /**
+     * A method to print out the board in text form to the console window.
+     */
+    public void printBoardStateToConsole() {
+        //loop through the array in reverse so that the board is printed in the correct orientation.
         for (int rank = 7; rank > -1; rank--) {
-            System.out.print("\n");
             for (int file = 0; file < 8; file++) {
-                vector2 piece_position = new vector2(file, rank);
-                piece p = get_piece(piece_position);
-                if(!(p == null)) {
-                    if (p.get_color() == 'w') {
-                        System.out.print("  " + Character.toUpperCase(p.get_type()) + "  ");
-                    } else {
-                        System.out.print("  " + p.get_type() + "  ");
-                    }
+
+                //create the vector2 for the position of the current piece to be printed.
+                vector2 boardPosition = new vector2(file, rank);
+
+                //get the piece in the current board position.
+                piece piece = getPiece(boardPosition);
+
+                //if the piece is null print a '/' character and continue the loop.
+                if (piece == null) {System.out.print("  /  "); continue;}
+
+                //if the piece's color is white print the piece's type in uppercase. else in lower case.
+                if (piece.getColor() == 'w') {
+                    System.out.print("  " + Character.toUpperCase(piece.getType()) + "  ");
                 } else {
-                    System.out.print("  /  ");
+                    System.out.print("  " + piece.getType() + "  ");
                 }
             }
-            System.out.print("\n");
+            //new line to separate each rank.
+            System.out.print("\n\n");
         }
+    }
+
+    /**
+     * A method which finds the legal moves for each piece of a given color.
+     *
+     * @param player the player's color, 'w' for white, 'b' for black.
+     */
+    public void findLegalMovesForPlayer(char player) {
+        //loop over piece in the board array.
         for (int rank = 0; rank < 8; rank++) {
             for (int file = 0; file < 8; file++) {
-                vector2 piece_position = new vector2(file, rank);
-                piece piece = get_piece(piece_position);
+                //create the current board position vector2.
+                vector2 piecePosition = new vector2(file, rank);
 
+                //get the piece at the current board position.
+                piece piece = getPiece(piecePosition);
+
+                //if the piece is null, skip and look at the next piece.
                 if (piece == null) {continue;}
-                if (piece.get_color() != attacking_player) {continue;}
 
-                System.out.println("looking for piece legal moves (type : " + piece.get_type() + ", color : " + piece.get_color() + " " + file + ", rank : " + rank + ")),");
-                switch (piece.get_type()) {
+                //if the piece is not the correct color, skip and look at the next piece.
+                if (piece.getColor() != player) {continue;}
+
+                //check what the piece's type is: 'p' for pawn, 'n' for knight, 'r' for rook, 'b' for bishop, 'q' for queen, 'k' for king.
+                switch (piece.getType()) {
                     case 'p':
                         System.out.println("looking for pawn moves");
-                        find_pawn_legal_moves(piece, false);
+                        //calculate the legal moves for the pawn.
+                        getPawnLegalMoves(piece, false);
                         break;
                     case 'n':
                         System.out.println("looking for knight moves");
-                        find_knight_legal_moves(piece, false);
+                        //calculate the legal moves for the knight.
+                        getKnightLegalMoves(piece, false);
                         break;
                     case 'b':
                         System.out.println("looking for bishop moves");
-                        find_bishop_legal_moves(piece, false);
+                        //calculate the legal moves for the bishop.
+                        getBishopLegalMoves(piece, false);
                         break;
                     case 'r':
                         System.out.println("looking for rook moves");
-                        find_rook_legal_moves(piece, false);
+                        //calculate the legal moves for the rook.
+                        getRookLegalMoves(piece, false);
                         break;
                     case 'q':
                         System.out.println("looking for queen moves");
-                        find_queen_legal_moves(piece, false);
+                        //calculate the legal moves for the queen.
+                        getQueenLegalMoves(piece, false);
                         break;
                     case 'k':
                         System.out.println("looking for king moves");
-                        find_king_legal_moves(piece, false);
+                        //calculate the legal moves for the king.
+                        getKingLegalMoves(piece, false);
                         break;
                 }
             }
         }
-        System.out.println(is_in_check('w'));
     }
 
-    /*
-        private method find_legal_pawn_moves, to find the legal moves for a pawn.
+    /**
+     * This method calculates and sets the legal moves of any given pawn on the board.
+     *
+     * @param pawn the pawn to calculate the moves for.
+     * @param isForCheckMap boolean to see if the method is being used to create a check map, if so we do not need to check if the moves put the player in check.
      */
-    private void find_pawn_legal_moves(piece p, boolean check_map) {
-        vector2 move = new vector2(p.get_position().x, ((p.get_color() == 'w') ? p.get_position().y + 1 : p.get_position().y - 1));
-        vector2 double_advance = new vector2(p.get_position().x, ((p.get_color() == 'w') ? move.y + 1 : move.y - 1));
-        vector2 left_attack = new vector2(move.x - 1, move.y);
-        vector2 right_attack = new vector2(move.x + 1, move.y);
+    private void getPawnLegalMoves(piece pawn, boolean isForCheckMap) {
+        //calculate the single advance square position. the y should be positive for white pieces and negative for black pieces.
+        vector2 singleAdvance = new vector2(pawn.getPosition().x, ((pawn.getColor() == 'w') ? pawn.getPosition().y + 1 : pawn.getPosition().y - 1));
 
-        if (move.x <= 7 && move.y <= 7 && move.x >= 0 && move.y >= 0) {
-            if (get_piece(move) == null) {
-                add_piece_legal_moves(p, move, check_map);
-                if (get_piece(double_advance) == null && !p.has_moved()) {
-                    add_piece_legal_moves(p, move, check_map);
-                }
+        //calculate the double advance square position. the y should be positive for white pieces and negative for black pieces.
+        vector2 doubleAdvance = new vector2(pawn.getPosition().x, ((pawn.getColor() == 'w') ? singleAdvance.y + 1 : singleAdvance.y - 1));
+
+        //calculate left and right attack square positions.
+        vector2 leftAttack = new vector2(singleAdvance.x - 1, singleAdvance.y);
+        vector2 rightAttack = new vector2(singleAdvance.x + 1, singleAdvance.y);
+
+        //check if the single advance is a valid position on the board. and that there are no pieces occupying it.
+        if (singleAdvance.x <= 7 && singleAdvance.y <= 7 && singleAdvance.x >= 0 && singleAdvance.y >= 0 && getPiece(singleAdvance) == null) {
+            addPieceLegalMove(pawn, singleAdvance, isForCheckMap);
+
+            //check if there is a piece on the double advance square and that the pawn has not moved before.
+            if (getPiece(doubleAdvance) == null && !pawn.has_moved()) {
+                addPieceLegalMove(pawn, doubleAdvance, isForCheckMap);
             }
         }
-        if (left_attack.x >= 0 && left_attack.x <= 7) {
-            if (get_piece(left_attack) == null) {
-                add_piece_legal_moves(p, move, check_map);
+
+        //check if the left attack is a valid position on the board.
+        if (leftAttack.x >= 0 && leftAttack.x <= 7) {
+
+            //check if the piece on the left attack square is not the same color as the pawn.
+            if (getPiece(leftAttack) != null && getPiece(leftAttack).getColor() != pawn.getColor()) {
+                addPieceLegalMove(pawn, leftAttack, isForCheckMap);
             }
         }
-        if (right_attack.x >= 0 && right_attack.x <= 7) {
-            if (get_piece(right_attack) == null) {
-                add_piece_legal_moves(p, move, check_map);
+
+        //check if the right attack is a valid position on the board.
+        if (rightAttack.x >= 0 && rightAttack.x <= 7) {
+
+            //check if the piece on the left attack square is not the same color as the pawn.
+            if (getPiece(rightAttack) == null && getPiece(rightAttack).getColor() != pawn.getColor()) {
+                addPieceLegalMove(pawn, rightAttack, isForCheckMap);
             }
         }
     }
 
-    private void find_knight_legal_moves(piece p, boolean check_map) {
-        vector2[] knight_directions = { new vector2(2, 1),  new vector2(1, 2), new vector2(-2, 1), new vector2(-1, 2), new vector2(2, -1), new vector2(1, -2), new vector2(-2, -1), new vector2(-1, -2)};
+    /**
+     * This method calculates and sets the legal moves of any given knight on the board.
+     *
+     * @param knight the knight to calculate the  moves for.
+     * @param isForCheckMap boolean to see if the method is being used to create a check map, if so we do not need to check if the moves put the player in check.
+     */
+    private void getKnightLegalMoves(piece knight, boolean isForCheckMap) {
+        //these are the knights possible jumps, in vector2s relative to the knights position. positive values add to the knights current x or y, negative subtracts.
+        vector2[] knightDirections = { new vector2(2, 1),  new vector2(1, 2), new vector2(-2, 1), new vector2(-1, 2), new vector2(2, -1), new vector2(1, -2), new vector2(-2, -1), new vector2(-1, -2)};
 
-        for (vector2 d : knight_directions) {
-            vector2 move = new vector2(p.get_position().x + d.x, p.get_position().y + d.y);
+        //for each of the directions in the knight's directions.
+        for (vector2 d : knightDirections) {
 
+            //find what the move square is.
+            vector2 move = new vector2(knight.getPosition().x + d.x, knight.getPosition().y + d.y);
+
+            //if the move square is outside the board, skip to the next direction.
             if (move.x > 7 || move.y > 7 || move.x < 0 || move.y < 0) {continue;}
 
-            if (get_piece(move) == null) {
-                add_piece_legal_moves(p, move, check_map);
-            } else if (get_piece(move).get_color() != p.get_color()) {
-                add_piece_legal_moves(p, move, check_map);
+            //if the move square is empty (null) or if there is an opponents piece on that square, check if that move will put the player in check.
+            if (getPiece(move) == null || getPiece(move).getColor() != knight.getColor()) {
+                addPieceLegalMove(knight, move, isForCheckMap);
             }
         }
     }
 
-    private void find_bishop_legal_moves(piece p, boolean check_map) {
-        vector2[] bishop_directions = { new vector2(1, 1), new vector2(-1, -1), new vector2(1, -1), new vector2(-1, 1)};
+    /**
+     * This method calculates and sets the legal moves of any given bishop on the board.
+     *
+     * @param bishop the bishop to calculate the moves for.
+     * @param isForCheckMap boolean to see if the method is being used to create a check map, if so we do not need to check if the moves put the player in check.
+     */
+    private void getBishopLegalMoves(piece bishop, boolean isForCheckMap) {
+        //the bishop's directions: north-west, north-east, south-west, south-east.
+        vector2[] bishopDirections = { new vector2(1, 1), new vector2(-1, -1), new vector2(1, -1), new vector2(-1, 1)};
 
-        for (vector2 d : bishop_directions) {
-            for (int n = 1; n < 8; n++) {
-                vector2 move = new vector2(p.get_position().x + (d.x * n), p.get_position().y + (d.y * n) );
+        //for every direction in the bishop's directions.
+        for (vector2 d : bishopDirections) {
 
-                if (move.x > 7 || move.y > 7 || move.x < 0 || move.y < 0) { break; }
+            //for n squares in that direction until the bishop is blocked. maximum 8 squares.
+            for (int n = 1; n < BOARD_SIZE; n++) {
 
-                if (get_piece(move) == null) {
-                    add_piece_legal_moves(p, move, check_map);
-                } else if (!(get_piece(move).get_color() == p.get_color())) {
-                    add_piece_legal_moves(p, move, check_map);
-                    break;
-                } else if ((get_piece(move).get_color() == p.get_color())) {
-                    break;
-                }
-            }
-        }
-    }
+                //find out which square the move is.
+                vector2 move = new vector2(bishop.getPosition().x + (d.x * n), bishop.getPosition().y + (d.y * n) );
 
-    private void find_rook_legal_moves(piece p, boolean check_map) {
-        vector2[] rook_directions = {new vector2(0, 1),  new vector2(0, -1), new vector2(1, 0), new vector2(-1, 0)};
-
-        for (vector2 d : rook_directions) {
-            for (int n = 1; n < 8; n++) {
-                vector2 move = new vector2(p.get_position().x + (d.x * n), p.get_position().y + (d.y * n));
-
+                //if the move square is outside the board, skip to the next direction.
                 if (move.x > 7 || move.y > 7 || move.x < 0 || move.y < 0) {break;}
-                if (get_piece(move) == null) {
-                    add_piece_legal_moves(p, move, check_map);
-                } else if (!(get_piece(move).get_color() == p.get_color())) {
-                    add_piece_legal_moves(p, move, check_map);
+
+                if (getPiece(move) == null) {
+                    addPieceLegalMove(bishop, move, isForCheckMap);
+                } else if (!(getPiece(move).getColor() == bishop.getColor())) {
+                    addPieceLegalMove(bishop, move, isForCheckMap);
                     break;
-                } else if ((get_piece(move).get_color() == p.get_color())) {
+                } else if ((getPiece(move).getColor() == bishop.getColor())) {
                     break;
                 }
             }
         }
     }
 
-    private void find_queen_legal_moves(piece p, boolean check_map) {
-        vector2[] queen_directions = {new vector2(0, 1),  new vector2(0, -1), new vector2(1, 0), new vector2(-1, 0), new vector2(1, 1), new vector2(-1, -1), new vector2(1, -1), new vector2(-1, 1)};
+    /**
+     * This method calculates and sets the legal moves of any given rook on the board.
+     *
+     * @param rook the rook to calculate the moves for.
+     * @param isForCheckMap boolean to see if the method is being used to create a check map, if so we do not need to check if the moves put the player in check.
+     */
+    private void getRookLegalMoves(piece rook, boolean isForCheckMap) {
+        //the rook's directions: north, east, west, south.
+        vector2[] rookDirections = {new vector2(0, 1),  new vector2(0, -1), new vector2(1, 0), new vector2(-1, 0)};
 
-        for (vector2 d : queen_directions) {
-            for (int n = 1; n < 8; n++) {
-                vector2 move = new vector2(p.get_position().x + (d.x * n), p.get_position().y + (d.y * n));
+        //for every direction for the rook.
+        for (vector2 d : rookDirections) {
 
+            //for n squares in that direction until the rook is blocked. maximum 8 squares.
+            for (int n = 1; n < BOARD_SIZE; n++) {
+
+                //find out which square the move is.
+                vector2 move = new vector2(rook.getPosition().x + (d.x * n), rook.getPosition().y + (d.y * n));
+
+                //if the move square is outside the board, skip to the next direction.
                 if (move.x > 7 || move.y > 7 || move.x < 0 || move.y < 0) {break;}
-                if (get_piece(move) == null) {
-                    add_piece_legal_moves(p, move, check_map);
-                } else if (!(get_piece(move).get_color() == p.get_color())) {
-                    add_piece_legal_moves(p, move, check_map);
+
+                if (getPiece(move) == null) {
+                    addPieceLegalMove(rook, move, isForCheckMap);
+                } else if (!(getPiece(move).getColor() == rook.getColor())) {
+                    addPieceLegalMove(rook, move, isForCheckMap);
                     break;
-                } else if ((get_piece(move).get_color() == p.get_color())) {
+                } else if ((getPiece(move).getColor() == rook.getColor())) {
                     break;
                 }
             }
         }
     }
 
-    private void find_king_legal_moves(piece p, boolean check_map) {
-        vector2[] king_directions = {new vector2(0, 1),  new vector2(0, -1), new vector2(1, 0), new vector2(-1, 0), new vector2(1, 1), new vector2(-1, -1), new vector2(1, -1), new vector2(-1, 1)};
+    /**
+     * This method calculates and sets the legal moves of any given queen on the board.
+     *
+     * @param queen the queen to calculate ethe moves for.
+     * @param isForCheckMap boolean to see if the method is being used to create a check map, if so we do not need to check if the moves put the player in check.
+     */
+    private void getQueenLegalMoves(piece queen, boolean isForCheckMap) {
+        //the queen's directions: north-west, north-east, south-west, south-east, north, south, east, west.
+        vector2[] queenDirections = {new vector2(0, 1),  new vector2(0, -1), new vector2(1, 0), new vector2(-1, 0), new vector2(1, 1), new vector2(-1, -1), new vector2(1, -1), new vector2(-1, 1)};
 
-        for (vector2 d : king_directions) {
-            vector2 move = new vector2(p.get_position().x + (d.x), p.get_position().y + (d.y));
+        //for each direction in the queen's directions.
+        for (vector2 d : queenDirections) {
 
+            //for n squares in that direction until the queen is blocked. maximum 8 squares.
+            for (int n = 1; n < BOARD_SIZE; n++) {
+
+                //find out which square the move is.
+                vector2 move = new vector2(queen.getPosition().x + (d.x * n), queen.getPosition().y + (d.y * n));
+
+                //if the move square is outside the board, skip to the next direction.
+                if (move.x > 7 || move.y > 7 || move.x < 0 || move.y < 0) {break;}
+
+                if (getPiece(move) == null) {
+                    addPieceLegalMove(queen, move, isForCheckMap);
+                } else if (!(getPiece(move).getColor() == queen.getColor())) {
+                    addPieceLegalMove(queen, move, isForCheckMap);
+                    break;
+                } else if ((getPiece(move).getColor() == queen.getColor())) {
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
+     * This method calculates and sets the legal moves of any given king on the board.
+     *
+     * @param king the king to calculate the moves for
+     * @param isForCheckMap boolean to see if the method is being used to create a check map, if so we do not need to check if the moves put the player in check.
+     */
+    private void getKingLegalMoves(piece king, boolean isForCheckMap) {
+        //the king's directions: north-west, north-east, south-west, south-east, north, south, east, west.
+        vector2[] kingDirections = {new vector2(0, 1),  new vector2(0, -1), new vector2(1, 0), new vector2(-1, 0), new vector2(1, 1), new vector2(-1, -1), new vector2(1, -1), new vector2(-1, 1)};
+
+        //for each direction in the king's directions'
+        for (vector2 d : kingDirections) {
+
+            //find out which square the move is.
+            vector2 move = new vector2(king.getPosition().x + (d.x), king.getPosition().y + (d.y));
+
+            //if the move square is outside the board, skip to the next direction.
             if (move.x > 7 || move.y > 7 || move.x < 0 || move.y < 0) {continue;}
-            if (get_piece(move) == null) {
-                add_piece_legal_moves(p, move, check_map);
-            } else if (!(get_piece(move).get_color() == p.get_color())) {
-                add_piece_legal_moves(p, move, check_map);
+
+            if (getPiece(move) == null) {
+                addPieceLegalMove(king, move, isForCheckMap);
+            } else if (!(getPiece(move).getColor() == king.getColor())) {
+                addPieceLegalMove(king, move, isForCheckMap);
             }
         }
     }
 
-    private void add_piece_legal_moves(piece p, vector2 move, boolean check_map) {
+    /**
+     *
+     * @param p
+     * @param move
+     * @param check_map
+     */
+    private void addPieceLegalMove(piece p, vector2 move, boolean check_map) {
         if (check_map) {
             p.add_move(move);
-        } else if (is_move_safe(p, move)) {
+        } else if (isMoveSafe(p, move)) {
             p.add_move(move);
         }
     }
 
-    private boolean is_move_safe(piece p, vector2 move) {
-        board b = new board(this.get_board_state());
-        b.move_piece(b.get_piece(p.get_position()), move);
-        return !b.is_in_check(p.get_color());
+    /**
+     *
+     * @param piece
+     * @param move
+     *
+     * @return
+     */
+    private boolean isMoveSafe(piece piece, vector2 move) {
+        board projectionOfMove = new board();
+        projectionOfMove.initializeBoardState(this.getBoardState());
+        projectionOfMove.movePiece(projectionOfMove.getPiece(piece.getPosition()), move);
+        return !projectionOfMove.isPlayerInCheck(piece.getColor());
     }
 
-    private boolean is_in_check(char player) {
-        Map<vector2, vector2> check_map = create_check_map(player);
-        if (player == 'w' && check_map.containsValue(w_king_position)) {
+    /**
+     *
+     * @param player
+     *
+     * @return
+     */
+    private boolean isPlayerInCheck(char player) {
+        Map<vector2, vector2> checkMap = createCheckMap(player);
+        if (player == 'w' && checkMap.containsValue(whiteKingPosition)) {
             return true;
-        } else return player == 'b' && check_map.containsValue(b_king_position);
+        } else return player == 'b' && checkMap.containsValue(blackKingPosition);
     }
 
-    //create the map of 'threatened' squares to determine if they are in check.
-    private Map<vector2, vector2> create_check_map(char player) {
-        //initialising the map.
-        Map<vector2, vector2> check_map = new HashMap<>();
+    /**
+     *
+     * @param player
+     *
+     * @return
+     */
+    private Map<vector2, vector2> createCheckMap(char player) {
+        //initializing the map.
+        Map<vector2, vector2> checkMap = new HashMap<>();
+
         //create the check map.
         for (int file = 0; file < 8; file++) {
             for (int rank = 0; rank < 8; rank++) {
-                if (get_piece(new vector2(file, rank)) == null) {continue;}
-                piece piece = get_piece(new vector2(file, rank));
-                if (piece.get_color() == player) {continue;}
+                if (getPiece(new vector2(file, rank)) == null) {continue;}
+                piece piece = getPiece(new vector2(file, rank));
+                if (piece.getColor() == player) {continue;}
+
                 //System.out.println("looking for piece attacking squares (" + piece.get_type() + ").");
-                switch (piece.get_type()) {
+
+                switch (piece.getType()) {
                     case 'p' :
-                        find_pawn_legal_moves(piece, true);
+                        getPawnLegalMoves(piece, true);
                         break;
                     case 'n' :
-                        find_knight_legal_moves(piece, true);
+                        getKnightLegalMoves(piece, true);
                         break;
                     case 'b' :
-                        find_bishop_legal_moves(piece, true);
+                        getBishopLegalMoves(piece, true);
                         break;
                     case 'r' :
-                        find_rook_legal_moves(piece, true);
+                        getRookLegalMoves(piece, true);
                         break;
                     case 'q' :
-                        find_queen_legal_moves(piece, true);
+                        getQueenLegalMoves(piece, true);
                         break;
                     case 'k' :
-                        find_king_legal_moves(piece, true);
+                        getKingLegalMoves(piece, true);
                 }
                 //add the piece's attacked squares to the check map.
-                for (vector2 attacked_square : piece.get_possible_moves()) {
-                    check_map.put(attacked_square, attacked_square);
+                for (vector2 attackedSquare : piece.getPossibleMoves()) {
+                    checkMap.put(attackedSquare, attackedSquare);
                 }
             }
         }
         //update the threatened squares.
-        return check_map;
+        return checkMap;
     }
 }

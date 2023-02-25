@@ -5,60 +5,70 @@ import java.util.ArrayList;
 public class game
 {
     //this is the order of operations that will happen every turn
-    private board game_board;
+    private board gameBoard;
 
     //this is the player taking the current move.
-    private char attacking_player;
+    private char attackingPlayer;
 
     //keep track of which move it is.
-    private int move_count;
+    private int moveCount;
 
-    public game(String board_state) {
-        game_board = new board(board_state);
+    /**
+     *
+     * @param boardState
+     */
+    public game(String boardState) {
+        gameBoard = new board();
+        gameBoard.initializeBoardState(boardState);
         move();
     }
 
+    /**
+     *
+     */
     public void move() {
         //determine the player making the current move.
         determine_current_player();
 
         //filters the moves for every piece of the current player.
-        game_board.find_legal_moves(attacking_player);
-        System.out.println("finished");
+        gameBoard.findLegalMovesForPlayer(attackingPlayer);
+        gameBoard.printBoardStateToConsole();
 
         //wait for the UI to give us a selected piece, here we would set it to be the coordinate that the ui passes back to us.
-        vector2 selected_piece_coordinate = new vector2();
-        while (game_board.get_piece(selected_piece_coordinate) == null || game_board.get_piece(selected_piece_coordinate).get_color() != attacking_player) {
-            selected_piece_coordinate = new vector2();
+        vector2 selectedBoardCoordinate = new vector2();
+        while (gameBoard.getPiece(selectedBoardCoordinate) == null || gameBoard.getPiece(selectedBoardCoordinate).getColor() != attackingPlayer) {
+            selectedBoardCoordinate = new vector2();
         }
 
         //if a piece is selected return its legal moves to the UI. then the UI draws its legal moves.
-        ArrayList<vector2> selected_piece_legal_moves = game_board.get_piece(selected_piece_coordinate).get_possible_moves();
+        ArrayList<vector2> selectedPieceLegalMoves = gameBoard.getPiece(selectedBoardCoordinate).getPossibleMoves();
 
         //UI waits for the player to select a move square.
-        vector2 move_square = new vector2();
-        boolean legal_move_made = false;
+        vector2 moveSquare = new vector2();
+        boolean legalMoveMade = false;
 
-        while (!legal_move_made) {
-            move_square = new vector2();
+        while (!legalMoveMade) {
+            moveSquare = new vector2();
 
-            if (game_board.get_piece(selected_piece_coordinate).get_possible_moves().contains(move_square)) {
-                legal_move_made = true;
-                game_board.move_piece(game_board.get_piece(selected_piece_coordinate), move_square);
-                move_count += (attacking_player == 'b') ? 1 : 0;
-            } else if (game_board.get_piece(move_square).get_color() == attacking_player) {
-                selected_piece_coordinate = game_board.get_piece(move_square).get_position();
+            if (gameBoard.getPiece(selectedBoardCoordinate).getPossibleMoves().contains(moveSquare)) {
+                legalMoveMade = true;
+                gameBoard.movePiece(gameBoard.getPiece(selectedBoardCoordinate), moveSquare);
+                moveCount += (attackingPlayer == 'b') ? 1 : 0;
+            } else if (gameBoard.getPiece(moveSquare).getColor() == attackingPlayer) {
+                selectedBoardCoordinate = gameBoard.getPiece(moveSquare).getPosition();
             }
         }
     }
 
-    //find out which player is moving.
+    /**
+     *
+     */
     private void determine_current_player() {
-        String board_state = game_board.get_board_state();
+        String boardState = gameBoard.getBoardState();
         //check the board state string to find which player's turn it is.
-        for (int i = 0; i < board_state.length(); i++) {
-            if (board_state.charAt(i) == ' ') {
-                attacking_player = board_state.charAt(i + 1);
+        for (int i = 0; i < boardState.length(); i++) {
+            if (boardState.charAt(i) == ' ') {
+                attackingPlayer = boardState.charAt(i + 1);
                 return;
             }
         }

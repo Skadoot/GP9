@@ -15,66 +15,103 @@ public class piece
     private vector2 position;
 
     //the possible moves for a pieces.piece, ignoring if the moves are legal or not.
-    private ArrayList<vector2> possible_moves;
+    private ArrayList<vector2> possibleMoves;
 
     //to keep track if the pieces.a_piece has moved during the course of the game.
-    private boolean has_moved;
+    private boolean hasMoved;
 
-    //constructor for pieces.
+    /**
+     *
+     * @param color
+     * @param position
+     * @param type
+     */
     public piece(char color, vector2 position, char type) {
-        possible_moves = new ArrayList<>();
+        //initializing the possible moves arrayList.
+        possibleMoves = new ArrayList<>();
+
         this.color = color;
         this.position = position;
         this.type = type;
     }
 
-    //getter for the color, returns color
-    public char get_color() {
+    /**
+     *
+     * @return
+     */
+    public char getColor() {
         return color;
     }
 
-    //getter for the position vector.vector2, returns the position.
-    public vector2 get_position() {
+    /**
+     *
+     * @return
+     */
+    public vector2 getPosition() {
         return position;
     }
 
-    //setter for the position.
-    public void set_position(vector2 position) {
+    /**
+     *
+     * @param position
+     */
+    public void setPosition(vector2 position) {
         this.position = position;
     }
 
-    //getter for the possible moves, returns an arrayList of vector2s.
-    public ArrayList<vector2> get_possible_moves() {
-        return possible_moves;
+    /**
+     *
+     * @return
+     */
+    public ArrayList<vector2> getPossibleMoves() {
+        return possibleMoves;
     }
 
-    //setter for the possible moves.
-    public void set_possible_moves(ArrayList<vector2> possible_moves) {
-        this.possible_moves = possible_moves;
+    /**
+     *
+     * @param possibleMoves
+     */
+    public void setPossibleMoves(ArrayList<vector2> possibleMoves) {
+        this.possibleMoves = possibleMoves;
     }
 
+    /**
+     *
+     * @param position
+     */
     public void add_move(vector2 position){
-        possible_moves.add(position);
+        possibleMoves.add(position);
     }
 
-    //getter for the type, returns type.
-    public char get_type() {
+    /**
+     *
+     * @return
+     */
+    public char getType() {
         return type;
     }
 
-    //setter for the type.
-    public void set_type(char type) {
+    /**
+     *
+     * @param type
+     */
+    public void setType(char type) {
         this.type = type;
     }
 
-    //for checking if the pieces.piece has moved.
+    /**
+     *
+     * @return
+     */
     public boolean has_moved() {
-        return has_moved;
+        return hasMoved;
     }
 
-    //for updating whether the pieces.piece has moved.
-    public void set_has_moved(boolean has_moved)
-    {
-        this.has_moved = has_moved;
+    /**
+     *
+     * @param has_moved
+     */
+    public void setHasMoved(boolean has_moved) {
+        this.hasMoved = has_moved;
     }
 }

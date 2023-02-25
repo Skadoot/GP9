@@ -22,7 +22,7 @@ public class piece
     private vector2 position;
 
     //the possible moves for a pieces.piece, ignoring if the moves are legal or not.
-    private ArrayList<vector2> possibleMoves;
+    private final ArrayList<vector2> possibleMoves;
 
     //to keep track if the piece has moved during the course of the game.
     private boolean hasMoved;

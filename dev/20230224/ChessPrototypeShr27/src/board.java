@@ -216,5 +216,4 @@ public class board {
             System.out.print("\n\n");
         }
     }
-
 }

@@ -72,7 +72,8 @@ public class game
     }
 
     /**
-     *
+     * A method which determines which player's move it is.
+     * using the board's Forsyth Edwards Notation string.
      */
     private void determineCurrentPlayer() {
         String boardState = gameBoard.getBoardStateString();

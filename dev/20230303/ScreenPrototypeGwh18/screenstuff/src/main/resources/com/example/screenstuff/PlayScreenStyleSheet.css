@@ -1,0 +1,13 @@
+.root {
+    -fx-background-color: #DAE9F3;
+}
+
+.white-tile {
+    -fx-background-color: #b9b49d;
+    -fx-background-radius: 0;
+}
+
+.black-tile {
+    -fx-background-color: #201d4b;
+    -fx-background-radius: 0;
+}

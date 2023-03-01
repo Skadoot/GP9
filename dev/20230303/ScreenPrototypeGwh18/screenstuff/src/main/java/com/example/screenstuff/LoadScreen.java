@@ -23,7 +23,7 @@ public class LoadScreen {
     public void createScene() {
         GridPane layout = new GridPane();
         layout.setAlignment(Pos.CENTER);
-        //Setting up column and row width for the layout gridpane. Currently an 18x12 grid.
+        //Setting up column and row width for the layout gridpane. Currently, an 18x12 grid.
         for(int counter = 0; counter < 18; counter++) {
             ColumnConstraints cConstraint = new ColumnConstraints(50);
             layout.getColumnConstraints().add(cConstraint);

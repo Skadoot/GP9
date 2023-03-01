@@ -1,7 +1,6 @@
 package com.example.screenstuff;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -38,9 +37,15 @@ public class Interface extends Application {
     }
 
     public void click(int column, int row) {
-        // Pass to chessboard the piece that was pressed.
-        // Chessboard does a thing and returns a vector map of possible moves(if any).
-        // Backend will handle the logic like if the player wants to move a different piece.
+        if(column == 0 && row == 0) playScreen.updateBoard("r1b1k1nr/p2p1pNp/n2B4/1p1NP2P/6P1/3P1Q2/P1P1K3/q5b1 w KQkq - 0 1");
+
+        else if(column == 0 && row == 7) playScreen.updateBoard("8/8/8/4p1K1/2k1P3/8/8/8 b - - 0 1");
+
+        else if(column == 7 && row == 0) playScreen.updateBoard("4k2r/6r1/8/8/8/8/3R4/R3K3 w Qk - 0 1");
+
+        else if(column == 7 && row == 7) playScreen.updateBoard("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1");
+
+        else playScreen.updateBoard("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
         System.out.println(column);
         System.out.println(row);
     }
@@ -60,7 +65,7 @@ public class Interface extends Application {
     public void toNewChessboard(String whiteName, String blackName) {
         playScreen.setWhitePlayerName(whiteName);
         playScreen.setBlackPlayerName(blackName);
-        playScreen.standardBoardLayout();
+        playScreen.updateBoard("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
         primaryStage.setScene(playScreen.getScene());
     }
 
@@ -68,7 +73,7 @@ public class Interface extends Application {
      * Switch scene displayed to a scene that displays all the finished games to view through.
      */
     public void loadFGames() {
-        //loadSceen.populateButtonBar(list of finished games);
+        //loadScreen.populateButtonBar(list of finished games);
         loadScreen.setLabel("Finished Games:");
         primaryStage.setScene(loadScreen.getScene());
     }

@@ -16,6 +16,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
+import java.util.HashMap;
+
 /**
  * @author Gwion Hughes
  * @version 0.1
@@ -26,7 +28,8 @@ public class PlayScreen {
     private GridPane chessboard;
     private Button[][] tiles;
     private Text whitePlayerName, blackPlayerName;
-    private Image wPawn, bPawn, wBishop, bBishop, wKnight, bKnight, wRook, bRook, wQueen, bQueen, wKing, bKing;
+    private HashMap<Character, Image> graphicsMap;
+
 
 
 
@@ -130,32 +133,50 @@ public class PlayScreen {
      * @return Returns an empty chessboard
      */
     public void chessBoard() {
+        //Initialise a gridpane that will be a grid containing out buttons that behave as tiles
         chessboard = new GridPane();
+        //Make sure the gridpane has no padding so it doesn't repel other objects
         chessboard.setPadding(new Insets(0,0,0,0));
+        //Initialise our 2d array of buttons that will contain pointers it shares with the gridpane for ease of index
         tiles = new Button[8][8];
+
+        //A simple numerical variable used to itterate black and white tile placement one after another later in the function
         int check = 0;
 
         for(int row = 0; row < 8; row++) {
 
+            //Every row should start on an alternating colour
             check++;
             for(int column = 0; column < 8; column++) {
 
+                //Create a button for every row and column of the gridpane
                 Button button = new Button();
+                //Set the prefered size of the button to the column and row constraint of our layout gripane which is the parent node to our chessboard
                 button.setPrefSize(60,60);
+                //Make sure out buttons have no padding so they hug eachother tightly.
                 button.setPadding(Insets.EMPTY);
+
+                //Set a unique action event triggered by the button being clicked that passes the buttons column and row onwards to the stagehandler
                 button.setOnAction(new EventHandler<ActionEvent>() {
 
                     @Override
                     public void handle(ActionEvent actionEvent) {
                         int column, row;
+                        //get the metadata of the ActionEvent
                         actionEvent.getSource();
+
+                        //Extract the column and row of the tile clicked from the metadata
                         column = (int) ((Button) actionEvent.getSource()).getProperties().get("gridpane-column");
                         row = (int) ((Button) actionEvent.getSource()).getProperties().get("gridpane-row");
+
+                        //Pass column and row of button clicked to the interface stagehandler.
                         anInterface.click(column, row);
-                        switchButton(column, row);
+
+                        //switchButton(column, row);
                     }
                 });
 
+                //Alternate colour placement
                 check++;
                 if(check %2 == 1) {
 
@@ -165,6 +186,7 @@ public class PlayScreen {
                     button.getStyleClass().add("white-tile");
                 }
 
+                //add the button to the row and column of the chessboard and 2d tile array.
                 chessboard.add(button, row, column);
                 tiles[row][column] = button;
             }
@@ -197,9 +219,11 @@ public class PlayScreen {
     /**
      * Clears  graphics on the chessboard.
      */
-    public void clearChessBoard() {
+    private void clearChessBoard() {
         for (int row = 0; row < 8; row++) {
             for(int column = 0; column < 8; column++) {
+
+                //Iterate over EVERY button in our 2d array and set their graphics to null
                 tiles[row][column].setGraphic(null);
             }
         }
@@ -210,63 +234,68 @@ public class PlayScreen {
      * the PlayScreen's fields. The graphics should be contained in a package in their own folder at ...(to be added)
      */
     private void setGraphics() {
-        bPawn = new Image("/BlackPawn.png");
-        bRook = new Image("/BlackRook.png");
-        bKnight = new Image("/BlackKnight.png");
-        bBishop = new Image("/BlackBishop.png");
-        bQueen = new Image("/BlackQueen.png");
-        bKing = new Image("/BlackKing.png");
-        wPawn = new Image("/WhitePawn.png");
-        wRook = new Image("/WhiteRook.png");
-        wKnight = new Image("/WhiteKnight.png");
-        wBishop = new Image("/WhiteBishop.png");
-        wQueen = new Image("/WhiteQueen.png");
-        wKing = new Image("/WhiteKing.png");
+        //Initialise the HashMap.
+        graphicsMap = new HashMap<Character, Image>();
+
+        //Add an image to every char that represents a piece in the Forsyth Edwards Notation
+        graphicsMap.put('p', new Image("/BlackPawn.png"));
+        graphicsMap.put('r', new Image("/BlackRook.png"));
+        graphicsMap.put('n', new Image("/BlackKnight.png"));
+        graphicsMap.put('b', new Image("/BlackBishop.png"));
+        graphicsMap.put('q', new Image("/BlackQueen.png"));
+        graphicsMap.put('k', new Image("/BlackKing.png"));
+        graphicsMap.put('P', new Image("/WhitePawn.png"));
+        graphicsMap.put('R', new Image("/WhiteRook.png"));
+        graphicsMap.put('N', new Image("/WhiteKnight.png"));
+        graphicsMap.put('B', new Image("/WhiteBishop.png"));
+        graphicsMap.put('Q', new Image("/WhiteQueen.png"));
+        graphicsMap.put('K', new Image("/WhiteKing.png"));
     }
 
-    public void standardBoardLayout() {
-        //Place pawns
-        for(int column = 0; column < 8; column++) {
-            placePiece(tiles[column][1], bPawn);
-            placePiece(tiles[column][6], wPawn);
-        }
-        //Place rooks
-        placePiece(tiles[0][0],bRook);
-        placePiece(tiles[7][0],bRook);
-
-        placePiece(tiles[0][7],wRook);
-        placePiece(tiles[7][7],wRook);
-
-        placePiece(tiles[1][0],bKnight);
-        placePiece(tiles[6][0],bKnight);
-
-        placePiece(tiles[1][7],wKnight);
-        placePiece(tiles[6][7],wKnight);
-
-        placePiece(tiles[2][0],bBishop);
-        placePiece(tiles[5][0],bBishop);
-
-        placePiece(tiles[2][7],wBishop);
-        placePiece(tiles[5][7],wBishop);
-
-        placePiece(tiles[3][0],bQueen);
-        placePiece(tiles[4][0],bKing);
-
-        placePiece(tiles[3][7],wQueen);
-        placePiece(tiles[4][7],wKing);
-    }
 
     /**
      * A helper function to a graphic on an individual tile.
      * @param tile A button on the chessboard
-     * @param pieceGraphic an imageview containing a graphic of a board piece
+     * @param pieceType A char that is used as a key to retrieve an image from the graphicsMap.
      */
-    private void placePiece(Button tile, Image pieceGraphic) {
-        ImageView graphic = new ImageView(pieceGraphic);
+    private void placePiece(Button tile, char pieceType) {
+
+        //Create a Image container containing an image returned from the graphics HashMap using the function's char paramater as a key.
+        ImageView graphic = new ImageView(graphicsMap.get(pieceType));
+
         //Sets the ImageView to fit the image in a 50x50 pixel bound.
         graphic.setFitWidth(50);
         graphic.setFitHeight(50);
+
+        //This sets the button to use the image container as a graphic over its background
         tile.setGraphic(graphic);
+    }
+
+    public void updateBoard(String boardNotation) {
+        //Clear of the board of any graphics first
+        clearChessBoard();
+
+        //sets starting positions to access the array from.
+        int column = 0;
+        int row = 0;
+
+        //iterate through the Forsyth Edwards Notation string.
+        for (int readHead = 0; readHead < boardNotation.length(); readHead++) {
+            //if we have arrived at a space then we no longer need to read from the string, as the information from this point on is not relevant to this method
+            if (boardNotation.charAt(readHead) == ' ') {return;}
+
+            //if we have arrived at a '/', this is the marker for going down a rank, so we decrement the rank and reset the file to the first file.
+            if (boardNotation.charAt(readHead) == '/') {column = 0; row++; continue;}
+
+            //if we have arrived at a digit this is the marker for n amount of empty squares on the rank in a row before we find a piece. so we add this digit to out file variable.
+            if (Character.isDigit(boardNotation.charAt(readHead))) { column += Character.getNumericValue(boardNotation.charAt(readHead)); continue;}
+
+
+            //if the character representing the piece is upper case then it is a white piece, else it is a black piece.
+            placePiece(tiles[column][row], boardNotation.charAt(readHead));
+            //increment the file for the next position on the board.
+            column++;
+        }
     }
 
 

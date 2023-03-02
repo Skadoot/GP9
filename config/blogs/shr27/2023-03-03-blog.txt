@@ -23,6 +23,6 @@ Other project work
 ================
 attended a meeting with the whole group on the 22nd of febuary.
 
-hours: 1
+hours: 2
 
-Total hours: 9
+Total hours: 10

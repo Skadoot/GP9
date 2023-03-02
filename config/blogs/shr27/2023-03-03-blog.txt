@@ -21,7 +21,7 @@ action 4: began implementing castling logic.
 
 Other project work
 ================
-attended a meeting with the whole group on the 22nd of febuary.
+attended a meeting with the whole group on the 1st of march
 
 hours: 2
 

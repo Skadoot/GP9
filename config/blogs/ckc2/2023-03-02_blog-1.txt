@@ -1,0 +1,29 @@
+Author: ckc2
+Week: 1 (02/03/23)
+
+Assigned actions
+==============
+
+Action 1: 
+- further adding and refining the following table of test specifications
+- trimming the structure of test specification document for the document approach into in review state
+- obtaining ideas from the review meeting to enhance the test tables   
+
+Hours: 6
+
+Action 2:
+- Decide on which version of JUnit to use and how to include it
+- Create some simple JUnit test cases 
+
+Hours: 2
+
+
+Other project work
+================
+Held an internal meeting with the group on 1 March 2023 from 3pm to 5pm to do a document review meeting on ui specification while discussing general stuffs
+Hours: 2
+
+Getting knowledge about starting junit testing and heading into the fundamentals
+Hours: 2 
+
+Total hours: 12

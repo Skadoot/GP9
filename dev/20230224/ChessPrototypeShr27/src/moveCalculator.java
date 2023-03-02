@@ -21,6 +21,16 @@ public class moveCalculator {
     //the board that you want to calculate the moves for.
     private final board board;
 
+    //can white castle king side?
+    private boolean canWhiteCastleKingSide;
+    //can white castle queen side?
+    private boolean canWhiteCastleQueenSide;
+
+    //can black castle king side?
+    private boolean canBlackCastleKingSide;
+    //can black castle queen side?
+    private boolean canBlackCastleQueenSide;
+
     /**
      * constructor for moveCalculator
      *
@@ -30,6 +40,53 @@ public class moveCalculator {
     public moveCalculator(char player, board board) {
         this.player = player;
         this.board = board;
+
+        //determine who can castle, so we can take this into account when calculating the legal moves.
+        determineWhoCanCastle();
+    }
+
+    /**
+     * A method to determine which players can castle and in which direction. using the board's forsyth edwards string notation.
+     */
+    private void determineWhoCanCastle() {
+        //start off assuming that we cannot castle.
+        canWhiteCastleKingSide = false;
+        canWhiteCastleQueenSide = false;
+        canBlackCastleKingSide = false;
+        canBlackCastleQueenSide = false;
+
+        //split the forsyth edwards notation string and acquire the 3rd section of it, which is the section which stores if the players can castle or not.
+        String castlingNotation = board.getBoardStateString().split(" ")[2];
+
+        //if this section only consists of the '-' character then neither side can castle, then return.
+        if (castlingNotation.equals("-")) {return;}
+
+        //otherwise, loop through the string.
+        for (int i = 0; i < castlingNotation.length(); i++) {
+            //if a 'k' is found.
+            if (castlingNotation.charAt(i) == 'k') {
+                //check if its uppercase, if so then it is referring to the ability for white to castle on the king side.
+                if (Character.isUpperCase(castlingNotation.charAt(i))) {
+                    canWhiteCastleKingSide = true;
+                    continue;
+                }
+
+                //here it must be a black king.
+                canBlackCastleKingSide = true;
+
+            }
+            //if a 'q' is found.
+            else if (castlingNotation.charAt(i) == 'q') {
+                //check if its uppercase, if so then it is referring to the ability for white to castle on the queen side.
+                if (Character.isUpperCase(castlingNotation.charAt(i))) {
+                    canWhiteCastleQueenSide = true;
+                    continue;
+                }
+
+                //here it must be a black queen.
+                canBlackCastleQueenSide = true;
+            }
+        }
     }
 
     /**
@@ -276,7 +333,7 @@ public class moveCalculator {
     /**
      * This method calculates and sets the legal moves of any given queen on the board.
      *
-     * @param queen the queen to calculate ethe moves for.
+     * @param queen the queen to calculate the moves for.
      * @param isForCheckMap boolean to see if the method is being used to create a check map, if so we do not need to check if the moves put the player in check.
      */
     private void getQueenLegalMoves(piece queen, boolean isForCheckMap) {
@@ -331,6 +388,58 @@ public class moveCalculator {
             } else if (!(board.getPiece(move).getColor() == king.getColor())) {
                 addPieceLegalMove(king, move, isForCheckMap);
             }
+        }
+
+        //check if castling king side is legal.
+        if (canPlayerCastleKingSide(king.getColor())) {
+            for (int i = 1; i < 8; i++) {
+                vector2 move = new vector2(king.getPosition().x + i, king.getPosition().y);
+                if (board.getPiece(move) == null) {continue;}
+                if (board.getPiece(move).getType() != 'r') {break;}
+
+                //if we find a rook in the direction.
+                addPieceLegalMove(king, new vector2(move.x - 1, move.y), isForCheckMap);
+                break;
+            }
+        }
+
+        //check if castling queen side is legal.
+        if (canPlayerCastleQueenSide(king.getColor())) {
+            for (int i = 1; i < 8; i++) {
+                vector2 move = new vector2(king.getPosition().x - i, king.getPosition().y);
+                if (board.getPiece(move) == null) {continue;}
+                if (board.getPiece(move).getType() != 'r') {break;}
+
+                //if we find a rook in the direction.
+                addPieceLegalMove(king, new vector2(move.x + 2, move.y), isForCheckMap);
+                break;
+            }
+        }
+    }
+
+    /**
+     * A method to determine if a player can castle king side.
+     *
+     * @param player, the players color.
+     */
+    private boolean canPlayerCastleKingSide(char player) {
+        if (player == 'w') {
+            return canWhiteCastleKingSide;
+        } else {
+            return canBlackCastleKingSide;
+        }
+    }
+
+    /**
+     * A method to determine if a player can castle queen side.
+     *
+     * @param player, the players color.
+     */
+    private boolean canPlayerCastleQueenSide(char player) {
+        if (player == 'w') {
+            return canWhiteCastleQueenSide;
+        } else {
+            return canBlackCastleQueenSide;
         }
     }
 

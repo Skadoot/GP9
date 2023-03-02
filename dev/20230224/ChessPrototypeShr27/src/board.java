@@ -34,7 +34,6 @@ public class board {
     private vector2 whiteKingPosition;
     private vector2 blackKingPosition;
 
-
     /**
      * constructor for board.
      * initializes the board array.
@@ -113,6 +112,7 @@ public class board {
 
         //if we move a king we need to update the position of the king to track of its position.
         if (selectedPiece.getType() == 'k') {
+            //check if the king is moving more than one square so that we can 
 
             //if the piece's color is white update the white kings position, else update the black kings position.
             if (selectedPiece.getColor() == 'w') {

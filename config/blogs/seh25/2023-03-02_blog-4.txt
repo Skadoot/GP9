@@ -1,0 +1,20 @@
+Author: SEH25
+Week: 4 (27/01/23)
+
+Assigned Actions
+================
+Action 1: JUnit Testing
+
+Started learning JUnit and looking through the code for a better understanding of the back-end logic.
+
+Hours: 6
+
+Other Project Work
+==================
+Attended internal UI Spec review meeting.
+Hours: 2
+
+Modified UI Spec as discussed in review meeting.
+Hours: 1
+
+Total Hours: 9

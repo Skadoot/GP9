@@ -1,5 +1,5 @@
 Author: CTS12
-Week: 1 (09/02/23)
+Week: 2 (16/02/23)
 
 Assigned actions
 ==============
@@ -21,7 +21,7 @@ Hours: 3
 
 Other project work
 ================
-Internal group meeting on 16/02/23 to establish progress and further plans
+Internal group meeting on 15/02/23 to establish progress and further plans
 Hours: 1
 
 Total hours: 6

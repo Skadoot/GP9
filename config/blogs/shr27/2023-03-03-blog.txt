@@ -1,0 +1,28 @@
+Author: shr27
+Week: 4 (23/03/03)
+
+Assigned actions
+==============
+
+Action 1: continued work on a chess logic prototype
+
+action 2: commented all the code
+
+3 hours
+
+action 3: created a "moveCalculator" class which can calculate all the legal moves for every piece on a given board (exculding special moves).
+	  (this will make it easier to test only certain pieces as well as all pieces, and check if a player is in check)
+
+4 hours
+
+action 4: began implementing castling logic.
+
+1 hour
+
+Other project work
+================
+attended a meeting with the whole group on the 1st of march
+
+hours: 2
+
+Total hours: 10

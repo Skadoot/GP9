@@ -1,0 +1,26 @@
+Author: GWH18
+Week: 4 (24/02/23)
+
+Assigned actions
+==============
+
+Action 12: Being working on forntend logic to integrate with the backend
+
+Implemented piece placement on the chessboard. Included png of pieces in screen protoype. Tiles are indexable on a 2d array now. Graphicss are placed on a tile by a function that reads Forsyth Edwards Notation.
+
+Hours: 8
+
+Action 13: Create a spreadsheet of time keeping
+
+Updated personal timekeeping spreadsheet and finally uploaded it to gitlab
+
+Hours: 1
+
+Other project work
+================
+
+Group project meeting to review the UI specification documents.
+Hours: 2
+
+
+Total hours: 10

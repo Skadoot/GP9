@@ -1,0 +1,24 @@
+Author: CTS12
+Week: 4 (02/03/23)
+
+Assigned actions
+==============
+
+Action 12: Work on preparing screens for backend logic
+
+More testing with JavaFX Scenebuilder to create more appealing screens  
+Hours: 2
+
+Implementing simple convergence with the backend code
+Hours: 2
+
+
+
+
+
+Other project work
+================
+Internal group meeting on 01/03/23 to establish progress and review the ui spec
+Hours: 2
+
+Total hours: 6

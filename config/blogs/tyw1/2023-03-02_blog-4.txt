@@ -1,0 +1,27 @@
+Author: TYW
+Week: 4 (02/03/23)
+
+Assigned actions
+==============
+
+1. Continue work on UI Specification Presentation.
+- Added more prototype images and completed document.
+- Minor adjustments to content and structure.
+- Document prepared for review.
+
+Hours: 4
+
+2. UI Specification review meeting
+- Allocated time and place for review meeting.
+- Prepared and distributed review documents.
+- Conducted review of UI Specification documents.
+
+Hours: 4
+
+Other project work
+================
+3. Attended an internal meeting with the team.
+
+Hours: 1
+
+Total hours: 9

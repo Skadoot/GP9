@@ -1,0 +1,61 @@
+Project: Group Project 09
+Meeting: UI Specification Review
+Persons present: All members except Jim Brown.
+Place and date of meeting: Study Room 6, Hugh Owen Library, Wednesday 1st March 2023
+Circulation list: All project members
+Author: Tyler Lewis
+Date of minutes: 01/03/23
+Version: 1.0
+
+Team:
+- gwh18: Gwion Hughes (Team Leader)
+- jat92: Jack Thompson (Deputy Leader)
+- tyw1 : Tyler Lewis (QA Manager)
+- seh25: Sean Hobson (Deputy QA)
+- ckc2 : Craymon Chan
+- cts12: Ciaran Smith
+- jib16: Jim Brown
+- shr27: Shaun Royle
+
+=============================
+ Changes arising from review
+=============================
+
+Changes to the UI Specification and UI Presentation to be made by Jack Thompson and Sean Hobson.
+Changes ti the UI Presentation images to be made by Tyler Lewis.
+
+CHANGES TO ALL SECTIONS:
+1. Change "highlighting pieces" to "highlighting squares".
+
+CHANGES TO SECTION 2:
+1. Subsection 2.2 - Add focus on replaying games and reviewing moves.
+2. Section 2, Subsection 2.3 - Add reference to tutoring other players.
+
+CHANGES TO SECTION 3:
+1. UC-0.1 - Enter names for both white and black.
+2. UC-0.1 - Specify white pieces to bottom, black pieces to top.
+3. UC-0.1 - Clearer indication of which users turn it is. (Include this in UC-1.1). Add FR3 to the title.
+4. UC-1.0 - Reword "highlight the possible movements" and "or which of the opponents pieces".
+5. UC-1.1 - Specify that highlighted squares are legal moves.
+6. *Add* "UC-1.4 - Special Moves".
+7. UC-2.0 - Change "Quit" button to "Save & Quit".
+8. UC-4.0 - Add reference to two buttons, "Resign" and "Offer Draw" that switch to the users side to show who's options they are.
+9. UC-4.1 - Specify that squares will be highlighted in different colours.
+
+CHANGES TO SECTION 4:
+1. EC-0.0 - Add reference to FR5.
+2. EC-0.2 - Change "Castling" to "Special Moves". Reword error case to reflect this.
+3. *Add* "EC-1.1 - Non-existent Files" explain that the "Continue Game" button will not be displayed if no save files are found.
+4. *Add* "EC-2.0 - Step Forwards / Backwards" explain that nothing will happen when the user reaches the end/beginning of a log.
+
+OTHER CHANGES:
+1. Include "Issue No." column in the DOCUMENT HISTORY section.
+
+PRESENTATION:
+1. Reflect any changes made to the use cases in the presentation.
+
+=============================
+ AOB
+=============================
+
+Secondary review to be held with Gwion Hughes, Tyler Lewis, Jack Thompson, and Sean Hobson, over discord on the 2nd of March before final submission.

@@ -8,6 +8,11 @@
 }
 
 .black-tile {
-    -fx-background-color: #201d4b;
+    -fx-background-color: #305433;
+    -fx-background-radius: 0;
+}
+
+.valid-tile {
+    -fx-background-color: #4df554;
     -fx-background-radius: 0;
 }

@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -30,9 +31,10 @@ public class PlayScreen {
     private Text whitePlayerName, blackPlayerName;
     private HashMap<Character, Image> graphicsMap;
 
-
-
-
+    /**
+     * Constructor method for the Play Screen.
+     * @param anInterface The GUI handler class
+     */
     public PlayScreen(Interface anInterface) {
         this.anInterface = anInterface;
         setGraphics();
@@ -107,9 +109,9 @@ public class PlayScreen {
         quitB.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                //Request to be taken back to menu and clear that chessboard
                 anInterface.toMenu();
-                clearChessBoard();
-                //Make sure to clear chessboard and request game be saved
+                //Request game be saved. Chessboard doesn't need to be cleared. It will be updated when new game begins.
             }
         });
 
@@ -195,16 +197,21 @@ public class PlayScreen {
 
 
     /**
-     * Function for switching a button at given coordinates off.
-     * @param column
+     * Individually flip a tile. Supposed to be helper function. Set to private.
      * @param row
+     * @param column
+     * @param tileStyle
      */
-    public void switchButton(int column, int row) {
-        ObservableList<Node> buttons = chessboard.getChildren();
-        for (Node button : buttons) {
-            if (GridPane.getColumnIndex(button) == column && GridPane.getRowIndex(button) == row) {
-                button.setDisable(true);
-            }
+    public void switchButton(int row, int column, String tileStyle) {
+        //Replace the style class of the button with the new specified tileStyle
+        tiles[row][column].getStyleClass().clear();
+        tiles[row][column].getStyleClass().add(tileStyle);
+    }
+
+    public void setTiles(ArrayList<Integer> coords, String tileStyle) {
+        //Run through an arraylist of coordinates and specify a tileStyle for each.
+        for (int counter = 0; counter < coords.size(); counter = counter + 2) {
+            switchButton(coords.get(counter), coords.get(counter+1), tileStyle);
         }
     }
 
@@ -217,14 +224,26 @@ public class PlayScreen {
     }
 
     /**
-     * Clears  graphics on the chessboard.
+     * Clears the chessboard of piece graphics and highlighted tiles.
      */
     private void clearChessBoard() {
+        int check = 0;
         for (int row = 0; row < 8; row++) {
+            check++;
             for(int column = 0; column < 8; column++) {
 
                 //Iterate over EVERY button in our 2d array and set their graphics to null
                 tiles[row][column].setGraphic(null);
+                tiles[row][column].getStyleClass().clear();
+
+                //Iterate over EVERY button in our 2d array and set their css styleclass back to black or white.
+                check++;
+                if(check %2 == 1) {
+                    tiles[row][column].getStyleClass().add("black-tile");
+                } else {
+
+                    tiles[row][column].getStyleClass().add("white-tile");
+                }
             }
         }
     }
@@ -263,9 +282,9 @@ public class PlayScreen {
         //Create a Image container containing an image returned from the graphics HashMap using the function's char paramater as a key.
         ImageView graphic = new ImageView(graphicsMap.get(pieceType));
 
-        //Sets the ImageView to fit the image in a 50x50 pixel bound.
-        graphic.setFitWidth(50);
-        graphic.setFitHeight(50);
+        //Sets the ImageView to fit the image in a 60x60 pixel bound.
+        graphic.setFitWidth(60);
+        graphic.setFitHeight(60);
 
         //This sets the button to use the image container as a graphic over its background
         tile.setGraphic(graphic);

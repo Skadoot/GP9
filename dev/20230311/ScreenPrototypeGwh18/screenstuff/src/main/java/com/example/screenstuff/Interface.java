@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Interface extends Application {
     private Stage primaryStage;
@@ -36,7 +37,15 @@ public class Interface extends Application {
         return primaryStage;
     }
 
+    /**
+     * Intended to send the coordinates of the clicked tile to the backend. Currently the playground to test chessboard
+     * features.
+     * @param column
+     * @param row
+     */
     public void click(int column, int row) {
+        ArrayList<Integer> validTileOne = new ArrayList<>();
+
         if(column == 0 && row == 0) playScreen.updateBoard("r1b1k1nr/p2p1pNp/n2B4/1p1NP2P/6P1/3P1Q2/P1P1K3/q5b1 w KQkq - 0 1");
 
         else if(column == 0 && row == 7) playScreen.updateBoard("8/8/8/4p1K1/2k1P3/8/8/8 b - - 0 1");
@@ -46,6 +55,11 @@ public class Interface extends Application {
         else if(column == 7 && row == 7) playScreen.updateBoard("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1");
 
         else playScreen.updateBoard("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+
+        //The tile clicked should glow up yellow. The colour of a valid tile.
+        playScreen.switchButton(column,row, "valid-tile");
+
+
         System.out.println(column);
         System.out.println(row);
     }

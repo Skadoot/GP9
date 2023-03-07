@@ -1,0 +1,113 @@
+Project: Group Project 09
+Meeting: Weekly Project Meeting
+Persons present: All project members
+Place and date of meeting: 0.30 IBERS, Friday 3rd of March 2023
+Circulation list: All project members, plus project manager
+Author: Tyler Lewis
+Date of minutes: 03/03/23
+Version: 1.0
+
+Team:
+- gwh18: Gwion Hughes (Team Leader)
+- jat92: Jack Thompson (Deputy Leader)
+- tyw1 : Tyler Lewis (QA Manager)
+- seh25: Sean Hobson (Deputy QA)
+- ckc2 : Craymon Chan
+- cts12: Ciaran Smith
+- jib16: Jim Brown
+- shr27: Shaun Royle
+
+=================
+ Matters arising
+=================
+
+1. (Recurring) Review time-spent for each member this week, update spreadsheet.
+Assigned to: GWH18
+Status: COMPLETE
+Notes: All members on track.
+
+2. Continue work on UI Specification Presentation.
+Assigned to: TYW1, SEH25, JAT92
+Status: COMPLETE
+Notes: Documents submitted to GitLab.
+
+3. Continue work on Test Specification (formatting, structure, additional test cases)
+Assigned to: JIB16, CKC2
+Status: COMPLETE
+Notes: Ready for review
+
+4. Continue work on general implementation
+Assigned to: SHR27, GWH18
+Status: ONGOING
+Notes: Additional move logic.
+
+5. Change blog format and upload blog 3
+Assigned to: JAT92
+Status: COMPLETE
+Notes: Files uploaded and changed to the correct format.
+
+6. Ensure all blogs are uploaded by 5:00pm on Thursdays
+Assigned to: All
+Status: ONGOING
+Notes:
+
+7. UI Specification review meeting Wednesday, 2hrs (Book room, distribute documentation)
+Assigned to: TYW1
+Status: COMPLETE
+Notes:
+
+8. Small code demonstration/walkthrough after UI Specification review on Wednesday.
+Assigned to: SHR27
+Status: POSTPONED
+Notes: Rearrange nearer to Design Spec
+
+9. Work on preparing screens for backend logic.
+Assigned to: CTS12, GWH18
+Status: ONGOING
+Notes: Highlighting valid tiles, king during checkmate. Add buttons from UI Spec review.
+
+10. Create spreadsheet of time-spent
+Assigned to: GWH18
+Status: COMPLETE
+Notes: N/A
+
+11. Decide on which version of JUnit to use and how to include it.
+Assigned to: SEH25, CKC2, JIB16
+Status: ONGOING
+Notes:
+
+12. Create some simple JUnit test cases.
+Assigned to: SEH25, CKC2, JIB16
+Status: ONGOING
+Notes: Some structure created. More test cases to be made. Add to git /dev folder for next meeting.
+
+13. Begin commenting code and preparing for Wednesday's walkthrough.
+Assigned to: SHR27
+Status: ONGOING
+Notes: Mostly done, minor inline comments.
+
+=================
+ New business
+=================
+
+14. Arrange Formal Test Specification Review
+Assigned to: GWH18, TYW1
+Notes: GWH18 to book a study room. TYW1 to pre-review and distribute documents.
+
+15. Begin work on Design Specification
+Assigned to: GWH18, SHR27, TYW1
+Notes: GWH18 to begin writing on front-end design. SHR27 to begin writing on back-end design. TYW1 to create checklist for Design Specification and prepare template.
+
+16. Implement loading/saving to/from files
+Assigned to: JAT92
+Notes: Start spike work looking in to how to implement loading/saving to/from files using the F-E Notation.
+
+17. Preparation for use case diagrams.
+Assigned to: TYW1
+Notes: Start creating a list of use cases to be shown in the use case diagrams.
+
+=================
+ AOB
+=================
+
+

@@ -1,6 +1,6 @@
 Project: Group Project 09
 Meeting: UI Specification Review
-Persons present: All members except Jim Brown.
+Persons present: All members.
 Place and date of meeting: Study Room 6, Hugh Owen Library, Wednesday 1st March 2023
 Circulation list: All project members
 Author: Tyler Lewis

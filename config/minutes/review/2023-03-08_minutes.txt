@@ -1,0 +1,98 @@
+Project: Group Project 09
+Meeting: Test Specification Review
+Persons present: All members.
+Place and date of meeting: Study Room 8, Hugh Owen Library, Wednesday 8th March 2023
+Circulation list: All project members
+Author: Tyler Lewis
+Date of minutes: 08/03/23
+Version: 1.0
+
+Team:
+- gwh18: Gwion Hughes (Team Leader)
+- jat92: Jack Thompson (Deputy Leader)
+- tyw1 : Tyler Lewis (QA Manager)
+- seh25: Sean Hobson (Deputy QA)
+- ckc2 : Craymon Chan
+- cts12: Ciaran Smith
+- jib16: Jim Brown
+- shr27: Shaun Royle
+
+=============================
+ Changes arising from review
+=============================
+
+1. SE-F-005 What makes a player name invalid?
+Notes: Char count above 32, blank names.
+Assigned to: CKC2
+
+2. SE-F-006 Change to "names" instead of pieces.
+Notes: Mention names being displayed at the top/bottom.
+Assigned to: CKC2
+
+3. SE-F-008 Change to "Keeps track of the starting player".
+Notes: Grammatical change.
+Assigned to: CKC2
+
+4. SE-F-010 Change "Unambiguous board and pieces".
+Notes: Mention being able to tell pieces apart, accurate representation on the board.
+Assigned to: CKC2
+
+5. SE-F-011 Split into two test cases.
+Notes: Split into "Player can't move opponents pieces" and "Player can move own pieces".
+Assigned to: CKC2
+
+6. SE-F-016 Split into specific cases.
+Notes: Specific cases relating to first move (two squares) and secondary moves (one square).
+Assigned to: CKC2
+
+7. SE-F-017 Remove reference to highlighting.
+Notes: Specific reference to highlighting is not needed.
+Assigned to: CKC2
+
+8. SE-F-018 Specific capture and movement.
+Notes: Mention the specific movement of the pawn and capture of the piece.
+Assigned to: CKC2
+
+9. SE-F-020 Make specific to attacking a piece.
+Notes: Lacking detail on the results.
+Assigned to: CKC2
+
+10. SE-F-024 Reword bottom/top side.
+Notes: N/A
+Assigned to: CKC2
+
+11. SE-F-048 Change FR reference.
+Notes: Change FR5 to reference FR2 and FR3 instead.
+Assigned to:
+
+12. SE-F-049 Change "flash red" to "nothing happens".
+Notes: N/A
+Assigned to:
+
+13. SE-F-052, 053 Combine both cases.
+Notes: Combine both cases and change to focus on the current player being in check.
+Assigned to:
+
+14. SE-F-054 Specify that the game has ended.
+Notes: Specify that the game has ended and that there will be a window to show this.
+Assigned to:
+
+15. SE-F-055, 056, 057 Change FR
+Notes: Cases better suited to FR6.
+Assigned to:
+
+16. SE-F-058 Remove duplicate of 054.
+Notes: Cases is a duplicate of 054.
+Assigned to:
+
+17. SE-F-066 Change to show "Are you sure" screen.
+Notes: User will be asked "Are you sure you want to quit?"
+Assigned to:
+
+18. SE-F-068 Change to show list of games.
+Notes: N/A
+Assigned to:
+
+19. SE-F-012, 013, 014 Refer to FR5.
+Notes: Test cases are more suited to satisfy FR5 than FR4.
+Assigned to: CKC2

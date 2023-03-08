@@ -32,9 +32,6 @@ public class Interface extends Application {
         launch();
     }
 
-    public Stage getStage() {
-        return primaryStage;
-    }
 
     public void click(int column, int row) {
         if(column == 0 && row == 0) playScreen.updateBoard("r1b1k1nr/p2p1pNp/n2B4/1p1NP2P/6P1/3P1Q2/P1P1K3/q5b1 w KQkq - 0 1");
@@ -74,7 +71,7 @@ public class Interface extends Application {
      */
     public void loadFGames() {
         //loadScreen.populateButtonBar(list of finished games);
-        loadScreen.setLabel("Finished Games:");
+        loadScreen.setSaveType("Finished Games:");
         primaryStage.setScene(loadScreen.getScene());
     }
 
@@ -83,7 +80,7 @@ public class Interface extends Application {
      */
     public void loadUFGames() {
         //loadScreen.populateButtonBar(list of unfinished games);
-        loadScreen.setLabel("Unfinished Games:");
+        loadScreen.setSaveType("Unfinished Games:");
         primaryStage.setScene(loadScreen.getScene());
     }
 }

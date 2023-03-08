@@ -14,13 +14,13 @@ public class LoadScreen {
     private Interface anInterface;
     private Scene scene;
     private VBox saveContainer;
-    private Label lab;
+    private Label saveType;
     public LoadScreen(Interface anInterface) {
         this.anInterface = anInterface;
         createScene();
     }
 
-    public void createScene() {
+    private void createScene() {
         GridPane layout = new GridPane();
         layout.setAlignment(Pos.CENTER);
         //Setting up column and row width for the layout gridpane. Currently, an 18x12 grid.
@@ -37,7 +37,7 @@ public class LoadScreen {
         //Label at top changes depending on whether your looking at finished or unfinished games
         Label label = new Label("Label");
         layout.add(label, 1, 0, 4, 1);
-        this.lab = label;
+        this.saveType = label;
 
         //A scrollable pane that will contain buttons to each game in a vertical box.
 
@@ -67,7 +67,7 @@ public class LoadScreen {
         this.scene = scene;
     }
 
-    public void populateButtonBar(String[] stringNames) {
+    public void populateSaveBar(String[] stringNames) {
         int length = stringNames.length;
         for(int counter = 0; counter < length; counter++) {
             Button save = new Button(stringNames[counter]);
@@ -85,8 +85,8 @@ public class LoadScreen {
         return scene;
     }
 
-    public void setLabel(String newLabel) {
-        this.lab.setText(newLabel);
+    public void setSaveType(String newLabel) {
+        this.saveType.setText(newLabel);
     }
 }
 

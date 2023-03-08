@@ -38,11 +38,13 @@ public class game
         determineCurrentPlayer();
 
         //calculate the legal moves for the board. with the current player.
-        moveCalculator moveCalculator = new moveCalculator(attackingPlayer, gameBoard);
+        moveCalculator moveCalculator = new moveCalculator('b', gameBoard);
         moveCalculator.findLegalMovesForPlayer();
 
         //print the board to the console.
         gameBoard.printBoardStateToConsole();
+
+        System.out.println(moveCalculator.isPlayerInCheck('b'));
 
         //wait for the UI to give us a selected piece, here we would set it to be the coordinate that the ui passes back to us.
         vector2 selectedBoardCoordinate = new vector2();

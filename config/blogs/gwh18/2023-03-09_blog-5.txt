@@ -1,0 +1,36 @@
+Author: GWH18
+Week: 5 (04/03/23)
+
+Assigned actions
+==============
+
+Action 1: Review Timekeeping
+
+Hours: 
+
+Action 14: Arrange a Test spec meeting
+
+Room booked.
+
+Hours: 0
+
+Action 15: Begin work on Design Specification
+
+Introduction written, FR-Class table added, Interface class descriptions added.
+
+Hours 2
+
+Action 9: Work on adding logic to frontend for integergration
+
+Added function that highlights tiles depending on situation. For example, valid tile, king in check, and attacking pieces.
+
+Hours 2
+
+Other project work
+================
+
+Group project meeting to review the Test specification documents.
+Hours: hasn't happened yet
+
+
+Total hours: 4

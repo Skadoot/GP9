@@ -6,7 +6,7 @@ Assigned actions
 
 Action 1: Review Timekeeping
 
-Hours: 
+Hours: 1
 
 Action 14: Arrange a Test spec meeting
 
@@ -33,4 +33,4 @@ Group project meeting to review the Test specification documents.
 Hours: hasn't happened yet
 
 
-Total hours: 4
+Total hours: 5

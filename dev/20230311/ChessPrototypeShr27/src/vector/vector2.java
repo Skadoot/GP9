@@ -9,7 +9,7 @@ public class vector2
     public int y;
 
     //board notation.
-    private char[] boardNotation = {'a','b','c','c','e','f','g','h'};
+    private char[] boardNotation = {'a','b','c','d','e','f','g','h'};
 
     //default constructor with no parameters.
     public vector2()

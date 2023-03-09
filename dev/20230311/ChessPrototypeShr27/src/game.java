@@ -44,7 +44,10 @@ public class game
         //print the board to the console.
         gameBoard.printBoardStateToConsole();
 
-        System.out.println(moveCalculator.isPlayerInCheck('b'));
+        moveCalculator.printCheckMap();
+
+//        System.out.println("\n" + gameBoard.getBlackKingPosition().getVector2AsBoardNotation());
+        System.out.println('b' + " is in check =" + moveCalculator.isPlayerInCheck());
 
         //wait for the UI to give us a selected piece, here we would set it to be the coordinate that the ui passes back to us.
         vector2 selectedBoardCoordinate = new vector2();

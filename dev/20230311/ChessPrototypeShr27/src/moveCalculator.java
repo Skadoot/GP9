@@ -1,6 +1,7 @@
 import pieces.piece;
 import vector.vector2;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -31,6 +32,8 @@ public class moveCalculator {
     //can black castle queen side?
     private boolean canBlackCastleQueenSide;
 
+    private final ArrayList<vector2> checkMap = new ArrayList<>();
+
     /**
      * constructor for moveCalculator
      *
@@ -43,6 +46,7 @@ public class moveCalculator {
 
         //determine who can castle, so we can take this into account when calculating the legal moves.
         determineWhoCanCastle();
+        createCheckMap();
     }
 
     /*
@@ -143,10 +147,7 @@ public class moveCalculator {
      *
      * @return a Map of all attacked squares.
      */
-    private ArrayList<vector2> createCheckMap(char player) {
-        //initializing the map.
-        ArrayList<vector2> list = new ArrayList<>();
-
+    private void createCheckMap() {
         //loop over every piece in the board.
         for (int file = 0; file < 8; file++) {
             for (int rank = 0; rank < 8; rank++) {
@@ -160,7 +161,8 @@ public class moveCalculator {
                 if (piece == null) {continue;}
 
                 //if the piece is not the correct color, skip and look at the next piece.
-                if (piece.getColor() == player) {continue;}
+                if (piece.getColor() == currentPlayer) {continue;}
+                //System.out.println("piece color : "+ piece.getColor());
 
                 //check what the piece's type is: 'p' for pawn, 'n' for knight, 'r' for rook, 'b' for bishop, 'q' for queen, 'k' for king.
                 switch (piece.getType()) {
@@ -184,12 +186,14 @@ public class moveCalculator {
                 }
 
                 //add the piece's attacked squares to the check map.
-                list.addAll(piece.getPossibleMoves());
+                checkMap.addAll(piece.getPossibleMoves());
             }
         }
-
-        //update the threatened squares.
-        return list;
+//        System.out.println("PRINTING CHECK MAP");
+//        for (vector2 square: checkMap) {
+//            System.out.println(square.getVector2AsBoardNotation());
+//        }
+//        System.out.println("FINISHED PRINTING CHECK MAP");
     }
 
     /**
@@ -210,12 +214,14 @@ public class moveCalculator {
         vector2 rightAttack = new vector2(singleAdvance.x + 1, singleAdvance.y);
 
         //check if the single advance is a valid position on the board. and that there are no pieces occupying it.
-        if (singleAdvance.x <= 7 && singleAdvance.y <= 7 && singleAdvance.x >= 0 && singleAdvance.y >= 0 && board.getPiece(singleAdvance) == null) {
-            addPieceLegalMove(pawn, singleAdvance, isForCheckMap);
+        if (!isForCheckMap) {
+            if (singleAdvance.x <= 7 && singleAdvance.y <= 7 && singleAdvance.x >= 0 && singleAdvance.y >= 0 && board.getPiece(singleAdvance) == null) {
+                addPieceLegalMove(pawn, singleAdvance, false);
 
-            //check if there is a piece on the double advance square and that the pawn has not moved before.
-            if (board.getPiece(doubleAdvance) == null && !pawn.hasMoved()) {
-                addPieceLegalMove(pawn, doubleAdvance, isForCheckMap);
+                //check if there is a piece on the double advance square and that the pawn has not moved before.
+                if (board.getPiece(doubleAdvance) == null && !pawn.hasMoved()) {
+                    addPieceLegalMove(pawn, doubleAdvance, false);
+                }
             }
         }
 
@@ -236,6 +242,7 @@ public class moveCalculator {
                 addPieceLegalMove(pawn, rightAttack, isForCheckMap);
             }
         }
+        if (isForCheckMap) {return;}
         System.out.print("legal moves for :" + pawn.getColor() + " " + pawn.getType() + " | ");
         System.out.print(pawn.getPossibleMoves().size() + " | ");
         for (vector2 square: pawn.getPossibleMoves()) {
@@ -268,6 +275,7 @@ public class moveCalculator {
                 addPieceLegalMove(knight, move, isForCheckMap);
             }
         }
+        if (isForCheckMap) {return;}
         System.out.print("legal moves for :" + knight.getColor() + " " + knight.getType() + " | ");
         System.out.print(knight.getPossibleMoves().size() + " | ");
         for (vector2 square: knight.getPossibleMoves()) {
@@ -306,6 +314,7 @@ public class moveCalculator {
                 } else if (board.getPiece(move).getColor() == bishop.getColor()) {break;}
             }
         }
+        if (isForCheckMap) {return;}
         System.out.print("legal moves for :" + bishop.getColor() + " " + bishop.getType() + " | ");
         System.out.print(bishop.getPossibleMoves().size() + " | ");
         for (vector2 square: bishop.getPossibleMoves()) {
@@ -346,6 +355,7 @@ public class moveCalculator {
                 }
             }
         }
+        if (isForCheckMap) {return;}
         System.out.print("legal moves for :" + rook.getColor() + " " + rook.getType() + " | ");
         System.out.print(rook.getPossibleMoves().size() + " | ");
         for (vector2 square: rook.getPossibleMoves()) {
@@ -386,6 +396,7 @@ public class moveCalculator {
                 }
             }
         }
+        if (isForCheckMap) {return;}
         System.out.print("legal moves for :" + queen.getColor() + " " + queen.getType() + " | ");
         System.out.print(queen.getPossibleMoves().size() + " | ");
         for (vector2 square: queen.getPossibleMoves()) {
@@ -445,6 +456,7 @@ public class moveCalculator {
                 break;
             }
         }
+        if (isForCheckMap) {return;}
         System.out.print("legal moves for :" + king.getColor() + " " + king.getType() + " | ");
         System.out.print(king.getPossibleMoves().size() + " | ");
         for (vector2 square: king.getPossibleMoves()) {
@@ -489,7 +501,7 @@ public class moveCalculator {
     private void addPieceLegalMove(piece piece, vector2 move, boolean isForCheckMap) {
         if (isForCheckMap) {
             piece.addMove(move);
-        } else if (isMoveSafe(piece, move)) {
+        } else if (!isMoveSafe(piece, move)) {
             piece.addMove(move);
         }
     }
@@ -507,25 +519,46 @@ public class moveCalculator {
         projectionOfMove.movePiece(projectionOfMove.getPiece(piece.getPosition()), move);
 
         moveCalculator moveCalculator = new moveCalculator(piece.getColor(), projectionOfMove);
-        return moveCalculator.isPlayerInCheck(piece.getColor());
+
+        return moveCalculator.isPlayerInCheck();
     }
 
     /**
      * a method which determines if the player is in check in the board position or not.
-     *
-     * @param player the player that we want to check if they are in check or not.
+     * the player that we want to check if they are in check or not.
      *
      * @return a boolean which determines if the player is in check in the board position or not.
      */
-    public boolean isPlayerInCheck(char player) {
-        ArrayList<vector2> checkMap = createCheckMap(player);
+    public boolean isPlayerInCheck() {
+        vector2 whiteKingPosition = board.getWhiteKingPosition();
+        //System.out.println(whiteKingPosition.getVector2AsBoardNotation());
+        vector2 blackKingPosition = board.getBlackKingPosition();
+       // System.out.println(blackKingPosition.getVector2AsBoardNotation());
 
-//        for (vector2 attackedSquare : checkMap) {
-//            System.out.println(attackedSquare.getVector2AsBoardNotation());
-//        }
+//        printCheckMap();
+//        System.out.println(checkMap.contains(blackKingPosition));
 
-        if (player == 'w' && checkMap.contains(board.getWhiteKingPosition())) {
-            return true;
-        } else return player == 'b' && checkMap.contains(board.getBlackKingPosition());
+        if (currentPlayer == 'w') {
+            for (vector2 attackedSquare: checkMap) {
+                if (whiteKingPosition.getVector2AsBoardNotation().equals(attackedSquare.getVector2AsBoardNotation())) {
+                    return true;
+                }
+            }
+        } else {
+            for (vector2 attackedSquare: checkMap) {
+                if (blackKingPosition.getVector2AsBoardNotation().equals(attackedSquare.getVector2AsBoardNotation())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void printCheckMap() {
+        System.out.print("unsafe squares for player : " + currentPlayer + ": ");
+        for (vector2 attackedSquare : checkMap) {
+           System.out.print(attackedSquare.getVector2AsBoardNotation() + " ");
+        }
+        System.out.println();
     }
 }

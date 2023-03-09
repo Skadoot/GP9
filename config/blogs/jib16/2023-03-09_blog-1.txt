@@ -1,1 +1,27 @@
-a
+Author: ckc2
+Week: 5 (09/03/23)
+
+Assigned actions
+==============
+
+Action 1: 
+- finalizing the test specification document for it to be ready for review and feedback  
+
+Hours: 4
+
+Action 2:
+- Create some simple JUnit test cases 
+- further created tests for some methods 
+
+Hours: 1
+
+
+Other project work
+================
+Held an Test Specification Document review meeting with the group on 8 March 2023 3pm to 5pm 
+Hours: 2
+
+
+
+Total hours: 8
+

@@ -1,3 +1,5 @@
+//remember you commented out move method for testing
+
 public class main
 {
     private static game game = null;
@@ -8,8 +10,13 @@ public class main
         //new game
         create_game();
 
+        //save game
+
+        System.out.println("Do we get here?");
+        game.saveGame("testTwo", "FEN2");
+
         //load
-        load_game();
+        //load_game();
 
         //quit
     }

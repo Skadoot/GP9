@@ -1,5 +1,7 @@
 import vector.vector2;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -27,7 +29,7 @@ public class game
      */
     public game(String boardState) {
         gameBoard = new board(boardState);
-        move();
+        //move();
     }
 
     /**
@@ -81,5 +83,18 @@ public class game
     private void determineCurrentPlayer() {
         //check the board state string to find which player's turn it is.
         attackingPlayer = gameBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
+    }
+
+    public void saveGame(String nameOfGame, String FEN){
+        try{
+            FileWriter fileWriter = new FileWriter("saved_games.txt", true);
+            fileWriter.append(nameOfGame).append("\n").append(FEN).append("\n");
+            fileWriter.close();
+            System.out.println("saved_games.txt updated successfully");
+        } catch (IOException e){
+            System.out.println("error");
+        }
+
+
     }
 }

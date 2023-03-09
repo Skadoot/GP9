@@ -14,6 +14,8 @@ public class main
         //quit
     }
 
+    //this is a test for the git branch feature/save_and_load
+
     private static void create_game() {
         //game = new game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
         game = new game("r1b1k1nr/p2p1pNp/n2B4/1p1NP2P/6P1/3P1Q2/P1P1K3/q5b1 w KQkq - 0 1");

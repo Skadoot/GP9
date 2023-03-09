@@ -9,7 +9,7 @@ public class vector2
     public int y;
 
     //board notation.
-    private char[] boardNotation = {'a','b','c','d','e','f','g','h'};
+    private final char[] boardNotation = {'a','b','c','d','e','f','g','h'};
 
     //default constructor with no parameters.
     public vector2()
@@ -31,6 +31,6 @@ public class vector2
      * @return the vector2 as a chess board position notation String.
      */
     public String getVector2AsBoardNotation() {
-        return String.valueOf(boardNotation[x]) + Integer.toString(y);
+        return boardNotation[x] + Integer.toString(y);
     }
 }

@@ -1,0 +1,33 @@
+Author: shr27
+Week: 5 (23/03/10)
+
+Assigned actions
+==============
+
+Action 1: continued work on a chess logic prototype
+
+action 2: added functionality for updating FEN string
+2 hours
+
+action 4: added castling logic
+2 hours
+
+action 4: added en passant
+3 hours
+
+action 5: debugging code to make sure everything works correctly
+4 hours
+
+action 6: fixed bugs related to checking for check
+2 hours
+
+action 7: contributed to design spec document
+1 hour
+
+Other project work
+================
+attended a meeting with the whole group on the 8th of march
+
+hours: 2
+
+Total hours: 16

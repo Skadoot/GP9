@@ -85,6 +85,10 @@ public class game
         attackingPlayer = gameBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
     }
 
+    /** Appends the name of the game and a FEN string to the saved_games.txt file.
+     * @param nameOfGame the name the user wishes to call the game
+     * @param FEN the forsyth-edwards notation representing the game
+     */
     public void saveGame(String nameOfGame, String FEN){
         try{
             FileWriter fileWriter = new FileWriter("saved_games.txt", true);

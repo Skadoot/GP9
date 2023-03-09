@@ -1,0 +1,9 @@
+Blog - week 5
+08/03/2023 
+git research, reading code - 1.5 hours
+09/03/2023 
+Reading code, setting up git branch, save and load methods to logs - 4 hours
+10/03/2023
+Tutorial 1 hour
+
+Total 7 Hour

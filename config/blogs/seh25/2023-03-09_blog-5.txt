@@ -1,0 +1,21 @@
+Author: SEH25
+Week: 5 (06/03/23)
+
+Assigned Actions
+=================
+Action 1: JUnit Testing
+
+Started implementing some tests for the board class, and further understanding game logic.
+Arranged Discord meeting with Jim and Craymon for further work on this.
+
+Hours: 5
+
+Other Project Work
+==================
+Attended internal Test Spec review meetings.
+Hours: 2
+
+Adjusted UI Spec with the given feedback
+Hours: 1
+
+Total Hours: 8

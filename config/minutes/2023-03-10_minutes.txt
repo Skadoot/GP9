@@ -1,0 +1,117 @@
+Project: Group Project 09
+Meeting: Weekly Project Meeting
+Persons present: All project members, except Sean Hobson, Ciaran Smith
+Place and date of meeting: 0.30 IBERS, Friday 10th of March 2023
+Circulation list: All project members, plus project manager
+Author: Tyler Lewis
+Date of minutes: 10/03/23
+Version: 1.0
+
+Team:
+- gwh18: Gwion Hughes (Team Leader)
+- jat92: Jack Thompson (Deputy Leader)
+- tyw1 : Tyler Lewis (QA Manager)
+- seh25: Sean Hobson (Deputy QA)
+- ckc2 : Craymon Chan
+- cts12: Ciaran Smith
+- jib16: Jim Brown
+- shr27: Shaun Royle
+
+=================
+ Matters arising
+=================
+
+1. (Recurring) Ensure all blogs are uploaded by 5:00pm on Thursdays
+Assigned to: All
+Status: COMPLETE
+Notes: Ciaran needs to upload by 5
+
+2. (Recurring) Review time-spent for each member this week, update spreadsheet.
+Assigned to: GWH18
+Status: COMPLETE
+Notes: All members on track
+
+3. Continue work on general implementation
+Assigned to: SHR27, GWH18
+Status: ONGOING
+Notes: Most functionality in place
+
+4. Work on preparing screens for backend logic (Highlighting valid tiles, king during checkmate. Add buttons from UI Spec review).
+Assigned to: CTS12, GWH18
+Status: ONGOING
+Notes: Most functionality in place
+
+5. Decide on which version of JUnit to use and how to include it.
+Assigned to: SEH25, CKC2, JIB16
+Status: ONGOING
+Notes: Need to upload JUnit tests
+
+6. Create some simple JUnit test cases (Add test cases to the /dev folder for next meeting).
+Assigned to: SEH25, CKC2, JIB16
+Status: ONGOING
+Notes: Need to upload JUnit tests
+
+7. Preparation for use case diagrams.
+Assigned to: TYW1
+Status: ONGOING
+Notes: Change into sequence diagrams
+
+8. Commenting code.
+Assigned to: SHR27
+Status: ONGOING
+Notes: Edit private JDoc comments, complete remaining comments
+
+9. Arrange Formal Test Specification Review
+Assigned to: GWH18, TYW1
+Status: COMPLETE
+Notes: Presented Test Spec review minutes in today's meeting
+
+10. Begin work on Design Specification (GWH18 - Front-end design. SHR27 - Back-end design. TYW1 - Checklist and template).
+Assigned to: GWH18, SHR27, TYW1
+Status: ONGOING
+Notes: Good progress, diagrams to be made, minor structure adjustments
+
+11. Implement loading and saving to and from files
+Assigned to: JAT92
+Status: ONGOING
+Notes: Feature branch created, some functions in place
+
+=================
+ New business
+=================
+
+12. Code walkthrough Wednesday
+Assigned to: GWH18, SHR27
+Notes: Arrange meeting and code walkthrough
+
+13. Upload JUnit tests to /dev for next meeting
+Assigned to: SEH25, CKC2, JIB16
+Notes: Prep some JUnit tests with references to the Test Specification. Include final decision on JUnit version to use, and how it will be included (Maven, ext. library, etc.)
+
+14. Begin commenting front-end code
+Assigned to: GWH18, CTS12
+Notes: Comments (inline and JavaDoc) to be created.
+
+15. Add checklist to Test Spec review minutes
+Assigned to: TYW1
+Notes: Add completed SE.QA.07 checklist to Test Spec review minutes.
+
+16. Continue work on Design Specification
+Assigned to: GWH18, SHR27, TYW1, JAT92
+Notes: GWH18 - Front-end design. SHR27 - Back-end design. TYW1 - Diagrams (excl. Class Diagrams). JAT92 - Back-end (logs)
+
+=================
+ AOB
+=================
+
+17. UI Specification feedback results
+Assigned to: GWH18
+Notes: Assign issues on GitLab to team members.
+
+18. Report IBERS IntelliJ issues to IS
+Assinged to: Chris Loftus
+Notes: IntelliJ shortcut does not point to idea64.exe. idea64.exe leads to "Missing VM options file" error.
+
+19. Organise meetings earlier in the week for future reviews
+Assigned to: N/A
+Notes: Timeframes for changes post-review have been too narrow, which has caused complications.

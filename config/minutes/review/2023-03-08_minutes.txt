@@ -67,31 +67,31 @@ Assigned to:
 
 12. SE-F-049 Change "flash red" to "nothing happens".
 Notes: N/A
-Assigned to:
+Assigned to: JIB16
 
 13. SE-F-052, 053 Combine both cases.
 Notes: Combine both cases and change to focus on the current player being in check.
-Assigned to:
+Assigned to: JIB16
 
 14. SE-F-054 Specify that the game has ended.
 Notes: Specify that the game has ended and that there will be a window to show this.
-Assigned to:
+Assigned to: JIB16
 
 15. SE-F-055, 056, 057 Change FR
 Notes: Cases better suited to FR6.
-Assigned to:
+Assigned to: JIB16
 
 16. SE-F-058 Remove duplicate of 054.
 Notes: Cases is a duplicate of 054.
-Assigned to:
+Assigned to: JIB16
 
 17. SE-F-066 Change to show "Are you sure" screen.
 Notes: User will be asked "Are you sure you want to quit?"
-Assigned to:
+Assigned to: JIB16
 
 18. SE-F-068 Change to show list of games.
 Notes: N/A
-Assigned to:
+Assigned to: JIB16
 
 19. SE-F-012, 013, 014 Refer to FR5.
 Notes: Test cases are more suited to satisfy FR5 than FR4.

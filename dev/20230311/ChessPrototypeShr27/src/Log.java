@@ -36,7 +36,7 @@ public class Log {
             System.out.println("IO Error");
         }
     }
-    
+
     /** Returns the specific line from a file as a string. Uses the Files.readsAllLines method to return
      * all lines in the file as a list of strings. Then uses the list.get method to return the specified
      * line as a string. If an IO error occurs a null string will be returned. If the line number requested

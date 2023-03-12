@@ -1,7 +1,4 @@
 import vector.vector2;
-
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -22,13 +19,16 @@ public class game
     //keep track of which move it is.
     private int moveCount;
 
+    public Log log;
+
     /**
      * Constructor for game.
      *
      * @param boardState the initial board state string for the game (Forsyth Edwards Notation).
      */
-    public game(String boardState) {
+    public game(String boardState, String fileName) {
         gameBoard = new board(boardState);
+        this.log = new Log(fileName);
         //move();
     }
 
@@ -83,22 +83,5 @@ public class game
     private void determineCurrentPlayer() {
         //check the board state string to find which player's turn it is.
         attackingPlayer = gameBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
-    }
-
-    /** Appends the name of the game and a FEN string to the saved_games.txt file.
-     * @param nameOfGame the name the user wishes to call the game
-     * @param FEN the forsyth-edwards notation representing the game
-     */
-    public void saveGame(String nameOfGame, String FEN){
-        try{
-            FileWriter fileWriter = new FileWriter("saved_games.txt", true);
-            fileWriter.append(nameOfGame).append("\n").append(FEN).append("\n");
-            fileWriter.close();
-            System.out.println("saved_games.txt updated successfully");
-        } catch (IOException e){
-            System.out.println("error");
-        }
-
-
     }
 }

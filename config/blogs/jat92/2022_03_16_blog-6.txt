@@ -1,0 +1,3 @@
+Blog - week 6
+12/3/2023
+created Log class, made basic methods and tested functionality. 'Wired' up to the game class. - 3 hours

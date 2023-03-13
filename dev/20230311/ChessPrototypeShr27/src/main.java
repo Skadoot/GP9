@@ -1,5 +1,10 @@
 //remember you commented out move method for testing
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 public class main
 {
     private static game game = null;
@@ -28,7 +33,15 @@ public class main
 //        //game = new game("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1");
 //    }
 
-    private static void load_game() {
-        //here we would read a board state from a file.
+    //this is a work in progress
+    private String getFenForLoadGame(String fileName) {
+        String lastLine = null;
+        try{
+            int numOfLines = Files.readAllLines(Paths.get(fileName)).size();
+            lastLine = Files.readAllLines(Paths.get(fileName)).get(numOfLines);
+        } catch (IOException e){
+            System.out.println("IO Error");
+        }
+        return lastLine;
     }
 }

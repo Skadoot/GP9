@@ -32,6 +32,8 @@ public class game
         //move();
     }
 
+    //need additional constructor for load game
+
     /**
      * A method which outlines the general loop of the game.
      */

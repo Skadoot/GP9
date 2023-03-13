@@ -39,7 +39,7 @@ public class Log {
 
     /** Returns the specific line from a file as a string. Uses the Files.readsAllLines method to return
      * all lines in the file as a list of strings. Then uses the list.get method to return the specified
-     * line as a string. If an IO error occurs a null string will be returned. If the line number requested
+     * line as a string. THE FIRST LINE IS 0. If an IO error occurs a null string will be returned. If the line number requested
      * is not in the file, a null string is also returned.
      * @param lineNumber The line number of the file to be returned
      * @return The string at the requested line number or null if an exception occurs.

@@ -26,13 +26,17 @@ public class game
      *
      * @param boardState the initial board state string for the game (Forsyth Edwards Notation).
      */
-    public game(String boardState, String fileName) {
-        gameBoard = new board(boardState);
-        this.log = new Log(fileName);
-        //move();
+    public game(String boardState, String fileName, boolean load) {
+        if (!load){
+            gameBoard = new board(boardState);
+            this.log = new Log(fileName, false);
+            //move();
+        } else {
+            gameBoard = new board(boardState);
+            this.log = new Log(fileName, true);
+            //move();
+        }
     }
-
-    //need additional constructor for load game
 
     /**
      * A method which outlines the general loop of the game.

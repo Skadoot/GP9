@@ -7,18 +7,26 @@ public class Log {
     String fileName;
     int numberOfLines = 0; //to keep track of the number of lines in the file
 
-    /** constructor for Log class. Also makes a new text file for the FEN strings to be recorded in each turn.
-     * If the file name is the same as a file that already exists then it will be overwritten.
+    //need to test this to see what happens when a filename is entered that does not exist when load is set to true.
+    /** constructor for Log class. If load is set to false then makes a new text file for the FEN strings to be recorded in each turn.
+     * If the file name is the same as a file that already exists then it will be overwritten. If load is set to true then
+     * an existing text file is used.
      * @param fileName the name of the file to be made
      */
-    public Log(String fileName) {
-        this.fileName = fileName + ".txt"; //add .txt to make it a txt file
-        //make a new file called 'fileName'.
-        try {
-            FileWriter fileWriter = new FileWriter(this.fileName);
-            fileWriter.close();
-        } catch (IOException e) {
-            System.out.println("IO Error");
+    public Log(String fileName, boolean load) {
+        if (!load){
+            //make log for new game
+            this.fileName = fileName + ".txt"; //add .txt to make it a txt file
+            //make a new file called 'fileName'.
+            try {
+                FileWriter fileWriter = new FileWriter(this.fileName);
+                fileWriter.close();
+            } catch (IOException e) {
+                System.out.println("IO Error");
+            }
+        } else {
+            //make log for load game
+            this.fileName = fileName;
         }
     }
 

@@ -1,0 +1,104 @@
+package com.example.screenstuff;
+
+import javafx.geometry.Insets;
+import javafx.scene.layout.GridPane;
+
+/**
+ * This is a controller class for the chessboard displayed on the PlayScreen
+ */
+public class Chessboard {
+    private tileGraphicsLoader graphicsLoader;
+    private Tile[][] tiles;
+    private GridPane chessBoard;
+    private PlayScreen playScreen;
+
+    public Chessboard(PlayScreen playScreen) {
+        chessBoard();
+        this.playScreen = playScreen;
+    }
+
+    public void chessBoard() {
+        this.graphicsLoader = new tileGraphicsLoader();
+        //Initialise a gridpane that will be a grid containing out buttons that behave as tiles
+        this.chessBoard = new GridPane();
+        //Make sure the gridpane has no padding so it doesn't repel other objects
+        this.chessBoard.setPadding(new Insets(0,0,0,0));
+        //Initialise our 2d array of buttons that will contain pointers it shares with the gridpane for ease of index
+        this.tiles = new Tile[8][8];
+
+        //A simple numerical variable used to itterate black and white tile placement one after another later in the function
+        int check = 0;
+
+        for(int row = 0; row < 8; row++) {
+
+            //Every row should start on an alternating colour
+            check++;
+            for(int column = 0; column < 8; column++) {
+
+                check++;
+                if(check %2 == 1) {
+                    Tile tile = new Tile(column, row, false, this);
+                    this.tiles[column][row] = tile;
+                    this.chessBoard.add(tile.getButton(), column, row);
+                } else {
+                    Tile tile = new Tile(column, row, true, this);
+                    this.tiles[column][row] = tile;
+                    this.chessBoard.add(tile.getButton(), column, row);
+                }
+            }
+        }
+    }
+
+    public void click (int column, int row) {
+        System.out.println(column);
+        System.out.println(row);
+        this.playScreen.alertPressedTile(column, row);
+        tiles[row][column].setStyleClass("valid-tile");
+    }
+
+    private void clearChessBoard() {
+        for (int column = 0; column < 8; column++) {
+            for (int row = 0; row < 8; row++) {
+                tiles[column][row].clearTile();
+            }
+        }
+    }
+
+    public void updateBoard(String boardNotation) {
+        //Clear of the board of any graphics first
+        clearChessBoard();
+
+        //sets starting positions to access the array from.
+        int column = 0;
+        int row = 0;
+
+        //iterate through the Forsyth Edwards Notation string.
+        for (int readHead = 0; readHead < boardNotation.length(); readHead++) {
+            //if we have arrived at a space then we no longer need to read from the string, as the information from this point on is not relevant to this method
+            if (boardNotation.charAt(readHead) == ' ') {return;}
+
+            //if we have arrived at a '/', this is the marker for going down a rank, so we decrement the rank and reset the file to the first file.
+            if (boardNotation.charAt(readHead) == '/') {column = 0; row++; continue;}
+
+            //if we have arrived at a digit this is the marker for n amount of empty squares on the rank in a row before we find a piece. so we add this digit to out file variable.
+            if (Character.isDigit(boardNotation.charAt(readHead))) { column += Character.getNumericValue(boardNotation.charAt(readHead)); continue;}
+
+
+            //if the character representing the piece is upper case then it is a white piece, else it is a black piece.
+            tiles[column][row].setGraphics(graphicsLoader.fetchTilePieceGraphic(boardNotation.charAt(readHead)));
+            //increment the file for the next position on the board.
+            column++;
+        }
+    }
+
+    public GridPane getChessBoard() {
+        return chessBoard;
+    }
+
+    //Function to update graphics(Might want extra Imageloader class
+
+    //Highlight valid tiles
+    //Highlight King in check
+    //Highlight attacking pieces
+    //Refresh board by clearing tiles
+}

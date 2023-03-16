@@ -1,0 +1,21 @@
+Author: SEH25
+Week: 6 (13/03/23)
+
+Assigned Actions
+==================
+Action 1: JUnit Testing
+
+Attended two Discord meetings with Jim and Craymon to allocate classes and continue writing test.
+Continued writing tests.
+
+Hours: 5
+
+Other Project Work
+==================
+Attended internal code walkthrough meeting.
+Hours: 2
+
+Prepared for tutorial as deputy in absence of QA leader.
+Hours: 1
+
+Total Hours: 8

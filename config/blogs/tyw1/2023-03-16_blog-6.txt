@@ -1,0 +1,23 @@
+Author: TYW
+Week: 6 (16/03/23)
+
+Assigned actions
+==============
+
+1. Created component diagram for Design Specification
+
+Hours: 2
+
+2. Completed assigned GitLab issues based on UI Specification feedback
+
+Hours: 2
+
+3. Added checklist to test specification review minutes
+
+Hours: 2
+
+Other project work
+================
+N/A
+
+Total hours: 6

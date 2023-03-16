@@ -1,5 +1,4 @@
-public class main
-{
+public class main {
     private static game game = null;
 
     public static void main(String[] args) {

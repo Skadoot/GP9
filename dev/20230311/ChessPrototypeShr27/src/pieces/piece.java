@@ -10,8 +10,7 @@ import java.util.ArrayList;
  *
  * @author shr27@aber.ac.uk
  */
-public class piece
-{
+public class piece {
     //storing the pieces color.
     private final char color;
 

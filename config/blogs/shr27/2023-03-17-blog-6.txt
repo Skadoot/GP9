@@ -1,0 +1,26 @@
+Author: shr27
+Week: 6 (23/03/17)
+
+Assigned actions
+==============
+
+Action 1: continued work design specification document (referancing 16 in minutes)
+
+action 2: added to section 4 interface specification.
+
+1 hour
+
+action 3 added to section 5.2 significant algorithms
+
+2 hours
+
+action 4 : finished commenting code (referancing 8 in minutes)
+2 hours
+
+Other project work
+================
+attended a meeting with the whole group on the 15th of march, did a code walkthrough. (referancing 12 in minutes)
+
+hours: 2
+
+Total hours: 7

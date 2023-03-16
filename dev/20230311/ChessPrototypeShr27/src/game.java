@@ -9,10 +9,9 @@ import java.util.ArrayList;
  *
  * @author shr27@aber.ac.uk
  */
-public class game
-{
+public class game {
     //this is the order of operations that will happen every turn
-    private board gameBoard;
+    private final board gameBoard;
 
     //this is the player taking the current move.
     private char attackingPlayer;
@@ -38,7 +37,7 @@ public class game
         determineCurrentPlayer();
 
         //calculate the legal moves for the board. with the current player.
-        moveCalculator moveCalculator = new moveCalculator('w', gameBoard);
+        moveCalculator moveCalculator = new moveCalculator(attackingPlayer, gameBoard);
 
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
@@ -61,9 +60,11 @@ public class game
         vector2 moveSquare = new vector2();
         boolean legalMoveMade = false;
 
+        //loop while a legal move has not been selected
         while (!legalMoveMade) {
             moveSquare = new vector2();
 
+            //if the selected piece's legal move list contains the selected move square a legal move has been selected.
             if (gameBoard.getPiece(selectedBoardCoordinate).getPossibleMoves().contains(moveSquare)) {
                 legalMoveMade = true;
                 gameBoard.movePiece(gameBoard.getPiece(selectedBoardCoordinate), moveSquare);
@@ -82,4 +83,6 @@ public class game
         //check the board state string to find which player's turn it is.
         attackingPlayer = gameBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
     }
+
+
 }

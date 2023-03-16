@@ -10,6 +10,8 @@ import vector.vector2;
  * @version 0.2 can now calculate legal moves for all pieces of a particular color.
  * @version 0.3 can now find legal moves of all pieces taking into account if the moves will put the player in check.
  * @version 0.4 functionality for calculating the legal moves for a player's piece has been moved to moveCalculator.
+ * @version 0.5 functionality for moving all pieces added, including en passant and castling.
+ * @version 0.6 functionality for updating the FEN string after a move is made added.
  *
  * @see moveCalculator
  *
@@ -96,11 +98,6 @@ public class board {
             file++;
         }
     }
-
-
-
-
-
 
 
     /**
@@ -260,9 +257,6 @@ public class board {
     }
 
 
-
-
-
     /*
     / method to essentially move a piece from one array index to another.
      */
@@ -294,23 +288,16 @@ public class board {
     }
 
 
-
-
-
-
-
-
-
-
-
-    /**
+    /*
      * A method to update the Forsyth Edwards Notation based on the current state of the board array, and game.
      */
     private void updateForsythEdwardsBoardNotation() {
         //update the board string. represented by forsythEdwardsBoardNotationArray[0].
-
+        //create a new string builder.
         StringBuilder newBoardRepresentationString = new StringBuilder("");
+        //variable to keep track of how many empty spaces there have been.
         int skippedPieces = 0;
+        //loop through the array backwards.
         for (int rank = 7; rank > -1; rank--) {
             if (skippedPieces > 0) {
                 newBoardRepresentationString.append(skippedPieces);
@@ -374,6 +361,7 @@ public class board {
         //System.out.println(forsythEdwardsBoardNotation);
     }
 
+
     /**
      * A method to return the boards current forsyth edwards board notation.
      *
@@ -394,22 +382,6 @@ public class board {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * A method to return a piece on the board in a particular index. represented by a vector2 object.
      *
@@ -421,7 +393,7 @@ public class board {
         return board[coordinate.x][coordinate.y];
     }
 
-    /**
+    /*
      * A method which sets a piece on the board to a new piece.
      *
      * @param piecePosition the position of the piece you want to set.
@@ -430,22 +402,6 @@ public class board {
     private void setPiece(vector2 piecePosition, piece piece) {
         board[piecePosition.x][piecePosition.y] = piece;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     /**
@@ -465,12 +421,6 @@ public class board {
     public vector2 getBlackKingPosition() {
         return blackKingPosition;
     }
-
-
-
-
-
-
 
 
     /**

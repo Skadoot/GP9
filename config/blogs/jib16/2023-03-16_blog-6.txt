@@ -1,0 +1,19 @@
+Author: JIB16
+Week: 6 (13/03/23)
+
+Assigned Actions
+==================
+Action 1: JUnit Testing
+
+Attended two Discord meetings with Jim and Sean to allocate classes and continue writing test.
+Continued writing tests.
+
+Hours: 6
+
+Other Project Work
+==================
+Attended internal code walkthrough meeting.
+Hours: 2
+
+
+Total Hours: 8

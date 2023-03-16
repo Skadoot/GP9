@@ -1,0 +1,23 @@
+Author: ckc2
+Week: 1 (09/03/23)
+
+Assigned actions
+==============
+
+Action 1:
+- Create some simple JUnit test cases 
+- further created tests for some methods 
+
+Hours: 3
+
+
+Other project work
+================
+Held an internal meeting code walkthrough to further understand backend and frontend with the group on 15 March 2023 3pm to 5pm 
+Hours: 2
+
+Held an internal meeting about junit test implementation issues and progress with jim and sean 
+Hours: 2
+
+
+Total hours: 7

@@ -8,10 +8,10 @@ import java.util.HashMap;
 /**
  * The ImageLoader is a class to handle the loading images from the resource folder
  */
-public class tileGraphicsLoader {
+public class TileGraphicsLoader {
     private HashMap<Character, Image> graphicsMap;
 
-    public tileGraphicsLoader() {
+    public TileGraphicsLoader() {
         //Initialise the map containing all of the graphics
         setGraphics();
     }

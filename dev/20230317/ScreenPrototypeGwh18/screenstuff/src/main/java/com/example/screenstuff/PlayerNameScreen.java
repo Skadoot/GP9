@@ -41,7 +41,7 @@ public class PlayerNameScreen {
         startGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                anInterface.toNewChessboard(textFieldWhite.getText(), textFieldBlack.getText());
+                forwardsToNewGame(textFieldBlack.getText(), textFieldWhite.getText());
             }
         });
         Button back = new Button("Back");
@@ -50,7 +50,7 @@ public class PlayerNameScreen {
         back.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                anInterface.toMenu();
+                backToMenu();
             }
         });
 
@@ -63,6 +63,14 @@ public class PlayerNameScreen {
         Scene scene = new Scene(panel, 1280, 720);
         scene.getStylesheets().add(PlayerNameScreen.class.getResource("PlayerNameScreen.css").toExternalForm());
         this.scene = scene;
+    }
+
+    public void backToMenu() {
+        anInterface.toMenu();
+    }
+
+    public void forwardsToNewGame(String blackN, String whiteN) {
+        anInterface.toNewChessboard(whiteN, blackN);
     }
 
     public Scene getScene() {

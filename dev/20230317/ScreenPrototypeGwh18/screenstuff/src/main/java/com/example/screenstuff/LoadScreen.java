@@ -81,6 +81,12 @@ public class LoadScreen {
         }
     }
 
+    public void requestSave(int num) {
+        //My brother in christ, tell the backend of the index of the save to send to the chessboard in the playscene
+        //switch to playscene
+    }
+
+
     public Scene getScene() {
         return scene;
     }

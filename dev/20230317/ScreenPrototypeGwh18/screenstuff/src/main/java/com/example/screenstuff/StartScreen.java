@@ -36,21 +36,21 @@ public class StartScreen {
         ngButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                anInterface.toPNScreen();
+                requestNewGame();
             }
         });
         conButton.setText("Load Unfinished Game");
         conButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                anInterface.loadUFGames();
+                requestToFinishGame();
             }
         });
         vgButton.setText("View Finished Game");
         vgButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                anInterface.loadFGames();
+                requestToViewFinishedGames();
             }
         });
 
@@ -71,5 +71,17 @@ public class StartScreen {
 
     public Scene getStartScreen() {
         return startScreen;
+    }
+
+    public void requestNewGame() {
+        anInterface.toPNScreen();
+    }
+
+    public void requestToViewFinishedGames() {
+        anInterface.loadFGames();
+    }
+
+    public void requestToFinishGame() {
+        anInterface.loadUFGames();
     }
 }

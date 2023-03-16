@@ -162,4 +162,27 @@ public class PlayScreen {
     public Scene getScene() {
         return scene;
     }
+
+    public void offerDraw() {
+        //create a box telling the player to pass to the next player to agree or not to a draw
+        //It will have two buttons for yah or nah
+    }
+
+    public void resign() {
+        //create a box with text asking the player if they are sure. They will not be able to play further moves
+        //A button for yah or nah
+    }
+
+    public void incrementThroughLog() {
+        //a function triggered by a button. Push the next board state forwards
+    }
+
+    public void decrementThroughLog() {
+        //A function triggered by a button. View the past through a spooky crystal ball ooooo
+    }
+
+    public void areYouSure() {
+        //when the player wants to quit, crate a box that double checks.
+        //Make aware that the game will be saved and will be playable again
+    }
 }

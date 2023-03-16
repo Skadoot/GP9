@@ -59,8 +59,6 @@ public class Tile {
         this.button.getStyleClass().add(styleClass);
     }
 
-    //Function to set classStyle of button
-
     public int getRow() {
         return row;
     }

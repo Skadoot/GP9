@@ -3,11 +3,13 @@ package com.example.screenstuff;
 import javafx.geometry.Insets;
 import javafx.scene.layout.GridPane;
 
+import java.util.ArrayList;
+
 /**
  * This is a controller class for the chessboard displayed on the PlayScreen
  */
 public class Chessboard {
-    private tileGraphicsLoader graphicsLoader;
+    private TileGraphicsLoader graphicsLoader;
     private Tile[][] tiles;
     private GridPane chessBoard;
     private PlayScreen playScreen;
@@ -17,8 +19,8 @@ public class Chessboard {
         this.playScreen = playScreen;
     }
 
-    public void chessBoard() {
-        this.graphicsLoader = new tileGraphicsLoader();
+    private void chessBoard() {
+        this.graphicsLoader = new TileGraphicsLoader();
         //Initialise a gridpane that will be a grid containing out buttons that behave as tiles
         this.chessBoard = new GridPane();
         //Make sure the gridpane has no padding so it doesn't repel other objects
@@ -95,10 +97,23 @@ public class Chessboard {
         return chessBoard;
     }
 
-    //Function to update graphics(Might want extra Imageloader class
+    public void highlightTiles(ArrayList validT, ArrayList checkT, ArrayList attackT) {
+        //Helper function on Valid Tiles
+        //Helper function on checked tiles
+        //Helper function on Attacking tiles
+    }
 
-    //Highlight valid tiles
-    //Highlight King in check
-    //Highlight attacking pieces
-    //Refresh board by clearing tiles
+    private void highlightValidTiles(ArrayList validT) {
+        //go through list of valid tile coordinates and
+        tiles[0][0].setStyleClass("valid-tile");
+    }
+
+    private void highlightCheckTile(ArrayList checkT) {
+        tiles[0][0].setStyleClass("check-tile");
+    }
+
+    private void highlightAttackingTiles(ArrayList attackT) {
+        tiles[0][0].setStyleClass("attacking-tile");
+    }
+
 }

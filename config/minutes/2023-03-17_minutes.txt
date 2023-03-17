@@ -1,0 +1,125 @@
+Project: Group Project 09
+Meeting: Weekly Project Meeting
+Persons present: All project members, except Tyler Lewis and Ciaran Smith
+Place and date of meeting: 0.30 IBERS, Friday 17th of March 2023
+Circulation list: All project members, plus project manager
+Author: Sean Hobson
+Date of minutes: 17/03/23
+Version: 1.0
+
+Team:
+- gwh18: Gwion Hughes (Team Leader)
+- jat92: Jack Thompson (Deputy Leader)
+- tyw1 : Tyler Lewis (QA Manager)
+- seh25: Sean Hobson (Deputy QA)
+- ckc2 : Craymon Chan
+- cts12: Ciaran Smith
+- jib16: Jim Brown
+- shr27: Shaun Royle
+
+=================
+ Matters arising
+=================
+
+1. (Recurring) Ensure all blogs are uploaded by 5:00pm on Thursdays
+Assigned to: All
+Status: COMPLETE	
+Notes: Ciaran needs to upload
+
+2. (Recurring) Review time-spent for each member this week, update spreadsheet.
+Assigned to: GWH18
+Status: COMPLETE
+Notes: No further notes
+
+3. General implementation (back-end, non-priority task)
+Assigned to: SHR27, GWH18
+Status: ONGOING
+Notes: Mostly complete
+
+4. Prep screens for back-end logic
+Assigned to: CTS12, GWH18
+Status: ONGOING
+Notes: Some more to do
+
+5. [PRIORITY TASK] Decide on which version of JUnit to use and how to include it.
+Assigned to: SEH25, CKC2, JIB16
+Status: COMPLETE
+Notes: JUnit 5
+
+6. [PRIORITY TASK] Upload JUnit tests to /dev directory for next meeting.
+Assigned to: SEH25, CKC2, JIB16
+Status: ONGOING
+Notes: References to test spec, list of tests
+
+7. Create diagrams for Design Spec
+Assigned to: TYW1
+Status: ONGOING
+Notes: Created component diagram (Google Drive)
+
+8. Commenting code (back-end)
+Assigned to: SHR27
+Status: COMPLETE
+Notes: No further notes
+
+9. Design specification (GWH18 - Front-end design. SHR27 - Back-end design (incl. Class Diagrams). TYW1 - Diagrams (excl. Class Diagrams) and formatting. JAT92 - Back-end (logs)
+Assigned to: GWH18, SHR27, TYW1, JAT92
+Status: ONGOING
+Notes: On track for review
+
+10. Implement loading and saving to and from files
+Assigned to: JAT92
+Status: COMPLETE
+Notes: Merge to main
+
+11. Code walkthrough Wednesday (15/03).
+Assigned to: GWH18, SHR27
+Status: COMPLETE
+Notes: No further notes
+
+12. Commenting code (front-end)
+Assigned to: GWH18, CTS12
+Status: ONGOING
+Notes: Priority
+
+13. Add checklist to Test Spec review minutes
+Assigned to: TYW1
+Status: COMPLETE
+Notes: No further notes
+
+14. UI Specification feedback
+Assigned to: GWH18 + All members assigned issues.
+Status: COMPLETE
+Notes: complete issues on gitlab
+
+15. Report IBERS IntelliJ issues to IS
+Assigned to: CWL
+Status: COMPLETE
+Notes: awaiting action
+
+=================
+ New business
+=================
+
+16. Work on connecting front and back end
+Assigned to: JAT92
+
+17. Work on resolving issues found in JUnit - gitlab issues
+Assigned to: SEH25, CKC2, JIB16, SHR27
+
+18. Test spec feedback - resolve issues
+Assigned to: CKC2, JIB16
+
+19. Arrange reviews for design spec on Monday (discord) and Wednesday (in-person)
+Assigned to: GWH18
+
+20. Make a roadmap of actions leading up to integration and testing week
+Assigned to: GWH18
+
+21. Make a table of issues found in JUnit - google drive
+Assigned to: SEH25
+
+=================
+ AOB
+=================
+
+NONE

@@ -1,0 +1,43 @@
+Author: GWH18
+Week: 6 (17/03/23)
+
+Assigned actions
+==============
+
+Action 12: Code Walkthrough
+A code walkthrough of the frontend and backend was held on Wednesday starting 3pm lasting 2 hours. We couldn't walkthrough
+the JUnit tests yet as none have been uploaded to github.
+
+Hours: 2
+
+Action 14: Begin commenting front-end code
+
+Some time was spent commenting code. Especially future methods that haven't been written yet. However, there's still significant
+amounts of code that needs commenting because I focused on restructuring the design of the front-end instead.
+
+Hours: 1
+
+Action 16: Continue work on Design Specification
+
+After restructruing the front end, I've expanded the interface descriptions and made the addition of three sequence diagrams. I'm also
+added sections for important algorithms and data structures.
+
+Hours 3
+
+Action 17: UI Specification feedback results
+
+Issues have been made on gitlab to keep track of changes according to feedback of UI specification.
+
+Hours 2
+
+Other project work
+================
+
+Restructued frontend classes and made addition of several classes for sensible grouping of functions.
+
+Hours 3
+
+Updated Time sheet tracking hours of people's blogs
+
+
+Total hours: 11

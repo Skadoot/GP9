@@ -30,11 +30,11 @@ public class game
         if (!load){
             gameBoard = new board(boardState);
             this.log = new Log(fileName, false);
-            //move();
+            move();
         } else {
             gameBoard = new board(boardState);
             this.log = new Log(fileName, true);
-            //move();
+            move();
         }
     }
 

@@ -4,8 +4,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class Log {
-    String fileName;
-    int numberOfLines = 0; //to keep track of the number of lines in the file
+    private String fileName;
+    private int numberOfLines = 0; //to keep track of the number of lines in the file
 
     //need to test this to see what happens when a filename is entered that does not exist when load is set to true.
     /** constructor for Log class. If load is set to false then makes a new text file for the FEN strings to be recorded in each turn.

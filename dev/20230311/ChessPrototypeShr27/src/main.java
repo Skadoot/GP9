@@ -45,7 +45,7 @@ public class main
         String lastLine = null;
         try{
             Path pathToFile = Paths.get(fileName); //Create path object to hold path to the file
-            int numOfLines = Files.readAllLines(pathToFile).size() -1; // -1 because file lines start at 0 but .size counts list items starting at 1
+            int numOfLines = Files.readAllLines(pathToFile).size() -1; //-1 because file lines start at 0 but .size counts list items starting at 1
             lastLine = Files.readAllLines(pathToFile).get(numOfLines);
         } catch (IOException e){
             System.out.println("IO Error");

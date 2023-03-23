@@ -1,0 +1,8 @@
+Blog - week 7
+21/3/2023
+Merged feature/save_and_load branch into main. - 2 hours
+22/3/2023
+Team meeting - 2 hours
+23/3/2023
+Manually copied changes from testing branch to main. Deleted testing branch until we agree project structure. - 1 hour
+Added Log info to Design Spec - 1 hour

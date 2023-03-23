@@ -43,7 +43,7 @@ public class StartScreen {
         conButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                requestToFinishGame();
+                requestToUnfinishedGames();
             }
         });
         vgButton.setText("View Finished Game");
@@ -81,7 +81,7 @@ public class StartScreen {
         anInterface.loadFGames();
     }
 
-    public void requestToFinishGame() {
+    public void requestToUnfinishedGames() {
         anInterface.loadUFGames();
     }
 }

@@ -19,7 +19,7 @@ public class PlayerNameScreen {
         createScreen();
     }
 
-    public void createScreen() {
+    private void createScreen() {
         VBox panel = new VBox();
         panel.setAlignment(Pos.CENTER);
 

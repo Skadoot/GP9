@@ -10,8 +10,8 @@
 | **Item**                   | **Configuration Reference** | **Name**              | **Location**     | **Status** | **Current Version** |
 |----------------------------|-----------------------------|-----------------------|------------------|------------|---------------------|
 | UI Spec. Document          | UI-Spec-Docu-GP9            | UI-Spec-Docu-GP9.docx | docs/ui_spec     | Release    | 1.0                 |
-| Design Specification       | Design-Spec-GP9             | Design-Spec-GP9.docx  | docs/design_spec | N/A        | N/A                 |
-| Test Specification         | Test-Spec-GP9               | Test-Spec-GP9.docx    | docs/test_spec   | Review     | 0.5                 |
-| Maintenance Manual         | Maintenance-GP9             | Maintenance-GP9.docx  | docs/maintenance | N/A        | N/A                 |
-| End of Project Report      | Report-GP9                  | Report-GP9.docx       | docs/report      | N/A        | N/A                 |
-| Source Code                | -                           | -                     | src              | N/A        | N/A                 |
+| Design Specification       | Design-Spec-GP9             | Design-Spec-GP9.docx  | docs/design_spec |            |                     |
+| Test Specification         | Test-Spec-GP9               | Test-Spec-GP9.docx    | docs/test_spec   | Release    | 1.0                 |
+| Maintenance Manual         | Maintenance-GP9             | Maintenance-GP9.docx  | docs/maintenance |            |                     |
+| End of Project Report      | Report-GP9                  | Report-GP9.docx       | docs/report      |            |                     |
+| Source Code                | -                           | -                     | src              |            |                     |

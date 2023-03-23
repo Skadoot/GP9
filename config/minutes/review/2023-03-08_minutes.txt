@@ -17,6 +17,19 @@ Team:
 - jib16: Jim Brown
 - shr27: Shaun Royle
 
+===========
+ Checklist
+===========
+
+1. Does the document meet the General Documentation Standards
+    Yes - Document is formatted correctly and includes all relevant sections
+2. Does the Test Specification have the matrix of Requirements/Test Ref/Test Content/Pass Criteria for each functional requirement? Do the tests cover every requirement?
+    Yes - All requirements are covered by the Test Specification, and includes the matrix of Requirements/Test Ref/Test Content/Pass Criteria for each functional requirement.
+3. Are the tests reproducible?
+    Yes - Tests are reproducible
+4. Do the tests for each requirement cover all possibilities for the relevant requirement? In particular, do they test for all possible types of failures? Are boundary conditions tested?
+    No - Most tests satisfy this criteria, however some adjustments are required. See notes below for more detail
+
 =============================
  Changes arising from review
 =============================
@@ -96,3 +109,4 @@ Assigned to: JIB16
 19. SE-F-012, 013, 014 Refer to FR5.
 Notes: Test cases are more suited to satisfy FR5 than FR4.
 Assigned to: CKC2
+

@@ -1,0 +1,30 @@
+Author: TYW
+Week: 6 (16/03/23)
+
+Assigned actions
+==============
+
+1. Attended pre-review of the Design Specification
+
+Hours: 2
+
+2. Attended formal review of the Design Specification
+
+Hours: 2
+
+3. Attended internal meeting
+
+Hours: 1
+
+4. Made changes to the design specification based on results of pre-review and formal review of the design specification
+
+Hours: 3
+
+Other project work
+================
+
+5. Reviewing existing code and directory structures in preparation for integration. (Designing new approach to storing project data)
+
+Hours: 2
+
+Total hours: 10

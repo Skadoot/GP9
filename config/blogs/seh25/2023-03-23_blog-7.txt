@@ -1,0 +1,26 @@
+Author: SEH25
+Week: 7 (20/03/23)
+
+Assigned Actions
+================
+Action 1: JUnit testing
+
+Attended a Discord meeting with Jim and Craymon to continue writing tests.
+Added references to test spec in JUnit comments.
+Started a list of possible tests.
+
+Hours: 3
+
+Action 2: Make a table of issues found in JUnit.
+
+Created a table in Google Docs
+
+Hours: 1
+
+Other Project Work
+==================
+Attended internal Design Spec review meeting.
+
+Hours: 3
+
+Total Hours: 7

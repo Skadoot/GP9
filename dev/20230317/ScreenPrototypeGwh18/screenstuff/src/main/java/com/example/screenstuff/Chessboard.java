@@ -55,7 +55,8 @@ public class Chessboard {
         System.out.println(column);
         System.out.println(row);
         this.playScreen.alertPressedTile(column, row);
-        tiles[row][column].setStyleClass("valid-tile");
+        tiles[row][column].setStyleClass("selected-tile");
+        highlightValidTiles(tempCalcValidPawn(column,row));
     }
 
     private void clearChessBoard() {
@@ -103,9 +104,34 @@ public class Chessboard {
         //Helper function on Attacking tiles
     }
 
+    private String[][] testChessBoard;
+
+    private ArrayList tempCalcValidPawn(int selectedColumn, int selectedRow){
+        testChessBoard = new String[8][8];
+        ArrayList pawnMoves = new ArrayList();
+        pawnMoves.clear();
+        //Assigning Pawns for both players
+        for (int i = 0; i < 8; i++) {
+            testChessBoard[1][i] = "BP";
+            testChessBoard[6][i] = "WP";
+        }
+        if(testChessBoard[selectedColumn][selectedRow] == "WP"){
+                pawnMoves.add(selectedRow);
+                pawnMoves.add(selectedColumn-1);
+            }else if(testChessBoard[selectedColumn][selectedRow] == "BP"){
+            pawnMoves.add(selectedRow);
+            pawnMoves.add(selectedColumn+1);
+        }
+        System.out.println(testChessBoard[selectedColumn][selectedRow]);
+
+
+        return pawnMoves;
+    }
+
     private void highlightValidTiles(ArrayList validT) {
         //go through list of valid tile coordinates and
-        tiles[0][0].setStyleClass("valid-tile");
+        //tiles[0][0].setStyleClass("valid-tile");
+        tiles[(int) validT.get(0)][(int) validT.get(1)].setStyleClass("valid-tile");
     }
 
     private void highlightCheckTile(ArrayList checkT) {

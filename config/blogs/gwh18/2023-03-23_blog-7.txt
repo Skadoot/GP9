@@ -1,0 +1,62 @@
+Author: GWH18
+Week: 7 (24/03/23)
+
+Assigned actions
+==============
+
+Action 2: Review time-spent for each memeber this week, update spreadsheet
+Reviewed time spent, updated spreadsheet
+
+Hours: 1
+
+Action 3: General implementation
+
+No work done here, sadly. Prioritised design spec
+
+Hours: 0
+
+Action 4: Prep screens for back-end logic
+
+No work done here, sadly. Prioritised design spec
+
+Hours 0
+
+Action 9: Design Specification
+
+Created sequence and uml diagrams for frontend. Added comments to public methods on interface description. Held an informal review on monday with
+Shaun and Tyler(20/03/23) and made edits based on review. Made edits based on feedback from teacm review of the design specification on wednesday
+22/03/23.
+
+Hours 8
+
+Action 12: Commenting code(front-end)
+
+No work done here, sadly. Prioritised design spec
+
+Hours 0
+
+Action 19: Arrange reviewws for design spec on monday(discord) and wednesday(in-person)
+
+Done. Study room 6 booked for 3pm Wednesday
+
+Hours 0
+
+Action 20: Make a roadmap of actions leading up to integration and testing week
+
+Done. Roadmap available to see on the spreadsheet document.
+
+Hours 0
+
+Other project work
+================
+
+Two review meetings. Monday and Wednesday as well as a general meeting discussing project structure of dev
+
+Hours 4
+
+Looked through feedback and JUnit issues found. Assigned issues on gitlab.
+
+Hours 1
+
+
+Total hours: 13

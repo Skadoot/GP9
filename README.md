@@ -1,11 +1,24 @@
 ## Name
+
 Group Project 9 "Chess Tutor".
 
 ## Description
+
 A Chess tutor programme made with aim of teaching newbies chess "as they play".
 This is a java based application made in Java 17. It uses the JavaFX libraries and was build with Maven.
 
+## Development Specifications
+
+### Java JDK: <a href="https://sap.github.io/SapMachine/">SAP SapMachine version 11.0.18</a>
+
+The project uses SapMachine Java 11 LTS JDK, version 11.0.18. You can either allow IntelliJ to auto-detect the version, set the JDK via IntelliJ, or download it directly from <a href="https://sap.github.io/SapMachine/">here</a>.
+
+### JavaFX: <a href="https://mvnrepository.com/artifact/org.openjfx">OpenJFX version 19.0.2.1</a>
+
+The project uses OpenJFX JavaFX 19 JDK, version 19.0.2.1. It is listed as a dependency in the projects pom.xml file. This means it is automatically imported by your IDE and by Maven when you open the project. It should require no additional setup or configuration.
+
 ## Contributors
+
 - gwh18: Gwion Hughes (Team Leader)
 - jat92: Jack Thompson (Deputy Leader)
 - tyw1 : Tyler Lewis (QA Manager)

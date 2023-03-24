@@ -481,6 +481,7 @@ public class moveCalculator {
         projectionOfMove.movePiece(projectionOfMove.getPiece(piece.getPosition()), move);
 
         moveCalculator moveCalculator = new moveCalculator(piece.getColor(), projectionOfMove);
+        moveCalculator.findLegalMovesForPlayer(true);
 
         return moveCalculator.isPlayerInCheck();
     }

@@ -1,0 +1,25 @@
+Author: CTS12
+Week: 7 (23/03/23)
+
+Assigned actions
+==============
+
+Action 4: Work on preparing screens for backend logic
+
+Adding simple logic to frontend for tile highlighting
+Hours: 4
+
+Continued backend logic evaluation for future implementation
+Hours: 2
+
+
+
+
+
+Other project work
+================
+
+Group meeting on 22/03/23
+Hours: 3
+
+Total hours: 9

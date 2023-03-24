@@ -1,0 +1,23 @@
+Author: CTS12
+Week: 6 (16/03/23)
+
+Assigned actions
+==============
+
+Action 12: Work on preparing screens for backend logic
+
+testing implementation of piece selection and possible move indication
+Hours: 3
+
+Reading and understanding backend code
+Hours: 1
+
+
+
+
+
+Other project work
+================
+Group meeting on 15/03/23
+Hours: 2
+Total hours: 6

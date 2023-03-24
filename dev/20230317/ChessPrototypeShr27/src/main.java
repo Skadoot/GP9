@@ -21,7 +21,6 @@ public class main
 //        System.out.println(game.log.readLog(2));
 //        System.out.println(game.log.readLog(10));
         loadGame("testGameOne.txt");
-
     }
 
     //I don't really understand the point of this method(below) in here? jat92

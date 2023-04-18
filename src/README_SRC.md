@@ -1,7 +1,7 @@
 ## The /src directory
 
 - This directory contains the latest **stable and tested** version of the project.
-- **DO NOT** actively work on files in this directory. (See <a href="/dev/README.md">dev/README.md</a> for details)
+- **DO NOT** actively work on files in this directory. (See <a href="/dev/README_DEV.md">dev/README.md</a> for details)
 - Any changes that are made to this directory that are not approved beforehand will be reverted.
 - This directory **DOES NOT** contain the most up-to-date project files.
 
@@ -11,7 +11,7 @@
 - Are there any unfinished methods?
 - Is it missing any functionality?
 - Has it passed all of its tests in the test suite?
-- If you're submitting a test class, don't worry about this.
+  - If you're submitting a test class, don't worry about this.
 - Does it conform to SE.QA.09 - Java Coding Standards?
 - Does it have enough comments in the right places?
 - Is it ready for review?

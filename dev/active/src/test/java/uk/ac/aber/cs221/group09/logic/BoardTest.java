@@ -139,7 +139,7 @@ class BoardTest {
             {
                 testBoard.movePiece(pieceToMove, testPosition);
             }
-        }Assertions.assertEquals("rnb1kbnr/pppp1ppp/4p3/8/7q/PP6/2PPPPPP/RNBQKBN",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
+        }Assertions.assertEquals("rnb1kbnr/pppp1ppp/4p3/8/7q/PP6/2PPPPPP/RNBQKBNR",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
     }
 
     @Test
@@ -186,5 +186,24 @@ class BoardTest {
         }Assertions.assertEquals("4k3/8/8/8/8/8/P7/4K2r",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
     }
 
+    @Test
+    public void testCastlingLegal(){
+
+    }
+
+    @Test
+    public void testCastlingIllegal(){
+
+    }
+
+    @Test
+    public void CheckMate(){
+
+    }
+
+    @Test
+    public void EnPassent(){
+
+    }
 
 }

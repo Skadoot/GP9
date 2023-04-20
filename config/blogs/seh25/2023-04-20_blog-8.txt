@@ -1,0 +1,22 @@
+Author: SEH25
+Week: 8 (17/04/23)
+
+Assigned Actions
+================
+Action 1: JUnit testing
+
+Liased with Craymon and Jim to fix broken tests, start writing new tests, and plan future tests.
+
+Hours: 2
+
+Other Project Work
+==================
+Familiarised myself with new project structure, and read Tyler's README files.
+
+Hours: 1
+
+Attended internal group meeting.
+
+Hours: 1
+
+Total Hours: 4

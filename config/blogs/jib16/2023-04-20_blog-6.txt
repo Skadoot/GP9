@@ -1,0 +1,21 @@
+Author: JIB16
+Week: 7 (20/03/23)
+
+Assigned Actions
+==================
+Action 1: JUnit Testing
+
+Attended a Discord meeting with Craymon and Sean to continue writing test.
+Hours: 2
+Independently working on JUnit tests
+Hours: 2
+
+Hours: 4
+
+Other Project Work
+==================
+Attended recap meeting.
+Hours: 1
+
+
+Total Hours: 5

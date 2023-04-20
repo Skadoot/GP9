@@ -1,0 +1,27 @@
+Author: ckc2
+Week: 8(20/04/23)
+
+Assigned actions
+==============
+
+Action 1:
+- Held some internal meetings on discord to implement junit tests and discussing program issues with jim and sean 
+
+Hours: 2
+
+Action 2:
+- continue making changes referring to feedback for test specification document
+
+Hours: 1
+
+
+
+
+Other project work
+================
+Held an internal meeting to for progress overview as general meeting with the group on 19 March 2023 3pm to 4pm 
+Hours: 1
+
+
+
+Total hours: 4

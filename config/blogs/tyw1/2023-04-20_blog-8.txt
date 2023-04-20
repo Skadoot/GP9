@@ -1,0 +1,28 @@
+Author: TYW
+Week: 8 (20/04/23)
+
+Assigned actions
+==============
+
+n/a
+
+Other project work
+================
+
+1. Reviewing existing code and repository structures in preparation for integration week.
+
+Hours: 4
+
+2. Implementing new development procedures
+
+Hours: 2
+
+3. Adding maven configurations to the newly structured project
+
+Hours: 2
+
+4. Attended mid-week group meeting
+
+Hours: 2
+
+Total hours: 10

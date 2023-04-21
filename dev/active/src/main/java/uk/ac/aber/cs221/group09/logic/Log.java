@@ -1,3 +1,10 @@
+/*
+ * @(#) Log.java 0.1 2023/03/24
+ *
+ * Copyright (c) 2023 Aberystwyth University
+ * All rights reserved.
+ */
+
 package uk.ac.aber.cs221.group09.logic;
 
 import java.io.FileWriter;
@@ -5,8 +12,17 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+/**
+ * Log - Records the progress of the game.
+ * <p>
+ * This class is used to record the FEN strings that are played in each turn.
+ *
+ * @author Jack Thompson
+ * @version 0.1 (draft)
+ * @see uk.ac.aber.cs221.group09.logic.Main
+ */
 public class Log {
-    private String fileName;
+    private final String fileName;
     private int numberOfLines = 0; //to keep track of the number of lines in the file
 
     //need to test this to see what happens when a filename is entered that does not exist when load is set to true.

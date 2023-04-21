@@ -1,3 +1,10 @@
+/*
+ * @(#) Game.java 0.1 2023-03-16
+ *
+ * Copyright (c) 2023 Aberystwyth University.
+ * All rights reserved.
+ */
+
 package uk.ac.aber.cs221.group09.logic;
 
 import uk.ac.aber.cs221.group09.logic.vector.Vector2;
@@ -5,10 +12,15 @@ import uk.ac.aber.cs221.group09.logic.vector.Vector2;
 import java.util.ArrayList;
 
 /**
- * A class which stores general game information.
+ * Game - The primary logic controller of the game.
+ * <p>
+ * This class contains the instance of the game board on which the moves are performed,
+ * maintains track of which player is currently selected,
+ * and contains the Log object that records the game.
  *
- * @author shr27@aber.ac.uk
- * @version 1.0 general outline of the game loop.
+ * @author Shaun Royle
+ * @version 0.6 (draft)
+ * @see uk.ac.aber.cs221.group09.logic.MoveCalculator
  */
 public class Game {
     //this is the order of operations that will happen every turn

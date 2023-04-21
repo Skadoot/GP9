@@ -1,3 +1,10 @@
+/*
+ * @(#) MoveCalculator.java 0.1 2023/03/16
+ *
+ * Copyright (c) 2023 Aberystwyth University
+ * All rights reserved.
+ */
+
 package uk.ac.aber.cs221.group09.logic;
 
 import uk.ac.aber.cs221.group09.logic.pieces.Piece;
@@ -6,33 +13,22 @@ import uk.ac.aber.cs221.group09.logic.vector.Vector2;
 import java.util.ArrayList;
 
 /**
+ * MoveCalculator - Calculates legal moves for each piece for a player.
+ * <p>
  * This is a class that calculates the legal moves for the all the pieces of a particular color for a particular board position.
  *
  * @author shr27@aber.ac.uk
- * @version 0.2 added castling to king moves.
- * @see Board
+ * @version 0.2 (draft)
+ * @see uk.ac.aber.cs221.group09.logic.Board
  */
 public class MoveCalculator {
-    //the player that you want to calculate the moves for.
-    private final char currentPlayer;
-
-    //the board that you want to calculate the moves for.
-    private final Board board;
-
-    //can white castle king side?
-    private boolean canWhiteCastleKingSide;
-
-    //can white castle queen side?
-    private boolean canWhiteCastleQueenSide;
-
-    //can black castle king side?
-    private boolean canBlackCastleKingSide;
-
-    //can black castle queen side?
-    private boolean canBlackCastleQueenSide;
-
-    //the map of threatened squares
-    private final ArrayList<Vector2> checkMap = new ArrayList<>();
+    private final char currentPlayer; //the player that you want to calculate the moves for.
+    private final Board board; //the board that you want to calculate the moves for.
+    private final ArrayList<Vector2> checkMap = new ArrayList<>(); //the map of threatened squares
+    private boolean canWhiteCastleKingSide; //can white castle king side?
+    private boolean canWhiteCastleQueenSide; //can white castle queen side?
+    private boolean canBlackCastleKingSide; //can black castle king side?
+    private boolean canBlackCastleQueenSide; //can black castle queen side?
 
     /**
      * constructor for moveCalculator
@@ -105,10 +101,10 @@ public class MoveCalculator {
     }
 
 
-    /*
+    /**
      * This method calculates and sets the legal moves of any given pawn on the board.
      *
-     * @param pawn the pawn to calculate the moves for.
+     * @param pawn          the pawn to calculate the moves for.
      * @param isForCheckMap boolean to see if the method is being used to create a check map, if so we do not need to check if the moves put the player in check.
      */
     private void getPawnLegalMoves(Piece pawn, boolean isForCheckMap) {
@@ -171,10 +167,10 @@ public class MoveCalculator {
         System.out.println();
     }
 
-    /*
+    /**
      * This method calculates and sets the legal moves of any given knight on the board.
      *
-     * @param knight the knight to calculate the  moves for.
+     * @param knight        the knight to calculate the  moves for.
      * @param isForCheckMap boolean to see if the method is being used to create a check map, if so we do not need to check if the moves put the player in check.
      */
     private void getKnightLegalMoves(Piece knight, boolean isForCheckMap) {
@@ -208,10 +204,10 @@ public class MoveCalculator {
         System.out.println();
     }
 
-    /*
+    /**
      * This method calculates and sets the legal moves of any given bishop on the board.
      *
-     * @param bishop the bishop to calculate the moves for.
+     * @param bishop        the bishop to calculate the moves for.
      * @param isForCheckMap boolean to see if the method is being used to create a check map, if so we do not need to check if the moves put the player in check.
      */
     private void getBishopLegalMoves(Piece bishop, boolean isForCheckMap) {
@@ -253,10 +249,10 @@ public class MoveCalculator {
         System.out.println();
     }
 
-    /*
+    /**
      * This method calculates and sets the legal moves of any given rook on the board.
      *
-     * @param rook the rook to calculate the moves for.
+     * @param rook          the rook to calculate the moves for.
      * @param isForCheckMap boolean to see if the method is being used to create a check map, if so we do not need to check if the moves put the player in check.
      */
     private void getRookLegalMoves(Piece rook, boolean isForCheckMap) {
@@ -298,10 +294,10 @@ public class MoveCalculator {
         System.out.println();
     }
 
-    /*
+    /**
      * This method calculates and sets the legal moves of any given queen on the board.
      *
-     * @param queen the queen to calculate the moves for.
+     * @param queen         the queen to calculate the moves for.
      * @param isForCheckMap boolean to see if the method is being used to create a check map, if so we do not need to check if the moves put the player in check.
      */
     private void getQueenLegalMoves(Piece queen, boolean isForCheckMap) {
@@ -343,10 +339,10 @@ public class MoveCalculator {
         System.out.println();
     }
 
-    /*
+    /**
      * This method calculates and sets the legal moves of any given king on the board.
      *
-     * @param king the king to calculate the moves for
+     * @param king          the king to calculate the moves for
      * @param isForCheckMap boolean to see if the method is being used to create a check map, if so we do not need to check if the moves put the player in check.
      */
     private void getKingLegalMoves(Piece king, boolean isForCheckMap) {
@@ -461,9 +457,9 @@ public class MoveCalculator {
         }
     }
 
-    /*
+    /**
      * A method to determine if a player can castle king side.
-     *
+     * <p>
      * param player, the players color.
      */
     private boolean canPlayerCastleKingSide(char player) {
@@ -488,11 +484,11 @@ public class MoveCalculator {
     }
 
 
-    /*
+    /**
      * A method which adds a single move to the legal move arrayList of a piece.
      *
-     * @param piece the piece we want to add the move to
-     * @param move the move that we want to add
+     * @param piece         the piece we want to add the move to
+     * @param move          the move that we want to add
      * @param isForCheckMap if this is true then we can ignore weather or not the move will leave us in check or not since we are creating the check map.
      */
     private void addPieceLegalMove(Piece piece, Vector2 move, boolean isForCheckMap) {
@@ -503,12 +499,11 @@ public class MoveCalculator {
         }
     }
 
-    /*
+    /**
      * this is a method that determines if a move would leave the player in check or not.
      *
      * @param piece the piece to move.
-     * @param move the move to assess.
-     *
+     * @param move  the move to assess.
      * @return a boolean which determines if the move will leave the player in check or not.
      */
     private boolean isMoveSafe(Piece piece, Vector2 move) {

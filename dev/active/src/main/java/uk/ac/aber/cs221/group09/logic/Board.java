@@ -1,18 +1,24 @@
+/*
+ * @(#) Board.java 0.1 2023-03-07
+ *
+ * Copyright (c) 2023 Aberystwyth University.
+ * All rights reserved.
+ */
+
 package uk.ac.aber.cs221.group09.logic;
 
 import uk.ac.aber.cs221.group09.logic.pieces.Piece;
 import uk.ac.aber.cs221.group09.logic.vector.Vector2;
 
 /**
- * a class that stores the logical representation of a chess board.
+ * Board - Stores the logical representation of a chess board.
  * <p>
- * this class stores the position of each piece on the board.
+ * This class stores the position of each piece on the board.
  *
- * @author shr27@aber.ac.uk.
- * @version 0.6 functionality for updating the FEN string after a move is made added.
- * @see MoveCalculator
+ * @author Shaun Royle
+ * @version 0.6 (draft)
+ * @see uk.ac.aber.cs221.group09.logic.MoveCalculator
  */
-
 public class Board {
     //board size.
     private static final int BOARD_SIZE = 8;
@@ -298,7 +304,7 @@ public class Board {
     private void updateForsythEdwardsBoardNotation() {
         //update the board string. represented by forsythEdwardsBoardNotationArray[0].
         //create a new string builder.
-        StringBuilder newBoardRepresentationString = new StringBuilder("");
+        StringBuilder newBoardRepresentationString = new StringBuilder();
         //variable to keep track of how many empty spaces there have been.
         int skippedPieces = 0;
         //loop through the array backwards.

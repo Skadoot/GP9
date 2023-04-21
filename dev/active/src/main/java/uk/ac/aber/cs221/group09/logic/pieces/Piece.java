@@ -1,3 +1,10 @@
+/*
+ * @(#) Piece.java 0.1 2023-02-23
+ *
+ * Copyright (c) 2023 Aberystwyth University.
+ * All rights reserved.
+ */
+
 package uk.ac.aber.cs221.group09.logic.pieces;
 
 import uk.ac.aber.cs221.group09.logic.vector.Vector2;
@@ -5,10 +12,13 @@ import uk.ac.aber.cs221.group09.logic.vector.Vector2;
 import java.util.ArrayList;
 
 /**
- * A class to represent a chess piece.
+ * Piece - A class to represent a chess piece.
+ * <p>
+ * How the class is used
  *
- * @author shr27@aber.ac.uk
- * @version 1.0
+ * @author Shaun Royle
+ * @version 0.1 (draft)
+ * @see uk.ac.aber.cs221.group09.logic.vector.Vector2
  */
 public class Piece {
     //storing the pieces color.

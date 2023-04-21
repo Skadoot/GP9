@@ -9,9 +9,9 @@ This is a java based application made in Java 17. It uses the JavaFX libraries a
 
 ## Development Specifications
 
-### Java JDK: <a href="https://sap.github.io/SapMachine/">SAP SapMachine version 11.0.18</a>
+### Java JDK: <a href="https://sap.github.io/SapMachine/">SAP SapMachine version 11.0.xx</a>
 
-The project uses SapMachine Java 11 LTS JDK, version 11.0.18. You can either allow IntelliJ to auto-detect the version, set the JDK via IntelliJ, or download it directly from <a href="https://sap.github.io/SapMachine/">here</a>.
+The project uses SapMachine Java 11 LTS JDK, version 11.0.xx. You can either allow IntelliJ to auto-detect the version, set the JDK via IntelliJ, or download it directly from <a href="https://sap.github.io/SapMachine/">here</a>.
 
 ### JavaFX: <a href="https://mvnrepository.com/artifact/org.openjfx">OpenJFX version 19.0.2.1</a>
 

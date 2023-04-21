@@ -1,5 +1,21 @@
+/*
+ * @(#) Vector2.java 0.1 2023-03-07
+ *
+ * Copyright (c) 2023 Aberystwyth University.
+ * All rights reserved.
+ */
+
 package uk.ac.aber.cs221.group09.logic.vector;
 
+/**
+ * Vector2 - A class to represent a chess piece.
+ * <p>
+ * How the class is used
+ *
+ * @author Shaun Royle
+ * @version 0.1 (draft)
+ * @see uk.ac.aber.cs221.group09.logic.pieces.Piece
+ */
 public class Vector2 {
     //x coordinate for the board.
     public int x;

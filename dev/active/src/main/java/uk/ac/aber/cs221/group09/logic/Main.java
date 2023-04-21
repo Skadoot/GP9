@@ -1,3 +1,10 @@
+/*
+ * @(#) Log.java 0.1 2023/03/16
+ *
+ * Copyright (c) 2023 Aberystwyth University
+ * All rights reserved.
+ */
+
 package uk.ac.aber.cs221.group09.logic;
 
 import java.io.IOException;
@@ -5,6 +12,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * Main - Temporary main class to test the game logic.
+ * <p>
+ * Temporary testing class
+ *
+ * @author Shaun Royle, Jack Thompson
+ * @version 0.1 (draft)
+ * @see uk.ac.aber.cs221.group09.logic.Log
+ */
 public class Main {
     private static Game game = null;
 

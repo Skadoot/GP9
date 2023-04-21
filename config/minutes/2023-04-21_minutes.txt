@@ -1,0 +1,105 @@
+Project: Group Project 09
+Meeting: Weekly Project Meeting
+Persons present: All project members, except seh25
+Place and date of meeting: 0.30 IBERS, Friday 21th of April 2023
+Circulation list: All project members, plus project manager
+Author: Tyler Lewis
+Date of minutes: 21/04/23
+Version: 1.0
+
+Team:
+- gwh18: Gwion Hughes (Team Leader)
+- jat92: Jack Thompson (Deputy Leader)
+- tyw1 : Tyler Lewis (QA Manager)
+- seh25: Sean Hobson (Deputy QA)
+- ckc2 : Craymon Chan
+- cts12: Ciaran Smith
+- jib16: Jim Brown
+- shr27: Shaun Royle
+
+=================
+ Matters arising
+=================
+
+1. (Recurring) Ensure all blogs are uploaded by 5:00pm on Thursdays
+Assigned to: All
+Status: COMPLETE
+Notes: Some blogs missing.
+
+2. (Recurring) Review time-spent for each member this week, update spreadsheet.
+Assigned to: GWH18
+Status: COMPLETE
+Notes: N/A
+
+3. General implementation (back-end, non-priority task)
+Assigned to: SHR27, GWH18
+Status: ONGOING
+Notes: Checkmate function
+
+4. Prep screens for back-end logic
+Assigned to: CTS12, GWH18
+Status: ONGOING
+Notes: Resign/draw button. Winning screen. Loading screen.
+
+5. [PRIORITY TASK] Commenting code (front-end)
+Assigned to: GWH18, CTS12
+Status: ONGOING
+Notes: N/A
+
+6. Work on connecting front and back end
+Assigned to: JAT92
+Status: ONGOING
+Notes: N/A
+
+7. Work on resolving issues found in JUnit - gitlab issues
+Assigned to: SEH25, CKC2, JIB16, SHR27
+Status: ONGOING
+Notes: List current issues on GitLab
+
+8. Test spec feedback - resolve issues
+Assigned to: CKC2, JIB16
+Status: COMPLETE
+Notes: N/A
+
+9. Make a table of issues found in JUnit - google drive
+Assigned to: SEH25
+Status: COMPLETE
+Notes: Sticking with GitLab issues instead
+
+10. Redo /dev and /src folders with new structure
+Assigned to: TYW1
+Status: COMPLETE
+Notes: N/A
+
+11. Merge testing branch
+Assigned to: JAT92
+Status: COMPLETE
+Notes: N/A
+
+12. Develop new system for branches, code certification
+Assigned to: TYW1, GWH18
+Status: COMPLETE
+Notes: New system in place
+
+13. Enjoy easter :)
+Assigned to: All
+Status: COMPLETE
+Notes: All is well
+
+=================
+ New business
+=================
+
+14. Front end JUnit tests
+Assigned to: GWH18, JIB16, CKC2
+
+15. JUnit walkthrough wednesday
+Assigned to: JIB16, CKC2
+
+16. Design Spec Feedback
+Assigned to: TYW1, GWH18, SHR27
+
+=================
+ AOB
+=================
+

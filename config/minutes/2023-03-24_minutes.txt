@@ -1,0 +1,117 @@
+Project: Group Project 09
+Meeting: Weekly Project Meeting
+Persons present: All project members, except for Sean Hobson
+Place and date of meeting: 0.30 IBERS, Friday 24th of March 2023
+Circulation list: All project members, plus project manager
+Author: Tyler Lewis
+Date of minutes: 24/03/23
+Version: 1.0
+
+Team:
+- gwh18: Gwion Hughes (Team Leader)
+- jat92: Jack Thompson (Deputy Leader)
+- tyw1 : Tyler Lewis (QA Manager)
+- seh25: Sean Hobson (Deputy QA)
+- ckc2 : Craymon Chan
+- cts12: Ciaran Smith
+- jib16: Jim Brown
+- shr27: Shaun Royle
+
+=================
+ Matters arising
+=================
+
+1. (Recurring) Ensure all blogs are uploaded by 5:00pm on Thursdays
+Assigned to: All
+Status: ONGOING
+Notes: Ciaran, Gwion
+
+2. (Recurring) Review time-spent for each member this week, update spreadsheet.
+Assigned to: GWH18
+Status: COMPLETE
+Notes: All on track
+
+3. General implementation (back-end, non-priority task)
+Assigned to: SHR27, GWH18
+Status: ONGOING
+Notes: 
+
+4. Prep screens for back-end logic
+Assigned to: CTS12, GWH18
+Status: ONGOING
+Notes: Additional functions
+
+5. Upload JUnit tests to /dev directory for next meeting.
+Assigned to: SEH25, CKC2, JIB16
+Status: COMPLETED
+Notes: Tests uploaded
+
+6. Design specification (GWH18 - Front-end design. SHR27 - Back-end design (incl. Class Diagrams). TYW1 - Diagrams (excl. Class Diagrams) and formatting. JAT92 - Back-end (logs)
+Assigned to: GWH18, SHR27, TYW1, JAT92
+Status: COMPLETE
+Notes: Reviewed and uploaded
+
+7. [PRIORITY TASK] Commenting code (front-end)
+Assigned to: GWH18, CTS12
+Status: ONGOING
+Notes: N/A
+
+8. Work on connecting front and back end
+Assigned to: JAT92
+Status: ONGOING
+Notes: N/A
+
+9. Work on resolving issues found in JUnit - gitlab issues
+Assigned to: SEH25, CKC2, JIB16, SHR27
+Status: ONGOING
+Notes: Requires re-testing, caused by missing line of code
+
+10. Test spec feedback - resolve issues
+Assigned to: CKC2, JIB16
+Status: ONGOING
+Notes: Halfway there
+
+11. Arrange reviews for design spec on Monday (discord) and Wednesday (in-person)
+Assigned to: GWH18
+Status: COMPLETE
+Notes: TYW1 to upload minutes
+
+12. Make a roadmap of actions leading up to integration and testing week
+Assigned to: GWH18
+Status: COMPLETE
+Notes: Can be found in timesheet
+
+13. Make a table of issues found in JUnit - google drive
+Assigned to: SEH25
+Status: ONGOING
+Notes: Table created
+
+=================
+ New business
+=================
+
+14. Upload design specification review minutes to GitLab
+Assigned to: TYW1
+
+15. Redo /dev and /src folders with new structure
+Assigned to: TYW1
+
+16. Merge testing branch
+Assigned to: JAT92
+
+17. Develop new system for branches, code certification
+Assigned to: TYW1, GWH18
+
+18. Review current code and documents, perform QA checks
+Assigned to: TYW1
+
+19. Create QA plan for I&T week
+Assigned to: TYW1
+
+20. Enjoy easter :)
+
+=================
+ AOB
+=================
+
+NONE

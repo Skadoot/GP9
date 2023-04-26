@@ -13,6 +13,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
+import uk.ac.aber.cs221.group09.logic.vector.Vector2;
+
+import java.util.ArrayList;
 
 /**
  * @author Gwion Hughes
@@ -151,6 +154,9 @@ public class PlayScreen {
         chessboard.updateBoard(boardNotation);
     }
 
+    public void highlightPossibleMoves(ArrayList<Vector2> moves){
+        chessboard.highlightValidTiles(moves);
+    }
 
     /**
      * A getter for playscreen scene.

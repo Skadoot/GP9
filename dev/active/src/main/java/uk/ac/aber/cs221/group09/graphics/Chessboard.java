@@ -1,12 +1,27 @@
+/*
+    * @(GP9) Chessboard.java 0.5 2023/04/26
+    *
+    * Copyright (c) 2021 Aberystywth University
+    * All rights reserved
+    *
+    */
+
 package uk.ac.aber.cs221.group09.graphics;
 
 import javafx.geometry.Insets;
 import javafx.scene.layout.GridPane;
-
 import java.util.ArrayList;
 
 /**
- * This is a controller class for the chessboard displayed on the PlayScreen
+ * Chessboard - A class that controls and displays the chessboard gridpane
+ *
+ * The class is used to produce the graphical representation of the board, including updating
+ * tile graphics to represent a particular Forsyth Edwards Notation or to highlight tile buttons
+ * to indicate valid move, checked pieces, or available pieces.
+ *
+ * @author Gwion Hughes, Ciaran Smith
+ * @version 0.6 draft
+ * @see Tile
  */
 public class Chessboard {
     private TileGraphicsLoader graphicsLoader;
@@ -14,19 +29,39 @@ public class Chessboard {
     private GridPane chessBoard;
     private PlayScreen playScreen;
 
+    /**
+     * Class constructor. Takes a scene containing class as a paramater to display the chessboard on.
+     * Calls the a function that sets up the chessboard gridpane.
+     * @param playScreen - The class containing the scene displaying the chessboard to the user.
+     */
     public Chessboard(PlayScreen playScreen) {
         chessBoard();
         this.playScreen = playScreen;
     }
 
+    /**
+     * Getter for the Chessboard gridpane
+     * @return - Chessboard gridpane instance
+     */
+    public GridPane getChessBoard() {
+        return chessBoard;
+    }
+
+    /**
+     * Initialises the chessboard.
+     */
     private void chessBoard() {
+        //The graphics loader contains the images for the chess pieces.
         this.graphicsLoader = new TileGraphicsLoader();
-        //Initialise a gridpane that will be a grid containing out buttons that behave as tiles
+
+        //Initialise the FX data struct containing the buttons and an indexable 2d array that share ownership
+        //of the tiles.
         this.chessBoard = new GridPane();
+        this.tiles = new Tile[8][8];
+
         //Make sure the gridpane has no padding so it doesn't repel other objects
         this.chessBoard.setPadding(new Insets(0, 0, 0, 0));
-        //Initialise our 2d array of buttons that will contain pointers it shares with the gridpane for ease of index
-        this.tiles = new Tile[8][8];
+
 
         //A simple numerical variable used to itterate black and white tile placement one after another later in the function
         int check = 0;
@@ -37,12 +72,17 @@ public class Chessboard {
             check++;
             for (int column = 0; column < 8; column++) {
 
+                //Every column should start with an alternating colour
                 check++;
                 if (check % 2 == 1) {
+
+                    //Create a new black tile. Add its button to the gridpane and the class to the 2d array
                     Tile tile = new Tile(column, row, false, this);
                     this.tiles[column][row] = tile;
                     this.chessBoard.add(tile.getButton(), column, row);
                 } else {
+
+                    //Create a new white tile. Add its button to the gridpane and the class to the 2d array
                     Tile tile = new Tile(column, row, true, this);
                     this.tiles[column][row] = tile;
                     this.chessBoard.add(tile.getButton(), column, row);
@@ -51,14 +91,30 @@ public class Chessboard {
         }
     }
 
+    /**
+     * This function is called by a tile's button. It passes the column and the row on the chessboard where
+     * the user has clicked forwards to the chessboard. The pressed tile's styleclass is changed until the next
+     * event when the board is "refreshed". The column and row are passed then to the playscreen to pass onwards.
+     * @param column - The file or vertical column of the pressed tile.
+     * @param row - The rank or horizontal row of the pressed tile.
+     */
     public void click(int column, int row) {
+        //Debugging output
         System.out.println(column);
         System.out.println(row);
+
+        //Alert the playscreen of incident and set tile to visually indicate it has been selected.
         this.playScreen.alertPressedTile(column, row);
         tiles[row][column].setStyleClass("selected-tile");
+
+        //Cieran proof of concept highlight valid move tile.
         highlightValidTiles(tempCalcValidPawn(column, row));
     }
 
+    /**
+     * Function called to return each tile's button to its default styleclass, i.e. no longer visually indicate it is selected
+     * or a valid location to move. The function also clears the graphics of the tile's button. Called to refresh the board.
+     */
     private void clearChessBoard() {
         for (int column = 0; column < 8; column++) {
             for (int row = 0; row < 8; row++) {
@@ -67,8 +123,14 @@ public class Chessboard {
         }
     }
 
+    /**
+     * Called on the chessboard to update the board with a new visual representation. Usually called after a move or
+     * to set a board up in its default position. Passes an imageview to each tile to display depending on a board
+     * notation.
+     * @param boardNotation - A Forsyth Edwards notation written in string representing the state of the board.
+     */
     public void updateBoard(String boardNotation) {
-        //Clear of the board of any graphics first
+        //Clear of the board of any graphics or highlighted tiles
         clearChessBoard();
 
         //sets starting positions to access the array from.
@@ -101,12 +163,16 @@ public class Chessboard {
             //increment the file for the next position on the board.
             column++;
         }
+        return;
     }
 
-    public GridPane getChessBoard() {
-        return chessBoard;
-    }
-
+    /**
+     * Unimplemented function. Pass is three arrays, possibly empty, of coordinates of buttons to highlights in different
+     * styles.
+     * @param validT - ArrayList of coordinates of valid tiles.
+     * @param checkT - ArrayList of coordinates of checked pieces
+     * @param attackT - ArrayList of coordinates containing attacking pieces.
+     */
     public void highlightTiles(ArrayList validT, ArrayList checkT, ArrayList attackT) {
         //Helper function on Valid Tiles
         //Helper function on checked tiles
@@ -115,6 +181,13 @@ public class Chessboard {
 
     private String[][] testChessBoard;
 
+    /**
+     * A function to test the funcionatlity of highlighting tiles. Given a position that would hold a pawn in
+     * its default start board state, if clicked it should display valid moves from that position.
+     * @param selectedColumn - The file or vertical column of the pressed tile.
+     * @param selectedRow - The rank or horizontal row of the pressed tile.
+     * @return A string array containing the char numbers of the coordinates to highlight.
+     */
     private ArrayList tempCalcValidPawn(int selectedColumn, int selectedRow) {
         testChessBoard = new String[8][8];
         ArrayList pawnMoves = new ArrayList();

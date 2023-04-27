@@ -1,5 +1,12 @@
-package uk.ac.aber.cs221.group09.graphics;
+/*
+ * @(GP9) StartScreen.java 0.9 2023/04/27
+ *
+ * Copyright (c) 2021 Aberystywth University
+ * All rights reserved
+ *
+ */
 
+package uk.ac.aber.cs221.group09.graphics;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,22 +17,38 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
 /**
- * A prototype for the start screen.
+ * StartScreen - This class contains the first scene the user is greeted by upon launching the application.
+ *
+ * This class contains the menu scene and all the scenes of application are navigated to from or back to this scene.
  *
  * @author Gwion Hughes
- * @version 0.1
+ * @version 0.9 draft
+ * @see Interface
  */
 public class StartScreen {
     private final Interface anInterface;
     private Scene startScreen;
 
+    /**
+     * Getter for the menu scene.
+     * @return - Scene containing main menu.
+     */
+    public Scene getStartScreen() {
+        return startScreen;
+    }
+
+    /**
+     * Constructor
+     * @param anInterface - Class containing the application window.
+     */
     public StartScreen(Interface anInterface) {
         this.anInterface = anInterface;
         constructScreen();
     }
 
     /**
-     * Creates a scene containing a flow pane and currently three empty buttons.
+     * Creates a scene with a vertical box as its root with three buttons for navigating to loading finished games, unfinished games,
+     * or starting a new game.
      */
     private void constructScreen() {
         VBox btnSelection = new VBox();
@@ -33,6 +56,7 @@ public class StartScreen {
         Button conButton = new Button();
         Button vgButton = new Button();
 
+        //This button takes the user to the PlayerName scene.
         ngButton.setText("Start New Game");
         ngButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -40,6 +64,8 @@ public class StartScreen {
                 requestNewGame();
             }
         });
+
+        //This button takes the user to the LoadGame scene with a selection of unfinished games to pick back up
         conButton.setText("Load Unfinished Game");
         conButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -47,6 +73,8 @@ public class StartScreen {
                 requestToUnfinishedGames();
             }
         });
+
+        //This button takes the user to the LoagGame scene with a selection of finished games to view.
         vgButton.setText("View Finished Game");
         vgButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -55,6 +83,7 @@ public class StartScreen {
             }
         });
 
+        //The below code places the buttons.
         btnSelection.setPadding(new Insets(5, 5, 5, 5));
         btnSelection.setSpacing(12);
 
@@ -70,19 +99,15 @@ public class StartScreen {
         this.startScreen = menu;
     }
 
-    public Scene getStartScreen() {
-        return startScreen;
-    }
-
-    public void requestNewGame() {
+    private void requestNewGame() {
         anInterface.toPNScreen();
     }
 
-    public void requestToViewFinishedGames() {
+    private void requestToViewFinishedGames() {
         anInterface.loadFGames();
     }
 
-    public void requestToUnfinishedGames() {
+    private void requestToUnfinishedGames() {
         anInterface.loadUFGames();
     }
 }

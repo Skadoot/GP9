@@ -21,7 +21,7 @@ import java.util.ArrayList;
  *
  * @author Gwion Hughes, Ciaran Smith
  * @version 0.9 draft
- * @see Tile
+ * @see StartScreen
  */
 public class Interface extends Application {
     private Stage primaryStage;

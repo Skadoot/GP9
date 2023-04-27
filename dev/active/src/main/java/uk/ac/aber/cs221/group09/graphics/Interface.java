@@ -1,11 +1,28 @@
+/*
+ * @(GP9) Interface.java 0.5 2023/04/27
+ *
+ * Copyright (c) 2021 Aberystywth University
+ * All rights reserved
+ *
+ */
+
 package uk.ac.aber.cs221.group09.graphics;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Interface - The class contains the primary stage for displaying the chess tutor application
+ *
+ * The class is used to initialise the application. It's the top level of the system and messages information
+ * to the backend. Information from the backend is then sent through to the GUI through this interface class.
+ *
+ * @author Gwion Hughes, Ciaran Smith
+ * @version 0.9 draft
+ * @see Tile
+ */
 public class Interface extends Application {
     private Stage primaryStage;
     private PlayerNameScreen playerNameScreen;
@@ -15,6 +32,7 @@ public class Interface extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        //This is application window
         primaryStage = stage;
 
         //Create instances of the screen handling classes and attach this interface instance to those classes.
@@ -23,7 +41,7 @@ public class Interface extends Application {
         startScreen = new StartScreen(this);
         loadScreen = new LoadScreen(this);
 
-
+        //This sets the application window to display the start screen and then show the application window.
         stage.setTitle("Gorpu Chess!");
         stage.setScene(startScreen.getStartScreen());
         stage.show();
@@ -33,15 +51,22 @@ public class Interface extends Application {
         launch();
     }
 
+    /**
+     * Getter for the applicaiton window.
+     * @return - Stage(Application window)
+     */
     public Stage getStage() {
         return primaryStage;
     }
 
     /**
-     * Intended to send the coordinates of the clicked tile to the backend. Currently the playground to test chessboard
-     * features.
-     * @param column
-     * @param row
+     * Function to message the column and row of the tile clicked on the chessboard to the backend. Any FEN string
+     * returned from the back end will be sent back to the playscreen.
+     *
+     * At the moment, shows how the click function would work without backend. Currently sends a different FEN string
+     * to the playscreen depending on which corner pressed.
+     * @param column - The file or vertical column of the pressed tile.
+     * @param row - The rank or horizontal row of the pressed tile.
      */
     public void click(int column, int row) {
         ArrayList<Integer> validTileOne = new ArrayList<>();
@@ -62,21 +87,40 @@ public class Interface extends Application {
         System.out.println(row);
     }
 
+    /**
+     * Function to switch the application window to show the start menu.
+     */
     public void toMenu() {
         primaryStage.setScene(startScreen.getStartScreen());
     }
 
+    /**
+     * Function to switch the application window to show the screen to enter player names.
+     */
     public void toPNScreen() {
         primaryStage.setScene(playerNameScreen.getScene());
     }
 
+    /**
+     * Function to switch the application window to show the play screen containing the chessboard.
+     */
     public void toChessboard() {
         primaryStage.setScene(playScreen.getScene());
     }
 
+    /**
+     * Function to switch the application window from the scene to enter player names to the chessboard scene.
+     * Will take the names entered by the users for black and white to display on a new chessboard with a fresh
+     * default start.
+     *
+     * Should also instantiate a new game in the backend to log in a text file.
+     * @param whiteName - A string array of the white player's name.
+     * @param blackName - A string array of the black player's name.
+     */
     public void toNewChessboard(String whiteName, String blackName) {
         playScreen.setWhitePlayerName(whiteName);
         playScreen.setBlackPlayerName(blackName);
+        //FEN setting the playscreen scene chessboard to default start position.
         playScreen.updatePlayScreen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
         primaryStage.setScene(playScreen.getScene());
     }

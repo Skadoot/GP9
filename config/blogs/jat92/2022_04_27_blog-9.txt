@@ -1,0 +1,7 @@
+Blog - week 7
+26/04/2023
+Team meeting - 1.5 hour 
+Integration spike work, tidying up remote branches on git 2.5 hour
+
+Total 4 hours
+

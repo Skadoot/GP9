@@ -111,9 +111,6 @@ public class Chessboard {
         this.playScreen.alertPressedTile(column, row);
         tiles[row][column].setStyleClass("selected-tile");
 
-
-        //highlightValidTiles(tempCalcValidPawn(column, row));
-
     }
 
     /**
@@ -182,37 +179,6 @@ public class Chessboard {
         //Helper function on Valid Tiles
         //Helper function on checked tiles
         //Helper function on Attacking tiles
-    }
-
-    private String[][] testChessBoard;
-
-    /**
-     * A function to test the funcionatlity of highlighting tiles. Given a position that would hold a pawn in
-     * its default start board state, if clicked it should display valid moves from that position.
-     * @param selectedColumn - The file or vertical column of the pressed tile.
-     * @param selectedRow - The rank or horizontal row of the pressed tile.
-     * @return A string array containing the char numbers of the coordinates to highlight.
-     */
-    private ArrayList tempCalcValidPawn(int selectedColumn, int selectedRow) {
-        testChessBoard = new String[8][8];
-        ArrayList pawnMoves = new ArrayList();
-        pawnMoves.clear();
-        //Assigning Pawns for both players
-        for (int i = 0; i < 8; i++) {
-            testChessBoard[1][i] = "BP";
-            testChessBoard[6][i] = "WP";
-        }
-        if (testChessBoard[selectedColumn][selectedRow] == "WP") {
-            pawnMoves.add(selectedRow);
-            pawnMoves.add(selectedColumn - 1);
-        } else if (testChessBoard[selectedColumn][selectedRow] == "BP") {
-            pawnMoves.add(selectedRow);
-            pawnMoves.add(selectedColumn + 1);
-        }
-        System.out.println(testChessBoard[selectedColumn][selectedRow]);
-
-
-        return pawnMoves;
     }
 
     public void highlightValidTiles(ArrayList<Vector2> validT) {

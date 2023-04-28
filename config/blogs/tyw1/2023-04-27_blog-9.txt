@@ -1,0 +1,24 @@
+Author: TYW
+Week: 9 (27/04/23)
+
+Assigned actions
+==============
+
+n/a
+
+Other project work
+================
+
+1. Additional configuration of repository
+
+Hours: 2
+
+2. Reviewing existing code and tests in prep. for ITW.
+
+Hours: 3
+
+4. Attended mid-week group meeting
+
+Hours: 2
+
+Total hours: 7

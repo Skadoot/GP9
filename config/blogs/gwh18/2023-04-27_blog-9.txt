@@ -1,0 +1,35 @@
+Author: GWH18
+Week: 9 (28/04/23)
+
+Assigned actions
+==============
+Action 2: Review  time-spent for each member this week, update spreadsheet
+Done. Timesheet updated but a few blogs are still missing >:(
+
+Hours: 1
+
+Action 5: Commenting code (front-end)
+Done. All classes of the most up to date graphics package have been commented.
+
+Hours: 4
+
+Action 12: Develop new system for branches, code certification
+Done. Developed by Tyler.
+
+Hours: 0
+
+Action 14: Front end JUnit tests
+Postponed. Pushing current tests to source decided to be more of a priority.
+
+Hours: 0
+
+
+Other project work
+================
+
+Review Meeting Wednesday Group Study Room 8. Did a review on the JUnit tests. Discussed plan for Integration and Testing week.
+
+Hours: 2
+
+
+Total hours: 7

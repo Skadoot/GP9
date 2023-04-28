@@ -1,0 +1,27 @@
+Author: ckc2
+Week: 9(27/04/23)
+
+Assigned actions
+==============
+
+Action 1:
+- implemented some front end testing 
+
+Hours: 1
+
+Action 2:
+- implemented more tests while polishing previous ones and adding comments to tests 
+
+Hours: 3
+
+
+
+
+Other project work
+================
+Held an internal meeting to for testing code overview and general meeting with the group on 27 April 2023 3pm to 5pm 
+Hours: 2
+
+
+
+Total hours: 6

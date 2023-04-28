@@ -1,7 +1,16 @@
+/*
+ * @(GP9) Interface.java 0.5 2023/04/27
+ *
+ * Copyright (c) 2021 Aberystywth University
+ * All rights reserved
+ *
+ */
+
 package uk.ac.aber.cs221.group09.graphics;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+
 import uk.ac.aber.cs221.group09.logic.pieces.Piece;
 import uk.ac.aber.cs221.group09.logic.Board;
 import uk.ac.aber.cs221.group09.logic.MoveCalculator;
@@ -10,6 +19,16 @@ import uk.ac.aber.cs221.group09.logic.vector.Vector2;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Interface - The class contains the primary stage for displaying the chess tutor application
+ *
+ * The class is used to initialise the application. It's the top level of the system and messages information
+ * to the backend. Information from the backend is then sent through to the GUI through this interface class.
+ *
+ * @author Gwion Hughes, Ciaran Smith
+ * @version 0.9 draft
+ * @see StartScreen
+ */
 public class Interface extends Application {
    private Stage primaryStage;
    private PlayerNameScreen playerNameScreen;
@@ -126,4 +145,5 @@ public class Interface extends Application {
       loadScreen.setLabel("Unfinished Games:");
       primaryStage.setScene(loadScreen.getScene());
    }
+
 }

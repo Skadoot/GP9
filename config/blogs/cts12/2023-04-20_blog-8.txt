@@ -1,0 +1,22 @@
+Author: CTS12
+Week: 8 (20/04/23)
+
+Assigned actions
+==============
+
+Action 4: Work on preparing screens for backend logic
+
+Initial attempt at connecting frontend and backend functions
+Hours: 3
+
+
+
+
+
+Other project work
+================
+
+Group meeting on 22/03/23
+Hours: 1
+
+Total hours: 4

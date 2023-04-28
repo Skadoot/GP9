@@ -1,0 +1,25 @@
+Author: CTS12
+Week: 9 (27/04/23)
+
+Assigned actions
+==============
+
+Action 4: Prep screens for back-end logic
+
+Completed integration for highlighting possible moves for any given piece on the board
+Hours: 5
+
+Frontend screen prep in time for Integration and testing week
+Hours: 2
+
+
+
+
+
+Other project work
+================
+
+Group meeting on 26/04/23
+Hours: 2
+
+Total hours: 9

@@ -19,6 +19,8 @@ public class Interface extends Application {
    private Board board = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
    private MoveCalculator moveCalc = new MoveCalculator(board.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0], board);
    private Piece pieceToMove;
+   boolean firstPieceClick = true;
+   ArrayList<Vector2> movesToCompare;
 
    @Override
    public void start(Stage stage) throws IOException {
@@ -52,18 +54,41 @@ public class Interface extends Application {
     * @param row
     */
    public void click(int column, int row) {
+
+      Vector2 selectedTile = new Vector2(row, column);
       playScreen.updatePlayScreen(board.getForsythEdwardsBoardNotation());
       ArrayList<Vector2> validTiles;
-      Vector2 selectedTile = new Vector2(row, column);
-      //System.out.print(board.getPiece(selectedTile));
-      pieceToMove = board.getPiece(selectedTile);
-      moveCalc.getLegalMoveForPiece(pieceToMove, false);
 
-      validTiles = (pieceToMove.getPossibleMoves());
+      if (firstPieceClick) {
 
+         do {
 
-      playScreen.highlightPossibleMoves(validTiles);
+            //System.out.print(board.getPiece(selectedTile));
+            pieceToMove = board.getPiece(selectedTile);
+            moveCalc.getLegalMoveForPiece(pieceToMove, false);
+
+            validTiles = (pieceToMove.getPossibleMoves());
+            movesToCompare = validTiles;
+            playScreen.highlightPossibleMoves(validTiles);
+
+         } while (board.getPiece(selectedTile) == null);
+         firstPieceClick = false;
+      }else{
+
+      System.out.println("second click");
+      for (int i = 0; i < movesToCompare.size(); i++) {
+         if(selectedTile.x == movesToCompare.get(i).x && selectedTile.y == movesToCompare.get(i).y){
+            System.out.println("Valid Move");
+            board.movePiece(pieceToMove,selectedTile);
+            playScreen.updatePlayScreen(board.getForsythEdwardsBoardNotation());
+
+         }
+      }
+      movesToCompare.clear();
+      firstPieceClick = true;
    }
+
+}
 
    public void toMenu() {
       primaryStage.setScene(startScreen.getStartScreen());

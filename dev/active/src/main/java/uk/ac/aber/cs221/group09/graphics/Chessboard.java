@@ -10,6 +10,10 @@ package uk.ac.aber.cs221.group09.graphics;
 
 import javafx.geometry.Insets;
 import javafx.scene.layout.GridPane;
+
+import uk.ac.aber.cs221.group09.logic.Game;
+import uk.ac.aber.cs221.group09.logic.vector.Vector2;
+
 import java.util.ArrayList;
 
 /**
@@ -107,8 +111,9 @@ public class Chessboard {
         this.playScreen.alertPressedTile(column, row);
         tiles[row][column].setStyleClass("selected-tile");
 
-        //Cieran proof of concept highlight valid move tile.
-        highlightValidTiles(tempCalcValidPawn(column, row));
+
+        //highlightValidTiles(tempCalcValidPawn(column, row));
+
     }
 
     /**
@@ -210,10 +215,16 @@ public class Chessboard {
         return pawnMoves;
     }
 
-    private void highlightValidTiles(ArrayList validT) {
+    public void highlightValidTiles(ArrayList<Vector2> validT) {
         //go through list of valid tile coordinates and
         //tiles[0][0].setStyleClass("valid-tile");
-        tiles[(int) validT.get(0)][(int) validT.get(1)].setStyleClass("valid-tile");
+        for(int i =0; i< validT.size();i++){
+            int x = validT.get(i).x;
+            int y = validT.get(i).y;
+            System.out.println(x +":" + y);
+            tiles[x][y].setStyleClass("valid-tile");
+        }
+
     }
 
     private void highlightCheckTile(ArrayList checkT) {

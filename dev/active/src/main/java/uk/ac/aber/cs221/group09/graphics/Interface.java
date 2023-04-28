@@ -10,6 +10,12 @@ package uk.ac.aber.cs221.group09.graphics;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+
+import uk.ac.aber.cs221.group09.logic.pieces.Piece;
+import uk.ac.aber.cs221.group09.logic.Board;
+import uk.ac.aber.cs221.group09.logic.MoveCalculator;
+import uk.ac.aber.cs221.group09.logic.vector.Vector2;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -29,6 +35,9 @@ public class Interface extends Application {
     private PlayScreen playScreen;
     private StartScreen startScreen;
     private LoadScreen loadScreen;
+    private Board board = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+    private MoveCalculator moveCalc = new MoveCalculator(board.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0],board);
+    private Piece pieceToMove;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -69,22 +78,34 @@ public class Interface extends Application {
      * @param row - The rank or horizontal row of the pressed tile.
      */
     public void click(int column, int row) {
-        ArrayList<Integer> validTileOne = new ArrayList<>();
+playScreen.updatePlayScreen(board.getForsythEdwardsBoardNotation());
+        ArrayList<Vector2> validTiles;
+        Vector2 selectedTile = new Vector2(row,column);
+        //System.out.print(board.getPiece(selectedTile));
+        pieceToMove = board.getPiece(selectedTile);
+        moveCalc.getLegalMoveForPiece(pieceToMove,false);
 
-        if(column == 0 && row == 0) playScreen.updatePlayScreen("r1b1k1nr/p2p1pNp/n2B4/1p1NP2P/6P1/3P1Q2/P1P1K3/q5b1 w KQkq - 0 1");
-
-        else if(column == 0 && row == 7) playScreen.updatePlayScreen("8/8/8/4p1K1/2k1P3/8/8/8 b - - 0 1");
-
-        else if(column == 7 && row == 0) playScreen.updatePlayScreen("4k2r/6r1/8/8/8/8/3R4/R3K3 w Qk - 0 1");
-
-        else if(column == 7 && row == 7) playScreen.updatePlayScreen("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1");
-
-        else playScreen.updatePlayScreen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+        validTiles = (pieceToMove.getPossibleMoves());
 
 
+        playScreen.highlightPossibleMoves(validTiles);
 
-        System.out.println(column);
-        System.out.println(row);
+
+
+       // if(column == 0 && row == 0) playScreen.updatePlayScreen("r1b1k1nr/p2p1pNp/n2B4/1p1NP2P/6P1/3P1Q2/P1P1K3/q5b1 w KQkq - 0 1");
+
+        //else if(column == 0 && row == 7) playScreen.updatePlayScreen("8/8/8/4p1K1/2k1P3/8/8/8 b - - 0 1");
+
+       // else if(column == 7 && row == 0) playScreen.updatePlayScreen("4k2r/6r1/8/8/8/8/3R4/R3K3 w Qk - 0 1");
+
+       // else if(column == 7 && row == 7) playScreen.updatePlayScreen("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1");
+
+       // else playScreen.updatePlayScreen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+
+
+
+        //System.out.println(column);
+        //System.out.println(row);
     }
 
     /**
@@ -122,6 +143,7 @@ public class Interface extends Application {
         playScreen.setBlackPlayerName(blackName);
         //FEN setting the playscreen scene chessboard to default start position.
         playScreen.updatePlayScreen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+        playScreen.updatePlayScreen(board.getForsythEdwardsBoardNotation());
         primaryStage.setScene(playScreen.getScene());
     }
 

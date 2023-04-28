@@ -186,7 +186,8 @@ public class Chessboard {
         //tiles[0][0].setStyleClass("valid-tile");
         for(int i =0; i< validT.size();i++){
             int x = validT.get(i).x;
-            int y = validT.get(i).y;
+            //flips the resulting possible squares once more to fit with the frontend solution
+            int y = 7- validT.get(i).y;
             System.out.println(x +":" + y);
             tiles[x][y].setStyleClass("valid-tile");
         }

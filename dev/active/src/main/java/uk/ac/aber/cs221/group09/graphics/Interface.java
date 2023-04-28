@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 /**
  * Interface - The class contains the primary stage for displaying the chess tutor application
- *
+ * <p>
  * The class is used to initialise the application. It's the top level of the system and messages information
  * to the backend. Information from the backend is then sent through to the GUI through this interface class.
  *
@@ -74,7 +74,8 @@ public class Interface extends Application {
     */
    public void click(int column, int row) {
 
-      Vector2 selectedTile = new Vector2(row, column);
+      //flips the y coordinate for movement to connect properly between front and backend solutions
+      Vector2 selectedTile = new Vector2(row, 7-column);
       playScreen.updatePlayScreen(board.getForsythEdwardsBoardNotation());
       ArrayList<Vector2> validTiles;
 
@@ -90,24 +91,26 @@ public class Interface extends Application {
             movesToCompare = validTiles;
             playScreen.highlightPossibleMoves(validTiles);
 
+            System.out.println(pieceToMove.getColor() + " " + pieceToMove.getType());
+
          } while (board.getPiece(selectedTile) == null);
          firstPieceClick = false;
-      }else{
+      } else {
+         System.out.println("second click");
+         for (int i = 0; i < movesToCompare.size(); i++) {
+            if (selectedTile.x == movesToCompare.get(i).x && selectedTile.y == movesToCompare.get(i).y) {
+               System.out.println("Valid Move");
 
-      System.out.println("second click");
-      for (int i = 0; i < movesToCompare.size(); i++) {
-         if(selectedTile.x == movesToCompare.get(i).x && selectedTile.y == movesToCompare.get(i).y){
-            System.out.println("Valid Move");
-            board.movePiece(pieceToMove,selectedTile);
-            playScreen.updatePlayScreen(board.getForsythEdwardsBoardNotation());
+               board.movePiece(pieceToMove, selectedTile);
+               playScreen.updatePlayScreen(board.getForsythEdwardsBoardNotation());
 
+            }
          }
+         movesToCompare.clear();
+         firstPieceClick = true;
       }
-      movesToCompare.clear();
-      firstPieceClick = true;
-   }
 
-}
+   }
 
    public void toMenu() {
       primaryStage.setScene(startScreen.getStartScreen());

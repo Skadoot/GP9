@@ -283,12 +283,140 @@ class BoardTest {
         }Assertions.assertEquals("rnbqkbnr/ppppp1pp/8/8/3Pp3/8/PPP1PPPP/RNBQKBNR b KQkq - 0 3",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
     }
 
+    @Test
+    //FR5 Tests
+    public void testMakeLegalMovePawn() {
+        testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+
+        char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
+        MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
+        moveCalculator.findLegalMovesForPlayer(true);
+        moveCalculator.findLegalMovesForPlayer(false);
+
+        Piece pieceToMove = testBoard.getPiece(new Vector2(0,1));
+
+
+        Vector2 testPosition = new Vector2(0, 3);
+        for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+            if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
+            {
+                testBoard.movePiece(pieceToMove, testPosition);
+            }
+        }Assertions.assertEquals("rnbqkbnr/pppppppp/8/8/P7/8/1PPPPPPP/RNBQKBNR",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
+    }
+
+    @Test
+    public void testMakeLegalMoveKnight() {
+        testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+
+        char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
+        MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
+        moveCalculator.findLegalMovesForPlayer(true);
+        moveCalculator.findLegalMovesForPlayer(false);
+
+        Piece pieceToMove = testBoard.getPiece(new Vector2(1,0));
+
+
+        Vector2 testPosition = new Vector2(2, 2);
+        for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+            if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
+            {
+                testBoard.movePiece(pieceToMove, testPosition);
+            }
+        }Assertions.assertEquals("rnbqkbnr/pppppppp/8/8/8/2N5/PPPPPPPP/R1BQKBNR",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
+    }
+
+    @Test
+    public void testMakeLegalMoveRook() {
+        testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/R2QKBNR w KQkq - 0 1");
+
+        char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
+        MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
+        moveCalculator.findLegalMovesForPlayer(true);
+        moveCalculator.findLegalMovesForPlayer(false);
+
+        Piece pieceToMove = testBoard.getPiece(new Vector2(0,0));
+
+
+        Vector2 testPosition = new Vector2(2, 0);
+        for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+            if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
+            {
+                testBoard.movePiece(pieceToMove, testPosition);
+            }
+        }Assertions.assertEquals("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/2RQKBNR",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
+    }
+
+    @Test
+    public void testMakeLegalMoveBishop() {
+        testBoard = new Board("rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1");
+
+        char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
+        MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
+        moveCalculator.findLegalMovesForPlayer(true);
+        moveCalculator.findLegalMovesForPlayer(false);
+
+        Piece pieceToMove = testBoard.getPiece(new Vector2(5,0));
+
+
+        Vector2 testPosition = new Vector2(2, 3);
+        for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+            if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
+            {
+                testBoard.movePiece(pieceToMove, testPosition);
+            }
+        }Assertions.assertEquals("rnbqkbnr/pppp1ppp/8/4p3/2B1P3/8/PPPP1PPP/RNBQK1NR",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
+    }
+
+    @Test
+    public void testMakeLegalMoveQueen() {
+        testBoard = new Board("rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 1");
+
+        char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
+        MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
+        moveCalculator.findLegalMovesForPlayer(true);
+        moveCalculator.findLegalMovesForPlayer(false);
+
+        Piece pieceToMove = testBoard.getPiece(new Vector2(3,0));
+
+
+        Vector2 testPosition = new Vector2(6, 3);
+        for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+            if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
+            {
+                testBoard.movePiece(pieceToMove, testPosition);
+            }
+        }Assertions.assertEquals("rnbqkbnr/pppp1ppp/8/4p3/4P1Q1/8/PPPP1PPP/RNB1KBNR",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
+    }
+
+    @Test
+    public void testMakeLegalMoveKing() {
+        testBoard = new Board("rnbqkbnr/ppp2ppp/3p4/4p3/4P1Q1/8/PPPP1PPP/RNB1KBNR w KQkq - 0 1");
+
+        char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
+        MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
+        moveCalculator.findLegalMovesForPlayer(true);
+        moveCalculator.findLegalMovesForPlayer(false);
+
+        Piece pieceToMove = testBoard.getPiece(new Vector2(4,0));
+
+
+        Vector2 testPosition = new Vector2(3, 0);
+        for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+            if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
+            {
+                testBoard.movePiece(pieceToMove, testPosition);
+            }
+        }Assertions.assertEquals("rnbqkbnr/ppp2ppp/3p4/4p3/4P1Q1/8/PPPP1PPP/RNBK1BNR",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
+    }
 
 
 
 
 
-        }
+
+
+}
 
 
 

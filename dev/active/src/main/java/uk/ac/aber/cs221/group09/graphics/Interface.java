@@ -76,34 +76,44 @@ public class Interface extends Application {
 
       //flips the y coordinate for movement to connect properly between front and backend solutions
       Vector2 selectedTile = new Vector2(row, 7-column);
+      //every turn it checks the current board notation to find out what the current player is and saves as a char
+      char currentPlayer = board.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
+     //refreshes the play screen to remove any highlighting leftover
       playScreen.updatePlayScreen(board.getForsythEdwardsBoardNotation());
+      
       ArrayList<Vector2> validTiles;
 
       if (firstPieceClick) {
 
          do {
-
-            //System.out.print(board.getPiece(selectedTile));
+            //assigns the selected piece to the correct one in the backend if it exists
             pieceToMove = board.getPiece(selectedTile);
-            moveCalc.getLegalMoveForPiece(pieceToMove, false);
-
-            validTiles = (pieceToMove.getPossibleMoves());
-            movesToCompare = validTiles;
-            playScreen.highlightPossibleMoves(validTiles);
-
-            System.out.println(pieceToMove.getColor() + " " + pieceToMove.getType());
-
+            //checks if the selected piece matches the colour of the current player
+            if (pieceToMove.getColor()==currentPlayer){
+               //fetches the possible moves for the chosen piece
+               moveCalc.getLegalMoveForPiece(pieceToMove, false);
+               //stores the possible moves in the Vector2 Arraylist validTiles
+               validTiles = (pieceToMove.getPossibleMoves());
+               //duplicates the contents of validTiles into movesToCompare
+               // so we can use it on the next click for movement
+               movesToCompare = validTiles;
+               //sends the possible moves to be highlighted
+               playScreen.highlightPossibleMoves(validTiles);
+            }
+            //continues to check until the selected piece isn't null
          } while (board.getPiece(selectedTile) == null);
+         //makes a note that we have selected a piece and are ready
+         // to move to the next section on the next click
          firstPieceClick = false;
       } else {
-         System.out.println("second click");
+         //checks every index of movesToCompare against the selected
+         // x and y coordinate to see if the user has clicked on a possible move tile
          for (int i = 0; i < movesToCompare.size(); i++) {
             if (selectedTile.x == movesToCompare.get(i).x && selectedTile.y == movesToCompare.get(i).y) {
-               System.out.println("Valid Move");
-
                board.movePiece(pieceToMove, selectedTile);
+               //updates the chessboard with the new FEN string after the move
+               // otherwise would be waiting on the next click
                playScreen.updatePlayScreen(board.getForsythEdwardsBoardNotation());
-
             }
          }
          movesToCompare.clear();

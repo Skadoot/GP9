@@ -96,12 +96,12 @@ public class Game {
             isMovesCalculated = false;
             gameBoard.clearMoves();
 
-            //Otherwise if the newly selected coordinates are of the attacking player's type, set it as the new selected piece.
-        } else if (gameBoard.getPiece(selectedBoardCoordinate).getColor() == attackingPlayer) {
-            System.out.println("Did not find legal move.");
-            selectedPiece = selectedBoardCoordinate;
+        } else if (gameBoard.getPiece(selectedBoardCoordinate) != null) {
+            if (gameBoard.getPiece(selectedBoardCoordinate).getColor() == attackingPlayer) {
+                System.out.println("Did not find legal move.");
+                selectedPiece = selectedBoardCoordinate;
+            }
         }
-
     }
 
     public String gameNotation() {

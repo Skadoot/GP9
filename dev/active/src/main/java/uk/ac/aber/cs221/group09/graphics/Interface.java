@@ -11,6 +11,7 @@ package uk.ac.aber.cs221.group09.graphics;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import uk.ac.aber.cs221.group09.logic.Log;
 import uk.ac.aber.cs221.group09.logic.pieces.Piece;
 import uk.ac.aber.cs221.group09.logic.Board;
 import uk.ac.aber.cs221.group09.logic.MoveCalculator;
@@ -114,6 +115,7 @@ public class Interface extends Application {
                //updates the chessboard with the new FEN string after the move
                // otherwise would be waiting on the next click
                playScreen.updatePlayScreen(board.getForsythEdwardsBoardNotation());
+               //
             }
          }
          movesToCompare.clear();

@@ -28,15 +28,15 @@ public class Main {
         //run main menu
 
 //        //new game
-//        game = new game("r1b1k1nr/p2p1pNp/n2B4/1p1NP2P/6P1/3P1Q2/P1P1K3/q5b1 w KQkq - 0 1", "testGameOne.txt", true);
+        game = new Game("r1b1k1nr/p2p1pNp/n2B4/1p1NP2P/6P1/3P1Q2/P1P1K3/q5b1 w KQkq - 0 1", "testGameTwo.txt", true);
 //        //update the log
-//        game.log.updateLog("FEN4");
-//        game.log.updateLog("FEN5");
-//        game.log.updateLog("FEN6");
+        game.log.updateLog("FEN4");
+        game.log.updateLog("FEN5");
+        game.log.updateLog("FEN6");
 //        //read specific line from the file
 //        System.out.println(game.log.readLog(2));
 //        System.out.println(game.log.readLog(10));
-        loadGame("/saves/testGameOne.txt");
+//        loadGame("/saves/testGameOne.txt");
     }
 
     //I don't really understand the point of this method(below) in here? jat92

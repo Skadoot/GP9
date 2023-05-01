@@ -22,6 +22,8 @@ import java.util.ArrayList;
  * @version 0.6 (draft)
  * @see uk.ac.aber.cs221.group09.logic.MoveCalculator
  */
+
+//JACK COMMENTED OUT MOVE
 public class Game {
     //this is the order of operations that will happen every turn
     private final Board gameBoard;
@@ -43,11 +45,11 @@ public class Game {
         if (!load) {
             gameBoard = new Board(boardState);
             this.log = new Log(fileName, false);
-            move();
+//            move();
         } else {
             gameBoard = new Board(boardState);
             this.log = new Log(fileName, true);
-            move();
+//            move();
         }
     }
 

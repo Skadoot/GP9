@@ -31,6 +31,7 @@ public class MoveCalculator {
    private boolean canBlackCastleKingSide; //can black castle king side?
    private boolean canBlackCastleQueenSide; //can black castle queen side?
 
+
    /**
     * constructor for moveCalculator
     *
@@ -44,6 +45,37 @@ public class MoveCalculator {
       //determine who can castle, so we can take this into account when calculating the legal moves.
       determineWhoCanCastle();
    }
+
+   /**
+    * one of cierans crazy functions
+    * @param piece
+    * @param opponentPlayer
+    */
+   public void getLegalMoveForPiece(Piece piece, boolean opponentPlayer) {
+
+      //check what the piece's type is and calculate its legal moves: 'p' for pawn, 'n' for knight, 'r' for rook, 'b' for bishop, 'q' for queen, 'k' for king.
+      switch (piece.getType()) {
+         case 'p':
+            getPawnLegalMoves(piece, opponentPlayer);
+            break;
+         case 'n':
+            getKnightLegalMoves(piece, opponentPlayer);
+            break;
+         case 'b':
+            getBishopLegalMoves(piece, opponentPlayer);
+            break;
+         case 'r':
+            getRookLegalMoves(piece, opponentPlayer);
+            break;
+         case 'q':
+            getQueenLegalMoves(piece, opponentPlayer);
+            break;
+         case 'k':
+            getKingLegalMoves(piece, opponentPlayer);
+            break;
+      }
+   }
+
 
 
    /**

@@ -463,4 +463,14 @@ public class Board {
             System.out.print("\n\n");
         }
     }
+
+    public void clearMoves() {
+        for (int row = 0; row < 7; row++) {
+            for (int column = 0; column < 7; column++) {
+                if(board[row][column] != null) {
+                    board[row][column].clearMoves();
+                }
+            }
+        }
+    }
 }

@@ -11,6 +11,7 @@ package uk.ac.aber.cs221.group09.graphics;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import uk.ac.aber.cs221.group09.logic.Game;
 import uk.ac.aber.cs221.group09.logic.pieces.Piece;
 import uk.ac.aber.cs221.group09.logic.Board;
 import uk.ac.aber.cs221.group09.logic.MoveCalculator;
@@ -35,10 +36,9 @@ public class Interface extends Application {
    private PlayScreen playScreen;
    private StartScreen startScreen;
    private LoadScreen loadScreen;
-   private Board board = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
-   private MoveCalculator moveCalc = new MoveCalculator(board.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0], board);
    private Piece pieceToMove;
    boolean firstPieceClick = true;
+   private Game game;
    ArrayList<Vector2> movesToCompare;
 
    @Override
@@ -74,52 +74,8 @@ public class Interface extends Application {
     */
    public void click(int column, int row) {
 
-      //flips the y coordinate for movement to connect properly between front and backend solutions
-      Vector2 selectedTile = new Vector2(row, 7-column);
-      //every turn it checks the current board notation to find out what the current player is and saves as a char
-      char currentPlayer = board.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
-     //refreshes the play screen to remove any highlighting leftover
-      playScreen.updatePlayScreen(board.getForsythEdwardsBoardNotation());
-      
-      ArrayList<Vector2> validTiles;
-
-      if (firstPieceClick) {
-
-         do {
-            //assigns the selected piece to the correct one in the backend if it exists
-            pieceToMove = board.getPiece(selectedTile);
-            //checks if the selected piece matches the colour of the current player
-            if (pieceToMove.getColor()==currentPlayer){
-               //fetches the possible moves for the chosen piece
-               moveCalc.getLegalMoveForPiece(pieceToMove, false);
-               //stores the possible moves in the Vector2 Arraylist validTiles
-               validTiles = (pieceToMove.getPossibleMoves());
-               //duplicates the contents of validTiles into movesToCompare
-               // so we can use it on the next click for movement
-               movesToCompare = validTiles;
-               //sends the possible moves to be highlighted
-               playScreen.highlightPossibleMoves(validTiles);
-            }
-            //continues to check until the selected piece isn't null
-         } while (board.getPiece(selectedTile) == null);
-         //makes a note that we have selected a piece and are ready
-         // to move to the next section on the next click
-         firstPieceClick = false;
-      } else {
-         //checks every index of movesToCompare against the selected
-         // x and y coordinate to see if the user has clicked on a possible move tile
-         for (int i = 0; i < movesToCompare.size(); i++) {
-            if (selectedTile.x == movesToCompare.get(i).x && selectedTile.y == movesToCompare.get(i).y) {
-               board.movePiece(pieceToMove, selectedTile);
-               //updates the chessboard with the new FEN string after the move
-               // otherwise would be waiting on the next click
-               playScreen.updatePlayScreen(board.getForsythEdwardsBoardNotation());
-            }
-         }
-         movesToCompare.clear();
-         firstPieceClick = true;
-      }
-
+      game.move(row, column);
+      playScreen.updatePlayScreen(game.gameNotation());
    }
 
    public void toMenu() {
@@ -135,9 +91,10 @@ public class Interface extends Application {
    }
 
    public void toNewChessboard(String whiteName, String blackName) {
+      game = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "", false);
       playScreen.setWhitePlayerName(whiteName);
       playScreen.setBlackPlayerName(blackName);
-      playScreen.updatePlayScreen(board.getForsythEdwardsBoardNotation());
+      playScreen.updatePlayScreen(game.gameNotation());
       primaryStage.setScene(playScreen.getScene());
    }
 

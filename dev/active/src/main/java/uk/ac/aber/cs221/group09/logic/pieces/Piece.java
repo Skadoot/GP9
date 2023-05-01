@@ -94,6 +94,9 @@ public class Piece {
      * @param position the position of the move.
      */
     public void addMove(Vector2 position) {
+        if(possibleMoves.contains(position)) {
+            return;
+        }
         possibleMoves.add(position);
     }
 
@@ -131,5 +134,9 @@ public class Piece {
      */
     public void setHasMoved(boolean hasMoved) {
         this.hasMoved = hasMoved;
+    }
+
+    public void clearMoves() {
+        possibleMoves.clear();
     }
 }

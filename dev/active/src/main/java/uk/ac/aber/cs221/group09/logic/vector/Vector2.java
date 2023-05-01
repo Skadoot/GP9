@@ -46,4 +46,13 @@ public class Vector2 {
     public String getVector2AsBoardNotation() {
         return boardNotation[x] + Integer.toString(y);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Vector2)) {
+            return false;
+        }
+        Vector2 compare = (Vector2) o;
+        return this.x == compare.x && this.y == compare.y;
+    }
 }

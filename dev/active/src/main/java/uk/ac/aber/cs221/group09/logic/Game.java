@@ -33,6 +33,8 @@ public class Game {
     private int moveCount;
 
     public Log log;
+    private Vector2 selectedPiece;
+    private boolean isMovesCalculated = false;
 
     /**
      * Constructor for game.
@@ -43,58 +45,62 @@ public class Game {
         if (!load) {
             gameBoard = new Board(boardState);
             this.log = new Log(fileName, false);
-            move();
         } else {
             gameBoard = new Board(boardState);
             this.log = new Log(fileName, true);
-            move();
         }
+        this.selectedPiece = new Vector2();
     }
 
     /**
      * A method which outlines the general loop of the game.
      */
-    public void move() {
+    public void move(int row, int column) {
         //determine the player making the current move.
         determineCurrentPlayer();
 
         //calculate the legal moves for the board. with the current player.
         MoveCalculator moveCalculator = new MoveCalculator(attackingPlayer, gameBoard);
 
-        moveCalculator.findLegalMovesForPlayer(true);
-        moveCalculator.findLegalMovesForPlayer(false);
+        if (!isMovesCalculated) {
+            moveCalculator.findLegalMovesForPlayer(true);
+            moveCalculator.findLegalMovesForPlayer(false);
+            moveCalculator.printCheckMap();
+
+            isMovesCalculated = true;
+
+            System.out.println("is " + attackingPlayer + " in check = " + moveCalculator.isPlayerInCheck());
+        }
 
         //print the board to the console.
         gameBoard.printBoardStateToConsole();
-        moveCalculator.printCheckMap();
-        System.out.println("is " + attackingPlayer + " in check = " + moveCalculator.isPlayerInCheck());
+
+
 
         //wait for the UI to give us a selected piece, here we would set it to be the coordinate that the ui passes back to us.
-        Vector2 selectedBoardCoordinate = new Vector2();
-        while (gameBoard.getPiece(selectedBoardCoordinate) == null || gameBoard.getPiece(selectedBoardCoordinate).getColor() != attackingPlayer) {
-            selectedBoardCoordinate = new Vector2();
+        Vector2 selectedBoardCoordinate = new Vector2(column, row);
+
+
+
+        //Get a list of all the legal moves for the chessboard
+        ArrayList<Vector2> currentLegalMoves = gameBoard.getPiece(selectedPiece).getPossibleMoves();
+
+        if(currentLegalMoves.contains(selectedBoardCoordinate) && gameBoard.getPiece(selectedPiece).getColor() == attackingPlayer) {
+            System.out.println("Moved piece.");
+            gameBoard.movePiece(gameBoard.getPiece(selectedPiece), selectedBoardCoordinate);
+            selectedPiece = selectedBoardCoordinate;
+            moveCount += (attackingPlayer == 'b') ? 1 : 0;
+            isMovesCalculated = false;
+            gameBoard.clearMoves();
+        } else if (gameBoard.getPiece(selectedBoardCoordinate).getColor() == attackingPlayer) {
+            System.out.println("Did not find legal move.");
+            selectedPiece = selectedBoardCoordinate;
         }
 
-        //if a piece is selected return its legal moves to the UI. then the UI draws its legal moves.
-        ArrayList<Vector2> selectedPieceLegalMoves = gameBoard.getPiece(selectedBoardCoordinate).getPossibleMoves();
+    }
 
-        //UI waits for the player to select a move square.
-        Vector2 moveSquare = new Vector2();
-        boolean legalMoveMade = false;
-
-        //loop while a legal move has not been selected
-        while (!legalMoveMade) {
-            moveSquare = new Vector2();
-
-            //if the selected piece's legal move list contains the selected move square a legal move has been selected.
-            if (gameBoard.getPiece(selectedBoardCoordinate).getPossibleMoves().contains(moveSquare)) {
-                legalMoveMade = true;
-                gameBoard.movePiece(gameBoard.getPiece(selectedBoardCoordinate), moveSquare);
-                moveCount += (attackingPlayer == 'b') ? 1 : 0;
-            } else if (gameBoard.getPiece(moveSquare).getColor() == attackingPlayer) {
-                selectedBoardCoordinate = gameBoard.getPiece(moveSquare).getPosition();
-            }
-        }
+    public String gameNotation() {
+        return gameBoard.getForsythEdwardsBoardNotation();
     }
 
     /**
@@ -105,6 +111,4 @@ public class Game {
         //check the board state string to find which player's turn it is.
         attackingPlayer = gameBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
     }
-
-
 }

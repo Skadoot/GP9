@@ -3,7 +3,6 @@
  *
  * Copyright (c) 2023 Aberystywth University
  * All rights reserved
- *
  */
 
 package uk.ac.aber.cs221.group09.graphics;
@@ -54,7 +53,7 @@ public class TileGraphicsLoader {
 
    private void setGraphics() {
       //Initialise the HashMap.
-      graphicsMap = new HashMap<Character, Image>();
+      graphicsMap = new HashMap<>();
 
       //Add an image to every char that represents a piece in the Forsyth Edwards Notation
       //The path is the distance from /resources file.

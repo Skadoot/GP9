@@ -84,7 +84,6 @@ public class Game {
 
         //Get a list of all the legal moves for the chessboard
         ArrayList<Vector2> currentLegalMoves = gameBoard.getPiece(selectedPiece).getPossibleMoves();
-
         if(currentLegalMoves.contains(selectedBoardCoordinate) && gameBoard.getPiece(selectedPiece).getColor() == attackingPlayer) {
             System.out.println("Moved piece.");
             gameBoard.movePiece(gameBoard.getPiece(selectedPiece), selectedBoardCoordinate);
@@ -92,11 +91,13 @@ public class Game {
             moveCount += (attackingPlayer == 'b') ? 1 : 0;
             isMovesCalculated = false;
             gameBoard.clearMoves();
-        } else if (gameBoard.getPiece(selectedBoardCoordinate).getColor() == attackingPlayer) {
-            System.out.println("Did not find legal move.");
-            selectedPiece = selectedBoardCoordinate;
-        }
 
+        } else if (gameBoard.getPiece(selectedBoardCoordinate) != null) {
+            if (gameBoard.getPiece(selectedBoardCoordinate).getColor() == attackingPlayer) {
+                System.out.println("Did not find legal move.");
+                selectedPiece = selectedBoardCoordinate;
+            }
+        }
     }
 
     public String gameNotation() {

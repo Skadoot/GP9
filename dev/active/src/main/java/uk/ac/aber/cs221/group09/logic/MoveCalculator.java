@@ -400,9 +400,11 @@ public class MoveCalculator {
                 break;
             }
         }
+
         if (isForCheckMap) {
             return;
         }
+
         System.out.print("legal moves for " + king.getColor() + " " + "king" + " at " + king.getPosition().getVector2AsBoardNotation());
         System.out.print(" | ");
         for (Vector2 square : king.getPossibleMoves()) {
@@ -433,26 +435,26 @@ public class MoveCalculator {
         //otherwise, loop through the string.
         for (int i = 0; i < castlingNotation.length(); i++) {
             //if a 'k' is found.
-            if (castlingNotation.charAt(i) == 'k') {
+            if (castlingNotation.charAt(i) == 'k' || castlingNotation.charAt(i) == 'K') {
                 //check if its uppercase, if so then it is referring to the ability for white to castle on the king side.
                 if (Character.isUpperCase(castlingNotation.charAt(i))) {
+                    //white can castle king side.
                     canWhiteCastleKingSide = true;
-                    continue;
+                } else {
+                    //black can castle king side.
+                    canBlackCastleKingSide = true;
                 }
-
-                //here it must be a black king.
-                canBlackCastleKingSide = true;
             }
             //if a 'q' is found.
-            else if (castlingNotation.charAt(i) == 'q') {
+            else if (castlingNotation.charAt(i) == 'q' || castlingNotation.charAt(i) == 'Q') {
                 //check if its uppercase, if so then it is referring to the ability for white to castle on the queen side.
                 if (Character.isUpperCase(castlingNotation.charAt(i))) {
+                    //white can castle queen side.
                     canWhiteCastleQueenSide = true;
-                    continue;
+                } else {
+                    //black can castle queen side.
+                    canBlackCastleQueenSide = true;
                 }
-
-                //here it must be a black queen.
-                canBlackCastleQueenSide = true;
             }
         }
     }
@@ -460,7 +462,7 @@ public class MoveCalculator {
     /**
      * A method to determine if a player can castle king side.
      * <p>
-     * param player, the players color.
+     * @param player    the players color.
      */
     private boolean canPlayerCastleKingSide(char player) {
         if (player == 'w') {
@@ -483,7 +485,6 @@ public class MoveCalculator {
         }
     }
 
-
     /**
      * A method which adds a single move to the legal move arrayList of a piece.
      *
@@ -502,8 +503,9 @@ public class MoveCalculator {
     /**
      * this is a method that determines if a move would leave the player in check or not.
      *
-     * @param piece the piece to move.
-     * @param move  the move to assess.
+     * @param piece         the piece to move.
+     * @param move          the move to assess.
+     *
      * @return a boolean which determines if the move will leave the player in check or not.
      */
     private boolean isMoveSafe(Piece piece, Vector2 move) {

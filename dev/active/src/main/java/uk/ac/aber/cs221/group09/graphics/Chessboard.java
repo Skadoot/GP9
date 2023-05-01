@@ -77,14 +77,14 @@ public class Chessboard {
                 if (check % 2 == 1) {
 
                     //Create a new black tile. Add its button to the gridpane and the class to the 2d array
-                    Tile tile = new Tile(7-row, column, false, this);
-                    this.tiles[7-row][column] = tile;
+                    Tile tile = new Tile(column, row, false, this);
+                    this.tiles[column][row] = tile;
                     this.chessBoard.add(tile.getButton(), column, row);
                 } else {
 
                     //Create a new white tile. Add its button to the gridpane and the class to the 2d array
-                    Tile tile = new Tile(7-row, column, true, this);
-                    this.tiles[7-row][column] = tile;
+                    Tile tile = new Tile(column, row, true, this);
+                    this.tiles[column][row] = tile;
                     this.chessBoard.add(tile.getButton(), column, row);
                 }
             }
@@ -135,7 +135,7 @@ public class Chessboard {
 
         //sets starting positions to access the array from.
         int column = 0;
-        int row = 7;
+        int row = 0;
 
         //iterate through the Forsyth Edwards Notation string.
         for (int readHead = 0; readHead < boardNotation.length(); readHead++) {
@@ -147,7 +147,7 @@ public class Chessboard {
             //if we have arrived at a '/', this is the marker for going down a rank, so we decrement the rank and reset the file to the first file.
             if (boardNotation.charAt(readHead) == '/') {
                 column = 0;
-                row--;
+                row++;
                 continue;
             }
 
@@ -159,7 +159,7 @@ public class Chessboard {
 
 
             //if the character representing the piece is upper case then it is a white piece, else it is a black piece.
-            tiles[row][column].setGraphics(graphicsLoader.fetchTilePieceGraphic(boardNotation.charAt(readHead)));
+            tiles[column][row].setGraphics(graphicsLoader.fetchTilePieceGraphic(boardNotation.charAt(readHead)));
             //increment the file for the next position on the board.
             column++;
         }
@@ -197,13 +197,14 @@ public class Chessboard {
             testChessBoard[1][i] = "BP";
             testChessBoard[6][i] = "WP";
         }
-        if (testChessBoard[selectedRow][selectedColumn] == "WP") {
-            pawnMoves.add(selectedRow - 1);
-            pawnMoves.add(selectedColumn);
-        } else if (testChessBoard[selectedRow][selectedColumn] == "BP") {
-            pawnMoves.add(selectedRow + 1);
-            pawnMoves.add(selectedColumn);
+        if (testChessBoard[selectedColumn][selectedRow] == "WP") {
+            pawnMoves.add(selectedRow);
+            pawnMoves.add(selectedColumn - 1);
+        } else if (testChessBoard[selectedColumn][selectedRow] == "BP") {
+            pawnMoves.add(selectedRow);
+            pawnMoves.add(selectedColumn + 1);
         }
+        System.out.println(testChessBoard[selectedColumn][selectedRow]);
         return pawnMoves;
     }
 

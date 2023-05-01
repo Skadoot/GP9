@@ -185,9 +185,6 @@ public class PlayScreen {
         chessboard.updateBoard(boardNotation);
     }
 
-    public void highlightPossibleMoves(ArrayList<Vector2> moves){
-        chessboard.highlightValidTiles(moves);
-    }
 
     /**
      * Function fired when a draw is offered. A screen will show offering a draw to the next player. Game will end in
@@ -227,5 +224,9 @@ public class PlayScreen {
     public void areYouSure() {
         //when the player wants to quit, crate a box that double checks.
         //Make aware that the game will be saved and will be playable again
+    }
+
+    public void highlightTiles(ArrayList<int[]> vTiles, ArrayList<int[]> checkTiles) {
+        chessboard.highlightTiles(vTiles, checkTiles);
     }
 }

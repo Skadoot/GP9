@@ -37,7 +37,6 @@ public class Interface extends Application {
    private StartScreen startScreen;
    private LoadScreen loadScreen;
    private Piece pieceToMove;
-   boolean firstPieceClick = true;
    private Game game;
    ArrayList<Vector2> movesToCompare;
 
@@ -73,9 +72,9 @@ public class Interface extends Application {
     * @param row
     */
    public void click(int column, int row) {
-
       game.move(row, column);
       playScreen.updatePlayScreen(game.gameNotation());
+      playScreen.highlightTiles(game.validTiles(), game.checkedKing());
    }
 
    public void toMenu() {
@@ -115,5 +114,4 @@ public class Interface extends Application {
       loadScreen.setLabel("Unfinished Games:");
       primaryStage.setScene(loadScreen.getScene());
    }
-
 }

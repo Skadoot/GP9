@@ -7,6 +7,7 @@
 
 package uk.ac.aber.cs221.group09.logic;
 
+import uk.ac.aber.cs221.group09.logic.pieces.Piece;
 import uk.ac.aber.cs221.group09.logic.vector.Vector2;
 
 import java.util.ArrayList;
@@ -62,6 +63,7 @@ public class Game {
         //calculate the legal moves for the board. with the current player.
         MoveCalculator moveCalculator = new MoveCalculator(attackingPlayer, gameBoard);
 
+        //If the moves have been calculated this turn, don't calculate them again.
         if (!isMovesCalculated) {
             moveCalculator.findLegalMovesForPlayer(true);
             moveCalculator.findLegalMovesForPlayer(false);
@@ -85,6 +87,7 @@ public class Game {
         //Get a list of all the legal moves for the chessboard
         ArrayList<Vector2> currentLegalMoves = gameBoard.getPiece(selectedPiece).getPossibleMoves();
 
+        //Check the selected coordinates are a legal move and the current selected piece is the attacking player's piece.
         if(currentLegalMoves.contains(selectedBoardCoordinate) && gameBoard.getPiece(selectedPiece).getColor() == attackingPlayer) {
             System.out.println("Moved piece.");
             gameBoard.movePiece(gameBoard.getPiece(selectedPiece), selectedBoardCoordinate);
@@ -92,6 +95,8 @@ public class Game {
             moveCount += (attackingPlayer == 'b') ? 1 : 0;
             isMovesCalculated = false;
             gameBoard.clearMoves();
+
+            //Otherwise if the newly selected coordinates are of the attacking player's type, set it as the new selected piece.
         } else if (gameBoard.getPiece(selectedBoardCoordinate).getColor() == attackingPlayer) {
             System.out.println("Did not find legal move.");
             selectedPiece = selectedBoardCoordinate;
@@ -110,5 +115,40 @@ public class Game {
     private void determineCurrentPlayer() {
         //check the board state string to find which player's turn it is.
         attackingPlayer = gameBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
+    }
+
+    public ArrayList<int[]> validTiles() {
+        Piece piece = gameBoard.getPiece(selectedPiece);
+        ArrayList<int[]> res = new ArrayList<int[]>();
+        if(piece.getColor() != attackingPlayer) {
+            return res;
+        }
+        ArrayList<Vector2> tiles = piece.getPossibleMoves();
+        for (Vector2 vTiles: tiles) {
+            int coords[] = new int[2];
+            coords[0] = vTiles.y;
+            coords[1] = vTiles.x;
+            res.add(coords);
+        }
+        return res;
+    }
+
+    public ArrayList<int[]> checkedKing() {
+        ArrayList<int[]> res = new ArrayList<int[]>();
+        MoveCalculator checkCheck = new MoveCalculator(attackingPlayer, gameBoard);
+        if (checkCheck.isPlayerInCheck()) {
+            int[] coords = new int[2];
+            if(attackingPlayer == 'w') {
+                Vector2 wKPos = gameBoard.getWhiteKingPosition();
+                coords[0] = wKPos.y;
+                coords[1] = wKPos.x;
+            } else {
+                Vector2 wKPos = gameBoard.getBlackKingPosition();
+                coords[0] = wKPos.y;
+                coords[1] = wKPos.x;
+            }
+            res.add(coords);
+        }
+        return res;
     }
 }

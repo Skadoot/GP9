@@ -81,14 +81,14 @@ public class Chessboard {
                 if (check % 2 == 1) {
 
                     //Create a new black tile. Add its button to the gridpane and the class to the 2d array
-                    Tile tile = new Tile(column, row, false, this);
-                    this.tiles[column][row] = tile;
+                    Tile tile = new Tile(7-row, column, false, this);
+                    this.tiles[7-row][column] = tile;
                     this.chessBoard.add(tile.getButton(), column, row);
                 } else {
 
                     //Create a new white tile. Add its button to the gridpane and the class to the 2d array
-                    Tile tile = new Tile(column, row, true, this);
-                    this.tiles[column][row] = tile;
+                    Tile tile = new Tile(7-row, column, true, this);
+                    this.tiles[7-row][column] = tile;
                     this.chessBoard.add(tile.getButton(), column, row);
                 }
             }
@@ -137,7 +137,7 @@ public class Chessboard {
 
         //sets starting positions to access the array from.
         int column = 0;
-        int row = 0;
+        int row = 7;
 
         //iterate through the Forsyth Edwards Notation string.
         for (int readHead = 0; readHead < boardNotation.length(); readHead++) {
@@ -149,7 +149,7 @@ public class Chessboard {
             //if we have arrived at a '/', this is the marker for going down a rank, so we decrement the rank and reset the file to the first file.
             if (boardNotation.charAt(readHead) == '/') {
                 column = 0;
-                row++;
+                row--;
                 continue;
             }
 
@@ -161,7 +161,7 @@ public class Chessboard {
 
 
             //if the character representing the piece is upper case then it is a white piece, else it is a black piece.
-            tiles[column][row].setGraphics(graphicsLoader.fetchTilePieceGraphic(boardNotation.charAt(readHead)));
+            tiles[row][column].setGraphics(graphicsLoader.fetchTilePieceGraphic(boardNotation.charAt(readHead)));
             //increment the file for the next position on the board.
             column++;
         }
@@ -181,7 +181,36 @@ public class Chessboard {
         //Helper function on Attacking tiles
     }
 
+    private String[][] testChessBoard;
+
+    /**
+     * A function to test the funcionatlity of highlighting tiles. Given a position that would hold a pawn in
+     * its default start board state, if clicked it should display valid moves from that position.
+     * @param selectedColumn - The file or vertical column of the pressed tile.
+     * @param selectedRow - The rank or horizontal row of the pressed tile.
+     * @return A string array containing the char numbers of the coordinates to highlight.
+     */
+    private ArrayList tempCalcValidPawn(int selectedColumn, int selectedRow) {
+        testChessBoard = new String[8][8];
+        ArrayList pawnMoves = new ArrayList();
+        pawnMoves.clear();
+        //Assigning Pawns for both players
+        for (int i = 0; i < 8; i++) {
+            testChessBoard[1][i] = "BP";
+            testChessBoard[6][i] = "WP";
+        }
+        if (testChessBoard[selectedRow][selectedColumn] == "WP") {
+            pawnMoves.add(selectedRow - 1);
+            pawnMoves.add(selectedColumn);
+        } else if (testChessBoard[selectedRow][selectedColumn] == "BP") {
+            pawnMoves.add(selectedRow + 1);
+            pawnMoves.add(selectedColumn);
+        }
+        return pawnMoves;
+    }
+
     public void highlightValidTiles(ArrayList<Vector2> validT) {
+
         //go through list of valid tile coordinates and
         //tiles[0][0].setStyleClass("valid-tile");
         for(int i =0; i< validT.size();i++){

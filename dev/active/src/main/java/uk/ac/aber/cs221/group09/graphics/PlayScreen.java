@@ -16,10 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import uk.ac.aber.cs221.group09.logic.vector.Vector2;
 
@@ -116,14 +113,38 @@ public class PlayScreen {
         blackContainer.setAlignment(Pos.CENTER);
         layout.add(blackContainer, 5, 0, 8, 1);
 
-/*
-        VBox controls = new VBox();
-        Text controlsFill = new Text("Controls");
-        controls.setStyle("-fx-border-color: BLACK");
-        controls.getChildren().add(controlsFill);
 
-        layout.add(controls, 0, 0, 4,8);
-*/
+
+        //Player Dashboard.
+        VBox playerArea = new VBox();
+        //ImageView to show turn tracker
+        HBox nameDisplay = new HBox();
+        nameDisplay.setAlignment(Pos.CENTER);
+        playerArea.getChildren().add(nameDisplay);
+
+
+
+        Text playerName = new Text("Player's turn");
+        nameDisplay.getChildren().add(playerName);
+
+        HBox playerButtonBar = new HBox();
+        Button resign = new Button("Resign");
+        Button offerDraw = new Button("Offer Draw");
+
+        playerButtonBar.getChildren().add(resign);
+        playerButtonBar.getChildren().add(offerDraw);
+
+        playerArea.getChildren().add(playerButtonBar);
+
+
+        playerArea.setStyle("-fx-border-color: BLACK");
+
+        StackPane playerDashboard = new StackPane(playerArea);
+
+        StackPane.setAlignment(playerArea, Pos.CENTER);
+
+        layout.add(playerDashboard, 0, 2, 4,6);
+
 
 
         HBox log = new HBox();

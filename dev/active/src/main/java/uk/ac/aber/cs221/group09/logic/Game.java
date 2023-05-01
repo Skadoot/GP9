@@ -105,6 +105,4 @@ public class Game {
         //check the board state string to find which player's turn it is.
         attackingPlayer = gameBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
     }
-
-
 }

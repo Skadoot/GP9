@@ -107,6 +107,7 @@ public class PlayerNameScreen {
         anInterface.toMenu();
     }
 
+    //might be worth asking user for the name of the game in here as well. Will need this for logfile - jat92
     private void forwardsToNewGame(String blackN, String whiteN) {
         anInterface.toNewChessboard(whiteN, blackN);
     }

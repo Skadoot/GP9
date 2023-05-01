@@ -184,7 +184,7 @@ public class PlayScreen {
     public void updatePlayScreen(String boardNotation) {
         chessboard.updateBoard(boardNotation);
     }
-    
+
     public void highlightPossibleMoves(ArrayList<Vector2> moves){
         chessboard.highlightValidTiles(moves);
     }

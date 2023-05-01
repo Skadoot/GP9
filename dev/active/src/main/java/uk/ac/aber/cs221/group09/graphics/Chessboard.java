@@ -67,7 +67,7 @@ public class Chessboard {
         this.chessBoard.setPadding(new Insets(0, 0, 0, 0));
 
 
-        //A simple numerical variable used to itterate black and white tile placement one after another later in the function
+        //A simple numerical variable used to iterate black and white tile placement one after another later in the function
         int check = 0;
 
         for (int row = 0; row < 8; row++) {

@@ -1,0 +1,99 @@
+Project: Group Project 09
+Meeting: Weekly Project Meeting
+Persons present: All project members
+Place and date of meeting: 0.30 IBERS, Friday 27th of April 2023
+Circulation list: All project members, plus project manager
+Author: Tyler Lewis
+Date of minutes: 27/04/23
+Version: 1.0
+
+Team:
+- gwh18: Gwion Hughes (Team Leader)
+- jat92: Jack Thompson (Deputy Leader)
+- tyw1 : Tyler Lewis (QA Manager)
+- seh25: Sean Hobson (Deputy QA)
+- ckc2 : Craymon Chan
+- cts12: Ciaran Smith
+- jib16: Jim Brown
+- shr27: Shaun Royle
+
+=================
+ Matters arising
+=================
+
+1. (Recurring) Ensure all blogs are uploaded by 5:00pm on Thursdays
+Assigned to: All
+Status: COMPLETE
+Notes: Not very good.
+
+2. (Recurring) Review time-spent for each member this week, update spreadsheet.
+Assigned to: GWH18
+Status: COMPLETE
+Notes: All on track
+
+3. General implementation (back-end, non-priority task)
+Assigned to: SHR27, GWH18
+Status: ONGOING
+Notes: Checkmate function
+
+4. Prep screens for back-end logic
+Assigned to: CTS12, GWH18
+Status: ONGOING
+Notes: Resign/draw button. Winning screen. Loading screen.
+
+5. [PRIORITY TASK] Commenting code (front-end)
+Assigned to: GWH18, CTS12
+Status: ONGOING
+Notes: Mostly done
+
+6. Work on connecting front and back end
+Assigned to: JAT92
+Status: ONGOING
+Notes: Work started
+
+7. Work on resolving issues found in JUnit - gitlab issues
+Assigned to: SEH25, CKC2, JIB16, SHR27
+Status: ONGOING
+Notes: List current issues on GitLab
+
+8. Front end JUnit tests
+Assigned to: GWH18, JIB16, CKC2
+Status: CANCELLED
+Notes: N/A
+
+9. JUnit walkthrough wednesday
+Assigned to: JIB16, CKC2
+Status: COMPLETE
+Notes: N/A
+
+10. Design Spec Feedback
+Assigned to: TYW1, GWH18, SHR27
+Status: ONGOING
+Notes: Non-priority
+
+=================
+ New business
+=================
+
+11. Room plans for ITW
+Assigned to: N/A
+
+12. Making JUnit tests for integration
+Assigned to: JIB16, CKC2, SEH25
+
+13. Integration & Testing
+Assigned to: JIB16, CKC2, SEH25
+
+14. Commenting JUnit tests
+Assigned to: JIB16, CKC2, SEH25
+
+15. Give tyler stuff to put into src/
+Assigned to: GWH18, SHR27
+
+16. Change indent count
+Assigned to: TYW1
+
+=================
+ AOB
+=================
+

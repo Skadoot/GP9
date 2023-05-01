@@ -564,18 +564,43 @@ public class MoveCalculator {
                return true;
             }
          }
-      }
-      return false;
-   }
+        }
+        return false;
+    }
 
-   /**
-    * A method which prints out to the console every square which is currently being attacked by the opponent's pieces.
-    */
-   public void printCheckMap() {
-      System.out.print("unsafe squares for player " + currentPlayer + " : ");
-      for (Vector2 attackedSquare : checkMap) {
-         System.out.print(attackedSquare.getVector2AsBoardNotation() + " ");
-      }
-      System.out.println();
-   }
+    /**
+     * a method which determines if the player is in checkmate in the board position or not.
+     * the player that we want to check if they are in check or not.
+     *
+     * @return a boolean which determines if the player is in checkmate in the board position or not.
+     */
+    public boolean isPlayerInCheckMate() {
+        //check if there are any moves.
+        boolean playerHasMoves = false;
+        for (int rank = 0; rank < 8; rank++) {
+            for (int file = 0; file < 8; file++) {
+                if (!board.getPiece(new Vector2(rank, file)).getPossibleMoves().isEmpty()) {
+                    playerHasMoves = true;
+                }
+            }
+        }
+
+        //if the player is in check and there are no moves, return true for checkmate.
+        if (isPlayerInCheck() && !playerHasMoves) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * A method which prints out to the console every square which is currently being attacked by the opponent's pieces.
+     */
+    public void printCheckMap() {
+        System.out.print("unsafe squares for player " + currentPlayer + " : ");
+        for (Vector2 attackedSquare : checkMap) {
+            System.out.print(attackedSquare.getVector2AsBoardNotation() + " ");
+        }
+        System.out.println();
+    }
+
 }

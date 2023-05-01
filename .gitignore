@@ -225,3 +225,9 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# GP9 custom ignores
+/.idea/vcs.xml
+/.idea/jarRepositories.xml
+/.idea/encodings.xml
+/.idea/compiler.xml

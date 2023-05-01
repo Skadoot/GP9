@@ -203,13 +203,13 @@ public class Board {
             //find out which rook needs to move, and to where.
             if (move.x > king.getPosition().x + 1) {
                 //get the king side rook if the king is moving to the right.
-                rook = getPiece(new Vector2(0, 7));
+                rook = getPiece(new Vector2(7, king.getPosition().y));
 
                 //get the new rook position.
                 newRookPosition = new Vector2(king.getPosition().x + 1, king.getPosition().y);
             } else {
                 //get the queen side rook if the king is moving to the left.
-                rook = getPiece(new Vector2(0, 0));
+                rook = getPiece(new Vector2(0, king.getPosition().y));
 
                 //get the new rook position.
                 newRookPosition = new Vector2(king.getPosition().x - 1, king.getPosition().y);

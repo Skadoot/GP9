@@ -17,7 +17,7 @@ import java.io.PrintStream;
 /**
  * MoveCalculatorTest - Testing class for the MoveCalculator Class
  * <p>
- * This class stores the testing related to the possible moves for pieces on the board
+ * This class stores the testing related to calculating the possible moves for pieces on the board
  *
  * @author Craymon Chan
  * @author Jim Brown
@@ -28,17 +28,19 @@ import java.io.PrintStream;
 
 class MoveCalculatorTest {
 
+    /**
+     * Methods to catch console outputs as a variable for comparison purposes
+     */
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-
     @BeforeAll
     public void setUpStream() {
         System.setOut(new PrintStream(outContent));
     }
-
     @AfterEach
     public void restoreStream() {
         System.setOut(null);
     }
+
 
     private static Board testBoard;
     private static MoveCalculator moveCalculator;
@@ -90,15 +92,16 @@ class MoveCalculatorTest {
     /**
      * A method to test whether all legal moves for the pieces are eligible
      *
-     * @param board the setup of an invalid chessboard
-     * @param MoveCalculator determine player's turn and inserting Board to compare board status
+     * @param board the setup of a chessboard with the black king in check
+     * @param MoveCalculator determine player's possible moves to avoid the check
      */
     public void testFindLegalMoves() {
-        //setup the board as invalid chessboard
+        //setup the board chessboard with the black king in check
         testBoard = new Board("rnbqkbnr/ppppp1pp/5p2/7Q/4P3/8/PPPP1PPP/RNB1KBNR b KQkq - 1 2");
         moveCalculator = new MoveCalculator('b', testBoard);
 
-        //declare the legal moves for the given player as false
+        //calculate the legal moves for the current player
+        moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
         //Checking whether legal moves for the given player is returned correctly
@@ -121,14 +124,23 @@ class MoveCalculatorTest {
     }
 
     @Test
+    //FR7 Tests
+    /**
+     * A method to test whether any moves are available in checkmate
+     *
+     * @param board the setup of a checkmate board state
+     * @param MoveCalculator determine player's available moves
+     */
     public void testCheckmate(){
+        //setup the chessboard with white in checkmate
         testBoard = new Board("rnb1kbnr/pppp1ppp/4p3/8/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 0 1");
         moveCalculator = new MoveCalculator('w', testBoard);
 
+        //calculate legal moves for white
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-
+        //check that white has no legal moves
         Assertions.assertEquals("legal moves for w rook at a0 | \r\n" +
               "legal moves for w knight at b0 | \r\n" +
               "legal moves for w bishop at c0 | \r\n" +

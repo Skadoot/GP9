@@ -63,47 +63,6 @@ class BoardTest {
     }
 
     @Test
-    //FR2 Tests
-    public void testGetPieceColor() {
-        //create a new board
-        Board testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
-
-        //Get the color of a specific chess piece
-        Vector2 testPosition = new Vector2(0, 0);
-
-        //check if the expected piece color is same as actual piece color
-        Assertions.assertEquals('w',testBoard.getPiece(testPosition).getColor());
-    }
-
-
-    @Test
-    //FR2 Tests
-    public void testGetPieceType() {
-        //create a new board
-        Board testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
-
-        //Get the type of a specific chess piece
-        Vector2 testPosition = new Vector2(1, 0);
-
-        //check if the expected piece type is the same as actual piece type
-        Assertions.assertEquals('n',testBoard.getPiece(testPosition).getType());
-    }
-
-    @Test
-    //FR2 Tests
-    public void testGetPiecePosition() {
-        //create a new board
-        Board testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
-
-        //Get the position of a specific chess piece
-        Vector2 testPosition = new Vector2(5, 0);
-
-        //check if the expected piece position is the same as actual piece position
-        System.out.println(testBoard.getPiece(testPosition).getPosition().x);
-        System.out.println(testBoard.getPiece(testPosition).getPosition().y);
-    }
-
-    @Test
     public void testGetPiecePossibleMoves() {
         //create a new board
         Board testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
@@ -114,40 +73,6 @@ class BoardTest {
 
         //check if the piece possible moves are returned correctly
         Assertions.assertEquals('n',testBoard.getPiece(testPosition).getType());
-    }
-
-    @Test
-    public void testGetWhiteKingPosition() {
-        // Create a new board with a white king
-        Board testBoard = new Board("rnbqkbnr/pppp1ppp/4p3/8/8/4P3/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
-
-        // initial position of white king and sets a test piece to move
-        Vector2 testPosition = new Vector2(4, 0);
-        Piece pieceToMove = testBoard.getPiece(testPosition);
-
-        // Move king into another position
-        Vector2 testPosition2 = new Vector2(4,1);
-        testBoard.movePiece(pieceToMove, testPosition2);
-
-        //check if the white king's position is returned correctly
-        Assertions.assertEquals(testPosition2,testBoard.getWhiteKingPosition());
-    }
-
-    @Test
-    public void testGetBlackKingPosition() {
-        // Create a new board with a black king
-        Board testBoard = new Board("rnbqkbnr/pppp1ppp/4p3/8/8/4P3/PPPPKPPP/RNBQ1BNR b kq - 0 1");
-
-        // initial position of black king and sets a test piece to move
-        Vector2 testPosition = new Vector2(4, 7);
-        Piece pieceToMove = testBoard.getPiece(testPosition);
-
-        // Move king into another position
-        Vector2 testPosition2 = new Vector2(4,6);
-        testBoard.movePiece(pieceToMove, testPosition2);
-
-        //check if the black king's position is returned correctly
-        Assertions.assertEquals(testPosition2,testBoard.getBlackKingPosition());
     }
 
     @Test
@@ -264,7 +189,7 @@ class BoardTest {
 
     @Test
     //FR5 Tests
-    public void testCastlingLegal(){
+    public void testCastling(){
         //create a new board
         testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQK2R w KQkq - 0 1");
 
@@ -301,12 +226,38 @@ class BoardTest {
 
     @Test
     public void testCastlingIllegal(){
+        //create a new board
+        testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 
-    }
+        //initializing an attacking player
+        char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
+        MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
 
-    @Test
-    public void testCheckMate(){
+        //calculates all the legal moves for the given player
+        moveCalculator.findLegalMovesForPlayer(true);
+        moveCalculator.findLegalMovesForPlayer(false);
 
+        //Sets up a king piece and a rook piece to move
+        Piece pieceToMove = testBoard.getPiece(new Vector2(4,0));
+        Piece pieceToMove2 = testBoard.getPiece(new Vector2(7,0));
+
+        //Attempt to move pieces into test positions to check whether the castling function is working correctly
+        Vector2 testPosition = new Vector2(6, 0);
+        Vector2 testPosition2 = new Vector2(5,0);
+        for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+            if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
+            {
+                testBoard.movePiece(pieceToMove, testPosition);
+            }
+        }
+        for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+            if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
+            {
+                testBoard.movePiece(pieceToMove2, testPosition2);
+            }
+        }
+        //check if the expected board is the same as actual board - the pieces should not have moved
+        Assertions.assertEquals("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
     }
     @Test
     //FR5 Tests

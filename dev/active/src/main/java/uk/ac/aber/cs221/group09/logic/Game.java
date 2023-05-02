@@ -130,10 +130,12 @@ public class Game {
 
         isMovesCalculated = true;
 
+        System.out.print("\n");
+
         moveCalculator.printCheckMap();
 
         System.out.println("\nis " + attackingPlayer + " in check = " + moveCalculator.isPlayerInCheck());
-        System.out.println("\nis " + attackingPlayer + " in checkmate = " + moveCalculator.isPlayerInCheckMate());
+        System.out.println("is " + attackingPlayer + " in checkmate = " + moveCalculator.isPlayerInCheckMate());
 
         System.out.println("\n" + gameBoard.getForsythEdwardsBoardNotation() + "\n");
     }

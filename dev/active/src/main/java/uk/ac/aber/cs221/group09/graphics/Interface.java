@@ -89,7 +89,7 @@ public class Interface extends Application {
    public int currentTurn = -1;
    boolean startedViewing = false;
 
-   public String replayFEN(boolean reverse, int moveTraversal) {
+   public String replayFEN(boolean reverse) {
       if (reverse) {
          if (!startedViewing) {
                currentTurn = (getTurnNumber() - 2);

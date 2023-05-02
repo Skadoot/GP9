@@ -147,12 +147,12 @@ public class PlayScreen {
       //adds a button for looking through previous moves
       Button previousB = new Button("<-");
       previousB.setOnAction(new EventHandler<ActionEvent>() {
-         int clicks = 0;
+
 
          @Override
          public void handle(ActionEvent actionEvent) {
-            clicks++;
-            chessboard.updateBoard(anInterface.replayFEN(true, clicks));
+
+            chessboard.updateBoard(anInterface.replayFEN(true));
 
          }
       });
@@ -162,13 +162,10 @@ public class PlayScreen {
       Button nextB = new Button("->");
 
       nextB.setOnAction(new EventHandler<ActionEvent>() {
-         int clicks = 0;
-
          @Override
          public void handle(ActionEvent actionEvent) {
-            clicks++;
 
-            chessboard.updateBoard(anInterface.replayFEN(false, clicks));
+            chessboard.updateBoard(anInterface.replayFEN(false));
          }
       });
 

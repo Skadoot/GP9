@@ -1,8 +1,8 @@
 /*
  * @(GP9) TileGraphicsLoader.java 1.0 2023/04/27
  *
- * Copyright (c) 2023 Aberystywth University
- * All rights reserved
+ * Copyright (c) 2023 Aberystwyth University
+ * All rights reserved.
  */
 
 package uk.ac.aber.cs221.group09.graphics;
@@ -21,13 +21,13 @@ import java.util.HashMap;
  *
  * @author Gwion Hughes
  * @version 1.0 (Release)
- * @see Tile
+ * @see uk.ac.aber.cs221.group09.graphics.Tile
  */
 public class TileGraphicsLoader {
    private HashMap<Character, Image> graphicsMap;
 
    /**
-    * Creates and initializes a new TileGraphicsLoader with preset graphics.
+    * Simple constructor. Creates and initializes a new TileGraphicsLoader with preset graphics.
     */
    public TileGraphicsLoader() {
       //Initialise the map containing all the graphics

@@ -1,8 +1,8 @@
 /*
  * @(GP9) StartScreen.java 1.0 2023/05/01
  *
- * Copyright (c) 2023 Aberystywth University
- * All rights reserved
+ * Copyright (c) 2023 Aberystwyth University
+ * All rights reserved.
  */
 
 package uk.ac.aber.cs221.group09.graphics;
@@ -20,7 +20,7 @@ import javafx.scene.layout.VBox;
  *
  * @author Gwion Hughes
  * @version 1.0 (Release)
- * @see Interface
+ * @see uk.ac.aber.cs221.group09.graphics.Interface
  */
 public class StartScreen {
    private final Interface anInterface;

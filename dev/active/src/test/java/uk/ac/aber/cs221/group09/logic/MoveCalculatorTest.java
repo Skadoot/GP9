@@ -1,3 +1,10 @@
+/*
+ * @(#) MoveCalculator.java 0.1 2023-05-02
+ *
+ * Copyright (c) 2023 Aberystwyth University.
+ * All rights reserved.
+ */
+
 package uk.ac.aber.cs221.group09.logic;
 
 import org.junit.jupiter.api.*;
@@ -6,6 +13,19 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+
+/**
+ * MoveCalculatorTest - Testing class for the MoveCalculator Class
+ * <p>
+ * This class stores the testing related to the possible moves for pieces on the board
+ *
+ * @author Craymon Chan
+ * @author Jim Brown
+ * @author Sean Hobson
+ * @version 0.1 (draft)
+ * @see uk.ac.aber.cs221.group09.logic.MoveCalculatorTest
+ */
+
 class MoveCalculatorTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -25,6 +45,12 @@ class MoveCalculatorTest {
 
     @Test
     //FR6 Tests
+    /**
+     * A method to test whether the white side's king is in checked state
+     *
+     * @param board the setup of board for white king to be checked
+     * @param MoveCalculator determine player's turn and inserting Board to compare board status
+     */
     public void testisWhiteInCheck() {
         //setup the board as white side king is in checked state
         testBoard = new Board("rnb1kbnr/pppp1ppp/4p3/8/7q/4PP2/PPPP2PP/RNBQKBNR w KQkq - 1 3");
@@ -40,6 +66,12 @@ class MoveCalculatorTest {
 
     @Test
     //FR6 Tests
+    /**
+     * A method to test whether the black side's king is in checked state
+     *
+     * @param board the setup of board for black side's king to be checked
+     * @param MoveCalculator determine player's turn and inserting Board to compare board status
+     */
     public void testisBlackInCheck() {
         //setup the board as black side king is in checked state
         testBoard = new Board("rnbqkbnr/ppppp1pp/5p2/7Q/4P3/8/PPPP1PPP/RNB1KBNR b KQkq - 1 2");
@@ -55,6 +87,12 @@ class MoveCalculatorTest {
 
     @Test
     //FR5 Tests
+    /**
+     * A method to test whether all legal moves for the pieces are eligible
+     *
+     * @param board the setup of an invalid chessboard
+     * @param MoveCalculator determine player's turn and inserting Board to compare board status
+     */
     public void testFindLegalMoves() {
         //setup the board as invalid chessboard
         testBoard = new Board("rnbqkbnr/ppppp1pp/5p2/7Q/4P3/8/PPPP1PPP/RNB1KBNR b KQkq - 1 2");
@@ -81,6 +119,34 @@ class MoveCalculatorTest {
                 "legal moves for b knight at g7 | \r\n" +
                 "legal moves for b rook at h7 | \r\n", outContent.toString());
     }
+
+    @Test
+    public void testCheckmate(){
+        testBoard = new Board("rnb1kbnr/pppp1ppp/4p3/8/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 0 1");
+        moveCalculator = new MoveCalculator('w', testBoard);
+
+        moveCalculator.findLegalMovesForPlayer(true);
+        moveCalculator.findLegalMovesForPlayer(false);
+
+
+        Assertions.assertEquals("legal moves for w rook at a0 | \r\n" +
+              "legal moves for w knight at b0 | \r\n" +
+              "legal moves for w bishop at c0 | \r\n" +
+              "legal moves for w queen at d0 | \r\n" +
+              "legal moves for w king at e0 | \r\n" +
+              "legal moves for w bishop at f0 | \r\n" +
+              "legal moves for w knight at g0 | \r\n" +
+              "legal moves for w rook at h0 | \r\n" +
+              "legal moves for w pawn at a1 | \r\n" +
+              "legal moves for w pawn at b1 | \r\n" +
+              "legal moves for w pawn at c1 | \r\n" +
+              "legal moves for w pawn at d1 | \r\n" +
+              "legal moves for w pawn at e1 | \r\n" +
+              "legal moves for w pawn at h1 | \r\n" +
+              "legal moves for w pawn at f2 | \r\n" +
+              "legal moves for w pawn at g3 | \r\n", outContent.toString());
+    }
+
 
 
 

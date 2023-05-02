@@ -13,8 +13,6 @@ import javafx.stage.Stage;
 
 import uk.ac.aber.cs221.group09.logic.Game;
 import uk.ac.aber.cs221.group09.logic.pieces.Piece;
-import uk.ac.aber.cs221.group09.logic.Board;
-import uk.ac.aber.cs221.group09.logic.MoveCalculator;
 import uk.ac.aber.cs221.group09.logic.vector.Vector2;
 
 import java.io.IOException;
@@ -39,6 +37,7 @@ public class Interface extends Application {
    private Piece pieceToMove;
    boolean firstPieceClick = true;
    private Game game;
+
    ArrayList<Vector2> movesToCompare;
 
    @Override
@@ -76,6 +75,38 @@ public class Interface extends Application {
 
       game.move(row, column);
       playScreen.updatePlayScreen(game.gameNotation());
+      startedViewing=false;
+   }
+
+
+   public int getTurnNumber() {
+      String gameInfo[] = game.gameNotation().split(" ", 6);
+
+      int turn = Integer.parseInt(gameInfo[5]);
+      return turn;
+   }
+
+   public int currentTurn = -1;
+   boolean startedViewing = false;
+
+   public String replayFEN(boolean reverse, int moveTraversal) {
+      if (reverse) {
+         if (!startedViewing) {
+               currentTurn = (getTurnNumber() - 2);
+            startedViewing = true;
+         }else{
+            if(currentTurn>0){
+               currentTurn--;
+            }
+         }
+         return game.log.readLog(currentTurn);
+      } else {
+         if (!(currentTurn > getTurnNumber()-2)) {
+            currentTurn++;
+            return game.log.readLog(currentTurn);
+         }
+      }
+      return game.gameNotation();
    }
 
    public void toMenu() {
@@ -113,6 +144,8 @@ public class Interface extends Application {
    public void loadUFGames() {
       //loadScreen.populateButtonBar(list of unfinished games);
       loadScreen.setLabel("Unfinished Games:");
+      String[] test2={"game 1","game 2","game 3","game 1","game 2","game 3","game 1","game 2","game 3","game 1","game 2","game 3","game 1","game 2","game 3","game 1","game 2","game 3"};
+      loadScreen.populateButtonBar(test2);
       primaryStage.setScene(loadScreen.getScene());
    }
 

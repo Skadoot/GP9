@@ -10,6 +10,10 @@ package uk.ac.aber.cs221.group09.graphics;
 
 import javafx.geometry.Insets;
 import javafx.scene.layout.GridPane;
+
+import uk.ac.aber.cs221.group09.logic.Game;
+import uk.ac.aber.cs221.group09.logic.vector.Vector2;
+
 import java.util.ArrayList;
 
 /**
@@ -63,7 +67,7 @@ public class Chessboard {
         this.chessBoard.setPadding(new Insets(0, 0, 0, 0));
 
 
-        //A simple numerical variable used to itterate black and white tile placement one after another later in the function
+        //A simple numerical variable used to iterate black and white tile placement one after another later in the function
         int check = 0;
 
         for (int row = 0; row < 8; row++) {
@@ -77,14 +81,14 @@ public class Chessboard {
                 if (check % 2 == 1) {
 
                     //Create a new black tile. Add its button to the gridpane and the class to the 2d array
-                    Tile tile = new Tile(column, row, false, this);
-                    this.tiles[column][row] = tile;
+                    Tile tile = new Tile(7-row, column, false, this);
+                    this.tiles[7-row][column] = tile;
                     this.chessBoard.add(tile.getButton(), column, row);
                 } else {
 
                     //Create a new white tile. Add its button to the gridpane and the class to the 2d array
-                    Tile tile = new Tile(column, row, true, this);
-                    this.tiles[column][row] = tile;
+                    Tile tile = new Tile(7-row, column, true, this);
+                    this.tiles[7-row][column] = tile;
                     this.chessBoard.add(tile.getButton(), column, row);
                 }
             }
@@ -99,16 +103,10 @@ public class Chessboard {
      * @param row - The rank or horizontal row of the pressed tile.
      */
     public void click(int column, int row) {
-        //Debugging output
-        System.out.println(column);
-        System.out.println(row);
-
         //Alert the playscreen of incident and set tile to visually indicate it has been selected.
         this.playScreen.alertPressedTile(column, row);
         tiles[row][column].setStyleClass("selected-tile");
 
-        //Cieran proof of concept highlight valid move tile.
-        highlightValidTiles(tempCalcValidPawn(column, row));
     }
 
     /**
@@ -135,7 +133,7 @@ public class Chessboard {
 
         //sets starting positions to access the array from.
         int column = 0;
-        int row = 0;
+        int row = 7;
 
         //iterate through the Forsyth Edwards Notation string.
         for (int readHead = 0; readHead < boardNotation.length(); readHead++) {
@@ -147,7 +145,7 @@ public class Chessboard {
             //if we have arrived at a '/', this is the marker for going down a rank, so we decrement the rank and reset the file to the first file.
             if (boardNotation.charAt(readHead) == '/') {
                 column = 0;
-                row++;
+                row--;
                 continue;
             }
 
@@ -159,7 +157,7 @@ public class Chessboard {
 
 
             //if the character representing the piece is upper case then it is a white piece, else it is a black piece.
-            tiles[column][row].setGraphics(graphicsLoader.fetchTilePieceGraphic(boardNotation.charAt(readHead)));
+            tiles[row][column].setGraphics(graphicsLoader.fetchTilePieceGraphic(boardNotation.charAt(readHead)));
             //increment the file for the next position on the board.
             column++;
         }
@@ -171,55 +169,37 @@ public class Chessboard {
      * styles.
      * @param validT - ArrayList of coordinates of valid tiles.
      * @param checkT - ArrayList of coordinates of checked pieces
-     * @param attackT - ArrayList of coordinates containing attacking pieces.
+     * //@param attackT - ArrayList of coordinates containing attacking pieces.
      */
-    public void highlightTiles(ArrayList validT, ArrayList checkT, ArrayList attackT) {
-        //Helper function on Valid Tiles
-        //Helper function on checked tiles
-        //Helper function on Attacking tiles
+    public void highlightTiles(ArrayList<int[]> validT, ArrayList<int[]> checkT) {
+        highlightValidTiles(validT);
+        //highlightCheckTile(checkT);
     }
 
-    private String[][] testChessBoard;
-
-    /**
-     * A function to test the funcionatlity of highlighting tiles. Given a position that would hold a pawn in
-     * its default start board state, if clicked it should display valid moves from that position.
-     * @param selectedColumn - The file or vertical column of the pressed tile.
-     * @param selectedRow - The rank or horizontal row of the pressed tile.
-     * @return A string array containing the char numbers of the coordinates to highlight.
-     */
-    private ArrayList tempCalcValidPawn(int selectedColumn, int selectedRow) {
-        testChessBoard = new String[8][8];
-        ArrayList pawnMoves = new ArrayList();
-        pawnMoves.clear();
-        //Assigning Pawns for both players
-        for (int i = 0; i < 8; i++) {
-            testChessBoard[1][i] = "BP";
-            testChessBoard[6][i] = "WP";
+    public void highlightValidTiles(ArrayList<int[]> validT) {
+        if(validT.size() == 0) return;
+        for (int[] coords : validT) {
+            tiles[coords[0]][coords[1]].setStyleClass("valid-tile");
         }
-        if (testChessBoard[selectedColumn][selectedRow] == "WP") {
-            pawnMoves.add(selectedRow);
-            pawnMoves.add(selectedColumn - 1);
-        } else if (testChessBoard[selectedColumn][selectedRow] == "BP") {
-            pawnMoves.add(selectedRow);
-            pawnMoves.add(selectedColumn + 1);
+    }
+
+    public void disableChessboard(boolean b) {
+        for (int row = 0; row < 8; row++) {
+            for (int column = 0; column < 8; column++) {
+                tiles[row][column].switchButton(b);
+            }
         }
-        System.out.println(testChessBoard[selectedColumn][selectedRow]);
-        return pawnMoves;
     }
 
-    private void highlightValidTiles(ArrayList validT) {
-        //go through list of valid tile coordinates and
-        //tiles[0][0].setStyleClass("valid-tile");
-        tiles[(int) validT.get(0)][(int) validT.get(1)].setStyleClass("valid-tile");
-    }
-
-    private void highlightCheckTile(ArrayList checkT) {
+    private void highlightCheckTile(ArrayList<int[]> checkT) {
         tiles[0][0].setStyleClass("check-tile");
     }
 
-    private void highlightAttackingTiles(ArrayList attackT) {
-        tiles[0][0].setStyleClass("attacking-tile");
+    private void highlightAttackingTiles(ArrayList<int[]> attackT) {
+        if(attackT.size() == 0) return;
+        for (int[] coords : attackT) {
+            tiles[coords[0]][coords[1]].setStyleClass("attacking-tile");
+        }
     }
 
 }

@@ -1,5 +1,5 @@
 /*
- * @(GP9) Board.java 1.0 2023-05-02
+ * @(#) Board.java 0.1 2023-03-07
  *
  * Copyright (c) 2023 Aberystwyth University.
  * All rights reserved.
@@ -16,7 +16,7 @@ import uk.ac.aber.cs221.group09.logic.vector.Vector2;
  * This class stores the position of each piece on the board.
  *
  * @author Shaun Royle
- * @version 1.0 (Release)
+ * @version 0.6 (draft)
  * @see uk.ac.aber.cs221.group09.logic.MoveCalculator
  */
 public class Board {
@@ -32,125 +32,147 @@ public class Board {
    //both king positions.
    private Vector2 whiteKingPosition;
    private Vector2 blackKingPosition;
+   private Vector2 availablePromotion;
 
    /**
-    * A simple constructor for the Board class.
-    * Initializes the board to a beginning state using the given forsyth edwards notation.
-    *
-    * @param initializingBoardState the string representation to initialize the board to.
+    * constructor for board.
+    * initializes the board array.
     */
    public Board(String initializingBoardState) {
       board = new Piece[BOARD_SIZE][BOARD_SIZE];
 
-      // Sets the board state string to the given Forsyth Edwards Notation.
+      //sets the board state string to the given Forsyth Edwards Notation.
       this.forsythEdwardsBoardNotation = initializingBoardState;
 
-      // Splits up the string using a regex
+      //splits up the string.
       forsythEdwardsBoardNotationArray = forsythEdwardsBoardNotation.split(" ", 6);
 
-      // Initialize the board to the current state represented in the string.
+      //initialize the board to the current state represented in the string.
       initializeBoardState();
    }
 
+   /**
+    * Get the coordinates of the available pawn promotion.
+    *
+    * @return
+    */
+   public Vector2 getAvailablePromotion() {
+      return availablePromotion;
+   }
+
+   /**
+    * Set the coordinates of the available pawn promotion to pawn ready for promotion or null.
+    *
+    * @param coor Vector2 - coordinates of a pawn ready for promotion.
+    * @return
+    */
+   public void setAvailablePromotion(Vector2 coor) {
+      this.availablePromotion = coor;
+   }
+
+   /*
+    * initializes the pieces in the board based on the Forsyth Edwards Notation string given.
+    */
    private void initializeBoardState() {
-      // Gets starting positions to access the array from.
+      //sets starting positions to access the array from.
       int file = 0;
       int rank = 7;
 
-      // Get the section of the edwards forsyth notation string which represents the state of the board.
+      //get the section of the edwards forsyth notation string which represents the state of the board.
       String boardRepresentation = forsythEdwardsBoardNotationArray[0];
 
-      // Iterate through the state of the board string.
+      //iterate through the state of the board string.
       for (int positionInString = 0; positionInString < boardRepresentation.length(); positionInString++) {
-         // If we have arrived at a '/', this is the marker for going down a rank, so we decrement the rank and reset the file to the first file.
+         //if we have arrived at a '/', this is the marker for going down a rank, so we decrement the rank and reset the file to the first file.
          if (boardRepresentation.charAt(positionInString) == '/') {
             file = 0;
             rank--;
             continue;
          }
 
-         // If we have arrived at a digit, this is the marker for n amount of empty squares on the rank in a row before we find a piece. Add this digit to out file variable.
+         //if we have arrived at a digit this is the marker for n amount of empty squares on the rank in a row before we find a piece. so we add this digit to out file variable.
          if (Character.isDigit(boardRepresentation.charAt(positionInString))) {
             file += Character.getNumericValue(boardRepresentation.charAt(positionInString));
             continue;
          }
 
-         // If we arrive here we need to add a piece to the board. Crate the new boardPosition using the Vector2 object.
+         //if we arrive here we need to add a piece to the board. at the position file, rank.
          Vector2 boardPosition = new Vector2(file, rank);
 
-         // If the character representing the piece is upper case then it is a white piece, else it is a black piece.
+         //if the character representing the piece is upper case then it is a white piece, else it is a black piece.
          if (Character.isUpperCase(boardRepresentation.charAt(positionInString))) {
-            // Create a new white piece that is of the same type as the current character in the string, with the position of boardPosition.
+            //create a new white piece that is of the same type as the current character in the string, with the position of boardPosition.
             Piece piece = new Piece('w', boardPosition, Character.toLowerCase(boardRepresentation.charAt(positionInString)));
             setPiece(boardPosition, piece);
 
-            // If the piece is a king, set the position of the white king to this piece's position.
+            //if the piece is a king, set the position of the white king to this piece's position.
             if (Character.toLowerCase(boardRepresentation.charAt(positionInString)) == 'k') {
                whiteKingPosition = boardPosition;
             }
          } else {
-            // Create a new black piece that is of the same type as the current character in the string, with the position of boardPosition.
+            //create a new black piece that is of the same type as the current character in the string, with the position of boardPosition.
             Piece piece = new Piece('b', boardPosition, boardRepresentation.charAt(positionInString));
             setPiece(boardPosition, piece);
 
-            // If the piece is a king, set the position of the black king to this piece's position.
+            //if the piece is a king, set the position of the black king to this piece's position.
             if (boardRepresentation.charAt(positionInString) == 'k') {
                blackKingPosition = boardPosition;
             }
          }
-         // Increment the file for the next position on the board.
+         //increment the file for the next position on the board.
          file++;
       }
    }
 
+
    /**
-    * Moves a piece on the board, while taking into account special moves.
+    * A method to move a piece on the board, while taking into account special moves.
     *
     * @param selectedPiece the selected piece to move.
     * @param move          the vector2 coordinate to move the piece to.
     */
    public void movePiece(Piece selectedPiece, Vector2 move) {
-      // If the piece is a pawn, need to do checking for "en passant".
+      //if the piece is a pawn, need to do checking for "en passant".
       if (selectedPiece.getType() == 'p') {
          movePawn(selectedPiece, move);
       }
-      // If the piece is a king, need to do checking for castling and make sure we keep track of the king position.
+      //if the piece is a king, need to do checking for castling and make sure we keep track of the king position.
       else if (selectedPiece.getType() == 'k') {
          moveKing(selectedPiece, move);
-         // Set the en passant capture square to "-".
+         //set the en passant capture square to "-".
          forsythEdwardsBoardNotationArray[3] = "-";
       }
-      // If a rook is moving for the first time, need to update the castling notation.
+      //if a rook is moving for the first time, need to update the castling notation.
       else if (selectedPiece.getType() == 'r' && !selectedPiece.hasMoved()) {
          moveRook(selectedPiece, move);
-         // Set the en passant capture square to "-".
+         //set the en passant capture square to "-".
          forsythEdwardsBoardNotationArray[3] = "-";
       }
-      // If the piece is neither a king nor a pawn there are no special moves to take into account, so just move it.
+      //if the piece is neither a king nor a pawn there are no special moves to take into account, so, just move it.
       else {
          updatePiecePositionInArray(selectedPiece, move);
-         // Set the en passant capture square to "-".
+         //set the en passant capture square to "-".
          forsythEdwardsBoardNotationArray[3] = "-";
       }
 
-      // Get the new board state string, after the move has been played.
+      //get the new board state string, after the move has been played.
       updateForsythEdwardsBoardNotation();
    }
 
-   /**
-    * Handles specific movements for pawn pieces, e.g. En Passant and promotion.
+   /*
+   / Since the pawn has 2 unique moves, en passant, and promotion.
     */
    private void movePawn(Piece pawn, Vector2 move) {
-      // Get the section of the forsyth edwards string notation for en passant.
+      //get the section of the forsyth edwards string notation for en passant.
       String enPassantString = forsythEdwardsBoardNotationArray[3];
 
-      // If the move that the pawn is taking is to the square represented by the string then, capture the pawn under/above it.
+      //if the move that the pawn is taking is to the square represented by the string then, capture the pawn under/above it.
       if (move.getVector2AsBoardNotation().equals(enPassantString)) {
-         // If the pawn is white capture the pawn below it.
+         //if the pawn is white capture the pawn below it.
          if (pawn.getColor() == 'w') {
             capturePiece(new Vector2(move.x, move.y - 1));
          }
-         // If the pawn is black capture the pawn above it.
+         //if the pawn is black capture the pawn above it.
          else {
             capturePiece(new Vector2(move.x, move.y + 1));
          }
@@ -159,84 +181,82 @@ public class Board {
          return;
       }
 
-      // If a white pawn is moving two squares, for allowing En Passant
+      //if a white pawn is moving 2 squares
       if (move.y - pawn.getPosition().y == 2) {
          enPassantString = new Vector2(move.x, move.y - 1).getVector2AsBoardNotation();
          forsythEdwardsBoardNotationArray[3] = enPassantString;
       }
-      // If a black pawn is moving two squares, for allowing En Passant
+      // if a black pawn is moving 2 squares
       else if (move.y - pawn.getPosition().y == -2) {
          enPassantString = new Vector2(move.x, move.y + 1).getVector2AsBoardNotation();
          forsythEdwardsBoardNotationArray[3] = enPassantString;
       }
-      // If the pawn is not moving 2 squares.
+      // if the pawn is not moving 2 squares.
       else {
          forsythEdwardsBoardNotationArray[3] = "-";
       }
 
-      // Move the pawn.
+      //move the pawn.
       updatePiecePositionInArray(pawn, move);
    }
 
    /*
-   / Handles specific movements for pawn pieces, e.g. Castling.
+   / Since the king has a unique move, castling.
    */
    private void moveKing(Piece king, Vector2 move) {
-      // Get the castling notation.
+      //get the castling notation.
       String castlingNotation = forsythEdwardsBoardNotationArray[2];
 
-      // If the king is moving more than one square it is castling, move the rook, on the correct side.
+      //if the king is moving more than one square it is castling, move the rook, on the correct side.
       if (move.x > king.getPosition().x + 1 || move.x < king.getPosition().x - 1) {
-         // Move king's side rook.
+         //move king side rook.
          Piece rook;
          Vector2 newRookPosition;
 
-         // Find out which rook needs to move, and to where.
+         //find out which rook needs to move, and to where.
          if (move.x > king.getPosition().x + 1) {
-            // Get the king's side rook if the king is moving to the right.
+            //get the king side rook if the king is moving to the right.
             rook = getPiece(new Vector2(7, king.getPosition().y));
 
-            // Get the new rook position.
+            //get the new rook position.
             newRookPosition = new Vector2(king.getPosition().x + 1, king.getPosition().y);
          } else {
-            // Get the queen side rook if the king is moving to the left.
+            //get the queen side rook if the king is moving to the left.
             rook = getPiece(new Vector2(0, king.getPosition().y));
 
-            // Get the new rook position.
+            //get the new rook position.
             newRookPosition = new Vector2(king.getPosition().x - 1, king.getPosition().y);
          }
 
-         // Update the rook's position.
-         if (rook != null) {
-            updatePiecePositionInArray(rook, newRookPosition);
-         }
+         //update the rook's position.
+         updatePiecePositionInArray(rook, newRookPosition);
       }
 
-      // Update the king's position.
+      //update the king's position.
       updatePiecePositionInArray(king, move);
 
-      // If the piece's color is white, update the white king's position, else update the black king's position.
+      //if the piece's color is white update the white kings position, else update the black kings position.
       if (king.getColor() == 'w') {
          whiteKingPosition = move;
-         // Update the castling notation for white.
+         //update the castling notation for white.
          forsythEdwardsBoardNotationArray[2] = castlingNotation.replaceAll("[A-Z]", "");
       } else {
          blackKingPosition = move;
-         // Update the castling notation for black.
+         //update the castling notation for black.
          forsythEdwardsBoardNotationArray[2] = castlingNotation.replaceAll("[a-z]", "");
       }
    }
 
-   /**
-    * Handles specific movements for rook pieces, e.g. Castling.
-    */
+   /*
+   / method for moving rooks since we need to update the castling notation when a rook moves.
+   */
    private void moveRook(Piece rook, Vector2 move) {
-      // Get the castling notation.
+      //get the castling notation.
       String castlingNotation = forsythEdwardsBoardNotationArray[2];
 
-      // If it's a white rook, need to remove capital letters in the castling notation.
+      //if it's a white rook need to remove capital letters in the castling notation.
       if (rook.getColor() == 'w') {
-         // If it's the queen side rook moving.
+         //if it's the queen side rook moving.
          if (rook.getPosition().x == 0) {
             forsythEdwardsBoardNotationArray[2] = castlingNotation.replaceAll("Q", "");
          }
@@ -245,60 +265,64 @@ public class Board {
             forsythEdwardsBoardNotationArray[2] = castlingNotation.replaceAll("K", "");
          }
       } else {
-         // If it's the queen side rook moving.
+         //if it's the queen side rook moving.
          if (rook.getPosition().x == 0) {
             forsythEdwardsBoardNotationArray[2] = castlingNotation.replaceAll("q", "");
          }
-         // If it's the king side rook moving.
+         //if it's the king side rook moving.
          else {
             forsythEdwardsBoardNotationArray[2] = castlingNotation.replaceAll("k", "");
          }
       }
 
-      // Move the rook.
+      //move the rook.
       updatePiecePositionInArray(rook, move);
    }
 
-   /**
-    * Moves a piece from one array index to another
+
+   /*
+   / method to essentially move a piece from one array index to another.
     */
    private void updatePiecePositionInArray(Piece piece, Vector2 newPiecePosition) {
-      // Set the old position in the array to null.
+      //set the old position in the array to null.
       setPiece(piece.getPosition(), null);
 
-      // If there is a piece on the square that the piece is moving to then it is capturing it.
+      //if there is a piece on the square that the piece is moving to then it is capturing it.
       if (getPiece(newPiecePosition) != null) {
          capturePiece(newPiecePosition);
       }
 
-      // Move the piece in the array.
+      //move the piece in the array.
       setPiece(newPiecePosition, piece);
 
-      // Update the piece's internal position value.
+      //update the piece's internal position value.
       piece.setPosition(newPiecePosition);
 
-      // Say that the piece has now moved.
+      //say that the piece has now moved.
       piece.setHasMoved(true);
    }
 
-   /**
-    * Method for capturing a piece
+   /*
+   / method for capturing pieces.
     */
    private void capturePiece(Vector2 piecePosition) {
-      // Update captured pieces array/string.
+      //play sound for capturing?
+
+      //update captured pieces array/string.
       setPiece(piecePosition, null);
    }
 
-   /**
-    * Method to update the Forsyth Edwards Notation based on the current state of the board array, and game.
+
+   /*
+    * A method to update the Forsyth Edwards Notation based on the current state of the board array, and game.
     */
    private void updateForsythEdwardsBoardNotation() {
-      // Update the board string. represented by forsythEdwardsBoardNotationArray[0].
-      // Create a new string builder.
+      //update the board string. represented by forsythEdwardsBoardNotationArray[0].
+      //create a new string builder.
       StringBuilder newBoardRepresentationString = new StringBuilder();
-      // Variable to keep track of how many empty spaces there have been.
+      //variable to keep track of how many empty spaces there have been.
       int skippedPieces = 0;
-      // Loop through the array backwards.
+      //loop through the array backwards.
       for (int rank = 7; rank > -1; rank--) {
          if (skippedPieces > 0) {
             newBoardRepresentationString.append(skippedPieces);
@@ -311,6 +335,10 @@ public class Board {
             Piece currentPiece = getPiece(new Vector2(file, rank));
             if (currentPiece == null) {
                skippedPieces += 1;
+               if (rank == 0 && skippedPieces > 0) {
+                  newBoardRepresentationString.append(skippedPieces);
+                  skippedPieces = 0;
+               }
                continue;
             } else if (skippedPieces > 0) {
                newBoardRepresentationString.append(skippedPieces);
@@ -325,123 +353,132 @@ public class Board {
       }
       forsythEdwardsBoardNotationArray[0] = newBoardRepresentationString.toString();
 
-      // Update the current player string. represented by forsythEdwardsBoardNotationArray[1].
+      //update the current player string. represented by forsythEdwardsBoardNotationArray[1].
       if (forsythEdwardsBoardNotationArray[1].equals("w")) {
          forsythEdwardsBoardNotationArray[1] = "b";
       } else {
          forsythEdwardsBoardNotationArray[1] = "w";
       }
 
-      // If the castling notation is empty, forsythEdwardsBoardNotationArray[2], then replace it with the '-' character.
+      //if the castling notation is empty, forsythEdwardsBoardNotationArray[2], then replace it with the '-' character.
       if (forsythEdwardsBoardNotationArray[2].equals("")) {
          forsythEdwardsBoardNotationArray[2] = "-";
       }
 
-      // En Passant represented by forsythEdwardsBoardNotationArray[3], should already be updated by this point.
-      // The half move clock represented by forsythEdwardsBoardNotationArray[4].
+      //en passant represented by forsythEdwardsBoardNotationArray[3], should already be updated by this point.
 
-      // Update the full move number represented by forsythEdwardsBoardNotationArray[5], by incrementing it by 1.
+      //the half move clock represented by forsythEdwardsBoardNotationArray[4].
+
+      //update the full move number represented by forsythEdwardsBoardNotationArray[5], by incrementing it by 1.
       forsythEdwardsBoardNotationArray[5] = Integer.toString(Integer.parseInt(forsythEdwardsBoardNotationArray[5]) + 1);
 
-      // Initializing the new board state stringBuilder.
+      //initializing the new board state stringBuilder.
       StringBuilder newBoardState = new StringBuilder();
 
-      // Loop over the forsythEdwardsBoardNotationArray and add each part separated by a " " to the string builder.
+      //loop over the forsythEdwardsBoardNotationArray and add each part separated by a " " to the string builder.
       for (int i = 0; i < forsythEdwardsBoardNotationArray.length; i++) {
-         // Add the section of the forsythEdwardsBoardNotationArray.
+         //add the section of the forsythEdwardsBoardNotationArray.
          newBoardState.append(forsythEdwardsBoardNotationArray[i]);
 
-         // If we are not at the end of the array then separate each part with a " " character.
+         //if we are not at the end of the array then separate each part with a " " character.
          if (i != forsythEdwardsBoardNotationArray.length - 1) {
             newBoardState.append(" ");
          }
       }
-      // Set the board state.
+      //set the board state.
       forsythEdwardsBoardNotation = newBoardState.toString();
+      //System.out.println(forsythEdwardsBoardNotation);
    }
 
+
    /**
-    * Returns the boards current forsyth edwards board notation.
+    * A method to return the boards current forsyth edwards board notation.
     *
-    * @return String containing board state as FEN.
+    * @return forsythEdwardsBoardNotation.
     */
    public String getForsythEdwardsBoardNotation() {
       return forsythEdwardsBoardNotation;
    }
 
    /**
-    * Returns a section of the Forsyth Edwards notation board state string variable.
+    * A method to return a section of the Forsyth Edwards notation board state string variable.
     *
-    * @param index which section of the string to return.
-    * @return String containing the specified index.
+    * @param index which section of the string.
+    * @return the section of the string.
     */
    public String getForsythEdwardsBoardNotationArrayIndex(int index) {
       return forsythEdwardsBoardNotationArray[index];
    }
 
+
    /**
-    * Returns a piece on the board from a particular index, represented by a Vector2 object.
+    * A method to return a piece on the board in a particular index. represented by a vector2 object.
     *
-    * @param coordinate the Vector2 coordinate to retrieve from the board.
-    * @return Piece object from the specified position on the board.
+    * @param coordinate this is the vector2 which represents a position in the board array to access.
+    * @return A piece on the board at position coordinate.x, coordinate.y in the board array.
     */
    public Piece getPiece(Vector2 coordinate) {
       return board[coordinate.x][coordinate.y];
    }
 
-   /**
-    * Sets a piece on the board to the specified piece.
+   /*
+    * A method which sets a piece on the board to a new piece.
+    *
+    * @param piecePosition the position of the piece you want to set.
+    * @param piece the piece that you want to set it to.
     */
    private void setPiece(Vector2 piecePosition, Piece piece) {
       board[piecePosition.x][piecePosition.y] = piece;
    }
 
+
    /**
-    * Returns the position of the white king.
+    * A method to return the position of the white king.
     *
-    * @return Vector2 containing the white kings position.
+    * @return the white kings position in a vector2.
     */
    public Vector2 getWhiteKingPosition() {
       return whiteKingPosition;
    }
 
    /**
-    * Returns the position of the black king.
+    * A method to return the position of the black king.
     *
-    * @return Vector2 containing the black kings position.
+    * @return the black kings position in a vector2.
     */
    public Vector2 getBlackKingPosition() {
       return blackKingPosition;
    }
 
+
    /**
-    * Prints the board in text form to the console window.
+    * A method to print out the board in text form to the console window.
     */
    public void printBoardStateToConsole() {
-      // Loop through the array in reverse so that the board is printed in the correct orientation.
+      //loop through the array in reverse so that the board is printed in the correct orientation.
       for (int rank = 7; rank > -1; rank--) {
          for (int file = 0; file < 8; file++) {
 
-            // Create the vector2 for the position of the current piece to be printed.
+            //create the vector2 for the position of the current piece to be printed.
             Vector2 boardPosition = new Vector2(file, rank);
 
-            // Get the piece at the current board position.
+            //get the piece in the current board position.
             Piece piece = getPiece(boardPosition);
 
-            // If the piece is null, print a '/' character and continue the loop.
+            //if the piece is null print a '/' character and continue the loop.
             if (piece == null) {
                System.out.print("  /  ");
                continue;
             }
 
-            // If the piece's color is white, print the piece's type in uppercase, else in lower case.
+            //if the piece's color is white print the piece's type in uppercase. else in lower case.
             if (piece.getColor() == 'w') {
                System.out.print("  " + Character.toUpperCase(piece.getType()) + "  ");
             } else {
                System.out.print("  " + piece.getType() + "  ");
             }
          }
-         // New line to separate each rank.
+         //new line to separate each rank.
          System.out.print("\n\n");
       }
    }
@@ -454,5 +491,60 @@ public class Board {
             }
          }
       }
+   }
+
+   /**
+    * A method which returns whether the black player can promote. Looks at the white camp to find a black pawn.
+    *
+    * @return boolean - Whether the black player can promote a pawn
+    */
+   public boolean canBlackPromote() {
+      for (int column = 0; column < 8; column++) {
+         Vector2 coordinate = new Vector2(column, 0);
+         if (getPiece(coordinate).getType() == 'p') {
+            setAvailablePromotion(coordinate);
+            return true;
+         }
+      }
+      return false;
+   }
+
+   /**
+    * A method which returns whether the white player can promote. Looks at the white camp to find a white pawn.
+    *
+    * @return boolean - Whether a white player can promote a pawn
+    */
+   public boolean canWhitePromote() {
+      for (int column = 0; column < 8; column++) {
+         Vector2 coordinate = new Vector2(column, 7);
+         if (getPiece(coordinate).getType() == 'p') {
+            setAvailablePromotion(coordinate);
+            return true;
+         }
+      }
+      return false;
+   }
+
+   /**
+    * Promote an available promotion to a new glorious piece worthy of Mordor.
+    *
+    * @param n - The abstract number representing desired promotion.
+    */
+   public void piecePromotion(int n) {
+      switch (n) {
+         case (0):
+            getPiece(getAvailablePromotion()).setType('q');
+            break;
+         case (1):
+            getPiece(getAvailablePromotion()).setType('r');
+            break;
+         case (2):
+            getPiece(getAvailablePromotion()).setType('b');
+            break;
+         case (3):
+            getPiece(getAvailablePromotion()).setType('k');
+            break;
+      }
+      availablePromotion = null;
    }
 }

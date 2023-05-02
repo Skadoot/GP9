@@ -1,5 +1,5 @@
 /*
- * @(GP9) Piece.java 0.1 2023-02-23
+ * @(#) Piece.java 0.1 2023-02-23
  *
  * Copyright (c) 2023 Aberystwyth University.
  * All rights reserved.
@@ -14,11 +14,10 @@ import java.util.ArrayList;
 /**
  * Piece - A class to represent a chess piece.
  * <p>
- * The piece class is used to represent a chess piece, and holds data relating to
- * the position of the piece, the color of the piece, and the type of the piece.
+ * How the class is used
  *
  * @author Shaun Royle
- * @version 1.0 (Release)
+ * @version 0.1 (draft)
  * @see uk.ac.aber.cs221.group09.logic.vector.Vector2
  */
 public class Piece {
@@ -34,11 +33,11 @@ public class Piece {
    private boolean hasMoved;
 
    /**
-    * Simple constructor for piece.
+    * Constructor for piece.
     *
     * @param color    the color of the piece: 'w' for white, 'b' for black.
-    * @param position the position of the piece: a Vector2.
-    * @param type     the type of the piece: 'p' for pawn, 'n' for knight, 'r' for rook, 'b' for bishop, 'q' for queen, 'k' for king.
+    * @param position the position of the piece: a vector2.
+    * @param type     the type of the piece 'p' for pawn, 'n' for knight, 'r' for rook, 'b' for bishop, 'q' for queen, 'k' for king.
     */
    public Piece(char color, Vector2 position, char type) {
       //initializing the possible moves arrayList.
@@ -61,7 +60,7 @@ public class Piece {
    /**
     * A method to return the position of the piece.
     *
-    * @return the Vector2 object which stores its position.
+    * @return the vector2 object which stores its position.
     */
    public Vector2 getPosition() {
       return position;
@@ -86,7 +85,7 @@ public class Piece {
    }
 
    /**
-    * Adds a possible move to the list of the piece's legal moves.
+    * A method to add a move to the list of the piece's legal moves.
     *
     * @param position the position of the move.
     */
@@ -98,25 +97,25 @@ public class Piece {
    }
 
    /**
-    * Returns the type of the piece object.
+    * A method to return the type of the piece
     *
-    * @return a Char denoting the piece type: 'p' for pawn, 'n' for knight, 'r' for rook, 'b' for bishop, 'q' for queen, 'k' for king.
+    * @return the type of the piece: 'p' for pawn, 'n' for knight, 'r' for rook, 'b' for bishop, 'q' for queen, 'k' for king.
     */
    public char getType() {
       return type;
    }
 
    /**
-    * Sets the type of the piece object.
+    * A method to set the type of piece.
     *
-    * @param type Char, the type that you want to set the piece to: 'p' for pawn, 'n' for knight, 'r' for rook, 'b' for bishop, 'q' for queen, 'k' for king.
+    * @param type the type that you want to set the piece to: 'p' for pawn, 'n' for knight, 'r' for rook, 'b' for bishop, 'q' for queen, 'k' for king.
     */
    public void setType(char type) {
       this.type = type;
    }
 
    /**
-    * Returns a boolean whether the piece has moved during the course of the game.
+    * A method which returns a boolean to determine if the piece has moved during the course of the game.
     *
     * @return true if the piece has moved, false if it has not moved.
     */
@@ -125,7 +124,7 @@ public class Piece {
    }
 
    /**
-    * Sets the hasMoved boolean. Used for En Passant, pawn double-step, castling, etc.
+    * A method which sets the hasMoved boolean.
     *
     * @param hasMoved the new value for hasMoved.
     */

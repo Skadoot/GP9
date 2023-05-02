@@ -48,6 +48,7 @@ public class MoveCalculator {
 
    /**
     * one of cierans crazy functions
+    *
     * @param piece
     * @param opponentPlayer
     */
@@ -75,7 +76,6 @@ public class MoveCalculator {
             break;
       }
    }
-
 
 
    /**
@@ -525,7 +525,8 @@ public class MoveCalculator {
    /**
     * A method to determine if a player can castle king side.
     * <p>
-    * @param player    the players color.
+    *
+    * @param player the players color.
     */
    private boolean canPlayerCastleKingSide(char player) {
       if (player == 'w') {
@@ -566,9 +567,8 @@ public class MoveCalculator {
    /**
     * this is a method that determines if a move would leave the player in check or not.
     *
-    * @param piece         the piece to move.
-    * @param move          the move to assess.
-    *
+    * @param piece the piece to move.
+    * @param move  the move to assess.
     * @return a boolean which determines if the move will leave the player in check or not.
     */
    private boolean isMoveSafe(Piece piece, Vector2 move) {

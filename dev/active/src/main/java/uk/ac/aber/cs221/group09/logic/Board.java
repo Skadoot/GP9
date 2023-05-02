@@ -35,6 +35,7 @@ public class Board {
     //both king positions.
     private Vector2 whiteKingPosition;
     private Vector2 blackKingPosition;
+    private Vector2 availablePromotion;
 
     /**
      * constructor for board.
@@ -51,6 +52,23 @@ public class Board {
 
         //initialize the board to the current state represented in the string.
         initializeBoardState();
+    }
+
+    /**
+     * Get the coordinates of the available pawn promotion.
+     * @return
+     */
+    public Vector2 getAvailablePromotion() {
+        return availablePromotion;
+    }
+
+    /**
+     * Set the coordinates of the available pawn promotion to pawn ready for promotion or null.
+     * @param coor Vector2 - coordinates of a pawn ready for promotion.
+     * @return
+     */
+    public void setAvailablePromotion(Vector2 coor) {
+        this.availablePromotion = coor;
     }
 
     /*
@@ -474,5 +492,57 @@ public class Board {
                 }
             }
         }
+    }
+
+    /**
+     * A method which returns whether the black player can promote. Looks at the white camp to find a black pawn.
+     * @return boolean - Whether the black player can promote a pawn
+     */
+    public boolean canBlackPromote() {
+        for (int column = 0; column < 8; column++) {
+            Vector2 coordinate = new Vector2(column, 0);
+            if(getPiece(coordinate).getType() == 'p') {
+                setAvailablePromotion(coordinate);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * A method which returns whether the white player can promote. Looks at the white camp to find a white pawn.
+     * @return boolean - Whether a white player can promote a pawn
+     */
+    public boolean canWhitePromote() {
+        for (int column = 0; column < 8; column++) {
+            Vector2 coordinate = new Vector2(column, 7);
+            if(getPiece(coordinate).getType() == 'p') {
+                setAvailablePromotion(coordinate);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Promote an available promotion to a new glorious piece worthy of Mordor.
+     * @param n - The abstract number representing desired promotion.
+     */
+    public void piecePromotion(int n) {
+        switch(n) {
+            case(0):
+                getPiece(getAvailablePromotion()).setType('q');
+                break;
+            case(1):
+                getPiece(getAvailablePromotion()).setType('r');
+                break;
+            case(2):
+                getPiece(getAvailablePromotion()).setType('b');
+                break;
+            case(3):
+                getPiece(getAvailablePromotion()).setType('k');
+                break;
+        }
+        availablePromotion = null;
     }
 }

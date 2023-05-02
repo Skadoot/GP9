@@ -20,18 +20,19 @@ import uk.ac.aber.cs221.group09.logic.vector.Vector2;
  * @see uk.ac.aber.cs221.group09.logic.MoveCalculator
  */
 public class Board {
-   //board size.
+   // Board size.
    private static final int BOARD_SIZE = 8;
 
-   //the logical representation of the board.
+   // The logical representation of the board.
    private final Piece[][] board;
-   //array which contains the forsyth edwards notation split up into sections.
+   // Array which contains the forsyth edwards notation split up into sections.
    private final String[] forsythEdwardsBoardNotationArray;
-   //forsyth edwards notation of the board for saving and loading board states.
+   // Forsyth edwards notation of the board for saving and loading board states.
    private String forsythEdwardsBoardNotation;
-   //both king positions.
+   // Both king positions.
    private Vector2 whiteKingPosition;
    private Vector2 blackKingPosition;
+   private Vector2 availablePromotion;
 
    /**
     * A simple constructor for the Board class.
@@ -52,6 +53,28 @@ public class Board {
       initializeBoardState();
    }
 
+   /**
+    * Get the coordinates of the available pawn promotion.
+    *
+    * @return Vector2 position of the piece eligible for promotion.
+    */
+   public Vector2 getAvailablePromotion() {
+      return availablePromotion;
+   }
+
+   /**
+    * Set the coordinates of the available pawn promotion to pawn ready for promotion or null.
+    *
+    * @param position Vector2 position of a pawn ready for promotion.
+    * @return
+    */
+   public void setAvailablePromotion(Vector2 position) {
+      this.availablePromotion = position;
+   }
+
+   /**
+    * Initializes the pieces on the board based on the Forsyth Edwards Notation string given.
+    */
    private void initializeBoardState() {
       // Gets starting positions to access the array from.
       int file = 0;
@@ -178,9 +201,9 @@ public class Board {
       updatePiecePositionInArray(pawn, move);
    }
 
-   /*
-   / Handles specific movements for pawn pieces, e.g. Castling.
-   */
+   /**
+    * Handles specific movements for pawn pieces, e.g. Castling.
+    */
    private void moveKing(Piece king, Vector2 move) {
       // Get the castling notation.
       String castlingNotation = forsythEdwardsBoardNotationArray[2];
@@ -207,9 +230,7 @@ public class Board {
          }
 
          // Update the rook's position.
-         if (rook != null) {
-            updatePiecePositionInArray(rook, newRookPosition);
-         }
+         updatePiecePositionInArray(rook, newRookPosition);
       }
 
       // Update the king's position.
@@ -311,6 +332,10 @@ public class Board {
             Piece currentPiece = getPiece(new Vector2(file, rank));
             if (currentPiece == null) {
                skippedPieces += 1;
+               if (rank == 0 && skippedPieces > 0) {
+                  newBoardRepresentationString.append(skippedPieces);
+                  skippedPieces = 0;
+               }
                continue;
             } else if (skippedPieces > 0) {
                newBoardRepresentationString.append(skippedPieces);
@@ -454,5 +479,60 @@ public class Board {
             }
          }
       }
+   }
+
+   /**
+    * Returns whether the black player can promote. Searches the white camp to find a black pawn.
+    *
+    * @return boolean - Whether the black player can promote a pawn
+    */
+   public boolean canBlackPromote() {
+      for (int column = 0; column < 8; column++) {
+         Vector2 coordinate = new Vector2(column, 0);
+         if (getPiece(coordinate).getType() == 'p') {
+            setAvailablePromotion(coordinate);
+            return true;
+         }
+      }
+      return false;
+   }
+
+   /**
+    * Returns whether the white player can promote. Searches the black camp to find a white pawn.
+    *
+    * @return boolean - Whether the white player can promote a pawn
+    */
+   public boolean canWhitePromote() {
+      for (int column = 0; column < 8; column++) {
+         Vector2 coordinate = new Vector2(column, 7);
+         if (getPiece(coordinate).getType() == 'p') {
+            setAvailablePromotion(coordinate);
+            return true;
+         }
+      }
+      return false;
+   }
+
+   /**
+    * Promote an available piece to a queen piece.
+    *
+    * @param n abstract number representing desired promotion.
+    */
+   public void piecePromotion(int n) {
+      switch (n) {
+         case (0):
+            getPiece(getAvailablePromotion()).setType('q');
+            break;
+         case (1):
+            getPiece(getAvailablePromotion()).setType('r');
+            break;
+         case (2):
+            getPiece(getAvailablePromotion()).setType('b');
+            break;
+         case (3):
+            getPiece(getAvailablePromotion()).setType('k');
+            break;
+      }
+      availablePromotion = null;
    }
 }

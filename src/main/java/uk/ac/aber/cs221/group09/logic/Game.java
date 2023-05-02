@@ -1,5 +1,5 @@
 /*
- * @(GP9) Game.java 1.0 2023-05-02
+ * @(GP9) Game.java 1.0 2023/05/02
  *
  * Copyright (c) 2023 Aberystwyth University.
  * All rights reserved.
@@ -79,16 +79,34 @@ public class Game {
          isMovesCalculated = false;
          gameBoard.clearMoves();
 
+         System.out.println("Moved piece to " + selectedBoardCoordinate.getVector2AsBoardNotation());
+         System.out.println("\n         ,....,----------------------------------------------------\n" +
+               "      ,::::::<-----------------------------------------------------\n" +
+               "     ,::/^\\\"``.----------------------------------------------------\n" +
+               "    ,::/, `   e`.--------------------------------------------------\n" +
+               "   ,::; |        '.------------------------------------------------\n" +
+               "   ,::|  \\___,-.  c)-----------------------------------------------\n" +
+               "   ;::|     \\   '-'------------------------------------------------\n" +
+               "   ;::|      \\-----------------------------------------------------\n" +
+               "   ;::|   _.=`\\----------------------------------------------------\n" +
+               "   `;:|.=` _.=`\\---------------------------------------------------\n" +
+               "     '|_.=`   __\\--------------------------------------------------\n" +
+               "     `\\_..==`` /---------------------------------------------------\n" +
+               "      .'.___.-'.---------------------------------------------------\n" +
+               "     /          \\--------------------------------------------------\n" +
+               "    ('--......--')-------------------------------------------------\n" +
+               "    /'--......--'\\-------------------------------------------------\n" +
+               "    `\"--......--\"--------------------------------------------------\n");
+
          calculateMoves();
 
-         System.out.println("Moved piece to " + selectedBoardCoordinate.getVector2AsBoardNotation());
       } else if (gameBoard.getPiece(selectedBoardCoordinate) != null) {
          if (gameBoard.getPiece(selectedBoardCoordinate).getColor() == attackingPlayer) {
 
             selectedPiece = selectedBoardCoordinate;
-            System.out.println("\n\n" + selectedPiece.getVector2AsBoardNotation());
+            System.out.println("selected piece is : " + selectedPiece.getVector2AsBoardNotation() + ",");
             if (gameBoard.getPiece(selectedPiece).getPossibleMoves().isEmpty()) {
-               System.out.println("\n\n\nDid not find legal move.");
+               System.out.println("Did not find legal move.");
             }
          }
       }
@@ -103,13 +121,17 @@ public class Game {
 
       moveCalculator.findLegalMovesForPlayer(true);
       moveCalculator.findLegalMovesForPlayer(false);
-      moveCalculator.printCheckMap();
 
       isMovesCalculated = true;
 
-      System.out.println("is " + attackingPlayer + " in check = " + moveCalculator.isPlayerInCheck());
+      System.out.print("\n");
 
-      System.out.println("\n" + gameBoard.getForsythEdwardsBoardNotation());
+      moveCalculator.printCheckMap();
+
+      System.out.println("\nis " + attackingPlayer + " in check = " + moveCalculator.isPlayerInCheck());
+      System.out.println("is " + attackingPlayer + " in checkmate = " + moveCalculator.isPlayerInCheckMate());
+
+      System.out.println("\n" + gameBoard.getForsythEdwardsBoardNotation() + "\n");
    }
 
    public String gameNotation() {
@@ -157,5 +179,23 @@ public class Game {
          res.add(coords);
       }
       return res;
+   }
+
+   /**
+    * Requests that the board promotes a piece.
+    *
+    * @param n
+    */
+   public void promote(int n) {
+      gameBoard.piecePromotion(n);
+   }
+
+   /**
+    * Checks whether a promotion is available. Called after every move to update the class field.
+    *
+    * @return boolean whether the player can promote a pawn.
+    */
+   public boolean isPromotionAvailable() {
+      return gameBoard.canWhitePromote() || gameBoard.canBlackPromote();
    }
 }

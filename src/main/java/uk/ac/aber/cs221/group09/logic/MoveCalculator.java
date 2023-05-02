@@ -48,7 +48,7 @@ public class MoveCalculator {
     * Calculates and returns the legal moves for a given chess piece.
     * The legal moves are determined based on the type of the piece and the opponent player's turn.
     *
-    * @param piece The chess piece for which the legal moves are to be determined.
+    * @param piece          The chess piece for which the legal moves are to be determined.
     * @param opponentPlayer A boolean value representing whether it's the opponent player's turn or not.
     */
    public void getLegalMoveForPiece(Piece piece, boolean opponentPlayer) {
@@ -604,8 +604,10 @@ public class MoveCalculator {
 
       for (int rank = 0; rank < 8; rank++) {
          for (int file = 0; file < 8; file++) {
-            if (!board.getPiece(new Vector2(rank, file)).getPossibleMoves().isEmpty()) {
-               playerHasMoves = true;
+            if (board.getPiece((new Vector2(rank, file))) != null) {
+               if (!board.getPiece(new Vector2(rank, file)).getPossibleMoves().isEmpty() && board.getPiece(new Vector2(rank, file)).getColor() == currentPlayer) {
+                  playerHasMoves = true;
+               }
             }
          }
       }

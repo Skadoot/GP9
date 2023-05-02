@@ -22,15 +22,15 @@ import java.util.ArrayList;
  * @see uk.ac.aber.cs221.group09.logic.vector.Vector2
  */
 public class Piece {
-   //storing the pieces color.
+   // Storing the pieces color.
    private final char color;
-   //the possible moves for a pieces.piece, ignoring if the moves are legal or not.
+   // The possible moves for a pieces.piece, ignoring if the moves are legal or not.
    private final ArrayList<Vector2> possibleMoves;
-   //storing the type of the pieces.piece for notation.
+   // Storing the type of the pieces.piece for notation.
    private char type;
-   //the pieces position.
+   // The pieces position.
    private Vector2 position;
-   //to keep track if the piece has moved during the course of the game.
+   // To keep track if the piece has moved during the course of the game.
    private boolean hasMoved;
 
    /**
@@ -41,7 +41,7 @@ public class Piece {
     * @param type     the type of the piece: 'p' for pawn, 'n' for knight, 'r' for rook, 'b' for bishop, 'q' for queen, 'k' for king.
     */
    public Piece(char color, Vector2 position, char type) {
-      //initializing the possible moves arrayList.
+      // Initializing the possible moves arrayList.
       possibleMoves = new ArrayList<>();
 
       this.color = color;
@@ -50,7 +50,7 @@ public class Piece {
    }
 
    /**
-    * A method to return the color of the piece.
+    * Returns the color of the piece.
     *
     * @return the color of the piece: 'w' for white, 'b' for black.
     */
@@ -59,7 +59,7 @@ public class Piece {
    }
 
    /**
-    * A method to return the position of the piece.
+    * Returns the position of the piece.
     *
     * @return the Vector2 object which stores its position.
     */
@@ -68,7 +68,7 @@ public class Piece {
    }
 
    /**
-    * A method to set the position of the piece.
+    * Sets the position of the piece.
     *
     * @param position the new position to set the piece's position to.
     */
@@ -77,7 +77,7 @@ public class Piece {
    }
 
    /**
-    * A method to return the legal moves of the piece.
+    * Returns the legal moves of the piece.
     *
     * @return the ArrayList of legal moves.
     */

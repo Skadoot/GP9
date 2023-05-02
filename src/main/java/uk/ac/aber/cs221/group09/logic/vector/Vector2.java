@@ -17,11 +17,11 @@ package uk.ac.aber.cs221.group09.logic.vector;
  * @see uk.ac.aber.cs221.group09.logic.pieces.Piece
  */
 public class Vector2 {
-   //board notation.
+   // Board notation.
    private final char[] boardNotation = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
-   //x coordinate for the board.
+   // X coordinate for the board.
    public int x;
-   //y coordinate for the board.
+   // Y coordinate for the board.
    public int y;
 
    /**
@@ -34,6 +34,7 @@ public class Vector2 {
 
    /**
     * A simple constructor for the Vector2 class.
+    *
     * @param x the x coordinate for the board.
     * @param y the y coordinate for the board.
     */

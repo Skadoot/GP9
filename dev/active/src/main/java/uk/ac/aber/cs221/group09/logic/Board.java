@@ -190,11 +190,6 @@ public class Board {
         //get the castling notation.
         String castlingNotation = forsythEdwardsBoardNotationArray[2];
 
-        /*
-        /   CASTLING DONE HERE
-        /
-         */
-
         //if the king is moving more than one square it is castling, move the rook, on the correct side.
         if (move.x > king.getPosition().x + 1 || move.x < king.getPosition().x - 1) {
             //move king side rook.

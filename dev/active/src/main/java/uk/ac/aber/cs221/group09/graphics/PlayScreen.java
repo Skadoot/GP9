@@ -289,14 +289,11 @@ public class PlayScreen {
             }
         });
         Button reject = new Button("Reject Draw");
-        //Set action of reject to remove the container from the playerDashboard and reenable the chessboard.
-        reject.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                //continue game
-                dashboard.getChildren().remove(drawWindow);
-                chessboard.disableChessboard(false);
-            }
+        //Set action of reject to remove the container from the playerDashboard and re-enable the chessboard.
+        reject.setOnAction(actionEvent -> {
+            //continue game
+            dashboard.getChildren().remove(drawWindow);
+            chessboard.disableChessboard(false);
         });
 
         //Nest the containers

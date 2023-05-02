@@ -86,7 +86,8 @@ public class Game {
         ArrayList<Vector2> currentLegalMoves = gameBoard.getPiece(selectedPiece).getPossibleMoves();
         if(currentLegalMoves.contains(selectedBoardCoordinate) && gameBoard.getPiece(selectedPiece).getColor() == attackingPlayer) {
             System.out.println("Moved piece.");
-            gameBoard.movePiece(gameBoard.getPiece(selectedPiece), selectedBoardCoordinate);
+            gameBoard.movePiece(gameBoard.getPiece(selectedPiece), selectedBoardCoordinate); //can use this to record movements in UI
+            log.updateLog(gameBoard.getForsythEdwardsBoardNotation()); //should update the log after a move is made
             selectedPiece = selectedBoardCoordinate;
             moveCount += (attackingPlayer == 'b') ? 1 : 0;
             isMovesCalculated = false;

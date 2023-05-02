@@ -63,6 +63,7 @@ public class StartScreen {
             public void handle(ActionEvent actionEvent) {
                 requestNewGame();
             }
+
         });
 
         //This button takes the user to the LoadGame scene with a selection of unfinished games to pick back up

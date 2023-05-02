@@ -58,28 +58,32 @@ public class PlayerNameScreen {
         VBox panel = new VBox();
         panel.setAlignment(Pos.CENTER);
 
-        //FX containers for containing the white and black player names
+        //FX containers for containing the player and file names.
         HBox playerWhite = new HBox();
         playerWhite.getStyleClass().add("hbox");
         HBox playerBlack = new HBox();
         playerBlack.getStyleClass().add("hbox");
         HBox buttons = new HBox();
         buttons.getStyleClass().add("hbox");
+        HBox fileName = new HBox(); //jat add
+        fileName.getStyleClass().add("hbox");
 
         //Text fields to enter names.
         TextField textFieldWhite = new TextField("White Player");
         TextField textFieldBlack = new TextField("Black Player");
+        TextField textFieldFile = new TextField("File Name");
 
         //Labels to place alongside text fields indicating which colour is being named.
         Label labelWhite = new Label("White:");
         Label labelBlack = new Label("Black:");
+        Label labelFile = new Label("Name of File");
 
         //Create a button that on click calls interface to swap scene to chessboard
         Button startGame = new Button("Start Game");
         startGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                forwardsToNewGame(textFieldBlack.getText(), textFieldWhite.getText());
+                forwardsToNewGame(textFieldBlack.getText(), textFieldWhite.getText(), textFieldFile.getText());
             }
         });
         Button back = new Button("Back");
@@ -108,7 +112,7 @@ public class PlayerNameScreen {
     }
 
     //might be worth asking user for the name of the game in here as well. Will need this for logfile - jat92
-    private void forwardsToNewGame(String blackN, String whiteN) {
+    private void forwardsToNewGame(String blackN, String whiteN, String fileName) {
         anInterface.toNewChessboard(whiteN, blackN);
     }
 }

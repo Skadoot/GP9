@@ -91,7 +91,7 @@ public class Interface extends Application {
    }
 
    public void toNewChessboard(String whiteName, String blackName) {
-      game = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "", false);
+      game = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "integrationTest1", false);
       playScreen.setWhitePlayerName(whiteName);
       playScreen.setBlackPlayerName(blackName);
       playScreen.updatePlayScreen(game.gameNotation());

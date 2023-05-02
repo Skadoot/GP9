@@ -140,6 +140,7 @@ public class Board {
 
         //get the new board state string, after the move has been played.
         updateForsythEdwardsBoardNotation();
+
     }
 
     /*

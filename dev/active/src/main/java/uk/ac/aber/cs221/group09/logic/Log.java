@@ -26,6 +26,7 @@ import java.util.ArrayList;
 public class Log {
    private final String fileName;
    private int numberOfLines = 0; //to keep track of the number of lines in the file
+   private String nameOfFolderToHoldGames = "./unfinishedGames";
 
    //need to test this to see what happens when a filename is entered that does not exist when load is set to true.
 
@@ -39,13 +40,14 @@ public class Log {
     */
    public Log(String fileName, boolean load) {
       //if the unfinished game directory does not exist, create it
-      new File("./unfinishedGames").mkdirs();
+      new File(nameOfFolderToHoldGames).mkdirs();
+      File dir = new File(nameOfFolderToHoldGames);
       if (!load) {
          //make log for new game
          this.fileName = fileName + ".txt"; //add .txt to make it a txt file
          //make a new file called 'fileName' in the unfinishedGames Directory.
          try {
-            FileWriter fileWriter = new FileWriter(new File("./unfinishedGames",this.fileName));
+            FileWriter fileWriter = new FileWriter(new File(dir,this.fileName));
             fileWriter.close();
          } catch (IOException e) {
             System.out.println("IO Error");
@@ -64,8 +66,9 @@ public class Log {
     * @param FEN the Forsyth Edwards Notation representing the board state. This is what gets appended to the txt file.
     */
    public void updateLog(String FEN) {
+      File dir = new File(nameOfFolderToHoldGames);
       try {
-         FileWriter fileWriter = new FileWriter(fileName, true);
+         FileWriter fileWriter = new FileWriter(new File(dir,this.fileName), true);
          fileWriter.append(FEN).append("\n");
          fileWriter.close();
          numberOfLines++;
@@ -88,7 +91,7 @@ public class Log {
       String fenAtLineNumber = null;
       try {
          //assign variable the string at the requested line number of the file
-         fenAtLineNumber = Files.readAllLines(Paths.get(fileName)).get(lineNumber);
+         fenAtLineNumber = Files.readAllLines(Paths.get(nameOfFolderToHoldGames, fileName)).get(lineNumber);
       } catch (IOException e) {
          System.out.println("IO Error");
       } catch (IndexOutOfBoundsException er) {

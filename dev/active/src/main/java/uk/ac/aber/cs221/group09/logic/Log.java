@@ -30,7 +30,7 @@ public class Log {
    /**
     * constructor for Log class. If load is set to false then makes a new text file for the FEN strings to be recorded in each turn.
     * If the file name is the same as a file that already exists then it will be overwritten. If load is set to true then
-    * an existing text file is used.
+    * an existing text file is used. If a new file is made then the FEN string for an initial board state is also added.
     *
     * @param fileName the name of the file to be made or loaded
     * @param load     if set to true an existing file is loaded using the filename parameter
@@ -46,6 +46,7 @@ public class Log {
          } catch (IOException e) {
             System.out.println("IO Error");
          }
+         updateLog("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"); //append the initial board state to the new log file
       } else {
          //make log for load game
          this.fileName = fileName;

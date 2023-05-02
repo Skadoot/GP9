@@ -36,7 +36,7 @@ public class Main {
 //        //read specific line from the file
 //        System.out.println(game.log.readLog(2));
 //        System.out.println(game.log.readLog(10));
-        loadGame("/saves/testGameOne.txt");
+        //loadGame("/saves/testGameOne.txt");
     }
 
     //I don't really understand the point of this method(below) in here? jat92

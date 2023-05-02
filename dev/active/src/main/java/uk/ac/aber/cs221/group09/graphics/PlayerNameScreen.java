@@ -98,9 +98,10 @@ public class PlayerNameScreen {
 
         playerWhite.getChildren().addAll(labelWhite, textFieldWhite);
         playerBlack.getChildren().addAll(labelBlack, textFieldBlack);
+        fileName.getChildren().addAll(labelFile, textFieldFile);
         buttons.getChildren().addAll(back, startGame);
 
-        panel.getChildren().addAll(playerWhite, playerBlack, buttons);
+        panel.getChildren().addAll(playerWhite, playerBlack, fileName, buttons);
 
         Scene scene = new Scene(panel, 1280, 720);
         scene.getStylesheets().add(PlayerNameScreen.class.getResource("/css/PlayerNameScreen.css").toExternalForm());
@@ -113,6 +114,6 @@ public class PlayerNameScreen {
 
     //might be worth asking user for the name of the game in here as well. Will need this for logfile - jat92
     private void forwardsToNewGame(String blackN, String whiteN, String fileName) {
-        anInterface.toNewChessboard(whiteN, blackN);
+        anInterface.toNewChessboard(whiteN, blackN, fileName);
     }
 }

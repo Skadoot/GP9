@@ -44,7 +44,7 @@ public class Vector2 {
      * @return the vector2 as a chess board position notation String.
      */
     public String getVector2AsBoardNotation() {
-        return boardNotation[x] + Integer.toString(y);
+        return boardNotation[x] + Integer.toString(y + 1);
     }
 
     @Override

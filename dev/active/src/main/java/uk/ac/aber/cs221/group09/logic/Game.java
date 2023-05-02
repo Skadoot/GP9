@@ -33,6 +33,11 @@ public class Game {
     //keep track of which move it is.
     private int moveCount;
 
+    //is it the first move?
+    boolean firstMove = true;
+
+    private MoveCalculator moveCalculator;
+
     public Log log;
     private Vector2 selectedPiece;
     private boolean isMovesCalculated = false;
@@ -53,55 +58,68 @@ public class Game {
         this.selectedPiece = new Vector2();
     }
 
+
+
     /**
      * A method which outlines the general loop of the game.
      */
     public void move(int row, int column) {
-        //determine the player making the current move.
-        determineCurrentPlayer();
+        //If the moves have been calculated the first turn, don't calculate them again.
+        if (!isMovesCalculated && firstMove) {
+            //calculate the legal moves for the board. with the current player.
+            calculateMoves();
 
-        //calculate the legal moves for the board. with the current player.
-        MoveCalculator moveCalculator = new MoveCalculator(attackingPlayer, gameBoard);
-
-        //If the moves have been calculated this turn, don't calculate them again.
-        if (!isMovesCalculated) {
-            moveCalculator.findLegalMovesForPlayer(true);
-            moveCalculator.findLegalMovesForPlayer(false);
-            moveCalculator.printCheckMap();
-
-            isMovesCalculated = true;
-
-            System.out.println("is " + attackingPlayer + " in check = " + moveCalculator.isPlayerInCheck());
+            firstMove = false;
         }
-
-        //print the board to the console.
-        gameBoard.printBoardStateToConsole();
-
-
 
         //wait for the UI to give us a selected piece, here we would set it to be the coordinate that the ui passes back to us.
         Vector2 selectedBoardCoordinate = new Vector2(column, row);
-
-
 
         //Get a list of all the legal moves for the chessboard
         ArrayList<Vector2> currentLegalMoves = gameBoard.getPiece(selectedPiece).getPossibleMoves();
 
         //Check the selected coordinates are a legal move and the current selected piece is the attacking player's piece.
         if(currentLegalMoves.contains(selectedBoardCoordinate) && gameBoard.getPiece(selectedPiece).getColor() == attackingPlayer) {
-            System.out.println("Moved piece.");
+
             gameBoard.movePiece(gameBoard.getPiece(selectedPiece), selectedBoardCoordinate);
             selectedPiece = selectedBoardCoordinate;
             moveCount += (attackingPlayer == 'b') ? 1 : 0;
             isMovesCalculated = false;
             gameBoard.clearMoves();
 
+            System.out.println("Moved piece to " + selectedBoardCoordinate.getVector2AsBoardNotation() + "\n");
+
+            calculateMoves();
+
         } else if (gameBoard.getPiece(selectedBoardCoordinate) != null) {
             if (gameBoard.getPiece(selectedBoardCoordinate).getColor() == attackingPlayer) {
-                System.out.println("Did not find legal move.");
+
                 selectedPiece = selectedBoardCoordinate;
+                System.out.println("selected piece is : " + selectedPiece.getVector2AsBoardNotation() + ",");
+                if (gameBoard.getPiece(selectedPiece).getPossibleMoves().isEmpty()) {
+                    System.out.println("Did not find legal move.");
+                }
             }
         }
+    }
+
+    public void calculateMoves() {
+        //determine the player making the current move.
+        determineCurrentPlayer();
+
+        moveCalculator = new MoveCalculator(attackingPlayer, gameBoard);
+
+        moveCalculator.findLegalMovesForPlayer(true);
+        moveCalculator.findLegalMovesForPlayer(false);
+
+        isMovesCalculated = true;
+
+        moveCalculator.printCheckMap();
+
+        System.out.println("\nis " + attackingPlayer + " in check = " + moveCalculator.isPlayerInCheck());
+        System.out.println("\nis " + attackingPlayer + " in checkmate = " + moveCalculator.isPlayerInCheckMate());
+
+        System.out.println("\n" + gameBoard.getForsythEdwardsBoardNotation() + "\n");
     }
 
     public String gameNotation() {

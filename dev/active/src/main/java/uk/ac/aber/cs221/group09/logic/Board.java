@@ -190,6 +190,11 @@ public class Board {
         //get the castling notation.
         String castlingNotation = forsythEdwardsBoardNotationArray[2];
 
+        /*
+        /   CASTLING DONE HERE
+        /
+         */
+
         //if the king is moving more than one square it is castling, move the rook, on the correct side.
         if (move.x > king.getPosition().x + 1 || move.x < king.getPosition().x - 1) {
             //move king side rook.
@@ -199,13 +204,13 @@ public class Board {
             //find out which rook needs to move, and to where.
             if (move.x > king.getPosition().x + 1) {
                 //get the king side rook if the king is moving to the right.
-                rook = getPiece(new Vector2(0, 7));
+                rook = getPiece(new Vector2(7, king.getPosition().y));
 
                 //get the new rook position.
                 newRookPosition = new Vector2(king.getPosition().x + 1, king.getPosition().y);
             } else {
                 //get the queen side rook if the king is moving to the left.
-                rook = getPiece(new Vector2(0, 0));
+                rook = getPiece(new Vector2(0, king.getPosition().y));
 
                 //get the new rook position.
                 newRookPosition = new Vector2(king.getPosition().x - 1, king.getPosition().y);
@@ -465,8 +470,8 @@ public class Board {
     }
 
     public void clearMoves() {
-        for (int row = 0; row < 7; row++) {
-            for (int column = 0; column < 7; column++) {
+        for (int row = 0; row < 8; row++) {
+            for (int column = 0; column < 8; column++) {
                 if(board[row][column] != null) {
                     board[row][column].clearMoves();
                 }

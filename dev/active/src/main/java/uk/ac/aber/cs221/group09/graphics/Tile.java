@@ -101,4 +101,8 @@ public class Tile {
         this.button.getStyleClass().clear();
         this.button.getStyleClass().add(styleClass);
     }
+
+    public void switchButton(boolean b) {
+        button.setDisable(b);
+    }
 }

@@ -187,7 +187,15 @@ public class Chessboard {
         }
     }
 
-    private void highlightCheckTile(ArrayList checkT) {
+    public void disableChessboard(boolean b) {
+        for (int row = 0; row < 8; row++) {
+            for (int column = 0; column < 8; column++) {
+                tiles[row][column].switchButton(b);
+            }
+        }
+    }
+
+    private void highlightCheckTile(ArrayList<int[]> checkT) {
         tiles[0][0].setStyleClass("check-tile");
     }
 

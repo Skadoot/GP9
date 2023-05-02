@@ -86,10 +86,14 @@ public class Interface extends Application {
    }
 
    public void toChessboard() {
+      //Create a new PlayScreen everytime.
+      this.playScreen = new PlayScreen(this);
       primaryStage.setScene(playScreen.getScene());
    }
 
    public void toNewChessboard(String whiteName, String blackName) {
+      //Create a new PlayScreen everytime.
+      this.playScreen = new PlayScreen(this);
       game = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "", false);
       playScreen.setWhitePlayerName(whiteName);
       playScreen.setBlackPlayerName(blackName);

@@ -105,22 +105,22 @@ class MoveCalculatorTest {
         moveCalculator.findLegalMovesForPlayer(false);
 
         //Checking whether legal moves for the given player is returned correctly
-        Assertions.assertEquals("legal moves for b pawn at f5 | \r\n" +
-                "legal moves for b pawn at a6 | \r\n" +
-                "legal moves for b pawn at b6 | \r\n" +
-                "legal moves for b pawn at c6 | \r\n" +
-                "legal moves for b pawn at d6 | \r\n" +
-                "legal moves for b pawn at e6 | \r\n" +
-                "legal moves for b pawn at g6 | g5 \r\n" +
-                "legal moves for b pawn at h6 | \r\n" +
-                "legal moves for b rook at a7 | \r\n" +
-                "legal moves for b knight at b7 | \r\n" +
-                "legal moves for b bishop at c7 | \r\n" +
-                "legal moves for b queen at d7 | \r\n" +
-                "legal moves for b king at e7 | \r\n" +
-                "legal moves for b bishop at f7 | \r\n" +
-                "legal moves for b knight at g7 | \r\n" +
-                "legal moves for b rook at h7 | \r\n", outContent.toString());
+        Assertions.assertEquals("legal moves for b pawn at f6 | \r\n" +
+                "legal moves for b pawn at a7 | \r\n" +
+                "legal moves for b pawn at b7 | \r\n" +
+                "legal moves for b pawn at c7 | \r\n" +
+                "legal moves for b pawn at d7 | \r\n" +
+                "legal moves for b pawn at e7 | \r\n" +
+                "legal moves for b pawn at g7 | g6 \r\n" +
+                "legal moves for b pawn at h7 | \r\n" +
+                "legal moves for b rook at a8 | \r\n" +
+                "legal moves for b knight at b8 | \r\n" +
+                "legal moves for b bishop at c8 | \r\n" +
+                "legal moves for b queen at d8 | \r\n" +
+                "legal moves for b king at e8 | \r\n" +
+                "legal moves for b bishop at f8 | \r\n" +
+                "legal moves for b knight at g8 | \r\n" +
+                "legal moves for b rook at h8 | \r\n", outContent.toString());
     }
 
     @Test
@@ -141,22 +141,22 @@ class MoveCalculatorTest {
         moveCalculator.findLegalMovesForPlayer(false);
 
         //check that white has no legal moves
-        Assertions.assertEquals("legal moves for w rook at a0 | \r\n" +
-              "legal moves for w knight at b0 | \r\n" +
-              "legal moves for w bishop at c0 | \r\n" +
-              "legal moves for w queen at d0 | \r\n" +
-              "legal moves for w king at e0 | \r\n" +
-              "legal moves for w bishop at f0 | \r\n" +
-              "legal moves for w knight at g0 | \r\n" +
-              "legal moves for w rook at h0 | \r\n" +
-              "legal moves for w pawn at a1 | \r\n" +
-              "legal moves for w pawn at b1 | \r\n" +
-              "legal moves for w pawn at c1 | \r\n" +
-              "legal moves for w pawn at d1 | \r\n" +
-              "legal moves for w pawn at e1 | \r\n" +
-              "legal moves for w pawn at h1 | \r\n" +
-              "legal moves for w pawn at f2 | \r\n" +
-              "legal moves for w pawn at g3 | \r\n", outContent.toString());
+        Assertions.assertEquals("legal moves for w rook at a1 | \r\n" +
+              "legal moves for w knight at b1 | \r\n" +
+              "legal moves for w bishop at c1 | \r\n" +
+              "legal moves for w queen at d1 | \r\n" +
+              "legal moves for w king at e1 | \r\n" +
+              "legal moves for w bishop at f1 | \r\n" +
+              "legal moves for w knight at g1 | \r\n" +
+              "legal moves for w rook at h1 | \r\n" +
+              "legal moves for w pawn at a2 | \r\n" +
+              "legal moves for w pawn at b2 | \r\n" +
+              "legal moves for w pawn at c2 | \r\n" +
+              "legal moves for w pawn at d2 | \r\n" +
+              "legal moves for w pawn at e2 | \r\n" +
+              "legal moves for w pawn at h2 | \r\n" +
+              "legal moves for w pawn at f3 | \r\n" +
+              "legal moves for w pawn at g4 | \r\n", outContent.toString());
     }
 
 

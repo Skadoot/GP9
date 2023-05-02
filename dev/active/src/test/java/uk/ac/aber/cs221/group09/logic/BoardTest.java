@@ -27,6 +27,11 @@ import uk.ac.aber.cs221.group09.logic.vector.Vector2;
  */
 class BoardTest {
     private static Board testBoard;
+    private static Board testBoardWhiteKing;
+    private static Board testBoardWhiteQueen;
+    private static Board testBoardBlackKing;
+    private static Board testBoardBlackQueen;
+
 
     @Test
     //FR3 Tests
@@ -188,23 +193,15 @@ class BoardTest {
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //Sets up a king piece and a rook piece to move
+        //Sets up a king piece to move
         Piece pieceToMove = testBoard.getPiece(new Vector2(4,0));
-        Piece pieceToMove2 = testBoard.getPiece(new Vector2(7,0));
 
-        //Move pieces into test positions to check whether the castling function is working correctly
+        //Move piece into test position to check whether the castling function is working correctly
         Vector2 testPosition = new Vector2(6, 0);
-        Vector2 testPosition2 = new Vector2(5,0);
         for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
             if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
             {
                 testBoard.movePiece(pieceToMove, testPosition);
-            }
-        }
-        for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
-            if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
-            {
-                testBoard.movePiece(pieceToMove2, testPosition2);
             }
         }
         //check if the expected board is the same as actual board
@@ -212,7 +209,7 @@ class BoardTest {
     }
 
     @Test
-    public void testCastlingIllegal(){
+    public void testCastlingBlocked(){
         //create a new board
         testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 
@@ -224,33 +221,143 @@ class BoardTest {
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //Sets up a king piece and a rook piece to move
+        //Sets up a king piece to move
         Piece pieceToMove = testBoard.getPiece(new Vector2(4,0));
-        Piece pieceToMove2 = testBoard.getPiece(new Vector2(7,0));
 
-        //Attempt to move pieces into test positions to check whether the castling function is working correctly
+        //Attempt to move piece into test position to check whether the castling function is working correctly
         Vector2 testPosition = new Vector2(6, 0);
-        Vector2 testPosition2 = new Vector2(5,0);
         for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
             if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
             {
                 testBoard.movePiece(pieceToMove, testPosition);
             }
         }
-        for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
-            if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
-            {
-                testBoard.movePiece(pieceToMove2, testPosition2);
-            }
-        }
         //check if the expected board is the same as actual board - the pieces should not have moved
         Assertions.assertEquals("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
     }
+
+    @Test
+    //FR5 Tests
+    public void testCastlingIllegalWhiteKingSide(){
+        //create a new board
+        testBoard = new Board("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R w Qkq - 0 1");
+
+        //initializing an attacking player
+        char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
+        MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
+
+        //calculates all the legal moves for the given player
+        moveCalculator.findLegalMovesForPlayer(true);
+        moveCalculator.findLegalMovesForPlayer(false);
+
+        //Sets up a king piece to move
+        Piece pieceToMove = testBoard.getPiece(new Vector2(4,0));
+
+        //Move piece into test position to check whether the castling function is working correctly
+        Vector2 testPosition = new Vector2(6, 0);
+        for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+            if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
+            {
+                testBoard.movePiece(pieceToMove, testPosition);
+            }
+        }
+
+        //check if the expected board is the same as actual board
+        Assertions.assertEquals("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
+    }
+
+    @Test
+    //FR5 Tests
+    public void testCastlingIllegalWhiteQueenSide(){
+        //create a new board
+        testBoard = new Board("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R w Kkq - 0 1");
+
+        //initializing an attacking player
+        char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
+        MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
+
+        //calculates all the legal moves for the given player
+        moveCalculator.findLegalMovesForPlayer(true);
+        moveCalculator.findLegalMovesForPlayer(false);
+
+        //Sets up a king piece to move
+        Piece pieceToMove = testBoard.getPiece(new Vector2(4,0));
+
+        //Move piece into test position to check whether the castling function is working correctly
+        Vector2 testPosition = new Vector2(2, 0);
+        for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+            if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
+            {
+                testBoard.movePiece(pieceToMove, testPosition);
+            }
+        }
+        //check if the expected board is the same as actual board
+        Assertions.assertEquals("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
+    }
+
+    @Test
+    //FR5 Tests
+    public void testCastlingIllegalBlackKingSide(){
+        //create a new board
+        testBoard = new Board("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R w KQq - 0 1");
+
+        //initializing an attacking player
+        char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
+        MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
+
+        //calculates all the legal moves for the given player
+        moveCalculator.findLegalMovesForPlayer(true);
+        moveCalculator.findLegalMovesForPlayer(false);
+
+        //Sets up a king piece to move
+        Piece pieceToMove = testBoard.getPiece(new Vector2(4,7));
+
+        //Move piece into test position to check whether the castling function is working correctly
+        Vector2 testPosition = new Vector2(6, 7);
+        for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+            if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
+            {
+                testBoard.movePiece(pieceToMove, testPosition);
+            }
+        }
+        //check if the expected board is the same as actual board
+        Assertions.assertEquals("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
+    }
+
+    @Test
+    //FR5 Tests
+    public void testCastlingIllegalBlackQueenSide(){
+        //create a new board
+        testBoard = new Board("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R w KQk - 0 1");
+
+        //initializing an attacking player
+        char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
+        MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
+
+        //calculates all the legal moves for the given player
+        moveCalculator.findLegalMovesForPlayer(true);
+        moveCalculator.findLegalMovesForPlayer(false);
+
+        //Sets up a king piece and a rook piece to move
+        Piece pieceToMove = testBoard.getPiece(new Vector2(4,7));
+
+        //Move piece into test position to check whether the castling function is working correctly
+        Vector2 testPosition = new Vector2(2, 7);
+        for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+            if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
+            {
+                testBoard.movePiece(pieceToMove, testPosition);
+            }
+        }
+        //check if the expected board is the same as actual board
+        Assertions.assertEquals("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
+    }
+
     @Test
     //FR5 Tests
     public void testEnPassant() {
         //create a new board
-        testBoard = new Board("rnbqkbnr/ppppp2pp/4p3/4Pp2/8/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
+        testBoard = new Board("rnbqkbnr/ppp1p1pp/5p2/3pP3/8/8/PPPP1PPP/RNBQKBNR w KQkq d6 0 1");
 
 
         //initializing an attacking player
@@ -273,7 +380,7 @@ class BoardTest {
         }
             //check if the expected board is the same as actual board
 
-    }Assertions.assertEquals("rnbqkbnr/ppppp2pp/4Pp2/8/8/8/PPPP1PPP/RNBQKBNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
+    }Assertions.assertEquals("rnbqkbnr/ppp1p1pp/3P1p2/8/8/8/PPPP1PPP/RNBQKBNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
 }
 
     @Test
@@ -444,9 +551,57 @@ class BoardTest {
         }Assertions.assertEquals("rnbqkbnr/ppp2ppp/3p4/4p3/4P1Q1/8/PPPP1PPP/RNBK1BNR",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
     }
 
+@Test
+    public void testCapture(){
+        testBoard = new Board("rnbqkbnr/ppp1pppp/8/3p4/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
 
+    //initializing an attacking player
+    char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
+    MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
 
+    //calculates all the legal moves for the given player
+    moveCalculator.findLegalMovesForPlayer(true);
+    moveCalculator.findLegalMovesForPlayer(false);
 
+    //Sets up a testing pawn piece to move
+    Piece pieceToMove = testBoard.getPiece(new Vector2(4,3));
+
+    //Moves pawn piece into test position to check whether it is moving correctly and capturing the opposing pawn
+    Vector2 testPosition = new Vector2(3, 4);
+    for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+        if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
+        {
+            testBoard.movePiece(pieceToMove, testPosition);
+        }
+        //check if the expected board is the same as actual board
+    }Assertions.assertEquals("rnbqkbnr/ppp1pppp/8/3P4/8/8/PPPP1PPP/RNBQKBNR",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
+}
+
+    @Test
+    public void testCaptureInCheck(){
+        testBoard = new Board("rnbqk1nr/pp1p1ppp/2p1p3/8/1b6/P2P4/1PP1PPPP/RNBQKBNR w KQkq - 0 1");
+
+        //initializing an attacking player
+        char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
+        MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
+
+        //calculates all the legal moves for the given player
+        moveCalculator.findLegalMovesForPlayer(true);
+        moveCalculator.findLegalMovesForPlayer(false);
+
+        //Sets up a testing pawn piece to move
+        Piece pieceToMove = testBoard.getPiece(new Vector2(0,2));
+
+        //Moves pawn piece into test position to check whether it is moving correctly and capturing the opposing pawn
+        Vector2 testPosition = new Vector2(1, 3);
+        for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+            if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
+            {
+                testBoard.movePiece(pieceToMove, testPosition);
+            }
+            //check if the expected board is the same as actual board
+        }Assertions.assertEquals("rnbqk1nr/pp1p1ppp/2p1p3/8/1P6/3P4/1PP1PPPP/RNBQKBNR",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
+    }
 
 
 

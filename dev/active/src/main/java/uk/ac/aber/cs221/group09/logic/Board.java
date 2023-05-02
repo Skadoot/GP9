@@ -465,8 +465,8 @@ public class Board {
     }
 
     public void clearMoves() {
-        for (int row = 0; row < 7; row++) {
-            for (int column = 0; column < 7; column++) {
+        for (int row = 0; row < 8; row++) {
+            for (int column = 0; column < 8; column++) {
                 if(board[row][column] != null) {
                     board[row][column].clearMoves();
                 }

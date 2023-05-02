@@ -103,10 +103,6 @@ public class Chessboard {
      * @param row - The rank or horizontal row of the pressed tile.
      */
     public void click(int column, int row) {
-        //Debugging output
-        System.out.println(column);
-        System.out.println(row);
-
         //Alert the playscreen of incident and set tile to visually indicate it has been selected.
         this.playScreen.alertPressedTile(column, row);
         tiles[row][column].setStyleClass("selected-tile");
@@ -173,7 +169,7 @@ public class Chessboard {
      * styles.
      * @param validT - ArrayList of coordinates of valid tiles.
      * @param checkT - ArrayList of coordinates of checked pieces
-     * @param attackT - ArrayList of coordinates containing attacking pieces.
+     * //@param attackT - ArrayList of coordinates containing attacking pieces.
      */
     public void highlightTiles(ArrayList<int[]> validT, ArrayList<int[]> checkT) {
         highlightValidTiles(validT);

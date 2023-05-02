@@ -564,9 +564,9 @@ public class MoveCalculator {
                return true;
             }
          }
-        }
-        return false;
-    }
+      }
+      return false;
+   }
 
     /**
      * a method which determines if the player is in checkmate in the board position or not.

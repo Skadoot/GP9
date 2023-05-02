@@ -156,7 +156,7 @@ public class Game {
         MoveCalculator checkCheck = new MoveCalculator(attackingPlayer, gameBoard);
         if (checkCheck.isPlayerInCheck()) {
             int[] coords = new int[2];
-            if(attackingPlayer == 'w') {
+            if (attackingPlayer == 'w') {
                 Vector2 wKPos = gameBoard.getWhiteKingPosition();
                 coords[0] = wKPos.y;
                 coords[1] = wKPos.x;

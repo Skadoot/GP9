@@ -237,13 +237,12 @@ public class PlayScreen {
     public void updatePlayScreen(String boardNotation) {
         String[] sectionedNotation = boardNotation.split(" ");
         chessboard.updateBoard(sectionedNotation[0]);
-        char numChar = sectionedNotation[5].charAt(0);
-        int turn = Character.getNumericValue(numChar);
-        updatePlayerDashboard(turn);
+        char player = sectionedNotation[1].charAt(0);
+        updatePlayerDashboard(player);
     }
 
-    public void updatePlayerDashboard (int n) {
-        if (n%2 == 1) {
+    public void updatePlayerDashboard (char player) {
+        if (player == 'w') {
             this.symbol.setImage(graphicsLoader.getImage('W'));
             turnTracker.setText(whitePlayerName.getText());
         } else {

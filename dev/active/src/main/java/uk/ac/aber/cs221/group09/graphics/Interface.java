@@ -124,6 +124,7 @@ public class Interface extends Application {
 
    public void toNewChessboard(String whiteName, String blackName, String filename) {
       game = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", filename, false);
+      //set the game.log.filename
       playScreen.setWhitePlayerName(whiteName);
       playScreen.setBlackPlayerName(blackName);
       playScreen.updatePlayScreen(game.gameNotation());
@@ -144,7 +145,9 @@ public class Interface extends Application {
     */
    public void loadUFGames() {
       //loadScreen.populateButtonBar(list of unfinished games);
+      game = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
       loadScreen.setLabel("Unfinished Games:");
+
 
       ArrayList<String> existingGamesList= game.log.displayExistingGameFiles();
       String[] existingGamesArray = new String[existingGamesList.size()];

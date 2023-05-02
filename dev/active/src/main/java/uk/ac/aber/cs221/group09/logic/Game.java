@@ -23,94 +23,93 @@ import java.util.ArrayList;
  * @see uk.ac.aber.cs221.group09.logic.MoveCalculator
  */
 public class Game {
-    //this is the order of operations that will happen every turn
-    private final Board gameBoard;
+   //this is the order of operations that will happen every turn
+   private final Board gameBoard;
 
-    //this is the player taking the current move.
-    private char attackingPlayer;
+   //this is the player taking the current move.
+   private char attackingPlayer;
 
-    //keep track of which move it is.
-    private int moveCount;
+   //keep track of which move it is.
+   private int moveCount;
 
-    public Log log;
-    private Vector2 selectedPiece;
-    private boolean isMovesCalculated = false;
+   public Log log;
+   private Vector2 selectedPiece;
+   private boolean isMovesCalculated = false;
 
-    /**
-     * Constructor for game.
-     *
-     * @param boardState the initial board state string for the game (Forsyth Edwards Notation).
-     */
-    public Game(String boardState, String fileName, boolean load) {
-        if (!load) {
-            gameBoard = new Board(boardState);
-            this.log = new Log(fileName, false);
-        } else {
-            gameBoard = new Board(boardState);
-            this.log = new Log(fileName, true);
-        }
-        this.selectedPiece = new Vector2();
-    }
+   /**
+    * Constructor for game.
+    *
+    * @param boardState the initial board state string for the game (Forsyth Edwards Notation).
+    */
+   public Game(String boardState, String fileName, boolean load) {
+      gameBoard = new Board(boardState);
+      this.log = new Log(fileName);
+      this.selectedPiece = new Vector2();
+   }
 
-    /**
-     * A method which outlines the general loop of the game.
-     */
-    public void move(int row, int column) {
-        //determine the player making the current move.
-        determineCurrentPlayer();
+   public Game(String boardState){
+       gameBoard = new Board(boardState);
+       this.log = new Log();
+       this.selectedPiece = new Vector2();
+   }
 
-        //calculate the legal moves for the board. with the current player.
-        MoveCalculator moveCalculator = new MoveCalculator(attackingPlayer, gameBoard);
+   /**
+    * A method which outlines the general loop of the game.
+    */
+   public void move(int row, int column) {
+      //determine the player making the current move.
+      determineCurrentPlayer();
 
-        if (!isMovesCalculated) {
-            moveCalculator.findLegalMovesForPlayer(true);
-            moveCalculator.findLegalMovesForPlayer(false);
-            moveCalculator.printCheckMap();
+      //calculate the legal moves for the board. with the current player.
+      MoveCalculator moveCalculator = new MoveCalculator(attackingPlayer, gameBoard);
 
-            isMovesCalculated = true;
+      if (!isMovesCalculated) {
+         moveCalculator.findLegalMovesForPlayer(true);
+         moveCalculator.findLegalMovesForPlayer(false);
+         moveCalculator.printCheckMap();
 
-            System.out.println("is " + attackingPlayer + " in check = " + moveCalculator.isPlayerInCheck());
-        }
+         isMovesCalculated = true;
 
-        //print the board to the console.
-        gameBoard.printBoardStateToConsole();
+         System.out.println("is " + attackingPlayer + " in check = " + moveCalculator.isPlayerInCheck());
+      }
 
-
-
-        //wait for the UI to give us a selected piece, here we would set it to be the coordinate that the ui passes back to us.
-        Vector2 selectedBoardCoordinate = new Vector2(column, row);
+      //print the board to the console.
+      gameBoard.printBoardStateToConsole();
 
 
+      //wait for the UI to give us a selected piece, here we would set it to be the coordinate that the ui passes back to us.
+      Vector2 selectedBoardCoordinate = new Vector2(column, row);
 
-        //Get a list of all the legal moves for the chessboard
-        ArrayList<Vector2> currentLegalMoves = gameBoard.getPiece(selectedPiece).getPossibleMoves();
-        if(currentLegalMoves.contains(selectedBoardCoordinate) && gameBoard.getPiece(selectedPiece).getColor() == attackingPlayer) {
-            System.out.println("Moved piece.");
-            gameBoard.movePiece(gameBoard.getPiece(selectedPiece), selectedBoardCoordinate); //can use this to record movements in UI
-            log.updateLog(gameBoard.getForsythEdwardsBoardNotation()); //should update the log after a move is made
+
+      //Get a list of all the legal moves for the chessboard
+      ArrayList<Vector2> currentLegalMoves = gameBoard.getPiece(selectedPiece).getPossibleMoves();
+      if (currentLegalMoves.contains(selectedBoardCoordinate) && gameBoard.getPiece(selectedPiece).getColor() == attackingPlayer) {
+         System.out.println("Moved piece.");
+         gameBoard.movePiece(gameBoard.getPiece(selectedPiece), selectedBoardCoordinate); //can use this to record movements in UI
+         log.updateLog(gameBoard.getForsythEdwardsBoardNotation()); //should update the log after a move is made
+         selectedPiece = selectedBoardCoordinate;
+         moveCount += (attackingPlayer == 'b') ? 1 : 0;
+         isMovesCalculated = false;
+         gameBoard.clearMoves();
+
+      } else if (gameBoard.getPiece(selectedBoardCoordinate) != null) {
+         if (gameBoard.getPiece(selectedBoardCoordinate).getColor() == attackingPlayer) {
+            System.out.println("Did not find legal move.");
             selectedPiece = selectedBoardCoordinate;
-            moveCount += (attackingPlayer == 'b') ? 1 : 0;
-            isMovesCalculated = false;
-            gameBoard.clearMoves();
+         }
+      }
+   }
 
-        } else if (gameBoard.getPiece(selectedBoardCoordinate) != null) {
-            if (gameBoard.getPiece(selectedBoardCoordinate).getColor() == attackingPlayer) {
-                System.out.println("Did not find legal move.");
-                selectedPiece = selectedBoardCoordinate;
-            }
-        }
-    }
+   public String gameNotation() {
+      return gameBoard.getForsythEdwardsBoardNotation();
+   }
 
-    public String gameNotation() {
-        return gameBoard.getForsythEdwardsBoardNotation();
-    }
-
-    /**
-     * A method which determines which player's move it is.
-     * using the board's Forsyth Edwards Notation string.
-     */
-    private void determineCurrentPlayer() {
-        //check the board state string to find which player's turn it is.
-        attackingPlayer = gameBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
-    }
+   /**
+    * A method which determines which player's move it is.
+    * using the board's Forsyth Edwards Notation string.
+    */
+   private void determineCurrentPlayer() {
+      //check the board state string to find which player's turn it is.
+      attackingPlayer = gameBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
+   }
 }

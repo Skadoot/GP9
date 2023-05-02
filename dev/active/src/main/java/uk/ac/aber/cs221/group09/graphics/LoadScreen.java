@@ -119,17 +119,11 @@ public class LoadScreen {
      * @param stringNames - String array of save names. Can be empty.
      */
     public void populateButtonBar(String[] stringNames) {
+        saveContainer.getChildren().clear();
         int length = stringNames.length;
         for (int counter = 0; counter < length; counter++) {
-            Button save = new Button(stringNames[counter]);
-            save.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-                    //To add function that returns something the backend can use to distinguish a game.
-
-                }
-            });
-            saveContainer.getChildren().add(save);
+            LoadGameButton button = new LoadGameButton(stringNames[counter], counter, this);
+            saveContainer.getChildren().add(button.getLoadButton());
         }
     }
 

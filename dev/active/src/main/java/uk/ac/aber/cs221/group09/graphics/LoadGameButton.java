@@ -55,6 +55,10 @@ public class LoadGameButton {
         });
     }
 
+    public Button getLoadButton() {
+        return loadButton;
+    }
+
     private void selected() {
         loadScreen.requestSave(this.saveNumber);
     }

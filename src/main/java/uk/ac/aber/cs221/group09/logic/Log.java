@@ -44,6 +44,7 @@ public class Log {
          } catch (IOException e) {
             System.out.println("IO Error");
          }
+         updateLog("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"); //append the initial board state to the new log file
       } else {
          //make log for load game
          this.fileName = fileName;

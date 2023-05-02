@@ -24,7 +24,7 @@ import java.util.ArrayList;
  */
 public class Game {
    //this is the order of operations that will happen every turn
-   private final Board gameBoard;
+   private Board gameBoard;
 
    //this is the player taking the current move.
    private char attackingPlayer;

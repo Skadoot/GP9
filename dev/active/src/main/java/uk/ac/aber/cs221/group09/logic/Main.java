@@ -29,7 +29,7 @@ public class Main {
         //run main menu
 
 //        //new game
-//        game = new Game("r1b1k1nr/p2p1pNp/n2B4/1p1NP2P/6P1/3P1Q2/P1P1K3/q5b1 w KQkq - 0 1", "testGameTwo", false);
+        game = new Game("r1b1k1nr/p2p1pNp/n2B4/1p1NP2P/6P1/3P1Q2/P1P1K3/q5b1 w KQkq - 0 1", "testGameTwo", false);
 //        //update the log
 //        game.log.updateLog("FEN4");
 //        game.log.updateLog("FEN5");
@@ -46,6 +46,7 @@ public class Main {
 //            System.out.println(allTheFiles[i].getName());
 //        }
 //        System.out.println(game.log.displayExistingGameFiles());
+//        System.out.println(game.log.getNumberOfLines());
     }
 
     //I don't really understand the point of this method(below) in here? jat92

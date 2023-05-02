@@ -144,9 +144,13 @@ public class Interface extends Application {
     */
    public void loadUFGames() {
       //loadScreen.populateButtonBar(list of unfinished games);
-      loadScreen.setLabel("Unfinished Games:");
-      String[] test2={"game 1","game 2","game 3","game 1","game 2","game 3","game 1","game 2","game 3","game 1","game 2","game 3","game 1","game 2","game 3","game 1","game 2","game 3"};
-      loadScreen.populateButtonBar(test2);
+      ArrayList<String> existingGamesList= game.log.displayExistingGameFiles();
+      String[] existingGamesArray = new String[existingGamesList.size()];
+      for (int i =0; i< existingGamesList.size();i++){
+         existingGamesArray[i] = existingGamesList.get(i);
+      }
+      loadScreen.populateButtonBar(existingGamesArray);
+
       primaryStage.setScene(loadScreen.getScene());
    }
 

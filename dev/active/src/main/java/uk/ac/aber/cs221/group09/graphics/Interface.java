@@ -37,7 +37,10 @@ public class Interface extends Application {
    private Piece pieceToMove;
    boolean firstPieceClick = true;
    private Game game;
-
+   //setting a default value for currentTurn to view previous moves of a game
+   public int currentTurn = -1;
+   //setting a default value for startedViewing for viewing previous moves of a game
+   boolean startedViewing = false;
    ArrayList<Vector2> movesToCompare;
 
    @Override
@@ -75,7 +78,7 @@ public class Interface extends Application {
 
       game.move(row, column);
       playScreen.updatePlayScreen(game.gameNotation());
-      startedViewing=false;
+      startedViewing = false;
    }
 
 
@@ -86,22 +89,41 @@ public class Interface extends Application {
       return turn;
    }
 
-   public int currentTurn = -1;
-   boolean startedViewing = false;
+
 
    public String replayFEN(boolean reverse) {
+      //depending on which direction button is pressed the function operates in reverse through the log file
       if (reverse) {
+         //checks to see if the move view buttons have been pressed,
+         //will be irrelevant for the finished game view
          if (!startedViewing) {
-               currentTurn = (getTurnNumber() - 2);
+            //sets the index for navigation through the played moves to be the last move played
+            currentTurn = (getTurnNumber() - 2);
+            //sets the boolean to true, so we can iterate through the moves without causing errors
             startedViewing = true;
-         }else{
-            if(currentTurn>0){
+            //if we've already started looking at our played moves we just continue to iterate backwards
+            // from the last turn we looked at
+         } else {
+            //makes sure we don't go beyond the array boundaries
+            if (currentTurn > 0) {
                currentTurn--;
             }
          }
          return game.log.readLog(currentTurn);
+         //if we've clicked the forwards button the else will run
       } else {
-         if (!(currentTurn > getTurnNumber()-2)) {
+         //checks to see if the move view buttons have been pressed,
+         //will be irrelevant for the finished game view
+         if (!startedViewing) {
+            //sets the index for navigation through the played moves to be the move just played
+            currentTurn = (getTurnNumber() - 1);
+            //sets the boolean to true, so we can iterate through the moves without causing errors
+            startedViewing = true;
+         }
+         //making sure we're not pushing past the boundaries of the played moves and ensuring we stop at the latest move
+         // and no errors are caused
+         if (!(currentTurn > getTurnNumber() - 2)) {
+            //increases the turn we are looking at by 1
             currentTurn++;
             return game.log.readLog(currentTurn);
          }
@@ -148,12 +170,15 @@ public class Interface extends Application {
       game = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
       loadScreen.setLabel("Unfinished Games:");
 
-
-      ArrayList<String> existingGamesList= game.log.displayExistingGameFiles();
+      //creates an array list from the log function to display every game saved locally
+      ArrayList<String> existingGamesList = game.log.displayExistingGameFiles();
+      //creates an array for conversion to the correct format for the button bar
       String[] existingGamesArray = new String[existingGamesList.size()];
-      for (int i =0; i< existingGamesList.size();i++){
+      //iterates through the games list and assigns each to its own index in the array
+      for (int i = 0; i < existingGamesList.size(); i++) {
          existingGamesArray[i] = existingGamesList.get(i);
       }
+      //the array is sent to populate the scrollpane's button bar
       loadScreen.populateButtonBar(existingGamesArray);
       primaryStage.setScene(loadScreen.getScene());
    }

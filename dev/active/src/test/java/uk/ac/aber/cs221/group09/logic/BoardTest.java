@@ -604,7 +604,7 @@ class BoardTest {
     }
 
 
-
+//pawn promotion test - check if available
 
 
 

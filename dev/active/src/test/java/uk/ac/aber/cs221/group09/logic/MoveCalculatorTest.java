@@ -159,6 +159,7 @@ class MoveCalculatorTest {
               "legal moves for w pawn at g4 | \r\n", outContent.toString());
     }
 
+    //does something happen in back-end when checkmate occurs? - ask Shaun
 
 
 

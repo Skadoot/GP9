@@ -60,6 +60,6 @@ public class LoadGameButton {
     }
 
     private void selected() {
-        loadScreen.requestSave(this.saveNumber);
+        loadScreen.requestSave(this.saveName);
     }
 }

@@ -131,9 +131,8 @@ public class LoadScreen {
      * Message to the interface the index of the save to send to the backend and load.
      * @param num
      */
-    public void requestSave(int num) {
-        //My brother in christ, tell the backend of the index of the save to send to the chessboard in the playscene
-        //switch to playscene
+    public void requestSave(String fileName) {
+
     }
 }
 

@@ -167,7 +167,7 @@ public class Interface extends Application {
     */
    public void loadUFGames() {
       //loadScreen.populateButtonBar(list of unfinished games);
-      game = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+      game = new Game();
       loadScreen.setLabel("Unfinished Games:");
 
       //creates an array list from the log function to display every game saved locally
@@ -183,4 +183,9 @@ public class Interface extends Application {
       primaryStage.setScene(loadScreen.getScene());
    }
 
+   public void setGameFromSave(String filename) {
+      //game.createBoard(filename);
+      //playScreen.updatePlayScreen(game.gameNotation());
+      //primaryStage.setScene(playScreen.getScene());
+   }
 }

@@ -87,7 +87,8 @@ public class Interface extends Application {
    }
 
    public void toChessboard() {
-      primaryStage.setScene(playScreen.getScene());
+      //make game with existing file name. Can we use toNewChessboard?
+
    }
 
    public void toNewChessboard(String whiteName, String blackName, String filename) {

@@ -7,10 +7,12 @@
 
 package uk.ac.aber.cs221.group09.logic;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 /**
  * Log - Records the progress of the game.
@@ -36,12 +38,14 @@ public class Log {
     * @param load     if set to true an existing file is loaded using the filename parameter
     */
    public Log(String fileName, boolean load) {
+      //if the unfinished game directory does not exist, create it
+      new File("./unfinishedGames").mkdirs();
       if (!load) {
          //make log for new game
          this.fileName = fileName + ".txt"; //add .txt to make it a txt file
-         //make a new file called 'fileName'.
+         //make a new file called 'fileName' in the unfinishedGames Directory.
          try {
-            FileWriter fileWriter = new FileWriter(this.fileName);
+            FileWriter fileWriter = new FileWriter(new File("./unfinishedGames",this.fileName));
             fileWriter.close();
          } catch (IOException e) {
             System.out.println("IO Error");
@@ -92,4 +96,31 @@ public class Log {
       }
       return fenAtLineNumber;
    }
+
+   /** Collates the existing game files into an arrayList. Each item in the array list is a string.
+    * By providing a path to the unfinishedGames directory, the files in that directory are checked to see if
+    * they are a text file. All text files in this directory are known to be records of existing game files.
+    * @return an ArrayList of file names in String format where each file is the record of a game.
+    */
+   public ArrayList<String> displayExistingGameFiles(){
+      //declare new array list to hold names of existing game files
+      ArrayList<String> existingGameFiles = new ArrayList<String>();
+      //check all the files to see in the path to see if they are .txt files
+
+      File currentFolder = new File("./unfinishedGames"); //the relative file path to where the files are saved
+      File[] allTheFiles = currentFolder.listFiles(); //store all the files in the current folder in an array
+      for (int i = 0; i < allTheFiles.length; i++){
+         String fileBeingChecked = allTheFiles[i].getName();
+         //check the extension of the file. If it's a .txt file, add it to the ArrayList existingGameFiles.
+         int index = fileBeingChecked.lastIndexOf('.');
+         if (index > 0){
+            String extension = fileBeingChecked.substring(index + 1);
+            if (extension.equals("txt")){
+               existingGameFiles.add(fileBeingChecked);
+            }
+         }
+      }
+      return existingGameFiles;
+   }
+
 }

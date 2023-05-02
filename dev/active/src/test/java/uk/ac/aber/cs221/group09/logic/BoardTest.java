@@ -63,19 +63,6 @@ class BoardTest {
     }
 
     @Test
-    public void testGetPiecePossibleMoves() {
-        //create a new board
-        Board testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
-
-        //Check for possible moves for a single chess piece
-        Vector2 testPosition = new Vector2(0, 1);
-        System.out.println(testBoard.getPiece(testPosition).getPosition().x);
-
-        //check if the piece possible moves are returned correctly
-        Assertions.assertEquals('n',testBoard.getPiece(testPosition).getType());
-    }
-
-    @Test
     //FR5 Tests
     public void testMakeLegalMove() {
         //create a new board

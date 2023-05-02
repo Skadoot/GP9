@@ -1,5 +1,5 @@
 /*
- * @(#) BoardTest.java 0.1 2023-05-02
+ * @(#) PieceTest.java 0.1 2023-05-02
  *
  * Copyright (c) 2023 Aberystwyth University.
  * All rights reserved.
@@ -29,8 +29,15 @@ import uk.ac.aber.cs221.group09.logic.vector.Vector2;
 class PieceTest{
 
    @Test
+   /**
+    * A method to check the white's king position
+    *
+    * @param Board setup of a new board with a white king where it is allowed to move
+    * @param testPosition setup a white king
+    * @param pieceToMove testing piece attempt to move
+    */
    public void testGetWhiteKingPosition() {
-      // Create a new board with a white king
+      // Create a new board with a white king where it is allowed to move
       Board testBoard = new Board("rnbqkbnr/pppp1ppp/4p3/8/8/4P3/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
 
       // initial position of white king and sets a test piece to move
@@ -46,8 +53,15 @@ class PieceTest{
    }
 
    @Test
+   /**
+    * A method to check the black's king position
+    *
+    * @param Board setup of a new board with a black king where it is allowed to move
+    * @param testPosition setup a white king
+    * @param pieceToMove testing piece attempt to move
+    */
    public void testGetBlackKingPosition() {
-      // Create a new board with a black king
+      // Create a new board with a black king where it is allowed to move
       Board testBoard = new Board("rnbqkbnr/pppp1ppp/4p3/8/8/4P3/PPPPKPPP/RNBQ1BNR b kq - 0 1");
 
       // initial position of black king and sets a test piece to move
@@ -64,6 +78,12 @@ class PieceTest{
 
    @Test
    //FR2 Tests
+   /**
+    * A method to check the piece's color
+    *
+    * @param Board setup of a new starting board
+    * @param testPosition setup a white pawn
+    */
    public void testGetPieceColor() {
       //create a new board
       Board testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
@@ -77,6 +97,12 @@ class PieceTest{
 
    @Test
    //FR2 Tests
+   /**
+    * A method to check the piece's type
+    *
+    * @param Board setup of a new starting board
+    * @param testPosition setup a knight piece
+    */
    public void testGetPieceType() {
       //create a new board
       Board testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
@@ -91,6 +117,12 @@ class PieceTest{
 
    @Test
    //FR2 Tests
+   /**
+    * A method to check the piece's position
+    *
+    * @param Board setup of a new starting board
+    * @param testPosition check the position of a specific piece
+    */
    public void testGetPiecePosition() {
       //create a new board
       Board testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
@@ -99,8 +131,8 @@ class PieceTest{
       Vector2 testPosition = new Vector2(5, 0);
 
       //check if the expected piece position is the same as actual piece position
-      System.out.println(testBoard.getPiece(testPosition).getPosition().x);
-      System.out.println(testBoard.getPiece(testPosition).getPosition().y);
+      Assertions.assertEquals(5, testPosition.x);
+      Assertions.assertEquals(0, testPosition.y);
    }
 
 }

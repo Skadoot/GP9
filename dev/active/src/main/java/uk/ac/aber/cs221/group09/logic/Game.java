@@ -35,12 +35,11 @@ public class Game {
 
     //is it the first move?
     boolean firstMove = true;
-
     private MoveCalculator moveCalculator;
-
     public Log log;
     private Vector2 selectedPiece;
     private boolean isMovesCalculated = false;
+
 
     /**
      * Constructor for game.
@@ -168,5 +167,25 @@ public class Game {
             res.add(coords);
         }
         return res;
+    }
+
+    /**
+     * Tell the backend to promote a piece.
+     * @param n
+     */
+    public void promote(int n) {
+        gameBoard.piecePromotion(n);
+    }
+
+    /**
+     * Checks whether a promotion is available. Called after every move to update the class field.
+     * @return boolean - Whether the player can promote a pawn.
+     */
+    public boolean isPromotionAvailable() {
+        if(gameBoard.canWhitePromote() || gameBoard.canBlackPromote()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

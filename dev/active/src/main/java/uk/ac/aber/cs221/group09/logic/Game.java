@@ -53,7 +53,7 @@ public class Game {
    }
 
    public void createGame(String fileName) {
-      log.setFileName(fileName);cd doc
+      log.setFileName(fileName);
       //Use fileName, fetch game FEN String
       //initialise gameBoard with FEN String
       //It's assumed this function is called when the game does not have a board constructed to load a new game.

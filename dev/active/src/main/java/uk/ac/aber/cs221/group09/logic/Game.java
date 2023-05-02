@@ -89,7 +89,7 @@ public class Game {
 
             calculateMoves();
 
-            System.out.println("Moved piece.");
+            System.out.println("Moved piece to " + selectedBoardCoordinate.getVector2AsBoardNotation());
         } else if (gameBoard.getPiece(selectedBoardCoordinate) != null) {
             if (gameBoard.getPiece(selectedBoardCoordinate).getColor() == attackingPlayer) {
 
@@ -115,6 +115,8 @@ public class Game {
         isMovesCalculated = true;
 
         System.out.println("is " + attackingPlayer + " in check = " + moveCalculator.isPlayerInCheck());
+
+        System.out.println("\n" + gameBoard.getForsythEdwardsBoardNotation());
     }
 
     public String gameNotation() {

@@ -126,7 +126,7 @@ public class LoadScreen {
                 @Override
                 public void handle(ActionEvent actionEvent) {
                     //To add function that returns something the backend can use to distinguish a game.
-                    
+
                 }
             });
             saveContainer.getChildren().add(save);

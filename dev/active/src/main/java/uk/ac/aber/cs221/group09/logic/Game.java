@@ -87,16 +87,17 @@ public class Game {
             isMovesCalculated = false;
             gameBoard.clearMoves();
 
+            System.out.println("Moved piece to " + selectedBoardCoordinate.getVector2AsBoardNotation() + "\n");
+
             calculateMoves();
 
-            System.out.println("Moved piece to " + selectedBoardCoordinate.getVector2AsBoardNotation());
         } else if (gameBoard.getPiece(selectedBoardCoordinate) != null) {
             if (gameBoard.getPiece(selectedBoardCoordinate).getColor() == attackingPlayer) {
 
                 selectedPiece = selectedBoardCoordinate;
-                System.out.println("\n\n" + selectedPiece.getVector2AsBoardNotation());
+                System.out.println("selected piece is : " + selectedPiece.getVector2AsBoardNotation() + ",");
                 if (gameBoard.getPiece(selectedPiece).getPossibleMoves().isEmpty()) {
-                    System.out.println("\n\n\nDid not find legal move.");
+                    System.out.println("Did not find legal move.");
                 }
             }
         }
@@ -110,13 +111,15 @@ public class Game {
 
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
-        moveCalculator.printCheckMap();
 
         isMovesCalculated = true;
 
-        System.out.println("is " + attackingPlayer + " in check = " + moveCalculator.isPlayerInCheck());
+        moveCalculator.printCheckMap();
 
-        System.out.println("\n" + gameBoard.getForsythEdwardsBoardNotation());
+        System.out.println("\nis " + attackingPlayer + " in check = " + moveCalculator.isPlayerInCheck());
+        System.out.println("\nis " + attackingPlayer + " in checkmate = " + moveCalculator.isPlayerInCheckMate());
+
+        System.out.println("\n" + gameBoard.getForsythEdwardsBoardNotation() + "\n");
     }
 
     public String gameNotation() {

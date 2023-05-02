@@ -616,8 +616,10 @@ public class MoveCalculator {
 
       for (int rank = 0; rank < 8; rank++) {
          for (int file = 0; file < 8; file++) {
-            if (!board.getPiece(new Vector2(rank, file)).getPossibleMoves().isEmpty()) {
-               playerHasMoves = true;
+            if (board.getPiece((new Vector2(rank, file))) != null) {
+               if (!board.getPiece(new Vector2(rank, file)).getPossibleMoves().isEmpty() && board.getPiece(new Vector2(rank, file)).getColor() == currentPlayer) {
+                  playerHasMoves = true;
+               }
             }
          }
       }

@@ -235,9 +235,7 @@ public class Board {
             }
 
             //update the rook's position.
-            if (rook != null) {
-                updatePiecePositionInArray(rook, newRookPosition);
-            }
+            updatePiecePositionInArray(rook, newRookPosition);
         }
 
         //update the king's position.
@@ -343,6 +341,10 @@ public class Board {
                 Piece currentPiece = getPiece(new Vector2(file, rank));
                 if (currentPiece == null) {
                     skippedPieces += 1;
+                    if (rank == 0 && skippedPieces > 0) {
+                        newBoardRepresentationString.append(skippedPieces);
+                        skippedPieces = 0;
+                    }
                     continue;
                 } else if (skippedPieces > 0) {
                     newBoardRepresentationString.append(skippedPieces);

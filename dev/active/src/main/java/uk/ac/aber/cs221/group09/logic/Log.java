@@ -110,6 +110,20 @@ public class Log {
    }
 
    /**
+    * gets the number of lines in the file. Also sets the numberOfLines field.
+    * @return the number of lines in the file called fileName.
+    */
+   public int getNumberOfLines(){
+      try {
+         //assign variable the string at the requested line number of the file
+         this.numberOfLines = Files.readAllLines(Paths.get(nameOfFolderToHoldGames, fileName)).size();
+      } catch (IOException e) {
+         System.out.println("IO Error");
+      }
+      return this.numberOfLines;
+   }
+
+   /**
     * Collates the existing game files into an arrayList. Each item in the array list is a string.
     * By providing a path to the unfinishedGames directory, the files in that directory are checked to see if
     * they are a text file. All text files in this directory are known to be records of existing game files.
@@ -136,5 +150,7 @@ public class Log {
       }
       return existingGameFiles;
    }
+
+
 
 }

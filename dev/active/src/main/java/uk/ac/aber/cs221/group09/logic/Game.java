@@ -255,6 +255,7 @@ public class Game {
       String winningPlayer = Character.toString(c);
       gameBoard.updateFENStringWhenCheckMate(winningPlayer);
       log.updateLog(gameBoard.getForsythEdwardsBoardNotation());
+      log.moveFileToFinishedGamesDir();
       
 
       System.out.println("\n" + gameBoard.getForsythEdwardsBoardNotation() + "\n");

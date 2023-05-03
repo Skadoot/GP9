@@ -1,0 +1,18 @@
+Author: seh25
+Week: 10 (03/05/23)
+
+Assigned Actions
+================
+Action 1: Adding more tests and reporting bugs to the team
+	Added more tests for capturing using every type of piece
+	Added tests for promoting pawns to each type of piece for both black and white
+Hours: 3
+
+Action 2: Updating and adding new comments
+	Added comments for all testing methods, and updated old ones to be more consistent and correct
+Hours: 2
+
+Action 3: Fixing problems in test methods to make them run correctly
+Hours: 1
+
+Total Hours: 6

@@ -1,4 +1,4 @@
-Blog - week 7
+Blog - week 10
 28/04/23
 Working with Cieron on integration spike work. Piece movement, capture, turns - 3 hours
 

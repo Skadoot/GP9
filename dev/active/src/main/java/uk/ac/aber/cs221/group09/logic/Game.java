@@ -237,4 +237,8 @@ public class Game {
       //Call to update the last FEN string appended to Log.
       //Buttons have been disabled on the front end by this point. No need to touch backend.
    }
+
+   public Board getGameBoard() {
+      return gameBoard;
+   }
 }

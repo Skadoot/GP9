@@ -16,6 +16,10 @@ public class PlayScreenGraphicsLoader {
 
       graphicsMap.put('W', new Image("/images/playscenepieces/WhiteKing.png"));
       graphicsMap.put('B', new Image("/images/playscenepieces/BlackKing.png"));
+      graphicsMap.put('q', new Image("/images/playscenepieces/WhiteQueen.png"));
+      graphicsMap.put('r', new Image("/images/playscenepieces/BlackRook.png"));
+      graphicsMap.put('b', new Image("/images/playscenepieces/WhiteBishop.png"));
+      graphicsMap.put('k', new Image("/images/playscenepieces/BlackKnight.png"));
    }
 
    public Image getImage(char c) {

@@ -157,7 +157,7 @@ public class Board {
       }
 
       // Get the new board state string, after the move has been played.
-      updateForsythEdwardsBoardNotation();
+      updateForsythEdwardsBoardNotation(true);
    }
 
    /**
@@ -313,7 +313,7 @@ public class Board {
    /**
     * Method to update the Forsyth Edwards Notation based on the current state of the board array, and game.
     */
-   private void updateForsythEdwardsBoardNotation() {
+   private void updateForsythEdwardsBoardNotation(boolean newTurn) {
       // Update the board string. represented by forsythEdwardsBoardNotationArray[0].
       // Create a new string builder.
       StringBuilder newBoardRepresentationString = new StringBuilder();
@@ -351,10 +351,12 @@ public class Board {
       forsythEdwardsBoardNotationArray[0] = newBoardRepresentationString.toString();
 
       // Update the current player string. represented by forsythEdwardsBoardNotationArray[1].
-      if (forsythEdwardsBoardNotationArray[1].equals("w")) {
-         forsythEdwardsBoardNotationArray[1] = "b";
-      } else {
-         forsythEdwardsBoardNotationArray[1] = "w";
+      if(newTurn) {
+         if (forsythEdwardsBoardNotationArray[1].equals("w")) {
+            forsythEdwardsBoardNotationArray[1] = "b";
+         } else {
+            forsythEdwardsBoardNotationArray[1] = "w";
+         }
       }
 
       // If the castling notation is empty, forsythEdwardsBoardNotationArray[2], then replace it with the '-' character.
@@ -366,7 +368,9 @@ public class Board {
       // The half move clock represented by forsythEdwardsBoardNotationArray[4].
 
       // Update the full move number represented by forsythEdwardsBoardNotationArray[5], by incrementing it by 1.
-      forsythEdwardsBoardNotationArray[5] = Integer.toString(Integer.parseInt(forsythEdwardsBoardNotationArray[5]) + 1);
+      if(newTurn) {
+         forsythEdwardsBoardNotationArray[5] = Integer.toString(Integer.parseInt(forsythEdwardsBoardNotationArray[5]) + 1);
+      }
 
       // Initializing the new board state stringBuilder.
       StringBuilder newBoardState = new StringBuilder();
@@ -489,7 +493,7 @@ public class Board {
    public boolean canBlackPromote() {
       for (int column = 0; column < 8; column++) {
          Vector2 coordinate = new Vector2(column, 0);
-         if (getPiece(coordinate).getType() == 'p') {
+         if (getPiece(coordinate) != null && getPiece(coordinate).getType() == 'p') {
             setAvailablePromotion(coordinate);
             return true;
          }
@@ -505,7 +509,7 @@ public class Board {
    public boolean canWhitePromote() {
       for (int column = 0; column < 8; column++) {
          Vector2 coordinate = new Vector2(column, 7);
-         if (getPiece(coordinate).getType() == 'p') {
+         if (getPiece(coordinate) != null && getPiece(coordinate).getType() == 'p') {
             setAvailablePromotion(coordinate);
             return true;
          }
@@ -530,9 +534,10 @@ public class Board {
             getPiece(getAvailablePromotion()).setType('b');
             break;
          case (3):
-            getPiece(getAvailablePromotion()).setType('k');
+            getPiece(getAvailablePromotion()).setType('n');
             break;
       }
+      updateForsythEdwardsBoardNotation(false);
       availablePromotion = null;
    }
 }

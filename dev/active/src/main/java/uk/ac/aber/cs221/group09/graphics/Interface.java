@@ -36,9 +36,7 @@ public class Interface extends Application {
    private PlayScreen playScreen;
    private StartScreen startScreen;
    private LoadScreen loadScreen;
-   private Piece pieceToMove;
    private Game game;
-   ArrayList<Vector2> movesToCompare;
 
    @Override
    public void start(Stage stage) throws IOException {
@@ -73,6 +71,9 @@ public class Interface extends Application {
     */
    public void click(int column, int row) {
       game.move(row, column);
+      if (game.isPromotionAvailable()) {
+         playScreen.offerPromotion();
+      }
       playScreen.updatePlayScreen(game.gameNotation());
       playScreen.highlightTiles(game.validTiles(), game.checkedKing());
    }
@@ -117,5 +118,11 @@ public class Interface extends Application {
       //loadScreen.populateButtonBar(list of unfinished games);
       loadScreen.setLabel("Unfinished Games:");
       primaryStage.setScene(loadScreen.getScene());
+   }
+
+   public void requestPromotion(int n) {
+      game.promote(n);
+      playScreen.updatePlayScreen(game.gameNotation());
+      playScreen.highlightTiles(game.validTiles(), game.checkedKing());
    }
 }

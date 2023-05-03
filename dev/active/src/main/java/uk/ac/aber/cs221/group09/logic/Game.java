@@ -81,6 +81,7 @@ public class Game {
       if (currentLegalMoves.contains(selectedBoardCoordinate) && gameBoard.getPiece(selectedPiece).getColor() == attackingPlayer) {
 
          gameBoard.movePiece(gameBoard.getPiece(selectedPiece), selectedBoardCoordinate);
+         log.updateLog(gameBoard.getForsythEdwardsBoardNotation()); //should update the log after a move is made
          selectedPiece = selectedBoardCoordinate;
          moveCount += (attackingPlayer == 'b') ? 1 : 0;
          isMovesCalculated = false;

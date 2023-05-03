@@ -484,10 +484,10 @@ public class Board {
    }
 
    public void clearMoves() {
-      for (int row = 0; row < 8; row++) {
-         for (int column = 0; column < 8; column++) {
-            if (board[row][column] != null) {
-               board[row][column].clearMoves();
+      for (int rank = 0; rank < BOARD_SIZE; rank++) {
+         for (int file = 0; file < BOARD_SIZE; file++) {
+            if (board[rank][file] != null) {
+               board[rank][file].clearMoves();
             }
          }
       }
@@ -499,8 +499,8 @@ public class Board {
     * @return boolean - Whether the black player can promote a pawn
     */
    public boolean canBlackPromote() {
-      for (int column = 0; column < 8; column++) {
-         Vector2 coordinate = new Vector2(column, 0);
+      for (int file = 0; file < BOARD_SIZE; file++) {
+         Vector2 coordinate = new Vector2(file, 0);
          if (getPiece(coordinate) != null && getPiece(coordinate).getType() == 'p') {
             setAvailablePromotion(coordinate);
             return true;
@@ -515,8 +515,8 @@ public class Board {
     * @return boolean - Whether the white player can promote a pawn
     */
    public boolean canWhitePromote() {
-      for (int column = 0; column < 8; column++) {
-         Vector2 coordinate = new Vector2(column, 7);
+      for (int file = 0; file < BOARD_SIZE; file++) {
+         Vector2 coordinate = new Vector2(file, 7);
          if (getPiece(coordinate) != null && getPiece(coordinate).getType() == 'p') {
             setAvailablePromotion(coordinate);
             return true;

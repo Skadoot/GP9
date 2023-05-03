@@ -47,7 +47,7 @@ public class Board {
       this.forsythEdwardsBoardNotation = initializingBoardState;
 
       // Splits up the string using a regex
-      forsythEdwardsBoardNotationArray = forsythEdwardsBoardNotation.split(" ", 6);
+      forsythEdwardsBoardNotationArray = forsythEdwardsBoardNotation.split(" ", 7);
 
       // Initialize the board to the current state represented in the string.
       initializeBoardState();
@@ -157,7 +157,7 @@ public class Board {
       }
 
       // Get the new board state string, after the move has been played.
-      updateForsythEdwardsBoardNotation();
+      updateForsythEdwardsBoardNotation(true);
    }
 
    /**
@@ -313,26 +313,26 @@ public class Board {
    /**
     * Method to update the Forsyth Edwards Notation based on the current state of the board array, and game.
     */
-   private void updateForsythEdwardsBoardNotation() {
+   private void updateForsythEdwardsBoardNotation(boolean newTurn) {
       // Update the board string. represented by forsythEdwardsBoardNotationArray[0].
       // Create a new string builder.
       StringBuilder newBoardRepresentationString = new StringBuilder();
       // Variable to keep track of how many empty spaces there have been.
       int skippedPieces = 0;
       // Loop through the array backwards.
-      for (int rank = 7; rank > -1; rank--) {
+      for (int rank = BOARD_SIZE - 1; rank > -1; rank--) {
          if (skippedPieces > 0) {
             newBoardRepresentationString.append(skippedPieces);
             skippedPieces = 0;
          }
-         if (rank != 7) {
+         if (rank != BOARD_SIZE - 1) {
             newBoardRepresentationString.append("/");
          }
          for (int file = 0; file < BOARD_SIZE; file++) {
             Piece currentPiece = getPiece(new Vector2(file, rank));
             if (currentPiece == null) {
                skippedPieces += 1;
-               if (rank == 0 && skippedPieces > 0) {
+               if (rank == 0 && skippedPieces > 0 && file == BOARD_SIZE - 1) {
                   newBoardRepresentationString.append(skippedPieces);
                   skippedPieces = 0;
                }
@@ -351,10 +351,13 @@ public class Board {
       forsythEdwardsBoardNotationArray[0] = newBoardRepresentationString.toString();
 
       // Update the current player string. represented by forsythEdwardsBoardNotationArray[1].
-      if (forsythEdwardsBoardNotationArray[1].equals("w")) {
-         forsythEdwardsBoardNotationArray[1] = "b";
-      } else {
-         forsythEdwardsBoardNotationArray[1] = "w";
+
+      if (newTurn) {
+         if (forsythEdwardsBoardNotationArray[1].equals("w")) {
+            forsythEdwardsBoardNotationArray[1] = "b";
+         } else {
+            forsythEdwardsBoardNotationArray[1] = "w";
+         }
       }
 
       // If the castling notation is empty, forsythEdwardsBoardNotationArray[2], then replace it with the '-' character.
@@ -364,9 +367,12 @@ public class Board {
 
       // En Passant represented by forsythEdwardsBoardNotationArray[3], should already be updated by this point.
       // The half move clock represented by forsythEdwardsBoardNotationArray[4].
+      forsythEdwardsBoardNotationArray[4] = Integer.toString(Integer.parseInt(forsythEdwardsBoardNotationArray[4]) + 1);
 
       // Update the full move number represented by forsythEdwardsBoardNotationArray[5], by incrementing it by 1.
-      forsythEdwardsBoardNotationArray[5] = Integer.toString(Integer.parseInt(forsythEdwardsBoardNotationArray[5]) + 1);
+      if (((Integer.parseInt(forsythEdwardsBoardNotationArray[4])) % 2 == 0) && ((Integer.parseInt(forsythEdwardsBoardNotationArray[4])) != 0)) {
+         forsythEdwardsBoardNotationArray[5] = Integer.toString(Integer.parseInt(forsythEdwardsBoardNotationArray[5]) + 1);
+      }
 
       // Initializing the new board state stringBuilder.
       StringBuilder newBoardState = new StringBuilder();
@@ -444,8 +450,8 @@ public class Board {
     */
    public void printBoardStateToConsole() {
       // Loop through the array in reverse so that the board is printed in the correct orientation.
-      for (int rank = 7; rank > -1; rank--) {
-         for (int file = 0; file < 8; file++) {
+      for (int rank = BOARD_SIZE - 1; rank > -1; rank--) {
+         for (int file = 0; file < BOARD_SIZE; file++) {
 
             // Create the vector2 for the position of the current piece to be printed.
             Vector2 boardPosition = new Vector2(file, rank);
@@ -471,11 +477,22 @@ public class Board {
       }
    }
 
+   /**
+    * Updates the win section in the FEN string to whatever the game status is.
+    * 'w' is white win, 'b' = black win, draw = 'd', '-' = unfinished
+    */
+   public void updateWinInFenString(String winStatus) {
+      forsythEdwardsBoardNotationArray[6] = winStatus;
+   }
+
+   /**
+    * method to clear all the moves for every piece on the board.
+    */
    public void clearMoves() {
-      for (int row = 0; row < 8; row++) {
-         for (int column = 0; column < 8; column++) {
-            if (board[row][column] != null) {
-               board[row][column].clearMoves();
+      for (int rank = 0; rank < BOARD_SIZE; rank++) {
+         for (int file = 0; file < BOARD_SIZE; file++) {
+            if (board[rank][file] != null) {
+               board[rank][file].clearMoves();
             }
          }
       }
@@ -487,9 +504,9 @@ public class Board {
     * @return boolean - Whether the black player can promote a pawn
     */
    public boolean canBlackPromote() {
-      for (int column = 0; column < 8; column++) {
-         Vector2 coordinate = new Vector2(column, 0);
-         if (getPiece(coordinate).getType() == 'p') {
+      for (int file = 0; file < BOARD_SIZE; file++) {
+         Vector2 coordinate = new Vector2(file, 0);
+         if (getPiece(coordinate) != null && getPiece(coordinate).getType() == 'p') {
             setAvailablePromotion(coordinate);
             return true;
          }
@@ -503,9 +520,9 @@ public class Board {
     * @return boolean - Whether the white player can promote a pawn
     */
    public boolean canWhitePromote() {
-      for (int column = 0; column < 8; column++) {
-         Vector2 coordinate = new Vector2(column, 7);
-         if (getPiece(coordinate).getType() == 'p') {
+      for (int file = 0; file < BOARD_SIZE; file++) {
+         Vector2 coordinate = new Vector2(file, BOARD_SIZE - 1);
+         if (getPiece(coordinate) != null && getPiece(coordinate).getType() == 'p') {
             setAvailablePromotion(coordinate);
             return true;
          }
@@ -519,20 +536,56 @@ public class Board {
     * @param n abstract number representing desired promotion.
     */
    public void piecePromotion(int n) {
+      char team = getPiece(getAvailablePromotion()).getColor();
       switch (n) {
          case (0):
-            getPiece(getAvailablePromotion()).setType('q');
+            if (team == 'w') {
+               getPiece(getAvailablePromotion()).setType('Q');
+            } else {
+               getPiece(getAvailablePromotion()).setType('q');
+            }
             break;
          case (1):
-            getPiece(getAvailablePromotion()).setType('r');
+            if (team == 'w') {
+               getPiece(getAvailablePromotion()).setType('R');
+            } else {
+               getPiece(getAvailablePromotion()).setType('r');
+            }
             break;
          case (2):
-            getPiece(getAvailablePromotion()).setType('b');
+            if (team == 'w') {
+               getPiece(getAvailablePromotion()).setType('B');
+            } else {
+               getPiece(getAvailablePromotion()).setType('b');
+            }
             break;
          case (3):
-            getPiece(getAvailablePromotion()).setType('k');
+            if (team == 'w') {
+               getPiece(getAvailablePromotion()).setType('N');
+            } else {
+               getPiece(getAvailablePromotion()).setType('n');
+            }
             break;
       }
+      updateForsythEdwardsBoardNotation(false);
       availablePromotion = null;
+   }
+
+   public void updateFENStringWhenCheckMate(String winningPlayer) {
+      String[] fenArray = forsythEdwardsBoardNotation.split(" ", 7);
+      fenArray[6] = winningPlayer;
+      StringBuilder newFenString = new StringBuilder();
+
+      for (int i = 0; i < fenArray.length; i++) {
+         // Add the section of the forsythEdwardsBoardNotationArray.
+         newFenString.append(fenArray[i]);
+
+         // If we are not at the end of the array then separate each part with a " " character.
+         if (i != fenArray.length - 1) {
+            newFenString.append(" ");
+         }
+      }
+      // Set the board state.
+      forsythEdwardsBoardNotation = newFenString.toString();
    }
 }

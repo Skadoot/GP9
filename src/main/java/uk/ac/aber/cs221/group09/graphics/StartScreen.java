@@ -50,19 +50,19 @@ public class StartScreen {
       Button continueGameButton = new Button();
       Button viewGameButton = new Button();
 
-      //This button takes the user to the PlayerName scene.
+      // This button takes the user to the PlayerName scene.
       newGameButton.setText("Start New Game");
       newGameButton.setOnAction(actionEvent -> requestNewGame());
 
-      //This button takes the user to the LoadGame scene with a selection of unfinished games to pick back up
+      // This button takes the user to the LoadGame scene with a selection of unfinished games to pick back up
       continueGameButton.setText("Load Unfinished Game");
       continueGameButton.setOnAction(actionEvent -> requestToUnfinishedGames());
 
-      //This button takes the user to the LoadGame scene with a selection of finished games to view.
+      // This button takes the user to the LoadGame scene with a selection of finished games to view.
       viewGameButton.setText("View Finished Game");
       viewGameButton.setOnAction(actionEvent -> requestToViewFinishedGames());
 
-      //The below code places the buttons.
+      // The below code places the buttons.
       btnSelection.setPadding(new Insets(5, 5, 5, 5));
       btnSelection.setSpacing(12);
 

@@ -155,7 +155,7 @@ public class PlayerNameScreen {
    private void backToMenu() {
       anInterface.toMenu();
    }
-
+   
    private void forwardsToNewGame(String blackN, String whiteN, String fileName) {
       anInterface.toNewChessboard(whiteN, blackN, fileName);
    }

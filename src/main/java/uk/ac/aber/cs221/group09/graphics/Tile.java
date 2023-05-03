@@ -20,14 +20,15 @@ import javafx.scene.image.ImageView;
  * This class is used to store the actionable button graphic and tile data for use in the application.
  *
  * @author Gwion Hughes
- * @version 1.0 (Releease)
+ * @version 1.0 (Release)
  * @see Chessboard
  */
 public class Tile {
-   private int row, column;
-   private Button button;
-   private Chessboard chessboard;
-   private boolean isWhite;
+   private final int row;
+   private final int column;
+   private final Button button;
+   private final Chessboard chessboard;
+   private final boolean isWhite;
 
    /**
     * Default Tile constructor.

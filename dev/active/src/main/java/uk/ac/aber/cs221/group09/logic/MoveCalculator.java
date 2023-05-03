@@ -1,5 +1,5 @@
 /*
- * @(GP9) MoveCalculator.java 0.1 2023/03/16
+ * @(GP9) MoveCalculator.java 1.1 2023/03/16
  *
  * Copyright (c) 2023 Aberystwyth University
  * All rights reserved.
@@ -17,8 +17,8 @@ import java.util.ArrayList;
  * <p>
  * This is a class that calculates the legal moves for the all the pieces of a particular color for a particular board position.
  *
- * @author shr27@aber.ac.uk
- * @version 0.2 (draft)
+ * @author Shaun Royle
+ * @version 1.1 (Release)
  * @see uk.ac.aber.cs221.group09.logic.Board
  */
 public class MoveCalculator {
@@ -31,7 +31,7 @@ public class MoveCalculator {
    private boolean canBlackCastleQueenSide; // Can black castle queen side?
 
    /**
-    * Simple constructor for moveCalculator
+    * Simple constructor for moveCalculator.
     *
     * @param player the player that you wish to calculate the moves for.
     * @param board  the board on which to calculate the moves.
@@ -48,7 +48,7 @@ public class MoveCalculator {
     * Calculates and returns the legal moves for a given chess piece.
     * The legal moves are determined based on the type of the piece and the opponent player's turn.
     *
-    * @param piece The chess piece for which the legal moves are to be determined.
+    * @param piece          The chess piece for which the legal moves are to be determined.
     * @param opponentPlayer A boolean value representing whether it's the opponent player's turn or not.
     */
    public void getLegalMoveForPiece(Piece piece, boolean opponentPlayer) {

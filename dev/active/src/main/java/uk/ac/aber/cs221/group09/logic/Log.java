@@ -1,5 +1,5 @@
 /*
- * @(GP9) Log.java 1.1 2023/05/02
+ * @(GP9) Log.java 1.2 2023/05/02
  *
  * Copyright (c) 2023 Aberystwyth University
  * All rights reserved.
@@ -170,27 +170,28 @@ public class Log {
    }
 
    /**
-    * Replaces the line in the file. Designed to be used in comparison with the Log field number of The lines. Numbering
-    * in the file starts at 0. The Log field number of lines counts the lines. So, to replace the last line use
-    * Log.numberOfLines - 1 as parameter.
+    * Replaces the line in the file. Designed to be used in comparison with the Log field number of The lines.
+    * Numbering in the file starts at 0. The Log field number of lines counts the lines.
+    * So, to replace the last line use Log.numberOfLines - 1 as parameter.
+    *
     * @param lineNumber the line in the file to be replaced. File line numbering starts at 0.
     * @param replacementLine the line to replace the current one
     */
    public void replaceLine(int lineNumber, String replacementLine){
-      //declare a string to hold the path to where the log file is
+      // Declare a string to hold the path to where the log file is
       String pathToCurrentFile = nameOfFolderToHoldUnfinishedGames+"/"+fileName;
       Path path = Paths.get(pathToCurrentFile);
 
-      //make sure the line number is in the bounds of the file otherwise do not try
+      // Make sure the line number is in the bounds of the file otherwise do not try
       if (lineNumber < this.numberOfLines && lineNumber > -1){
          try{
-            //add all the lines in the file to a list, each item in the list is a line
+            // Add all the lines in the file to a list, each item in the list is a line
             List<String> logLines = Files.readAllLines(path, StandardCharsets.UTF_8);
-            //remove the specified line
+            // Remove the specified line
             logLines.remove(lineNumber);
-            //add the new line
+            // Add the new line
             logLines.add(lineNumber, replacementLine);
-            //write back to file
+            // Write back to file
             Files.write(path, logLines, StandardCharsets.UTF_8);
          } catch (IOException e){
             System.out.println("IO Error");
@@ -202,8 +203,8 @@ public class Log {
    }
 
    /**
-    * deletes the current log file which is in unfinished games. Designed to be called when the user wishes to exit a
-    * game and not save the file.
+    * Deletes the current log file that is in unfinished games.
+    * Called when the user wishes to exit a game and not save the file.
     */
    public void deleteFile(){
       String pathToCurrentFile = nameOfFolderToHoldUnfinishedGames+"/"+fileName;

@@ -1,5 +1,5 @@
 /*
- * @(GP9) Game.java 1.0 2023/05/02
+ * @(GP9) Game.java 1.1 2023/05/02
  *
  * Copyright (c) 2023 Aberystwyth University.
  * All rights reserved.
@@ -24,10 +24,11 @@ import java.util.ArrayList;
  * @see uk.ac.aber.cs221.group09.logic.MoveCalculator
  */
 public class Game {
-   private final Board gameBoard;
+
    public Log log;
    // Whether this is the first move of the game
    boolean firstMove = true;
+   private Board gameBoard;
    // This is the player taking the current move.
    private char attackingPlayer;
    // Keep track of which move it is.
@@ -36,20 +37,29 @@ public class Game {
    private Vector2 selectedPiece;
    private boolean isMovesCalculated = false;
 
+   private Vector2 selectedBoardCoordinate;
+
+   private boolean isMoveMade = false;
+
    /**
     * Simple constructor for game.
     *
     * @param boardState the initial board state string for the game (Forsyth Edwards Notation).
     */
    public Game(String boardState, String fileName, boolean load) {
-      if (!load) {
-         gameBoard = new Board(boardState);
-         this.log = new Log(fileName, false);
-      } else {
-         gameBoard = new Board(boardState);
-         this.log = new Log(fileName, true);
-      }
+      gameBoard = new Board(boardState);
+      this.log = new Log(fileName);
       this.selectedPiece = new Vector2();
+   }
+
+   public Game() {
+      this.log = new Log();
+      this.selectedPiece = new Vector2();
+   }
+
+   public void createGame(String fileName) {
+      log.setFileName(fileName);
+      gameBoard = new Board(log.readLog(log.getNumberOfLines() - 1));
    }
 
    /**
@@ -65,44 +75,17 @@ public class Game {
       }
 
       // Wait for the UI to return a selected piece, here we would set it to be the coordinate that the ui passes back to us.
-      Vector2 selectedBoardCoordinate = new Vector2(column, row);
+      selectedBoardCoordinate = new Vector2(column, row);
 
       // Get a list of all the legal moves for the chessboard
       ArrayList<Vector2> currentLegalMoves = gameBoard.getPiece(selectedPiece).getPossibleMoves();
 
       // Check the selected coordinates are a legal move and the current selected piece is the attacking player's piece.
       if (currentLegalMoves.contains(selectedBoardCoordinate) && gameBoard.getPiece(selectedPiece).getColor() == attackingPlayer) {
-
+         isMoveMade = true;
          gameBoard.movePiece(gameBoard.getPiece(selectedPiece), selectedBoardCoordinate);
-         selectedPiece = selectedBoardCoordinate;
-         moveCount += (attackingPlayer == 'b') ? 1 : 0;
-         isMovesCalculated = false;
-         gameBoard.clearMoves();
-
-         System.out.println("Moved piece to " + selectedBoardCoordinate.getVector2AsBoardNotation());
-         System.out.println("\n         ,....,----------------------------------------------------\n" +
-               "      ,::::::<-----------------------------------------------------\n" +
-               "     ,::/^\\\"``.----------------------------------------------------\n" +
-               "    ,::/, `   e`.--------------------------------------------------\n" +
-               "   ,::; |        '.------------------------------------------------\n" +
-               "   ,::|  \\___,-.  c)-----------------------------------------------\n" +
-               "   ;::|     \\   '-'------------------------------------------------\n" +
-               "   ;::|      \\-----------------------------------------------------\n" +
-               "   ;::|   _.=`\\----------------------------------------------------\n" +
-               "   `;:|.=` _.=`\\---------------------------------------------------\n" +
-               "     '|_.=`   __\\--------------------------------------------------\n" +
-               "     `\\_..==`` /---------------------------------------------------\n" +
-               "      .'.___.-'.---------------------------------------------------\n" +
-               "     /          \\--------------------------------------------------\n" +
-               "    ('--......--')-------------------------------------------------\n" +
-               "    /'--......--'\\-------------------------------------------------\n" +
-               "    `\"--......--\"--------------------------------------------------\n");
-
-         calculateMoves();
-
       } else if (gameBoard.getPiece(selectedBoardCoordinate) != null) {
          if (gameBoard.getPiece(selectedBoardCoordinate).getColor() == attackingPlayer) {
-
             selectedPiece = selectedBoardCoordinate;
             System.out.println("selected piece is : " + selectedPiece.getVector2AsBoardNotation() + ",");
             if (gameBoard.getPiece(selectedPiece).getPossibleMoves().isEmpty()) {
@@ -110,6 +93,58 @@ public class Game {
             }
          }
       }
+   }
+
+   /**
+    * Updates the active log file after every move.
+    * Updates the logical positioning of the pieces on the board.
+    */
+   public void updateBoard() {
+      log.updateLog(gameBoard.getForsythEdwardsBoardNotation()); // Should update the log after a move is made
+      selectedPiece = selectedBoardCoordinate;
+      moveCount += (attackingPlayer == 'b') ? 1 : 0;
+      isMovesCalculated = false;
+      gameBoard.clearMoves();
+
+      // Print debugging
+      System.out.println("Moved piece to " + selectedBoardCoordinate.getVector2AsBoardNotation());
+      System.out.println("\n         ,....,----------------------------------------------------\n" +
+            "      ,::::::<-----------------------------------------------------\n" +
+            "     ,::/^\\\"``.----------------------------------------------------\n" +
+            "    ,::/, `   e`.--------------------------------------------------\n" +
+            "   ,::; |        '.------------------------------------------------\n" +
+            "   ,::|  \\___,-.  c)-----------------------------------------------\n" +
+            "   ;::|     \\   '-'------------------------------------------------\n" +
+            "   ;::|      \\-----------------------------------------------------\n" +
+            "   ;::|   _.=`\\----------------------------------------------------\n" +
+            "   `;:|.=` _.=`\\---------------------------------------------------\n" +
+            "     '|_.=`   __\\--------------------------------------------------\n" +
+            "     `\\_..==`` /---------------------------------------------------\n" +
+            "      .'.___.-'.---------------------------------------------------\n" +
+            "     /          \\--------------------------------------------------\n" +
+            "    ('--......--')-------------------------------------------------\n" +
+            "    /'--......--'\\-------------------------------------------------\n" +
+            "    `\"--......--\"--------------------------------------------------\n");
+
+      calculateMoves();
+      isMoveMade = false;
+
+      if (isGameOverByCheckMate()) {
+         determineCurrentPlayer();
+         String winningPlayer = "b";
+         if (attackingPlayer == 'b') {
+            winningPlayer = "w";
+         }
+
+         gameBoard.updateFENStringWhenCheckMate(winningPlayer);
+         log.updateLog(gameBoard.getForsythEdwardsBoardNotation());
+         log.moveFileToFinishedGamesDir();
+      }
+      System.out.println("\n" + gameBoard.getForsythEdwardsBoardNotation() + "\n");
+   }
+
+   public boolean isMoveMade() {
+      return isMoveMade;
    }
 
    public void calculateMoves() {
@@ -132,6 +167,15 @@ public class Game {
       System.out.println("is " + attackingPlayer + " in checkmate = " + moveCalculator.isPlayerInCheckMate());
 
       System.out.println("\n" + gameBoard.getForsythEdwardsBoardNotation() + "\n");
+   }
+
+   public boolean isGameOverByCheckMate() {
+      MoveCalculator moveCalculator = new MoveCalculator(attackingPlayer, gameBoard);
+
+      moveCalculator.findLegalMovesForPlayer(true);
+      moveCalculator.findLegalMovesForPlayer(false);
+
+      return moveCalculator.isPlayerInCheckMate();
    }
 
    public String gameNotation() {
@@ -184,22 +228,32 @@ public class Game {
    /**
     * Requests that the board promotes a piece.
     *
-    * @param n
+    * @param n the unique identifier of the piece to promote.
     */
    public void promote(int n) {
       gameBoard.piecePromotion(n);
+      gameBoard.clearMoves();
+      MoveCalculator promotionCheck = new MoveCalculator(attackingPlayer, gameBoard);
+      promotionCheck.findLegalMovesForPlayer(true);
+      promotionCheck.findLegalMovesForPlayer(false);
    }
 
    /**
-    * Checks whether a promotion is available. Called after every move to update the class field.
+    * Checks whether a promotion is available.
+    * Called after every move to update the class field.
     *
     * @return boolean whether the player can promote a pawn.
     */
    public boolean isPromotionAvailable() {
-      if (gameBoard.canWhitePromote() || gameBoard.canBlackPromote()) {
-         return true;
-      } else {
-         return false;
-      }
+      return gameBoard.canWhitePromote() || gameBoard.canBlackPromote();
+   }
+
+   public void endGame(char c) {
+      // Call to update the last FEN string appended to Log.
+      // Buttons have been disabled on the front end by this point. No need to touch backend.
+   }
+
+   public Board getGameBoard() {
+      return gameBoard;
    }
 }

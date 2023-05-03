@@ -1,5 +1,5 @@
 /*
- * @(GP9) Log.java 1.1 2023/05/02
+ * @(GP9) Log.java 1.2 2023/05/02
  *
  * Copyright (c) 2023 Aberystwyth University
  * All rights reserved.
@@ -10,9 +10,12 @@ package uk.ac.aber.cs221.group09.logic;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Log - Records the progress of the game.
@@ -53,7 +56,7 @@ public class Log {
       } catch (IOException e) {
          System.out.println("IO Error");
       }
-      updateLog("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"); // Append the initial board state to the new log file
+      updateLog("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1 -"); // Append the initial board state to the new log file
    }
 
    /**
@@ -164,5 +167,48 @@ public class Log {
       // Move the file from the unfinished games to the finished game directory
       File currentFile = new File(pathToCurrentFile);
       currentFile.renameTo(new File(pathToFinishedGamesFile));
+   }
+
+   /**
+    * Replaces the line in the file. Designed to be used in comparison with the Log field number of The lines.
+    * Numbering in the file starts at 0. The Log field number of lines counts the lines.
+    * So, to replace the last line use Log.numberOfLines - 1 as parameter.
+    *
+    * @param lineNumber the line in the file to be replaced. File line numbering starts at 0.
+    * @param replacementLine the line to replace the current one
+    */
+   public void replaceLine(int lineNumber, String replacementLine){
+      // Declare a string to hold the path to where the log file is
+      String pathToCurrentFile = nameOfFolderToHoldUnfinishedGames+"/"+fileName;
+      Path path = Paths.get(pathToCurrentFile);
+
+      // Make sure the line number is in the bounds of the file otherwise do not try
+      if (lineNumber < this.numberOfLines && lineNumber > -1){
+         try{
+            // Add all the lines in the file to a list, each item in the list is a line
+            List<String> logLines = Files.readAllLines(path, StandardCharsets.UTF_8);
+            // Remove the specified line
+            logLines.remove(lineNumber);
+            // Add the new line
+            logLines.add(lineNumber, replacementLine);
+            // Write back to file
+            Files.write(path, logLines, StandardCharsets.UTF_8);
+         } catch (IOException e){
+            System.out.println("IO Error");
+         }
+      } else {
+         System.out.println("line not in file");
+      }
+
+   }
+
+   /**
+    * Deletes the current log file that is in unfinished games.
+    * Called when the user wishes to exit a game and not save the file.
+    */
+   public void deleteFile(){
+      String pathToCurrentFile = nameOfFolderToHoldUnfinishedGames+"/"+fileName;
+      File currentFile = new File(pathToCurrentFile);
+      currentFile.delete();
    }
 }

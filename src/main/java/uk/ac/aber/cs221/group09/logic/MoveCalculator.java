@@ -1,5 +1,5 @@
 /*
- * @(GP9) MoveCalculator.java 0.1 2023/03/16
+ * @(GP9) MoveCalculator.java 1.1 2023/03/16
  *
  * Copyright (c) 2023 Aberystwyth University
  * All rights reserved.
@@ -17,8 +17,8 @@ import java.util.ArrayList;
  * <p>
  * This is a class that calculates the legal moves for the all the pieces of a particular color for a particular board position.
  *
- * @author shr27@aber.ac.uk
- * @version 0.2 (draft)
+ * @author Shaun Royle
+ * @version 1.1 (Release)
  * @see uk.ac.aber.cs221.group09.logic.Board
  */
 public class MoveCalculator {
@@ -31,7 +31,7 @@ public class MoveCalculator {
    private boolean canBlackCastleQueenSide; // Can black castle queen side?
 
    /**
-    * Simple constructor for moveCalculator
+    * Simple constructor for moveCalculator.
     *
     * @param player the player that you wish to calculate the moves for.
     * @param board  the board on which to calculate the moves.
@@ -155,52 +155,23 @@ public class MoveCalculator {
             addPieceLegalMove(pawn, singleAdvance, false);
 
             // Check if there is a piece on the double advance square and that the pawn has not moved before.
-            if (board.getPiece(doubleAdvance) == null && !pawn.hasMoved()) {
-               addPieceLegalMove(pawn, doubleAdvance, false);
+
+            if (doubleAdvance.x <= 7 && doubleAdvance.y <= 7 && doubleAdvance.x >= 0 && doubleAdvance.y >= 0) {
+               if (board.getPiece(doubleAdvance) == null && !pawn.hasMoved()) {
+                  addPieceLegalMove(pawn, doubleAdvance, false);
+               }
             }
          }
       }
 
       // Check if the left attack is a valid position on the board.
       if ((leftAttack.x > -1) && (leftAttack.y > -1 && leftAttack.y < 8)) {
-         if (board.getPiece(leftAttack) != null || isForCheckMap) {
-            if (isForCheckMap) {
-               addPieceLegalMove(pawn, leftAttack, true);
-            }
-            // Check if the piece on the left attack square is not the same color as the pawn.
-            else if (board.getPiece(leftAttack).getColor() != pawn.getColor()) {
-               addPieceLegalMove(pawn, leftAttack, false);
-            }
-         } else if (board.getPiece(leftAttack) == null || isForCheckMap) {
-            if (leftAttack.getVector2AsBoardNotation().equals(board.getForsythEdwardsBoardNotationArrayIndex(3))) {
-               if (isForCheckMap) {
-                  addPieceLegalMove(pawn, leftAttack, true);
-               } else {
-                  addPieceLegalMove(pawn, leftAttack, false);
-               }
-            }
-         }
+         canPawnAttack(pawn, isForCheckMap, leftAttack);
       }
 
       // Check if the right attack is a valid position on the board.
       if ((rightAttack.x < 8) && (rightAttack.y > -1 && rightAttack.y < 8)) {
-         if (board.getPiece(rightAttack) != null || isForCheckMap) {
-            if (isForCheckMap) {
-               addPieceLegalMove(pawn, rightAttack, true);
-            }
-            // Check if the piece on the left attack square is not the same color as the pawn.
-            else if (board.getPiece(rightAttack).getColor() != pawn.getColor()) {
-               addPieceLegalMove(pawn, rightAttack, false);
-            }
-         } else if (board.getPiece(rightAttack) == null || isForCheckMap) {
-            if (rightAttack.getVector2AsBoardNotation().equals(board.getForsythEdwardsBoardNotationArrayIndex(3))) {
-               if (isForCheckMap) {
-                  addPieceLegalMove(pawn, rightAttack, true);
-               } else {
-                  addPieceLegalMove(pawn, rightAttack, false);
-               }
-            }
-         }
+         canPawnAttack(pawn, isForCheckMap, rightAttack);
       }
 
       if (isForCheckMap) {
@@ -212,6 +183,26 @@ public class MoveCalculator {
          System.out.print(square.getVector2AsBoardNotation() + " ");
       }
       System.out.println();
+   }
+
+   private void canPawnAttack(Piece pawn, boolean isForCheckMap, Vector2 rightAttack) {
+      if (board.getPiece(rightAttack) != null || isForCheckMap) {
+         if (isForCheckMap) {
+            addPieceLegalMove(pawn, rightAttack, true);
+         }
+         // Check if the piece on the left attack square is not the same color as the pawn.
+         else if (board.getPiece(rightAttack).getColor() != pawn.getColor()) {
+            addPieceLegalMove(pawn, rightAttack, false);
+         }
+      } else if (board.getPiece(rightAttack) == null || isForCheckMap) {
+         if (rightAttack.getVector2AsBoardNotation().equals(board.getForsythEdwardsBoardNotationArrayIndex(3))) {
+            if (isForCheckMap) {
+               addPieceLegalMove(pawn, rightAttack, true);
+            } else {
+               addPieceLegalMove(pawn, rightAttack, false);
+            }
+         }
+      }
    }
 
    /**

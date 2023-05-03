@@ -53,7 +53,6 @@ public class Board {
       initializeBoardState();
    }
 
-
    /**
     * Get the coordinates of the available pawn promotion.
     *
@@ -479,8 +478,8 @@ public class Board {
    }
 
    /**
-    * method to update the win section in the fen notation to whatever the game status is.
-    * 'w' is white win, 'b' = black win, draw = 'd', '-' unfinished
+    * Updates the win section in the FEN string to whatever the game status is.
+    * 'w' is white win, 'b' = black win, draw = 'd', '-' = unfinished
     */
    public void updateWinInFenString(String winStatus) {
       forsythEdwardsBoardNotationArray[6] = winStatus;

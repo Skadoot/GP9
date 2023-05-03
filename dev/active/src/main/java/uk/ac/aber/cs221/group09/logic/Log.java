@@ -134,12 +134,17 @@ public class Log {
     *
     * @return ArrayList of file names in String format where each file is the record of a game.
     */
-   public ArrayList<String> displayExistingGameFiles() {
+   public ArrayList<String> displayExistingGameFiles(boolean finished) {
       // Declare new array list to hold names of existing game files
       ArrayList<String> existingGameFiles = new ArrayList<String>();
-      // Check all the files to see in the path to see if they are .txt files
+      // Check all the files to see if in the path to see if they are .txt files
+      File currentFolder;
+      if (finished){
+         currentFolder = new File("./finishedGames"); // The relative file path to where the files are saved
+      }else {
+         currentFolder = new File("./unfinishedGames"); // The relative file path to where the files are saved
+      }
 
-      File currentFolder = new File("./unfinishedGames"); // The relative file path to where the files are saved
       File[] allTheFiles = currentFolder.listFiles(); // Store all the files in the current folder in an array
       for (int i = 0; i < allTheFiles.length; i++) {
          String fileBeingChecked = allTheFiles[i].getName();

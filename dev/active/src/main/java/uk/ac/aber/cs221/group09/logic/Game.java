@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * and contains the Log object that records the game.
  *
  * @author Shaun Royle
- * @version 1.0 (Release)
+ * @version 1.1 (Release)
  * @see uk.ac.aber.cs221.group09.logic.MoveCalculator
  */
 public class Game {
@@ -245,12 +245,21 @@ public class Game {
     * @return boolean whether the player can promote a pawn.
     */
    public boolean isPromotionAvailable() {
-      return gameBoard.canWhitePromote() || gameBoard.canBlackPromote();
+      if (gameBoard.canWhitePromote() || gameBoard.canBlackPromote()) {
+         return true;
+      } else {
+         return false;
+      }
    }
 
    public void endGame(char c) {
-      // Call to update the last FEN string appended to Log.
-      // Buttons have been disabled on the front end by this point. No need to touch backend.
+      String winningPlayer = Character.toString(c);
+      gameBoard.updateFENStringWhenCheckMate(winningPlayer);
+      log.updateLog(gameBoard.getForsythEdwardsBoardNotation());
+      log.moveFileToFinishedGamesDir();
+
+
+      System.out.println("\n" + gameBoard.getForsythEdwardsBoardNotation() + "\n");
    }
 
    public Board getGameBoard() {

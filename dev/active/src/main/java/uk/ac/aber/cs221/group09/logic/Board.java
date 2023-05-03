@@ -321,12 +321,12 @@ public class Board {
       // Variable to keep track of how many empty spaces there have been.
       int skippedPieces = 0;
       // Loop through the array backwards.
-      for (int rank = 7; rank > -1; rank--) {
+      for (int rank = BOARD_SIZE - 1; rank > -1; rank--) {
          if (skippedPieces > 0) {
             newBoardRepresentationString.append(skippedPieces);
             skippedPieces = 0;
          }
-         if (rank != 7) {
+         if (rank != BOARD_SIZE - 1) {
             newBoardRepresentationString.append("/");
          }
          for (int file = 0; file < BOARD_SIZE; file++) {
@@ -449,8 +449,8 @@ public class Board {
     */
    public void printBoardStateToConsole() {
       // Loop through the array in reverse so that the board is printed in the correct orientation.
-      for (int rank = 7; rank > -1; rank--) {
-         for (int file = 0; file < 8; file++) {
+      for (int rank = BOARD_SIZE - 1; rank > -1; rank--) {
+         for (int file = 0; file < BOARD_SIZE; file++) {
 
             // Create the vector2 for the position of the current piece to be printed.
             Vector2 boardPosition = new Vector2(file, rank);
@@ -483,6 +483,9 @@ public class Board {
       forsythEdwardsBoardNotationArray[6] = winStatus;
    }
 
+   /**
+    * method to clear all the moves for every piece on the board.
+    */
    public void clearMoves() {
       for (int rank = 0; rank < BOARD_SIZE; rank++) {
          for (int file = 0; file < BOARD_SIZE; file++) {
@@ -516,7 +519,7 @@ public class Board {
     */
    public boolean canWhitePromote() {
       for (int file = 0; file < BOARD_SIZE; file++) {
-         Vector2 coordinate = new Vector2(file, 7);
+         Vector2 coordinate = new Vector2(file, BOARD_SIZE - 1);
          if (getPiece(coordinate) != null && getPiece(coordinate).getType() == 'p') {
             setAvailablePromotion(coordinate);
             return true;

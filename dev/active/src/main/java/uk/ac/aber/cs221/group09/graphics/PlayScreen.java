@@ -44,6 +44,7 @@ public class PlayScreen {
     private StackPane dashboard;
     private Text turnTracker;
     private ImageView symbol;
+    private int latestTurn = 0;
 
     /**
      * A getter for playscreen scene.
@@ -265,10 +266,21 @@ public class PlayScreen {
      * @param boardNotation - String, Forsyth Edwards Notation representing state of board.
      */
     public void updatePlayScreen(String boardNotation) {
+        //Update the chessboard with the FEN string.
         String[] sectionedNotation = boardNotation.split(" ");
         chessboard.updateBoard(sectionedNotation[0]);
+
+        //Update the player Dashboard to show the current player's turn
         char player = sectionedNotation[1].charAt(0);
         updatePlayerDashboard(player);
+
+        //Update the int of the latest turn. This is so we know the most up to date version of the game.
+        char turn = sectionedNotation[5].charAt(0);
+        if (latestTurn < Character.getNumericValue(turn)) latestTurn = Character.getNumericValue(turn);
+
+        //Update Game state from backend. I.e is the game over?
+        char gameState = sectionedNotation[6].charAt(0);
+        gameOverOverlay(gameState);
     }
 
     public void updatePlayerDashboard (char player) {
@@ -314,7 +326,8 @@ public class PlayScreen {
         accept.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                anInterface.toMenu();
+                anInterface.updateGameOver('D');
+                gameOverOverlay('D');
                 dashboard.getChildren().remove(drawWindow);
             }
         });
@@ -369,7 +382,13 @@ public class PlayScreen {
             @Override
             public void handle(ActionEvent actionEvent) {
                 //Resign quit game ladi da
-                anInterface.toMenu();
+                if(latestTurn%2 == 1) {
+                    anInterface.updateGameOver('W');
+                    gameOverOverlay('W');
+                } else {
+                    anInterface.updateGameOver('B');
+                    gameOverOverlay('B');
+                }
                 dashboard.getChildren().remove(resignWindow);
             }
         });
@@ -558,6 +577,58 @@ public class PlayScreen {
 
         root.getChildren().add(exitContainer);
         StackPane.setAlignment(exitContainer, Pos.CENTER);
+    }
+
+    /**
+     * Disable the chessboard and show on the player dashboard the results of the game.
+     * @param c - A character on the FEN string to indicate the victory!
+     */
+    public void gameOverOverlay(char c) {
+        if(c == '-') {
+            return;
+        }
+
+        //Disable Chessboard
+        chessboard.disableChessboard(true);
+
+        //Root container for the promotion window.
+        VBox victoryWindow = new VBox();
+        victoryWindow.setSpacing(12);
+        victoryWindow.setAlignment(Pos.CENTER);
+        BackgroundFill bf = new BackgroundFill(Color.valueOf("#DAE9F3"), new CornerRadii(10), new Insets(10));
+        Background bg = new Background(bf);
+        victoryWindow.setBackground(bg);
+
+        HBox textContainer = new HBox();
+        HBox imageContainer = new HBox();
+
+        Text victoryText = new Text();
+
+        ImageView victoryImage = new ImageView();
+
+        textContainer.getChildren().add(textContainer);
+        imageContainer.getChildren().add(victoryImage);
+
+        switch(c) {
+            case('W'):
+                victoryText.setText("White's Victory!");
+                victoryImage.setImage(graphicsLoader.getImage('W'));
+                break;
+            case('B'):
+                victoryText.setText("Black's victory!");
+                victoryImage.setImage(graphicsLoader.getImage('B'));
+                break;
+            case('D'):
+                victoryText.setText("Game ended in draw.");
+                victoryImage.setImage(graphicsLoader.getImage('D'));
+                break;
+        }
+
+        victoryWindow.getChildren().addAll(imageContainer,textContainer);
+
+        //Overlay the promotion window on the player dashboard.
+        dashboard.getChildren().add(victoryWindow);
+        StackPane.setAlignment(victoryWindow, Pos.CENTER);
     }
 
     public void highlightTiles(ArrayList<int[]> vTiles, ArrayList<int[]> checkTiles) {

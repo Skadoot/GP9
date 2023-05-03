@@ -646,15 +646,15 @@ public class PlayScreen {
         imageContainer.getChildren().add(victoryImage);
 
         switch(c) {
-            case('W'):
+            case('w'):
                 victoryText.setText("White's Victory!");
                 victoryImage.setImage(graphicsLoader.getImage('W'));
                 break;
-            case('B'):
+            case('b'):
                 victoryText.setText("Black's victory!");
                 victoryImage.setImage(graphicsLoader.getImage('B'));
                 break;
-            case('D'):
+            case('d'):
                 victoryText.setText("Game ended in draw.");
                 victoryImage.setImage(graphicsLoader.getImage('D'));
                 break;

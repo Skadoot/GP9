@@ -54,15 +54,15 @@ class MoveCalculatorTest {
      * @param MoveCalculator determine player's turn and inserting Board to compare board status
      */
     public void testisWhiteInCheck() {
-        //setup the board as white side king is in checked state
+        //creates a new board with the white king in check
         testBoard = new Board("rnb1kbnr/pppp1ppp/4p3/8/7q/4PP2/PPPP2PP/RNBQKBNR w KQkq - 1 3");
         moveCalculator = new MoveCalculator('w', testBoard);
 
-        //calculates all the legal moves for the given player
+        //calculates all the legal moves for white
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //If the white side player's king is in check, returns true
+        //returns true if white is in check
         Assertions.assertEquals(true, moveCalculator.isPlayerInCheck());
     }
 
@@ -75,15 +75,15 @@ class MoveCalculatorTest {
      * @param MoveCalculator determine player's turn and inserting Board to compare board status
      */
     public void testisBlackInCheck() {
-        //setup the board as black side king is in checked state
+        //creates a new board with the white king in check
         testBoard = new Board("rnbqkbnr/ppppp1pp/5p2/7Q/4P3/8/PPPP1PPP/RNB1KBNR b KQkq - 1 2");
         moveCalculator = new MoveCalculator('b', testBoard);
 
-        //calculates all the legal moves for the given player
+        //calculates all the legal moves for black
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //If the black side player's king is in check, returns true
+        //returns true if black is in check
         Assertions.assertEquals(true, moveCalculator.isPlayerInCheck());
     }
 
@@ -96,15 +96,15 @@ class MoveCalculatorTest {
      * @param MoveCalculator determine player's possible moves to avoid the check
      */
     public void testFindLegalMoves() {
-        //setup the board chessboard with the black king in check
+        //creates a new board with black in check
         testBoard = new Board("rnbqkbnr/ppppp1pp/5p2/7Q/4P3/8/PPPP1PPP/RNB1KBNR b KQkq - 1 2");
         moveCalculator = new MoveCalculator('b', testBoard);
 
-        //calculate the legal moves for the current player
+        //calculates all the legal moves for black
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //Checking whether legal moves for the given player is returned correctly
+        //Checks whether legal moves for the given player is returned correctly
         Assertions.assertEquals("legal moves for b pawn at f6 | \r\n" +
                 "legal moves for b pawn at a7 | \r\n" +
                 "legal moves for b pawn at b7 | \r\n" +
@@ -132,15 +132,15 @@ class MoveCalculatorTest {
      * @param MoveCalculator determine player's available moves
      */
     public void testCheckmate(){
-        //setup the chessboard with white in checkmate
+        //creates a new board with white in checkmate
         testBoard = new Board("rnb1kbnr/pppp1ppp/4p3/8/6Pq/5P2/PPPPP2P/RNBQKBNR w KQkq - 0 1");
         moveCalculator = new MoveCalculator('w', testBoard);
 
-        //calculate legal moves for white
+        //calculates legal moves for white
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //check that white has no legal moves
+        //checks that white has no legal moves
         Assertions.assertEquals("legal moves for w rook at a1 | \r\n" +
               "legal moves for w knight at b1 | \r\n" +
               "legal moves for w bishop at c1 | \r\n" +

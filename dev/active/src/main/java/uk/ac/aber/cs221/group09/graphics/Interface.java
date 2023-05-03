@@ -97,6 +97,7 @@ public class Interface extends Application {
 
    public void toMenu() {
       primaryStage.setScene(startScreen.getStartScreen());
+
    }
 
    public void toPNScreen() {

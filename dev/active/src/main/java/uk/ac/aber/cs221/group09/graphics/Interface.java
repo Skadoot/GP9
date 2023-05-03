@@ -84,7 +84,7 @@ public class Interface extends Application {
 
 
    public int getTurnNumber() {
-      String gameInfo[] = game.gameNotation().split(" ", 6);
+      String gameInfo[] = game.gameNotation().split(" ", 7);
 
       int turn = Integer.parseInt(gameInfo[5]);
       return turn;
@@ -141,7 +141,7 @@ public class Interface extends Application {
    }
 
    public void toNewChessboard(String whiteName, String blackName, String filename) {
-      game = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", filename, false);
+      game = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1 -", filename, false);
       //set the game.log.filename
       playScreen.setWhitePlayerName(whiteName);
       playScreen.setBlackPlayerName(blackName);

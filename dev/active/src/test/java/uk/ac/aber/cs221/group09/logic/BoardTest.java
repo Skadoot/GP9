@@ -27,53 +27,48 @@ import uk.ac.aber.cs221.group09.logic.vector.Vector2;
  */
 class BoardTest {
     private static Board testBoard;
-    private static Board testBoardWhiteKing;
-    private static Board testBoardWhiteQueen;
-    private static Board testBoardBlackKing;
-    private static Board testBoardBlackQueen;
-
 
     @Test
     //FR3 Tests
     public void testGetForsythEdwardsNotation() {
-        //create a new board
+        //creates a new board
         testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 
-        //check whether the function returns notation correctly
+        //checks whether the function returns notation correctly
         assertEquals("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", testBoard.getForsythEdwardsBoardNotation());
     }
 
     @Test
     //FR3 Tests
     public void testGetForsythEdwardsBoardNotationArrayIndex() {
-        //create a new board
+        //creates a new board
         Board testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 
-        //check whether the function returns notation index correctly
+        //checks whether the function returns notation index correctly
         String expected = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
         String result = testBoard.getForsythEdwardsBoardNotationArrayIndex(0);
 
-        //check if the expected index is returned correctly
+        //checks if the expected index is returned correctly
         assertEquals(expected, result);
     }
 
     @Test
     //FR2 Tests
     public void testDetermineCurrentPlayer() {
-        //create a new board
+        //creates a new board
         testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 
-        //Check the current player
+        //checks the current player
         Assertions.assertEquals("w",testBoard.getForsythEdwardsBoardNotationArrayIndex(1));
     }
 
     @Test
     //FR5 Tests
     public void testMakeLegalMove() {
-        //create a new board
+        //creates a new board
         testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 
-        //Initialize an attacking player
+        //initialises an attacking player
         char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
         MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
 
@@ -81,122 +76,122 @@ class BoardTest {
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //Sets a test piece to move
+        //sets a test piece to move
         Piece pieceToMove = testBoard.getPiece(new Vector2(0,1));
 
-        //Moves piece into test position to check whether the legal moves are valid
+        //moves piece into test position to check whether the legal moves are valid
         Vector2 testPosition = new Vector2(0, 3);
         for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
             if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
             {
                 testBoard.movePiece(pieceToMove, testPosition);
             }
-            //check if the expected board is the same as actual board
+            //checks if the expected board is the same as actual board
         }Assertions.assertEquals("rnbqkbnr/pppppppp/8/8/P7/8/1PPPPPPP/RNBQKBNR",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
     }
 
     @Test
     //FR5 and FR6 Tests
     public void testMoveIntoCheck() {
-        //create a new board of black side in the checked state
+        //creates a new board with the pawn at e2 pinned to the white king
         testBoard = new Board("rnb1kbnr/pppp1ppp/4p3/8/7q/PP6/2PPPPPP/RNBQKBNR w KQkq - 0 1");
 
-        //Initialize an attacking player
+        //initialises an attacking player
         char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
         MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
 
-        //calculates all the legal moves for the given player
+        //calculates all the legal moves for white
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //Sets a test piece to move
+        //sets the pawn at e2 as a test piece to move
         Piece pieceToMove = testBoard.getPiece(new Vector2(5,1));
 
-        //Moves piece into test position to check whether the moves are going into checked state
+        //attempts to move the pinned pawn, which is an illegal move
         Vector2 testPosition = new Vector2(5, 2);
         for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
             if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
             {
                 testBoard.movePiece(pieceToMove, testPosition);
             }
-            //check if the expected board is the same as actual board
+            //check if the expected board is the same as actual board - the pawn should not have moved
         }Assertions.assertEquals("rnb1kbnr/pppp1ppp/4p3/8/7q/PP6/2PPPPPP/RNBQKBNR",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
     }
 
     @Test
     //FR5 Tests
     public void testMakeIllegalMove() {
-        //create a new board
+        //creates a new board
         testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 
-        //Initialize an attacking player
+        //initialises an attacking player
         char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
         MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
 
-        //calculates all the legal moves for the given player
+        //calculates all the legal moves for white
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //Sets a test piece to move
+        //sets the pawn at a2 as a test piece to move
         Piece pieceToMove = testBoard.getPiece(new Vector2(0,1));
 
-        //Moves piece into test position to check whether the moves are illegal
+        //attempts to move the pawn at a2 to a6, which is an illegal move
         Vector2 testPosition = new Vector2(0, 5);
         for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
             if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
             {
                 testBoard.movePiece(pieceToMove, testPosition);
             }
-            //check if the expected board is the same as actual board
+            //check if the expected board is the same as actual board - the pawn should not have moved
         }Assertions.assertEquals("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
     }
 
     @Test
     //FR5 Tests
     public void testMakeIllegalMoveInCheck() {
-        //create a new board where the
+        //creates a new board with the white king in check
         testBoard = new Board("4k3/8/8/8/8/8/P7/4K2r w - - 0 1");
 
-        //Initialize an attacking player
+        //initialises an attacking player
         char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
         MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
 
-        //calculates all the legal moves for the given player
+        //calculates all the legal moves for white
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //Sets a test piece to move
+        //sets the pawn at a2 as a test piece to move
         Piece pieceToMove = testBoard.getPiece(new Vector2(0,1));
 
-        //Moves piece into test position to check whether the illegal moves would go into checked state
+        //attempts to move the pawn at a2, which is an illegal move
         Vector2 testPosition = new Vector2(0, 2);
         for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
             if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
             {
                 testBoard.movePiece(pieceToMove, testPosition);
             }
-            //check if the expected board is the same as actual board
+            //check if the expected board is the same as actual board - the pawn should not have moved
         }Assertions.assertEquals("4k3/8/8/8/8/8/P7/4K2r",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
     }
 
     @Test
     //FR5 Tests
     public void testCastling(){
-        //create a new board
+        //creates a new board with the white king side knight and bishop missing, so that white can castle
         testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQK2R w KQkq - 0 1");
 
-        //initializing an attacking player
+        //initialises an attacking player
         char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
         MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
 
-        //calculates all the legal moves for the given player
+        //calculates all the legal moves for white
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //Sets up a king piece to move
+        //sets the white king as a test piece to move
         Piece pieceToMove = testBoard.getPiece(new Vector2(4,0));
 
-        //Move piece into test position to check whether the castling function is working correctly
+        //castles the white king by moving it two spaces to the right
         Vector2 testPosition = new Vector2(6, 0);
         for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
             if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
@@ -204,27 +199,27 @@ class BoardTest {
                 testBoard.movePiece(pieceToMove, testPosition);
             }
         }
-        //check if the expected board is the same as actual board
+        //check if the expected board is the same as actual board - the white king should be castled
         Assertions.assertEquals("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQ1RK1",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
     }
 
     @Test
     public void testCastlingBlocked(){
-        //create a new board
+        //create a new board with the initial setup of a chess game
         testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 
-        //initializing an attacking player
+        //initialises an attacking player
         char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
         MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
 
-        //calculates all the legal moves for the given player
+        //calculates all the legal moves for white
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //Sets up a king piece to move
+        //sets the white king as a test piece to move
         Piece pieceToMove = testBoard.getPiece(new Vector2(4,0));
 
-        //Attempt to move piece into test position to check whether the castling function is working correctly
+        //attempts to castle the white king by moving it two spaces to the right, which is an illegal move
         Vector2 testPosition = new Vector2(6, 0);
         for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
             if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
@@ -239,21 +234,21 @@ class BoardTest {
     @Test
     //FR5 Tests
     public void testCastlingIllegalWhiteKingSide(){
-        //create a new board
+        //creates a new board without any bishops, knights, or queens. White is unable to castle on the king side
         testBoard = new Board("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R w Qkq - 0 1");
 
-        //initializing an attacking player
+        //initialises an attacking player
         char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
         MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
 
-        //calculates all the legal moves for the given player
+        //calculates all the legal moves white
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //Sets up a king piece to move
+        //sets the white king as a test piece to move
         Piece pieceToMove = testBoard.getPiece(new Vector2(4,0));
 
-        //Move piece into test position to check whether the castling function is working correctly
+        //attempts to castle the white king on the king side, by moving it two spaces to the right
         Vector2 testPosition = new Vector2(6, 0);
         for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
             if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
@@ -261,29 +256,28 @@ class BoardTest {
                 testBoard.movePiece(pieceToMove, testPosition);
             }
         }
-
-        //check if the expected board is the same as actual board
+        //check if the expected board is the same as actual board - the king should not have moved
         Assertions.assertEquals("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
     }
 
     @Test
     //FR5 Tests
     public void testCastlingIllegalWhiteQueenSide(){
-        //create a new board
+        //creates a new board without any bishops, knights, or queens. White is unable to castle on the queen side
         testBoard = new Board("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R w Kkq - 0 1");
 
-        //initializing an attacking player
+        //initialises an attacking player
         char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
         MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
 
-        //calculates all the legal moves for the given player
+        //calculates all the legal moves for white
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //Sets up a king piece to move
+        //sets the white king as a test piece to move
         Piece pieceToMove = testBoard.getPiece(new Vector2(4,0));
 
-        //Move piece into test position to check whether the castling function is working correctly
+        //attempts to castle the white king on the queen side, by moving it two spaces to the left
         Vector2 testPosition = new Vector2(2, 0);
         for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
             if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
@@ -291,28 +285,28 @@ class BoardTest {
                 testBoard.movePiece(pieceToMove, testPosition);
             }
         }
-        //check if the expected board is the same as actual board
+        //check if the expected board is the same as actual board - the king should not have moved
         Assertions.assertEquals("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
     }
 
     @Test
     //FR5 Tests
     public void testCastlingIllegalBlackKingSide(){
-        //create a new board
+        //creates a new board without any bishops, knights, or queens. Black is unable to castle on the king side
         testBoard = new Board("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R w KQq - 0 1");
 
-        //initializing an attacking player
+        //initialises an attacking player
         char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
         MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
 
-        //calculates all the legal moves for the given player
+        //calculates all the legal moves for black
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //Sets up a king piece to move
+        //sets the black king as a test piece to move
         Piece pieceToMove = testBoard.getPiece(new Vector2(4,7));
 
-        //Move piece into test position to check whether the castling function is working correctly
+        //attempts to castle the black king on the king side, by moving it two spaces to the right
         Vector2 testPosition = new Vector2(6, 7);
         for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
             if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
@@ -320,28 +314,28 @@ class BoardTest {
                 testBoard.movePiece(pieceToMove, testPosition);
             }
         }
-        //check if the expected board is the same as actual board
+        //check if the expected board is the same as actual board - the king should not have moved
         Assertions.assertEquals("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
     }
 
     @Test
     //FR5 Tests
     public void testCastlingIllegalBlackQueenSide(){
-        //create a new board
+        //creates a new board without any bishops, knights, or queens. Black is unable to castle on the queen side
         testBoard = new Board("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R w KQk - 0 1");
 
-        //initializing an attacking player
+        //initialises an attacking player
         char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
         MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
 
-        //calculates all the legal moves for the given player
+        //calculates all the legal moves for black
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //Sets up a king piece and a rook piece to move
+        //sets the black king as a test piece to move
         Piece pieceToMove = testBoard.getPiece(new Vector2(4,7));
 
-        //Move piece into test position to check whether the castling function is working correctly
+        //attempts to castle the black king on the queen side, by moving it two spaces to the left
         Vector2 testPosition = new Vector2(2, 7);
         for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
             if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
@@ -349,261 +343,398 @@ class BoardTest {
                 testBoard.movePiece(pieceToMove, testPosition);
             }
         }
-        //check if the expected board is the same as actual board
+        //check if the expected board is the same as actual board - the king should not have moved
         Assertions.assertEquals("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
     }
 
     @Test
     //FR5 Tests
     public void testEnPassant() {
-        //create a new board
+        //creates a new board with an en passant move available for the white pawn at e5
         testBoard = new Board("rnbqkbnr/ppp1p1pp/5p2/3pP3/8/8/PPPP1PPP/RNBQKBNR w KQkq d6 0 1");
 
 
-        //initializing an attacking player
+        //initialises an attacking player
         char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
         MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
 
-        //calculates all the legal moves for the given player
+        //calculates all the legal moves for white
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //Sets up testing pawn pieces to move
-    Piece pieceToMove = testBoard.getPiece(new Vector2(4,4));
+        //sets the pawn at e5 as a test piece to move
+        Piece pieceToMove = testBoard.getPiece(new Vector2(4,4));
 
-        //Moves pieces into test positions to check whether the En Passant function is working correctly
-    Vector2 testPosition = new Vector2(3, 5);
-        for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
-        if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
-        {
-            testBoard.movePiece(pieceToMove, testPosition);
-        }
+            //moves the pawn at e5 to d6, capturing the black pawn at d5 in the process
+        Vector2 testPosition = new Vector2(3, 5);
+            for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+            if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
+            {
+                testBoard.movePiece(pieceToMove, testPosition);
+            }
             //check if the expected board is the same as actual board
-
-    }Assertions.assertEquals("rnbqkbnr/ppp1p1pp/3P1p2/8/8/8/PPPP1PPP/RNBQKBNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
-}
+        }Assertions.assertEquals("rnbqkbnr/ppp1p1pp/3P1p2/8/8/8/PPPP1PPP/RNBQKBNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
+    }
 
     @Test
     //FR5 Tests
     public void testMakeLegalMovePawn() {
-        //create a new board
+        //creates a new board
         testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 
-        //initializing an attacking player
+        //initialises an attacking player
         char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
         MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
 
-        //calculates all the legal moves for the given player
+        //calculates all the legal moves for white
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //Sets up a testing pawn piece to move
+        //sets the pawn at a2 as a test piece to move
         Piece pieceToMove = testBoard.getPiece(new Vector2(0,1));
 
-        //Moves pawn piece into test position to check whether it is moving correctly
+        //moves the pawn at a2 forward two spaces
         Vector2 testPosition = new Vector2(0, 3);
         for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
             if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
             {
                 testBoard.movePiece(pieceToMove, testPosition);
             }
-            //check if the expected board is the same as actual board
+            //check if the expected board is the same as actual board - the pawn should have moved
         }Assertions.assertEquals("rnbqkbnr/pppppppp/8/8/P7/8/1PPPPPPP/RNBQKBNR",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
     }
 
     @Test
     //FR5 Tests
     public void testMakeLegalMoveKnight() {
-        //create a new board
+        //creates a new board
         testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 
-        //initializing an attacking player
+        //initialises an attacking player
         char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
         MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
 
-        //calculates all the legal moves for the given player
+        //calculates all the legal moves for white
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //Sets up a testing knight piece to move
+        //sets the white knight at b1 as a test piece to move
         Piece pieceToMove = testBoard.getPiece(new Vector2(1,0));
 
-        //Moves knight piece into test position to check whether it is moving correctly
+        //moves the knight from b1 to c3
         Vector2 testPosition = new Vector2(2, 2);
         for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
             if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
             {
                 testBoard.movePiece(pieceToMove, testPosition);
             }
-            //check if the expected board is the same as actual board
+            //check if the expected board is the same as actual board - the knight should be on the c3 square
         }Assertions.assertEquals("rnbqkbnr/pppppppp/8/8/8/2N5/PPPPPPPP/R1BQKBNR",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
     }
 
     @Test
     //FR5 Tests
     public void testMakeLegalMoveRook() {
-        //create a new board
+        //creates a new board without a white bishop or knight on b1 and c1
         testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/R2QKBNR w KQkq - 0 1");
 
-        //initializing an attacking player
+        //initialises an attacking player
         char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
         MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
 
-        //calculates all the legal moves for the given player
+        //calculates all the legal moves for white
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //Sets up a testing rook piece to move
+        //sets the rook at a1 as a testing piece to move
         Piece pieceToMove = testBoard.getPiece(new Vector2(0,0));
 
-        //Moves rook piece into test position to check whether it is moving correctly
+        //moves the rook from a1 to c1
         Vector2 testPosition = new Vector2(2, 0);
         for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
             if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
             {
                 testBoard.movePiece(pieceToMove, testPosition);
             }
-            //check if the expected board is the same as actual board
+            //check if the expected board is the same as actual board - the rook should be on the c1 square
         }Assertions.assertEquals("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/2RQKBNR",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
     }
 
     @Test
     //FR5 Tests
     public void testMakeLegalMoveBishop() {
-        //create a new board
+        //creates a new board with legal moves available for the white bishop at f1
         testBoard = new Board("rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1");
 
-        //initializing an attacking player
+        //initialises an attacking player
         char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
         MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
 
-        //calculates all the legal moves for the given player
+        //calculates all the legal moves for white
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //Sets up a testing bishop piece to move
+        //sets the white bishop at f1 as a testing piece to move
         Piece pieceToMove = testBoard.getPiece(new Vector2(5,0));
 
-        //Moves rook piece into test position to check whether it is moving correctly
+        //moves the bishop from f1 to c4
         Vector2 testPosition = new Vector2(2, 3);
         for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
             if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
             {
                 testBoard.movePiece(pieceToMove, testPosition);
             }
-            //check if the expected board is the same as actual board
+            //check if the expected board is the same as actual board - the bishop should be on the c4 square
         }Assertions.assertEquals("rnbqkbnr/pppp1ppp/8/4p3/2B1P3/8/PPPP1PPP/RNBQK1NR",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
     }
 
     @Test
     //FR5 Tests
     public void testMakeLegalMoveQueen() {
-        //create a new board
+        //creates a new board with a legal move for the white queen
         testBoard = new Board("rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 1");
 
-        //initializing an attacking player
+        //initialises an attacking player
         char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
         MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
 
-        //calculates all the legal moves for the given player
+        //calculates all the legal moves for white
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //Sets up a testing queen piece to move
+        //sets the white queen as a testing piece to move
         Piece pieceToMove = testBoard.getPiece(new Vector2(3,0));
 
-        //Moves queen piece into test position to check whether it is moving correctly
+        //moves the queen from d1 to g4
         Vector2 testPosition = new Vector2(6, 3);
         for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
             if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
             {
                 testBoard.movePiece(pieceToMove, testPosition);
             }
-            //check if the expected board is the same as actual board
+            //check if the expected board is the same as actual board - the queen should be on the g4 square
         }Assertions.assertEquals("rnbqkbnr/pppp1ppp/8/4p3/4P1Q1/8/PPPP1PPP/RNB1KBNR",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
     }
 
     @Test
     //FR5 Tests
     public void testMakeLegalMoveKing() {
-        //create a new board
+        //creates a new board with a legal move for the white king
         testBoard = new Board("rnbqkbnr/ppp2ppp/3p4/4p3/4P1Q1/8/PPPP1PPP/RNB1KBNR w KQkq - 0 1");
 
-        //initializing an attacking player
+        //initialises an attacking player
         char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
         MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
 
-        //calculates all the legal moves for the given player
+        //calculates all the legal moves for white
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //Sets up a testing king piece to move
+        //sets the white king as a testing piece to move
         Piece pieceToMove = testBoard.getPiece(new Vector2(4,0));
 
-        //Moves king piece into test position to check whether it is moving correctly
+        //moves the king from e1 to d1
         Vector2 testPosition = new Vector2(3, 0);
         for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
             if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
             {
                 testBoard.movePiece(pieceToMove, testPosition);
             }
-            //check if the expected board is the same as actual board
+            //check if the expected board is the same as actual board - the king should be on the d1 square
         }Assertions.assertEquals("rnbqkbnr/ppp2ppp/3p4/4p3/4P1Q1/8/PPPP1PPP/RNBK1BNR",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
     }
 
 @Test
-    public void testCapture(){
+    public void testCapturePawn(){
+        //creates a new board with a white pawn able to make a capture
         testBoard = new Board("rnbqkbnr/ppp1pppp/8/3p4/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
 
-    //initializing an attacking player
+    //initialises an attacking player
     char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
     MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
 
-    //calculates all the legal moves for the given player
+    //calculates all the legal moves for white
     moveCalculator.findLegalMovesForPlayer(true);
     moveCalculator.findLegalMovesForPlayer(false);
 
-    //Sets up a testing pawn piece to move
+    //sets the pawn at e4 as a testing piece to move
     Piece pieceToMove = testBoard.getPiece(new Vector2(4,3));
 
-    //Moves pawn piece into test position to check whether it is moving correctly and capturing the opposing pawn
+    //moves the pawn from e4 to d5, capturing the black pawn which was previously there
     Vector2 testPosition = new Vector2(3, 4);
     for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
         if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
         {
             testBoard.movePiece(pieceToMove, testPosition);
         }
-        //check if the expected board is the same as actual board
+        //check if the expected board is the same as actual board - the pawn should be on d5, and the black pawn should be captured
     }Assertions.assertEquals("rnbqkbnr/ppp1pppp/8/3P4/8/8/PPPP1PPP/RNBQKBNR",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
 }
 
     @Test
     public void testCaptureInCheck(){
+        //creates a new board with the white king in check from the bishop at b4, and a white pawn at a3 which can capture the bishop
         testBoard = new Board("rnbqk1nr/pp1p1ppp/2p1p3/8/1b6/P2P4/1PP1PPPP/RNBQKBNR w KQkq - 0 1");
 
-        //initializing an attacking player
+        //initialises an attacking player
         char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
         MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
 
-        //calculates all the legal moves for the given player
+        //calculates all the legal moves for white
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //Sets up a testing pawn piece to move
+        //sets the pawn at a3 as a testing piece to move
         Piece pieceToMove = testBoard.getPiece(new Vector2(0,2));
 
-        //Moves pawn piece into test position to check whether it is moving correctly and capturing the opposing pawn
+        //moves the pawn to capture the bishop at b4, stopping the check
         Vector2 testPosition = new Vector2(1, 3);
         for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
             if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
             {
                 testBoard.movePiece(pieceToMove, testPosition);
             }
-            //check if the expected board is the same as actual board
+            //check if the expected board is the same as actual board - the pawn should be on b4, and the black bishop should be captured
         }Assertions.assertEquals("rnbqk1nr/pp1p1ppp/2p1p3/8/1P6/3P4/1PP1PPPP/RNBQKBNR",testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
     }
 
+    @Test
+    public void testCaptureKnight(){
+        //creates a new board with a white knight able to make a capture
+        testBoard = new Board("rnbqkbnr/ppp1pppp/8/3p4/8/2N5/PPPPPPPP/R1BQKBNR w KQkq - 0 1");
 
+        //initialises an attacking player
+        char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
+        MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
+
+        //calculates all the legal moves for white
+        moveCalculator.findLegalMovesForPlayer(true);
+        moveCalculator.findLegalMovesForPlayer(false);
+
+        //sets the knight at c3 as a testing piece to move
+        Piece pieceToMove = testBoard.getPiece(new Vector2(2,2));
+
+        //moves the knight to capture the pawn at d5
+        Vector2 testPosition = new Vector2(3,4);
+        for(Vector2 currentMove : pieceToMove.getPossibleMoves()){
+            if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
+            {
+                testBoard.movePiece(pieceToMove, testPosition);
+            }
+            //check if the expected board is the same as the actual board - the knight should be on d5, and the black pawn should be captured
+        }Assertions.assertEquals("rnbqkbnr/ppp1pppp/8/3N4/8/8/PPPPPPPP/R1BQKBNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
+    }
+
+    @Test
+    public void testCaptureBishop(){
+        //creates a new board with a white bishop able to make a capture
+        testBoard = new Board("rnbqkbnr/pppppp1p/8/6p1/8/3P4/PPP1PPPP/RNBQKBNR w KQkq - 0 1");
+
+        //initialises an attacking player
+        char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
+        MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
+
+        //calculates all the legal moves for white
+        moveCalculator.findLegalMovesForPlayer(true);
+        moveCalculator.findLegalMovesForPlayer(false);
+
+        //sets the bishop at c1 as a testing piece to move
+        Piece pieceToMove = testBoard.getPiece(new Vector2(2,0));
+
+        //moves the bishop to capture the pawn at g5
+        Vector2 testPosition = new Vector2(6,4);
+        for(Vector2 currentMove : pieceToMove.getPossibleMoves()){
+            if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
+            {
+                testBoard.movePiece(pieceToMove, testPosition);
+            }
+            //check if the expected board is the same as the actual board - the bishop should be on g5, and the black pawn should be captured
+        }Assertions.assertEquals("rnbqkbnr/pppppp1p/8/6B1/8/3P4/PPP1PPPP/RN1QKBNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
+    }
+
+
+    @Test
+    public void testCaptureRook(){
+        //creates a new board with a white rook able to make a capture
+        testBoard = new Board("rnbqkbnr/ppp2ppp/3p4/P7/R3p3/8/1PPPPPPP/1NBQKBNR w Kkq - 0 4");
+
+        //initialises an attacking player
+        char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
+        MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
+
+        //calculates all the legal moves for white
+        moveCalculator.findLegalMovesForPlayer(true);
+        moveCalculator.findLegalMovesForPlayer(false);
+
+        //sets the rook at a4 as a testing piece to move
+        Piece pieceToMove = testBoard.getPiece(new Vector2(0,3));
+
+        //moves the rook to capture the pawn at e4
+        Vector2 testPosition = new Vector2(4,3);
+        for(Vector2 currentMove : pieceToMove.getPossibleMoves()){
+            if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
+            {
+                testBoard.movePiece(pieceToMove, testPosition);
+            }
+            //check if the expected board is the same as the actual board - the rook should be on e4, and the black pawn should be captured
+        }Assertions.assertEquals("rnbqkbnr/ppp2ppp/3p4/P7/4R3/8/1PPPPPPP/1NBQKBNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
+    }
+
+
+    @Test
+    public void testCaptureQueen(){
+        //creates a new board with the white queen able to make a capture
+        testBoard = new Board("rnbqkbnr/ppppppp1/8/7p/4P3/8/PPPP1PPP/RNBQKBNR w KQkq h6 0 2");
+
+        //initialises an attacking player
+        char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
+        MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
+
+        //calculates all the legal moves for white
+        moveCalculator.findLegalMovesForPlayer(true);
+        moveCalculator.findLegalMovesForPlayer(false);
+
+        //sets the white queen as a testing piece to move
+        Piece pieceToMove = testBoard.getPiece(new Vector2(3,0));
+
+        //moves the queen to capture the pawn at h5
+        Vector2 testPosition = new Vector2(7,4);
+        for(Vector2 currentMove : pieceToMove.getPossibleMoves()){
+            if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
+            {
+                testBoard.movePiece(pieceToMove, testPosition);
+            }
+            //check if the expected board is the same as the actual board - the queen should be on h5, and the black pawn should be captured
+        }Assertions.assertEquals("rnbqkbnr/ppppppp1/8/7Q/4P3/8/PPPP1PPP/RNB1KBNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
+    }
+
+
+    @Test
+    public void testCaptureKing(){
+        //creates a new board with the white king able to make a capture
+        testBoard = new Board("rnbqkbnr/pppp2pp/4p3/8/4Pp2/5K2/PPPP1PPP/RNBQ1BNR w kq - 0 4");
+
+        //initialises an attacking player
+        char attacking_player = testBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
+        MoveCalculator moveCalculator = new MoveCalculator(attacking_player, testBoard);
+
+        //calculates all the legal moves for white
+        moveCalculator.findLegalMovesForPlayer(true);
+        moveCalculator.findLegalMovesForPlayer(false);
+
+        //sets the white king as a testing piece to move
+        Piece pieceToMove = testBoard.getPiece(new Vector2(5,2));
+
+        //moves the king to capture the pawn at f4
+        Vector2 testPosition = new Vector2(5,3);
+        for(Vector2 currentMove : pieceToMove.getPossibleMoves()){
+            if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
+            {
+                testBoard.movePiece(pieceToMove, testPosition);
+            }
+            //check if the expected board is the same as the actual board - the king should be on f4, and the black pawn should be captured
+        }Assertions.assertEquals("rnbqkbnr/pppp2pp/4p3/8/4PK2/8/PPPP1PPP/RNBQ1BNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
+    }
 //pawn promotion test - check if available
 
 

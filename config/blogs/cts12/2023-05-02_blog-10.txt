@@ -1,0 +1,24 @@
+Author: CTS12
+Week: 10 (02/05/23)
+
+Assigned actions
+==============
+
+Action 4: Prep screens for back-end logic
+
+Added move viewing using the logs
+Hours: 3
+
+preparing frontend for game loading 
+Hours: 2
+
+
+
+
+
+Other project work
+================
+
+
+
+Total hours: 5

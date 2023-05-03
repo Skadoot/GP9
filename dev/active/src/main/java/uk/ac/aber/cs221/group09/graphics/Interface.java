@@ -84,7 +84,7 @@ public class Interface extends Application {
 
 
    public int getTurnNumber() {
-      String gameInfo[] = game.gameNotation().split(" ", 6);
+      String gameInfo[] = game.gameNotation().split(" ", 7);
 
       int turn = Integer.parseInt(gameInfo[5]);
       return turn;

@@ -156,6 +156,10 @@ public class Game {
       System.out.println("\n" + gameBoard.getForsythEdwardsBoardNotation() + "\n");
    }
 
+   public boolean isGameOverByCheckMate() {
+      return moveCalculator.isPlayerInCheckMate();
+   }
+
    public String gameNotation() {
       return gameBoard.getForsythEdwardsBoardNotation();
    }

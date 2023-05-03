@@ -81,6 +81,10 @@ public class Interface extends Application {
 
       playScreen.updatePlayScreen(game.gameNotation());
       playScreen.highlightTiles(game.validTiles(), game.checkedKing()); //might need to comment this out
+
+      if (game.isGameOverByCheckMate()) {
+         //do stuff.
+      }
    }
 
 

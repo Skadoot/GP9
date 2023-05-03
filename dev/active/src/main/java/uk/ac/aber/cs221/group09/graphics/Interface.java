@@ -167,4 +167,8 @@ public class Interface extends Application {
    public void updateGameOver(char c) {
       game.endGame(c);
    }
+
+   public void deleteGame() {
+      game.log.deleteFile();
+   }
 }

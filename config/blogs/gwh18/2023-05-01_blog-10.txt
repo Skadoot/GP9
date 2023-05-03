@@ -1,0 +1,19 @@
+Author: GWH18
+Week: 10 Integration & Testing (2023/05/01)
+
+Actions
+
+Action 1: Revising Integration Spikework
+
+Examined code done in preperation. Refactored functions in spike work branch and cleaned up methods to accomodate further immprovements.
+-Seperated board logic and knowledge of the board from the front end interface class back to the backend game class.
+
+Hours: 5
+
+Action 2: Discussed plan of attack for Integration week.
+
+Discussed with Tyler, Jack, Shaun, and Craymon.
+
+Hours: 1
+
+Total Hours: 6

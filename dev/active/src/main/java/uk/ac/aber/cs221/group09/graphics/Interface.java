@@ -34,7 +34,6 @@ public class Interface extends Application {
    private PlayScreen playScreen;
    private StartScreen startScreen;
    private LoadScreen loadScreen;
-   private Piece pieceToMove;
    private Game game;
    //setting a default value for currentTurn to view previous moves of a game
    public int currentTurn = -1;
@@ -75,6 +74,9 @@ public class Interface extends Application {
     */
    public void click(int column, int row) {
       game.move(row, column);
+      if (game.isPromotionAvailable()) {
+         playScreen.offerPromotion();
+      }
       playScreen.updatePlayScreen(game.gameNotation());
       startedViewing = false;
       playScreen.highlightTiles(game.validTiles(), game.checkedKing()); //might need to comment this out
@@ -186,5 +188,12 @@ public class Interface extends Application {
       game.createGame(filename);
       playScreen.updatePlayScreen(game.gameNotation());
       primaryStage.setScene(playScreen.getScene());
+   }
+
+   public void requestPromotion(int n) {
+      game.promote(n);
+      playScreen.updatePlayScreen(game.gameNotation());
+      playScreen.highlightTiles(game.validTiles(), game.checkedKing());
+
    }
 }

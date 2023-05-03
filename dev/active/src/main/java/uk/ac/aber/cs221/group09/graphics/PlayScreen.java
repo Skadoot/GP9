@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -368,6 +369,7 @@ public class PlayScreen {
             @Override
             public void handle(ActionEvent actionEvent) {
                 //Resign quit game ladi da
+                anInterface.toMenu();
                 dashboard.getChildren().remove(resignWindow);
             }
         });
@@ -389,6 +391,101 @@ public class PlayScreen {
         //Place over the player Dashboard.
         dashboard.getChildren().add(resignWindow);
         StackPane.setAlignment(resignWindow, Pos.CENTER);
+    }
+
+    /**
+     * Function to called when a promotion is available for a pawn. Overlays the player Dashboard with a new container
+     * containing four buttons. The chessboard is disabled until the player chooses a promotion. The button's display
+     * the graphics of the available pieces to promote to. Will notify the interface of the user's selection.
+     */
+    public void offerPromotion(){
+        //Disable the chessboard to stop play until promotion selected.
+        chessboard.disableChessboard(true);
+
+        //Root container for the promotion window.
+        VBox promotionWindow = new VBox();
+        promotionWindow.setSpacing(12);
+        promotionWindow.setAlignment(Pos.CENTER);
+        BackgroundFill bf = new BackgroundFill(Color.valueOf("#DAE9F3"), new CornerRadii(10), new Insets(10));
+        Background bg = new Background(bf);
+        promotionWindow.setBackground(bg);
+
+        //Containers for the text and the buttons.
+        HBox textContainer = new HBox();
+        textContainer.setAlignment(Pos.CENTER);
+        HBox buttonBarOne = new HBox();
+        buttonBarOne.setSpacing(12);
+        buttonBarOne.setAlignment(Pos.CENTER);
+        HBox buttonBarTwo = new HBox();
+        buttonBarTwo.setSpacing(12);
+        buttonBarTwo.setAlignment(Pos.CENTER);
+
+        //Display Text
+        Text text = new Text("Pick a promotion for your pawn!");
+
+        //Buttons and their graphics.
+        Button queenPromote = new Button();
+        queenPromote.setGraphic(new ImageView(graphicsLoader.getImage('q')));
+        Button rookPromote = new Button();
+        rookPromote.setGraphic(new ImageView(graphicsLoader.getImage('r')));
+        Button bishopPromote = new Button();
+        bishopPromote.setGraphic(new ImageView(graphicsLoader.getImage('b')));
+        Button knightPromote = new Button();
+        knightPromote.setGraphic(new ImageView(graphicsLoader.getImage('k')));
+
+        //Adding text and buttons to their containers
+        textContainer.getChildren().add(text);
+        buttonBarOne.getChildren().addAll(queenPromote,rookPromote);
+        buttonBarTwo.getChildren().addAll(bishopPromote,knightPromote);
+
+        //Giving actions to buttons to call a pawn promotion request from the front end.
+        queenPromote.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                dashboard.getChildren().remove(promotionWindow);
+                //Request queen promotion
+                anInterface.requestPromotion(0);
+                //reenable chessboard
+                chessboard.disableChessboard(false);
+            }
+        });
+
+        rookPromote.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                dashboard.getChildren().remove(promotionWindow);
+                anInterface.requestPromotion(1);
+                //reenable chessboard
+                chessboard.disableChessboard(false);
+            }
+        });
+
+        bishopPromote.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                dashboard.getChildren().remove(promotionWindow);
+                anInterface.requestPromotion(2);
+                //reenable chessboard
+                chessboard.disableChessboard(false);
+            }
+        });
+
+        knightPromote.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                dashboard.getChildren().remove(promotionWindow);
+                anInterface.requestPromotion(3);
+                //reenable chessboard
+                chessboard.disableChessboard(false);
+            }
+        });
+
+        //Adding buttonbar and text container to root container.
+        promotionWindow.getChildren().addAll(textContainer,buttonBarOne,buttonBarTwo);
+
+        //Overlay the promotion window on the player dashboard.
+        dashboard.getChildren().add(promotionWindow);
+        StackPane.setAlignment(promotionWindow, Pos.CENTER);
     }
 
     /**

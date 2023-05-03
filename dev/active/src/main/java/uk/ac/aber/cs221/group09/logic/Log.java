@@ -27,7 +27,8 @@ public class Log {
 
    private String fileName;
    private int numberOfLines = 0; //to keep track of the number of lines in the file
-   private String nameOfFolderToHoldGames = "./unfinishedGames";
+   private String nameOfFolderToHoldUnfinishedGames = "./unfinishedGames";
+   private String nameOfFolderToHoldFinishedGames = "./finishedGames";
 
 
    /**
@@ -40,8 +41,8 @@ public class Log {
     */
    public Log(String fileName) {
       //if the unfinished game directory does not exist, create it
-      new File(nameOfFolderToHoldGames).mkdirs();
-      File dir = new File(nameOfFolderToHoldGames);
+      new File(nameOfFolderToHoldUnfinishedGames).mkdirs();
+      File dir = new File(nameOfFolderToHoldUnfinishedGames);
       //make log for new game
       this.fileName = fileName + ".txt"; //add .txt to make it a txt file
       //make a new file called 'fileName' in the unfinishedGames Directory.
@@ -100,7 +101,7 @@ public class Log {
     * @param FEN the Forsyth Edwards Notation representing the board state. This is what gets appended to the txt file.
     */
    public void updateLog(String FEN) {
-      File dir = new File(nameOfFolderToHoldGames);
+      File dir = new File(nameOfFolderToHoldUnfinishedGames);
       try {
          FileWriter fileWriter = new FileWriter(new File(dir, this.fileName), true);
          fileWriter.append(FEN).append("\n");
@@ -125,7 +126,7 @@ public class Log {
       String fenAtLineNumber = null;
       try {
          //assign variable the string at the requested line number of the file
-         fenAtLineNumber = Files.readAllLines(Paths.get(nameOfFolderToHoldGames, fileName)).get(lineNumber);
+         fenAtLineNumber = Files.readAllLines(Paths.get(nameOfFolderToHoldUnfinishedGames, fileName)).get(lineNumber);
       } catch (IOException e) {
          System.out.println("IO Error");
       } catch (IndexOutOfBoundsException er) {
@@ -141,7 +142,7 @@ public class Log {
    public int getNumberOfLines(){
       try {
          //assign variable the string at the requested line number of the file
-         this.numberOfLines = Files.readAllLines(Paths.get(nameOfFolderToHoldGames, fileName)).size();
+         this.numberOfLines = Files.readAllLines(Paths.get(nameOfFolderToHoldUnfinishedGames, fileName)).size();
       } catch (IOException e) {
          System.out.println("IO Error");
       }
@@ -174,5 +175,19 @@ public class Log {
          }
       }
       return existingGameFiles;
+   }
+
+   /**
+    * Moves the current file being used to track the log from the unfinished game to the finished game directory.
+    */
+   public void moveFileToFinishedGamesDir(){
+      //create a new directory to hold finished games if one does not exist already.
+      new File(nameOfFolderToHoldFinishedGames).mkdirs();
+      //declare two string variables to hold the paths to where the file is and where it's going
+      String pathToCurrentFile = nameOfFolderToHoldUnfinishedGames+"/"+fileName;
+      String pathToFinishedGamesFile = nameOfFolderToHoldFinishedGames+"/"+fileName;
+      //move the file from the unfinished games to the finished game directory
+      File currentFile = new File(pathToCurrentFile);
+      currentFile.renameTo(new File(pathToFinishedGamesFile));
    }
 }

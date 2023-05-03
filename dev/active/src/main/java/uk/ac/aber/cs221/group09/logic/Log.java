@@ -56,7 +56,7 @@ public class Log {
       } catch (IOException e) {
          System.out.println("IO Error");
       }
-      updateLog("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"); // Append the initial board state to the new log file
+      updateLog("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1 -"); // Append the initial board state to the new log file
    }
 
    /**

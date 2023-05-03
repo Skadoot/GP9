@@ -137,6 +137,7 @@ public class Game {
          }
 
          gameBoard.updateFENStringWhenCheckMate(winningPlayer);
+
       }
       System.out.println("\n" + gameBoard.getForsythEdwardsBoardNotation() + "\n");
    }

@@ -600,13 +600,15 @@ public class PlayScreen {
         victoryWindow.setBackground(bg);
 
         HBox textContainer = new HBox();
+        textContainer.setAlignment(Pos.CENTER);
         HBox imageContainer = new HBox();
+        imageContainer.setAlignment(Pos.CENTER);
 
         Text victoryText = new Text();
 
         ImageView victoryImage = new ImageView();
 
-        textContainer.getChildren().add(textContainer);
+        textContainer.getChildren().add(victoryText);
         imageContainer.getChildren().add(victoryImage);
 
         switch(c) {

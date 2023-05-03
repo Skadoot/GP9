@@ -583,6 +583,7 @@ public class PlayScreen {
             public void handle(ActionEvent actionEvent) {
                 //Call game to be deleted
                 anInterface.toMenu();
+                anInterface.deleteGame();
             }
         });
 

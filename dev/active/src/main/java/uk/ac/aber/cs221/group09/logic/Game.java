@@ -37,6 +37,10 @@ public class Game {
    private Vector2 selectedPiece;
    private boolean isMovesCalculated = false;
 
+   private Vector2 selectedBoardCoordinate;
+
+   private boolean isMoveMade = false;
+
    /**
     * Constructor for game.
     * Simple constructor for game.
@@ -72,45 +76,17 @@ public class Game {
       }
 
       // Wait for the UI to return a selected piece, here we would set it to be the coordinate that the ui passes back to us.
-      Vector2 selectedBoardCoordinate = new Vector2(column, row);
+      selectedBoardCoordinate = new Vector2(column, row);
 
       // Get a list of all the legal moves for the chessboard
       ArrayList<Vector2> currentLegalMoves = gameBoard.getPiece(selectedPiece).getPossibleMoves();
 
       // Check the selected coordinates are a legal move and the current selected piece is the attacking player's piece.
       if (currentLegalMoves.contains(selectedBoardCoordinate) && gameBoard.getPiece(selectedPiece).getColor() == attackingPlayer) {
-
+         isMoveMade = true;
          gameBoard.movePiece(gameBoard.getPiece(selectedPiece), selectedBoardCoordinate);
-         log.updateLog(gameBoard.getForsythEdwardsBoardNotation()); //should update the log after a move is made
-         selectedPiece = selectedBoardCoordinate;
-         moveCount += (attackingPlayer == 'b') ? 1 : 0;
-         isMovesCalculated = false;
-         gameBoard.clearMoves();
-
-         System.out.println("Moved piece to " + selectedBoardCoordinate.getVector2AsBoardNotation());
-         System.out.println("\n         ,....,----------------------------------------------------\n" +
-               "      ,::::::<-----------------------------------------------------\n" +
-               "     ,::/^\\\"``.----------------------------------------------------\n" +
-               "    ,::/, `   e`.--------------------------------------------------\n" +
-               "   ,::; |        '.------------------------------------------------\n" +
-               "   ,::|  \\___,-.  c)-----------------------------------------------\n" +
-               "   ;::|     \\   '-'------------------------------------------------\n" +
-               "   ;::|      \\-----------------------------------------------------\n" +
-               "   ;::|   _.=`\\----------------------------------------------------\n" +
-               "   `;:|.=` _.=`\\---------------------------------------------------\n" +
-               "     '|_.=`   __\\--------------------------------------------------\n" +
-               "     `\\_..==`` /---------------------------------------------------\n" +
-               "      .'.___.-'.---------------------------------------------------\n" +
-               "     /          \\--------------------------------------------------\n" +
-               "    ('--......--')-------------------------------------------------\n" +
-               "    /'--......--'\\-------------------------------------------------\n" +
-               "    `\"--......--\"--------------------------------------------------\n");
-
-         calculateMoves();
-
       } else if (gameBoard.getPiece(selectedBoardCoordinate) != null) {
          if (gameBoard.getPiece(selectedBoardCoordinate).getColor() == attackingPlayer) {
-
             selectedPiece = selectedBoardCoordinate;
             System.out.println("selected piece is : " + selectedPiece.getVector2AsBoardNotation() + ",");
             if (gameBoard.getPiece(selectedPiece).getPossibleMoves().isEmpty()) {
@@ -118,6 +94,44 @@ public class Game {
             }
          }
       }
+   }
+
+   /**
+    * this method updates the board.
+    */
+   public void updateBoard() {
+      log.updateLog(gameBoard.getForsythEdwardsBoardNotation()); //should update the log after a move is made
+      selectedPiece = selectedBoardCoordinate;
+      moveCount += (attackingPlayer == 'b') ? 1 : 0;
+      isMovesCalculated = false;
+      gameBoard.clearMoves();
+
+      //print debugging
+      System.out.println("Moved piece to " + selectedBoardCoordinate.getVector2AsBoardNotation());
+      System.out.println("\n         ,....,----------------------------------------------------\n" +
+         "      ,::::::<-----------------------------------------------------\n" +
+         "     ,::/^\\\"``.----------------------------------------------------\n" +
+         "    ,::/, `   e`.--------------------------------------------------\n" +
+         "   ,::; |        '.------------------------------------------------\n" +
+         "   ,::|  \\___,-.  c)-----------------------------------------------\n" +
+         "   ;::|     \\   '-'------------------------------------------------\n" +
+         "   ;::|      \\-----------------------------------------------------\n" +
+         "   ;::|   _.=`\\----------------------------------------------------\n" +
+         "   `;:|.=` _.=`\\---------------------------------------------------\n" +
+         "     '|_.=`   __\\--------------------------------------------------\n" +
+         "     `\\_..==`` /---------------------------------------------------\n" +
+         "      .'.___.-'.---------------------------------------------------\n" +
+         "     /          \\--------------------------------------------------\n" +
+         "    ('--......--')-------------------------------------------------\n" +
+         "    /'--......--'\\-------------------------------------------------\n" +
+         "    `\"--......--\"--------------------------------------------------\n");
+
+      calculateMoves();
+      isMoveMade = false;
+   }
+
+   public boolean isMoveMade() {
+      return isMoveMade;
    }
 
    public void calculateMoves() {
@@ -200,7 +214,6 @@ public class Game {
       MoveCalculator promotionCheck = new MoveCalculator(attackingPlayer, gameBoard);
       promotionCheck.findLegalMovesForPlayer(true);
       promotionCheck.findLegalMovesForPlayer(false);
-
    }
 
    /**

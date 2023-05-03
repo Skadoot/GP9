@@ -158,7 +158,7 @@ public class Board {
       }
 
       // Get the new board state string, after the move has been played.
-      updateForsythEdwardsBoardNotation(selectedPiece.getColor() == 'b');
+      updateForsythEdwardsBoardNotation(true);
    }
 
    /**
@@ -353,12 +353,13 @@ public class Board {
 
       // Update the current player string. represented by forsythEdwardsBoardNotationArray[1].
 
-      if (forsythEdwardsBoardNotationArray[1].equals("w")) {
-         forsythEdwardsBoardNotationArray[1] = "b";
-      } else {
-         forsythEdwardsBoardNotationArray[1] = "w";
+      if (newTurn) {
+         if (forsythEdwardsBoardNotationArray[1].equals("w")) {
+            forsythEdwardsBoardNotationArray[1] = "b";
+         } else {
+            forsythEdwardsBoardNotationArray[1] = "w";
+         }
       }
-
 
       // If the castling notation is empty, forsythEdwardsBoardNotationArray[2], then replace it with the '-' character.
       if (forsythEdwardsBoardNotationArray[2].equals("")) {
@@ -370,7 +371,7 @@ public class Board {
       forsythEdwardsBoardNotationArray[4] = Integer.toString(Integer.parseInt(forsythEdwardsBoardNotationArray[4]) + 1);
 
       // Update the full move number represented by forsythEdwardsBoardNotationArray[5], by incrementing it by 1.
-      if(newTurn) {
+      if (((Integer.parseInt(forsythEdwardsBoardNotationArray[4])) % 2 == 0) && ((Integer.parseInt(forsythEdwardsBoardNotationArray[4])) != 0)) {
          forsythEdwardsBoardNotationArray[5] = Integer.toString(Integer.parseInt(forsythEdwardsBoardNotationArray[5]) + 1);
       }
 

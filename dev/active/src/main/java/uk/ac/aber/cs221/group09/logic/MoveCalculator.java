@@ -155,8 +155,11 @@ public class MoveCalculator {
             addPieceLegalMove(pawn, singleAdvance, false);
 
             // Check if there is a piece on the double advance square and that the pawn has not moved before.
-            if (board.getPiece(doubleAdvance) == null && !pawn.hasMoved()) {
-               addPieceLegalMove(pawn, doubleAdvance, false);
+
+            if (doubleAdvance.x <= 7 && doubleAdvance.y <= 7 && doubleAdvance.x >= 0 && doubleAdvance.y >= 0) {
+               if (board.getPiece(doubleAdvance) == null && !pawn.hasMoved()) {
+                  addPieceLegalMove(pawn, doubleAdvance, false);
+               }
             }
          }
       }

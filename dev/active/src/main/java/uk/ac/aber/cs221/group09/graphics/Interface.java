@@ -74,9 +74,15 @@ public class Interface extends Application {
     */
    public void click(int column, int row) {
       game.move(row, column);
+
       if (game.isPromotionAvailable()) {
          playScreen.offerPromotion();
       }
+
+      if (game.isMoveMade()) {
+         game.updateBoard();
+      }
+
       playScreen.updatePlayScreen(game.gameNotation());
       startedViewing = false;
       playScreen.highlightTiles(game.validTiles(), game.checkedKing()); //might need to comment this out

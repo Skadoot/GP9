@@ -92,17 +92,133 @@ class PieceTest{
    @Test
    //FR2 Tests
    public void testGetPiecePosition() {
-      //create a new board
-      Board testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
-
-      //selects the bishop on f1
+      //selects the f1 square
       Vector2 testPosition = new Vector2(5, 0);
 
-      //check if the expected piece position is the same as actual piece position - which should be 5,0
+      //checks if the expected piece position is the same as actual piece position - which should be 5,0
       Assertions.assertEquals(5, testPosition.x);
       Assertions.assertEquals(0, testPosition.y);
-
    }
 
+   @Test
+   public void promoteWhiteQueen(){
+      //creates a new game with a white pawn available to be promoted
+      Game game = new Game("rnbqkbnP/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNR b KQq - 0 1", "test", false);
+
+      //checks if there is a promotion available
+      game.isPromotionAvailable();
+      //promotes the pawn on h8 to a queen
+      game.promote(0);
+
+      //checks that the piece on h8 is now a white queen
+      Vector2 testPosition = new Vector2(7,7);
+      Assertions.assertEquals('Q', game.getGameBoard().getPiece(testPosition).getType());
+   }
+
+   @Test
+   public void promoteWhiteRook(){
+      //creates a new game with a white pawn available to be promoted
+      Game game = new Game("rnbqkbnP/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNR b KQq - 0 1", "test", false);
+
+      //checks if there is a promotion available
+      game.isPromotionAvailable();
+      //promotes the pawn to a rook
+      game.promote(1);
+
+      //checks that the piece on h8 is now a white rook
+      Vector2 testPosition = new Vector2(7,7);
+      Assertions.assertEquals('R', game.getGameBoard().getPiece(testPosition).getType());
+   }
+
+   @Test
+   public void promoteWhiteBishop(){
+      //creates a new game with a white pawn available to be promoted
+      Game game = new Game("rnbqkbnP/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNR b KQq - 0 1", "test", false);
+
+      //checks if there is a promotion available
+      game.isPromotionAvailable();
+      //promotes the pawn to a bishop
+      game.promote(2);
+
+      //checks that the piece on h8 is now a white bishop
+      Vector2 testPosition = new Vector2(7,7);
+      Assertions.assertEquals('B', game.getGameBoard().getPiece(testPosition).getType());
+   }
+
+   @Test
+   public void promoteWhiteKnight(){
+      //creates a new game with a white pawn available to be promoted
+      Game game = new Game("rnbqkbnP/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNR b KQq - 0 1", "test", false);
+
+      //checks if there is a promotion available
+      game.isPromotionAvailable();
+      //promotes the pawn to a knight
+      game.promote(3);
+
+      //checks that the piece on h8 is now a white knight
+      Vector2 testPosition = new Vector2(7,7);
+      Assertions.assertEquals('N', game.getGameBoard().getPiece(testPosition).getType());
+   }
+
+
+   @Test
+   public void promoteBlackQueen(){
+      //creates a new game with a black pawn available to be promoted
+      Game game = new Game("rnbqkbnr/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNp b Qq - 0 1", "test", false);
+
+      //checks if there is a promotion available
+      game.isPromotionAvailable();
+      //promotes the pawn to a queen
+      game.promote(0);
+
+      //checks that the piece on h1 is now a black queen
+      Vector2 testPosition = new Vector2(7,0);
+      Assertions.assertEquals('q', game.getGameBoard().getPiece(testPosition).getType());
+   }
+
+   @Test
+   public void promoteBlackRook(){
+      //creates a new game with a black pawn available to be promoted
+      Game game = new Game("rnbqkbnr/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNp b Qq - 0 1", "test", false);
+
+      //checks if there is a promotion available
+      game.isPromotionAvailable();
+      //promotes the pawn to a rook
+      game.promote(1);
+
+      //checks that the piece on h1 is now a black rook
+      Vector2 testPosition = new Vector2(7,0);
+      Assertions.assertEquals('r', game.getGameBoard().getPiece(testPosition).getType());
+   }
+
+   @Test
+   public void promoteBlackBishop(){
+      //creates a new game with a black pawn available to be promoted
+      Game game = new Game("rnbqkbnr/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNp b Qq - 0 1", "test", false);
+
+      //checks if there is a promotion available
+      game.isPromotionAvailable();
+      //promotes the pawn to a bishop
+      game.promote(2);
+
+      //checks that the piece on h1 is now a black bishop
+      Vector2 testPosition = new Vector2(7,0);
+      Assertions.assertEquals('b', game.getGameBoard().getPiece(testPosition).getType());
+   }
+
+   @Test
+   public void promoteBlackKnight(){
+      //creates a new game with a black pawn available to be promoted
+      Game game = new Game("rnbqkbnr/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNp b Qq - 0 1", "test", false);
+
+      //checks if there is a promotion available
+      game.isPromotionAvailable();
+      //promotes the pawn to a bishop
+      game.promote(3);
+
+      //checks that the piece on h1 is now a black bishop
+      Vector2 testPosition = new Vector2(7,0);
+      Assertions.assertEquals('n', game.getGameBoard().getPiece(testPosition).getType());
+   }
 
 }

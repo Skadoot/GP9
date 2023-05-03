@@ -122,6 +122,16 @@ public class Interface extends Application {
    public void loadFGames() {
       //loadScreen.populateButtonBar(list of finished games);
       loadScreen.setLabel("Finished Games:");
+      //creates an array list from the log function to display every game saved locally
+      ArrayList<String> existingGamesList = game.log.displayExistingGameFiles();
+      //creates an array for conversion to the correct format for the button bar
+      String[] existingGamesArray = new String[existingGamesList.size()];
+      //iterates through the games list and assigns each to its own index in the array
+      for (int i = 0; i < existingGamesList.size(); i++) {
+         existingGamesArray[i] = existingGamesList.get(i);
+      }
+      //the array is sent to populate the scrollpane's button bar
+      loadScreen.populateButtonBar(existingGamesArray);
       primaryStage.setScene(loadScreen.getScene());
    }
 

@@ -80,7 +80,7 @@ public class Interface extends Application {
 
    public int getTurnNumber() {
       String gameInfo[] = game.gameNotation().split(" ", 7);
-      int turn = Integer.parseInt(gameInfo[5]);
+      int turn = Integer.parseInt(gameInfo[4]);
       return turn;
    }
    public String getPreviousFEN(int turn){

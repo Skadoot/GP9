@@ -510,6 +510,7 @@ public class PlayScreen {
     int currentTurn;
     public void incrementThroughLog() {
         //a function triggered by a button. Push the next board state forwards
+
         if (!startedViewing) {
             currentTurn = (anInterface.getTurnNumber() - 1);
             startedViewing = true;

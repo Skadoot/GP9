@@ -30,61 +30,61 @@ class PieceTest{
 
    @Test
    public void testGetWhiteKingPosition() {
-      // Create a new board with a white king
+      //creates a new board with a move available for the white king
       Board testBoard = new Board("rnbqkbnr/pppp1ppp/4p3/8/8/4P3/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
 
-      // initial position of white king and sets a test piece to move
+      //sets the white king as a testing piece to move
       Vector2 testPosition = new Vector2(4, 0);
       Piece pieceToMove = testBoard.getPiece(testPosition);
 
-      // Move king into another position
+      //moves the white king
       Vector2 testPosition2 = new Vector2(4,1);
       testBoard.movePiece(pieceToMove, testPosition2);
 
-      //check if the white king's position is returned correctly
+      //checks if the white king's position is returned correctly
       Assertions.assertEquals(testPosition2,testBoard.getWhiteKingPosition());
    }
 
    @Test
    public void testGetBlackKingPosition() {
-      // Create a new board with a black king
+      //creates a new board with a move available for the black king
       Board testBoard = new Board("rnbqkbnr/pppp1ppp/4p3/8/8/4P3/PPPPKPPP/RNBQ1BNR b kq - 0 1");
 
-      // initial position of black king and sets a test piece to move
+      //sets the black king as a testing piece to move
       Vector2 testPosition = new Vector2(4, 7);
       Piece pieceToMove = testBoard.getPiece(testPosition);
 
-      // Move king into another position
+      //moves the black king
       Vector2 testPosition2 = new Vector2(4,6);
       testBoard.movePiece(pieceToMove, testPosition2);
 
-      //check if the black king's position is returned correctly
+      //checks if the black king's position is returned correctly
       Assertions.assertEquals(testPosition2,testBoard.getBlackKingPosition());
    }
 
    @Test
    //FR2 Tests
    public void testGetPieceColor() {
-      //create a new board
+      //creates a new board
       Board testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 
-      //Get the color of a specific chess piece
+      //selects the white rook on a1
       Vector2 testPosition = new Vector2(0, 0);
 
-      //check if the expected piece color is same as actual piece color
+      //check if the expected piece color is same as actual piece color - which should be white
       Assertions.assertEquals('w',testBoard.getPiece(testPosition).getColor());
    }
 
    @Test
    //FR2 Tests
    public void testGetPieceType() {
-      //create a new board
+      //creates a new board
       Board testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 
-      //Get the type of a specific chess piece
+      //selects the knight on b1
       Vector2 testPosition = new Vector2(1, 0);
 
-      //check if the expected piece type is the same as actual piece type
+      //check if the expected piece type is the same as actual piece type - which should be a knight (n)
       Assertions.assertEquals('n',testBoard.getPiece(testPosition).getType());
    }
 
@@ -95,10 +95,10 @@ class PieceTest{
       //create a new board
       Board testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 
-      //Get the position of a specific chess piece
+      //selects the bishop on f1
       Vector2 testPosition = new Vector2(5, 0);
 
-      //check if the expected piece position is the same as actual piece position
+      //check if the expected piece position is the same as actual piece position - which should be 5,0
       Assertions.assertEquals(5, testPosition.x);
       Assertions.assertEquals(0, testPosition.y);
 

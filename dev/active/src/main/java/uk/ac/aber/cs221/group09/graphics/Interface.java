@@ -35,10 +35,6 @@ public class Interface extends Application {
    private StartScreen startScreen;
    private LoadScreen loadScreen;
    private Game game;
-   //setting a default value for currentTurn to view previous moves of a game
-   public int currentTurn = -1;
-   //setting a default value for startedViewing for viewing previous moves of a game
-   boolean startedViewing = false;
    ArrayList<Vector2> movesToCompare;
 
    @Override
@@ -84,58 +80,17 @@ public class Interface extends Application {
       }
 
       playScreen.updatePlayScreen(game.gameNotation());
-      startedViewing = false;
       playScreen.highlightTiles(game.validTiles(), game.checkedKing()); //might need to comment this out
    }
 
 
    public int getTurnNumber() {
       String gameInfo[] = game.gameNotation().split(" ", 7);
-
-      int turn = Integer.parseInt(gameInfo[5]);
+      int turn = Integer.parseInt(gameInfo[4]);
       return turn;
    }
-
-
-
-   public String replayFEN(boolean reverse) {
-      //depending on which direction button is pressed the function operates in reverse through the log file
-      if (reverse) {
-         //checks to see if the move view buttons have been pressed,
-         //will be irrelevant for the finished game view
-         if (!startedViewing) {
-            //sets the index for navigation through the played moves to be the last move played
-            currentTurn = (getTurnNumber() - 2);
-            //sets the boolean to true, so we can iterate through the moves without causing errors
-            startedViewing = true;
-            //if we've already started looking at our played moves we just continue to iterate backwards
-            // from the last turn we looked at
-         } else {
-            //makes sure we don't go beyond the array boundaries
-            if (currentTurn > 0) {
-               currentTurn--;
-            }
-         }
-         return game.log.readLog(currentTurn);
-         //if we've clicked the forwards button the else will run
-      } else {
-         //checks to see if the move view buttons have been pressed,
-         //will be irrelevant for the finished game view
-         if (!startedViewing) {
-            //sets the index for navigation through the played moves to be the move just played
-            currentTurn = (getTurnNumber() - 1);
-            //sets the boolean to true, so we can iterate through the moves without causing errors
-            startedViewing = true;
-         }
-         //making sure we're not pushing past the boundaries of the played moves and ensuring we stop at the latest move
-         // and no errors are caused
-         if (!(currentTurn > getTurnNumber() - 2)) {
-            //increases the turn we are looking at by 1
-            currentTurn++;
-            return game.log.readLog(currentTurn);
-         }
-      }
-      return game.gameNotation();
+   public String getPreviousFEN(int turn){
+      return game.log.readLog(turn);
    }
 
    public void toMenu() {
@@ -149,6 +104,9 @@ public class Interface extends Application {
    public void toNewChessboard(String whiteName, String blackName, String filename) {
       game = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1 -", filename, false);
       //set the game.log.filename
+
+      playScreen = new PlayScreen(this);
+
       playScreen.setWhitePlayerName(whiteName);
       playScreen.setBlackPlayerName(blackName);
       playScreen.updatePlayScreen(game.gameNotation());
@@ -205,6 +163,6 @@ public class Interface extends Application {
    }
 
    public void updateGameOver(char c) {
-      //Send char to game to append to end of game. Added to FEN string when offer draw / resign is called.
+      game.endGame(c);
    }
 }

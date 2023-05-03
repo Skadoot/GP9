@@ -140,11 +140,6 @@ public class Interface extends Application {
       primaryStage.setScene(playerNameScreen.getScene());
    }
 
-   public void toChessboard() {
-      //Create a new PlayScreen everytime. //make game with existing file name. Can we use toNewChessboard?
-      this.playScreen = new PlayScreen(this);
-      primaryStage.setScene(playScreen.getScene());
-   }
    public void toNewChessboard(String whiteName, String blackName, String filename) {
       game = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1 -", filename, false);
       //set the game.log.filename
@@ -184,8 +179,15 @@ public class Interface extends Application {
       primaryStage.setScene(loadScreen.getScene());
    }
 
+   /**
+    * This function is called to set up the board on an empty game based on a save's FEN string.
+    * It passes the filename of the save to the game in order set up the unfinished/finished game to play/view.
+    * @param filename - Name of save.
+    */
    public void setGameFromSave(String filename) {
       game.createGame(filename);
+      //Make a whole new playScreen.
+      playScreen = new PlayScreen(this);
       playScreen.updatePlayScreen(game.gameNotation());
       primaryStage.setScene(playScreen.getScene());
    }
@@ -194,6 +196,9 @@ public class Interface extends Application {
       game.promote(n);
       playScreen.updatePlayScreen(game.gameNotation());
       playScreen.highlightTiles(game.validTiles(), game.checkedKing());
+   }
 
+   public void updateGameOver(char c) {
+      //Send char to game to append to end of game. Added to FEN string when offer draw / resign is called.
    }
 }

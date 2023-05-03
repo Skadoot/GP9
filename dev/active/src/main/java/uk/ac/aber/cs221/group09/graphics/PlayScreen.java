@@ -323,8 +323,7 @@ public class PlayScreen {
             @Override
             public void handle(ActionEvent actionEvent) {
                 anInterface.updateGameOver('D');
-                gameOverOverlay('D');
-                dashboard.getChildren().remove(drawWindow);
+                gameOverOverlay('d');
             }
         });
         Button reject = new Button("Reject Draw");
@@ -380,10 +379,10 @@ public class PlayScreen {
                 //Resign quit game ladi da
                 if(latestTurn%2 == 1) {
                     anInterface.updateGameOver('W');
-                    gameOverOverlay('W');
+                    gameOverOverlay('w');
                 } else {
                     anInterface.updateGameOver('B');
-                    gameOverOverlay('B');
+                    gameOverOverlay('b');
                 }
                 dashboard.getChildren().remove(resignWindow);
             }

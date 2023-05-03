@@ -1,5 +1,5 @@
 Author: TYW
-Week: 10 (01/05/23)
+Week: 11 (02/05/23)
 
 Assigned actions
 ==============
@@ -9,15 +9,19 @@ n/a
 Other project work
 ================
 
-1. Began work on Maintenance manual
+1. Continued work on Maintenance manual
 
-Hours: 5
+Hours: 3
 
 2. Additional maven and project configuration
 
 Hours: 2
 
 3. Reviewing completed code for inclusion in src/ folder
+
+Hours: 2
+
+4. Resolved some GitLab Design Spec issues
 
 Hours: 2
 

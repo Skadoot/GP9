@@ -333,7 +333,7 @@ public class Board {
             Piece currentPiece = getPiece(new Vector2(file, rank));
             if (currentPiece == null) {
                skippedPieces += 1;
-               if (rank == 0 && skippedPieces > 0) {
+               if (rank == 0 && skippedPieces > 0 && file == BOARD_SIZE - 1) {
                   newBoardRepresentationString.append(skippedPieces);
                   skippedPieces = 0;
                }

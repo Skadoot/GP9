@@ -29,9 +29,12 @@ public class Main {
       //run main menu
 
 //        //new game
-        game = new Game("r1b1k1nr/p2p1pNp/n2B4/1p1NP2P/6P1/3P1Q2/P1P1K3/q5b1 w KQkq - 0 1", "testFinGames", false);
-        game.log.moveFileToFinishedGamesDir();
-    }
+//        game = new Game("r1b1k1nr/p2p1pNp/n2B4/1p1NP2P/6P1/3P1Q2/P1P1K3/q5b1 w KQkq - 0 1", "testReplace", false);
+//        game.log.updateLog("FEN1");
+//      game.log.updateLog("FEN2");
+//      game.log.updateLog("FEN3");
+//      game.log.replaceLine(0, "replacement");
+//    }
 
    //I don't really understand the point of this method(below) in here? jat92
    // I think I now understand it but might be better to have a class between main and game, like GameController? jat92
@@ -42,7 +45,7 @@ public class Main {
 //        //game = new game("8/8/8/4p1K1/2k1P3/8/8/8 b - - 0 1");
 //        //game = new game("4k2r/6r1/8/8/8/8/3R4/R3K3 w Qk - 0 1");
 //        //game = new game("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1");
-//    }
+    }
 
 
    /**

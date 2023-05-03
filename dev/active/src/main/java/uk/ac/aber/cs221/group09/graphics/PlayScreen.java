@@ -147,13 +147,9 @@ public class PlayScreen {
    //adds a button for looking through previous moves
    Button previousB = new Button("<-");
       previousB.setOnAction(new EventHandler<ActionEvent>() {
-
-
       @Override
       public void handle(ActionEvent actionEvent) {
-
-         chessboard.updateBoard(anInterface.replayFEN(true));
-
+         decrementThroughLog();
       }
    });
       layout.add(previousB, 5, 9, 2, 1);
@@ -164,8 +160,7 @@ public class PlayScreen {
       nextB.setOnAction(new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent actionEvent) {
-
-         chessboard.updateBoard(anInterface.replayFEN(false));
+         incrementThroughLog();
       }
    });
 
@@ -491,16 +486,53 @@ public class PlayScreen {
     /**
      * Call to backend to show the next move in the log. Activated by pressing a log button. Deactivate chess buttons
      */
+    boolean startedViewing = false;
+    int currentTurn;
     public void incrementThroughLog() {
         //a function triggered by a button. Push the next board state forwards
-    }
+        if (!startedViewing) {
+            currentTurn = (anInterface.getTurnNumber() - 1);
+            startedViewing = true;
+        }
+        if (!(currentTurn > anInterface.getTurnNumber() - 2)) {
+            //increases the turn we are looking at by 1
+            currentTurn++;
+        }
+        chessboard.updateBoard(anInterface.getPreviousFEN(currentTurn));
 
+        if (currentTurn == anInterface.getTurnNumber() - 1) {
+            chessboard.disableChessboard(false);
+        } else {
+            chessboard.disableChessboard(true);
+        }
+    }
     /**
      * Call to backend to show the previous move in the log. Activated by pressing a log button. Deactivate chess buttons.
      */
     public void decrementThroughLog() {
         //A function triggered by a button. View the past through a spooky crystal ball ooooo
+
+        if (!startedViewing) {
+            //sets the index for navigation through the played moves to be the last move played
+            currentTurn = (anInterface.getTurnNumber() - 2);
+            //sets the boolean to true, so we can iterate through the moves without causing errors
+            startedViewing = true;
+            //if we've already started looking at our played moves we just continue to iterate backwards
+            // from the last turn we looked at
+        } else {
+            //makes sure we don't go beyond the array boundaries
+            if (currentTurn > 0) {
+                currentTurn--;
+            }
     }
+        if (currentTurn == anInterface.getTurnNumber() - 1) {
+            chessboard.disableChessboard(false);
+        } else {
+            chessboard.disableChessboard(true);
+        }
+        chessboard.updateBoard(anInterface.getPreviousFEN(currentTurn));
+    }
+
 
     /**
      * Called to create container over the chessboard to ask the player are they sure they'd like to quit..

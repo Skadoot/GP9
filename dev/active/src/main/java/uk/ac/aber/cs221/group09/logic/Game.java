@@ -128,6 +128,17 @@ public class Game {
 
       calculateMoves();
       isMoveMade = false;
+
+      if (isGameOverByCheckMate()) {
+         determineCurrentPlayer();
+         String winningPlayer = "b";
+         if (attackingPlayer == 'b') {
+            winningPlayer = "w";
+         }
+
+         gameBoard.updateFENStringWhenCheckMate(winningPlayer);
+      }
+      System.out.println("\n" + gameBoard.getForsythEdwardsBoardNotation() + "\n");
    }
 
    public boolean isMoveMade() {
@@ -157,6 +168,11 @@ public class Game {
    }
 
    public boolean isGameOverByCheckMate() {
+      MoveCalculator moveCalculator = new MoveCalculator(attackingPlayer, gameBoard);
+
+      moveCalculator.findLegalMovesForPlayer(true);
+      moveCalculator.findLegalMovesForPlayer(false);
+
       return moveCalculator.isPlayerInCheckMate();
    }
 

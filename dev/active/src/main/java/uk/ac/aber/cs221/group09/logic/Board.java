@@ -537,21 +537,56 @@ public class Board {
     * @param n abstract number representing desired promotion.
     */
    public void piecePromotion(int n) {
+      char team = getPiece(getAvailablePromotion()).getColor();
       switch (n) {
          case (0):
-            getPiece(getAvailablePromotion()).setType('q');
+            if (team == 'w') {
+               getPiece(getAvailablePromotion()).setType('Q');
+            } else {
+               getPiece(getAvailablePromotion()).setType('q');
+            }
             break;
          case (1):
-            getPiece(getAvailablePromotion()).setType('r');
+            if (team == 'w') {
+               getPiece(getAvailablePromotion()).setType('R');
+            } else {
+               getPiece(getAvailablePromotion()).setType('r');
+            }
             break;
          case (2):
-            getPiece(getAvailablePromotion()).setType('b');
+            if (team == 'w') {
+               getPiece(getAvailablePromotion()).setType('B');
+            } else {
+               getPiece(getAvailablePromotion()).setType('b');
+            }
             break;
          case (3):
-            getPiece(getAvailablePromotion()).setType('n');
+            if (team == 'w') {
+               getPiece(getAvailablePromotion()).setType('N');
+            } else {
+               getPiece(getAvailablePromotion()).setType('n');
+            }
             break;
       }
       updateForsythEdwardsBoardNotation(false);
       availablePromotion = null;
+   }
+
+   public void updateFENStringWhenCheckMate(String winningPlayer) {
+      String[] fenArray = forsythEdwardsBoardNotation.split(" ", 7);
+      fenArray[6] = winningPlayer;
+      StringBuilder newFenString = new StringBuilder();
+
+      for (int i = 0; i < fenArray.length; i++) {
+         // Add the section of the forsythEdwardsBoardNotationArray.
+         newFenString.append(fenArray[i]);
+
+         // If we are not at the end of the array then separate each part with a " " character.
+         if (i != fenArray.length - 1) {
+            newFenString.append(" ");
+         }
+      }
+      // Set the board state.
+      forsythEdwardsBoardNotation = newFenString.toString();
    }
 }

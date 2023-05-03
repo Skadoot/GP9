@@ -200,4 +200,14 @@ public class Log {
       }
 
    }
+
+   /**
+    * deletes the current log file which is in unfinished games. Designed to be called when the user wishes to exit a
+    * game and not save the file.
+    */
+   public void deleteFile(){
+      String pathToCurrentFile = nameOfFolderToHoldUnfinishedGames+"/"+fileName;
+      File currentFile = new File(pathToCurrentFile);
+      currentFile.delete();
+   }
 }

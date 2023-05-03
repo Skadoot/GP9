@@ -1,0 +1,18 @@
+Author: seh25
+Week: 10 (02/05/23)
+
+Assigned Actions
+================
+Action 1: Fixed some broken tests and added new ones, while communicating errors with the group
+
+Hours: 3
+
+Action 2: Created the PieceTest class and populated with relevant methods, both new and moved from BoardTest
+
+Hours: 2
+
+Other Project Work
+==================
+Discussed plans for further testing with Jim and Craymon
+
+Total Hours: 5

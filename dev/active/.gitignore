@@ -226,5 +226,12 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# Custom ignores for /dev/active
+# GP9 custom ignores
+/.idea/vcs.xml
+/.idea/jarRepositories.xml
+/.idea/encodings.xml
+/.idea/compiler.xml
+/GP9.iml
+/.idea/modules.xml
 /target/
+/dependency-reduced-pom.xml

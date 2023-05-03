@@ -1,5 +1,5 @@
 /*
- * @(#) Log.java 0.1 2023/03/24
+ * @(GP9) Log.java 1.0 2023/05/02
  *
  * Copyright (c) 2023 Aberystwyth University
  * All rights reserved.
@@ -17,10 +17,10 @@ import java.util.ArrayList;
 /**
  * Log - Records the progress of the game.
  * <p>
- * This class is used to record the FEN strings that are played in each turn.
+ * This class is used to read/write the FEN strings that are played in each turn.
  *
  * @author Jack Thompson
- * @version 0.1 (draft)
+ * @version 1.0 (Release)
  * @see uk.ac.aber.cs221.group09.logic.Main
  */
 public class Log {
@@ -29,11 +29,11 @@ public class Log {
    private int numberOfLines = 0; //to keep track of the number of lines in the file
    private String nameOfFolderToHoldGames = "./unfinishedGames";
 
-   //need to test this to see what happens when a filename is entered that does not exist when load is set to true.
 
    /**
     * constructor for Log class. If load is set to false then makes a new text file for the FEN strings to be recorded in each turn.
     * If the file name is the same as a file that already exists then it will be overwritten. If load is set to true then
+<<<<<<< HEAD
     * an existing text file is used. If a new file is made then the FEN string for an initial board state is also added.
     *
     * @param fileName the name of the file to be made or loaded
@@ -71,6 +71,33 @@ public class Log {
    /**
     * updates the text file with the FEN string that is passed as a parameter. It will append the FEN string to the
     * next line in the file.
+=======
+    * an existing text file is used.
+    *
+    * @param fileName the name of the file to be made or loaded
+    * @param load     if set to true an existing file is loaded using the filename parameter
+    */
+   public Log(String fileName, boolean load) {
+      if (!load) {
+         //make log for new game
+         this.fileName = fileName + ".txt"; //add .txt to make it a txt file
+         //make a new file called 'fileName'.
+         try {
+            FileWriter fileWriter = new FileWriter(this.fileName);
+            fileWriter.close();
+         } catch (IOException e) {
+            System.out.println("IO Error");
+         }
+      } else {
+         //make log for load game
+         this.fileName = fileName;
+      }
+   }
+
+   /**
+    * Updates the text file with the FEN string that is passed as a parameter.
+    * It will append the FEN string to the next line in the file.
+>>>>>>> origin/main
     *
     * @param FEN the Forsyth Edwards Notation representing the board state. This is what gets appended to the txt file.
     */
@@ -150,7 +177,4 @@ public class Log {
       }
       return existingGameFiles;
    }
-
-
-
 }

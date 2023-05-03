@@ -24,8 +24,7 @@ import java.util.ArrayList;
  * @see uk.ac.aber.cs221.group09.logic.MoveCalculator
  */
 public class Game {
-
-   private Board gameBoard;
+   private final Board gameBoard;
    public Log log;
    // Whether this is the first move of the game
    boolean firstMove = true;
@@ -38,25 +37,19 @@ public class Game {
    private boolean isMovesCalculated = false;
 
    /**
-    * Constructor for game.
     * Simple constructor for game.
     *
     * @param boardState the initial board state string for the game (Forsyth Edwards Notation).
     */
    public Game(String boardState, String fileName, boolean load) {
-      gameBoard = new Board(boardState);
-      this.log = new Log(fileName);
+      if (!load) {
+         gameBoard = new Board(boardState);
+         this.log = new Log(fileName, false);
+      } else {
+         gameBoard = new Board(boardState);
+         this.log = new Log(fileName, true);
+      }
       this.selectedPiece = new Vector2();
-   }
-
-   public Game(){
-       this.log = new Log();
-       this.selectedPiece = new Vector2();
-   }
-
-   public void createGame(String fileName) {
-      log.setFileName(fileName);
-      gameBoard = new Board(log.readLog(log.getNumberOfLines()-1));
    }
 
    /**

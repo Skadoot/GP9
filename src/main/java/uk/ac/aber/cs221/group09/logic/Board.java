@@ -53,7 +53,6 @@ public class Board {
       initializeBoardState();
    }
 
-
    /**
     * Get the coordinates of the available pawn promotion.
     *

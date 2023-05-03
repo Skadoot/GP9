@@ -1,0 +1,92 @@
+/*
+ * @(GP9) Log.java 1.0 2023/05/02
+ *
+ * Copyright (c) 2023 Aberystwyth University
+ * All rights reserved.
+ */
+
+package uk.ac.aber.cs221.group09.logic;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+/**
+ * Log - Records the progress of the game.
+ * <p>
+ * This class is used to read/write the FEN strings that are played in each turn.
+ *
+ * @author Jack Thompson
+ * @version 1.0 (Release)
+ * @see uk.ac.aber.cs221.group09.logic.Main
+ */
+public class Log {
+   private final String fileName;
+   private int numberOfLines = 0; //to keep track of the number of lines in the file
+
+   /**
+    * constructor for Log class. If load is set to false then makes a new text file for the FEN strings to be recorded in each turn.
+    * If the file name is the same as a file that already exists then it will be overwritten. If load is set to true then
+    * an existing text file is used.
+    *
+    * @param fileName the name of the file to be made or loaded
+    * @param load     if set to true an existing file is loaded using the filename parameter
+    */
+   public Log(String fileName, boolean load) {
+      if (!load) {
+         //make log for new game
+         this.fileName = fileName + ".txt"; //add .txt to make it a txt file
+         //make a new file called 'fileName'.
+         try {
+            FileWriter fileWriter = new FileWriter(this.fileName);
+            fileWriter.close();
+         } catch (IOException e) {
+            System.out.println("IO Error");
+         }
+      } else {
+         //make log for load game
+         this.fileName = fileName;
+      }
+   }
+
+   /**
+    * Updates the text file with the FEN string that is passed as a parameter.
+    * It will append the FEN string to the next line in the file.
+    *
+    * @param FEN the Forsyth Edwards Notation representing the board state. This is what gets appended to the txt file.
+    */
+   public void updateLog(String FEN) {
+      try {
+         FileWriter fileWriter = new FileWriter(fileName, true);
+         fileWriter.append(FEN).append("\n");
+         fileWriter.close();
+         numberOfLines++;
+      } catch (IOException e) {
+         System.out.println("IO Error");
+      }
+   }
+
+   /**
+    * Returns the specific line from a file as a string. Uses the Files.readsAllLines method to return
+    * all lines in the file as a list of strings. Then uses the list.get method to return the specified
+    * line as a string. THE FIRST LINE IS 0. If an IO error occurs a null string will be returned. If the line number requested
+    * is not in the file, a null string is also returned.
+    *
+    * @param lineNumber The line number of the file to be returned
+    * @return The string at the requested line number or null if an exception occurs.
+    */
+   public String readLog(int lineNumber) {
+      //initialise variable with null in case of IO Exception
+      String fenAtLineNumber = null;
+      try {
+         //assign variable the string at the requested line number of the file
+         fenAtLineNumber = Files.readAllLines(Paths.get(fileName)).get(lineNumber);
+      } catch (IOException e) {
+         System.out.println("IO Error");
+      } catch (IndexOutOfBoundsException er) {
+         System.out.println("line not in file");
+      }
+      return fenAtLineNumber;
+   }
+}

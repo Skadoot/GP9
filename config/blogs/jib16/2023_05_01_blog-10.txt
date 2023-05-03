@@ -1,0 +1,8 @@
+JIB16
+02/04/23 
+Went over test Spec table and added improvements, also added some FEN strings to make tests more replicable
+2 hours
+Added and improved JUnit tests and communicating with backend team to see whether code is not working or Junit tests are incorrect.
+
+Additional notes.
+Had small meeting with test team to formulate plan for tommorow

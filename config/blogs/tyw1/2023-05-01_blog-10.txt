@@ -1,0 +1,24 @@
+Author: TYW
+Week: 10 (01/05/23)
+
+Assigned actions
+==============
+
+n/a
+
+Other project work
+================
+
+1. Began work on Maintenance manual
+
+Hours: 5
+
+2. Additional maven and project configuration
+
+Hours: 2
+
+3. Reviewing completed code for inclusion in src/ folder
+
+Hours: 2
+
+Total hours: 9

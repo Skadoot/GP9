@@ -35,7 +35,6 @@ public class Interface extends Application {
    private StartScreen startScreen;
    private LoadScreen loadScreen;
    private Piece pieceToMove;
-   boolean firstPieceClick = true;
    private Game game;
    //setting a default value for currentTurn to view previous moves of a game
    public int currentTurn = -1;
@@ -75,10 +74,10 @@ public class Interface extends Application {
     * @param row
     */
    public void click(int column, int row) {
-
       game.move(row, column);
       playScreen.updatePlayScreen(game.gameNotation());
       startedViewing = false;
+      playScreen.highlightTiles(game.validTiles(), game.checkedKing()); //might need to comment this out
    }
 
 
@@ -140,10 +139,10 @@ public class Interface extends Application {
    }
 
    public void toChessboard() {
-      //make game with existing file name. Can we use toNewChessboard?
-
+      //Create a new PlayScreen everytime. //make game with existing file name. Can we use toNewChessboard?
+      this.playScreen = new PlayScreen(this);
+      primaryStage.setScene(playScreen.getScene());
    }
-
    public void toNewChessboard(String whiteName, String blackName, String filename) {
       game = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", filename, false);
       //set the game.log.filename

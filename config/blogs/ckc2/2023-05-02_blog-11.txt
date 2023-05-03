@@ -1,0 +1,23 @@
+Author: ckc2
+Week: 10(02/05/23)
+
+Assigned actions
+==============
+
+- continue implementing more tests while adding comments to different classes and methods respectively 
+- created a new PieceTest class to add more methods into it 
+- plan for future actions with jim and sean for testing to run smoothly 
+- achieve more testing success allowing back end logic to run correctly
+- refering QA documents and coding standards to format code for them to be ready to put in src folder 
+
+Hours: 5
+
+
+
+
+Other project work
+================
+
+
+
+Total hours: 5

@@ -1,0 +1,12 @@
+Blog - week 10
+28/04/23
+Working with Cieron on integration spike work. Piece movement, capture, turns - 3 hours
+
+30/04/23
+Reading front end code, planning next steps for integration - 3 hours
+
+01/04/23 
+First day of integration test week. Discussion on how to move current integration functions out of the front end and general structure of how to proceed.
+Creating git branches for new integration work, resolving issues that arise on git, helping team get set up new branches, merging branches and resolving conflicts.
+Initial integration of the log class into the rest of the backend. Plan on how to integrate into front end
+9 hours

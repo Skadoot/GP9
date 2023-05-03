@@ -1,0 +1,19 @@
+Author: ckc2
+Week: 10(01/05/23)
+
+Assigned actions
+==============
+
+- implemented more tests while adding comments to different classes and methods respectively 
+
+Hours: 3
+
+
+
+
+Other project work
+================
+
+
+
+Total hours: 3

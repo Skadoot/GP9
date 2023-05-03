@@ -17,6 +17,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * PlayerNameScreen - A class for displaying the scene to enter player names before a new game
@@ -31,6 +35,7 @@ import javafx.scene.layout.VBox;
 public class PlayerNameScreen {
     private Interface anInterface;
     private Scene scene;
+    private TextField textFieldWhite, textFieldBlack, textFieldFile;
 
     /**
      * Getter for the PlayerNameScreen scene.
@@ -68,10 +73,17 @@ public class PlayerNameScreen {
         HBox fileName = new HBox(); //jat add
         fileName.getStyleClass().add("hbox");
 
+        //Warning Box. Empty until otherwise.
+        HBox warningBox = new HBox();
+        warningBox.setAlignment(Pos.CENTER);
+        fileName.getStyleClass().add("hbox");
+        Text warningText = new Text(" ");
+        warningBox.getChildren().add(warningText);
+
         //Text fields to enter names.
-        TextField textFieldWhite = new TextField("White Player");
-        TextField textFieldBlack = new TextField("Black Player");
-        TextField textFieldFile = new TextField("File Name");
+        this.textFieldWhite = new TextField("White Player");
+        this.textFieldBlack = new TextField("Black Player");
+        this.textFieldFile = new TextField("File Name");
 
         //Labels to place alongside text fields indicating which colour is being named.
         Label labelWhite = new Label("White:");
@@ -83,6 +95,18 @@ public class PlayerNameScreen {
         startGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                warningText.setText(" ");
+                if (nameIsBlank()) {
+                    warningText.setText("Names cannot be blank or just whitespace.");
+                    return;
+                } else if (nameCheckSpecChar()) {
+                    warningText.setText("Names cannot contain special characters.");
+                    return;
+                } else if (isNameTooLong()) {
+                    warningText.setText("Names cannot exceed 32 character limit.");
+                    return;
+                }
+
                 forwardsToNewGame(textFieldBlack.getText(), textFieldWhite.getText(), textFieldFile.getText());
             }
         });
@@ -101,11 +125,35 @@ public class PlayerNameScreen {
         fileName.getChildren().addAll(labelFile, textFieldFile);
         buttons.getChildren().addAll(back, startGame);
 
-        panel.getChildren().addAll(playerWhite, playerBlack, fileName, buttons);
+        panel.getChildren().addAll(playerWhite, playerBlack, fileName, warningBox, buttons);
 
         Scene scene = new Scene(panel, 1280, 720);
         scene.getStylesheets().add(PlayerNameScreen.class.getResource("/css/PlayerNameScreen.css").toExternalForm());
         this.scene = scene;
+    }
+
+    private boolean nameCheckSpecChar() {
+        Pattern pattern = Pattern.compile("[^A-Za-z0-9 ]");
+        Matcher matchBlack = pattern.matcher(textFieldBlack.getText());
+
+        Matcher matchWhite = pattern.matcher(textFieldWhite.getText());
+
+        Matcher matchFileName = pattern.matcher(textFieldFile.getText());
+        return (matchWhite.find() || matchBlack.find() || matchFileName.find());
+    }
+
+    private boolean nameIsBlank() {
+        boolean fileNameBad = textFieldFile.getText().isBlank() || textFieldFile.getText().isEmpty();
+        boolean whiteNameBad = textFieldWhite.getText().isBlank() || textFieldWhite.getText().isEmpty();
+        boolean blackNameBad = textFieldBlack.getText().isBlank() || textFieldBlack.getText().isEmpty();
+        return (fileNameBad || whiteNameBad || blackNameBad);
+    }
+
+    private boolean isNameTooLong() {
+        String whiteName = textFieldFile.getText();
+        String blackName = textFieldBlack.getText();
+        String fileName = textFieldFile.getText();
+        return (whiteName.length() > 32 || blackName.length() > 32 || fileName.length() > 32);
     }
 
     private void backToMenu() {

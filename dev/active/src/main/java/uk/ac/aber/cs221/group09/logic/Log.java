@@ -71,7 +71,6 @@ public class Log {
    /**
     * updates the text file with the FEN string that is passed as a parameter. It will append the FEN string to the
     * next line in the file.
-=======
     * an existing text file is used.
     *
     * @param fileName the name of the file to be made or loaded
@@ -97,7 +96,6 @@ public class Log {
    /**
     * Updates the text file with the FEN string that is passed as a parameter.
     * It will append the FEN string to the next line in the file.
->>>>>>> origin/main
     *
     * @param FEN the Forsyth Edwards Notation representing the board state. This is what gets appended to the txt file.
     */

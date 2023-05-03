@@ -621,11 +621,7 @@ public class MoveCalculator {
       }
 
       // If the player is in check and there are no moves, return true for checkmate.
-      if (isPlayerInCheck() && !playerHasMoves) {
-         return true;
-      }
-
-      return false;
+      return isPlayerInCheck() && !playerHasMoves;
    }
 
    /**

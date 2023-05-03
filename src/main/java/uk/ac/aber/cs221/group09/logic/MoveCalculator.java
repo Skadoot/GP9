@@ -173,7 +173,11 @@ public class MoveCalculator {
             }
          } else if (board.getPiece(leftAttack) == null || isForCheckMap) {
             if (leftAttack.getVector2AsBoardNotation().equals(board.getForsythEdwardsBoardNotationArrayIndex(3))) {
-               addPieceLegalMove(pawn, leftAttack, isForCheckMap);
+               if (isForCheckMap) {
+                  addPieceLegalMove(pawn, leftAttack, true);
+               } else {
+                  addPieceLegalMove(pawn, leftAttack, false);
+               }
             }
          }
       }
@@ -190,7 +194,11 @@ public class MoveCalculator {
             }
          } else if (board.getPiece(rightAttack) == null || isForCheckMap) {
             if (rightAttack.getVector2AsBoardNotation().equals(board.getForsythEdwardsBoardNotationArrayIndex(3))) {
-               addPieceLegalMove(pawn, rightAttack, isForCheckMap);
+               if (isForCheckMap) {
+                  addPieceLegalMove(pawn, rightAttack, true);
+               } else {
+                  addPieceLegalMove(pawn, rightAttack, false);
+               }
             }
          }
       }

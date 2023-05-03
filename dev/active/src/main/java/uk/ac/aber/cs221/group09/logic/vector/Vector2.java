@@ -34,6 +34,7 @@ public class Vector2 {
 
    /**
     * A simple constructor for the Vector2 class.
+    *
     * @param x the x coordinate for the board.
     * @param y the y coordinate for the board.
     */

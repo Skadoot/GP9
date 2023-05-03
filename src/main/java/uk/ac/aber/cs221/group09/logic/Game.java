@@ -196,6 +196,10 @@ public class Game {
     * @return boolean whether the player can promote a pawn.
     */
    public boolean isPromotionAvailable() {
-      return gameBoard.canWhitePromote() || gameBoard.canBlackPromote();
+      if (gameBoard.canWhitePromote() || gameBoard.canBlackPromote()) {
+         return true;
+      } else {
+         return false;
+      }
    }
 }

@@ -146,7 +146,7 @@ public class Interface extends Application {
       primaryStage.setScene(playScreen.getScene());
    }
    public void toNewChessboard(String whiteName, String blackName, String filename) {
-      game = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", filename, false);
+      game = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1 -", filename, false);
       //set the game.log.filename
       playScreen.setWhitePlayerName(whiteName);
       playScreen.setBlackPlayerName(blackName);

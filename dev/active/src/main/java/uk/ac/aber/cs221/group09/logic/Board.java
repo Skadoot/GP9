@@ -47,7 +47,7 @@ public class Board {
       this.forsythEdwardsBoardNotation = initializingBoardState;
 
       // Splits up the string using a regex
-      forsythEdwardsBoardNotationArray = forsythEdwardsBoardNotation.split(" ", 6);
+      forsythEdwardsBoardNotationArray = forsythEdwardsBoardNotation.split(" ", 7);
 
       // Initialize the board to the current state represented in the string.
       initializeBoardState();
@@ -474,6 +474,13 @@ public class Board {
          // New line to separate each rank.
          System.out.print("\n\n");
       }
+   }
+
+   /**
+   /  method to update the win section in the fen notation to whatever the game status is.
+    */
+   public void updateWinInFenString(String winStatus) {
+      forsythEdwardsBoardNotationArray[6] = winStatus;
    }
 
    public void clearMoves() {

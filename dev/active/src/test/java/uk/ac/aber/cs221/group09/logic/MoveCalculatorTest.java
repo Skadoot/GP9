@@ -32,7 +32,7 @@ class MoveCalculatorTest {
      * Methods to catch console outputs as a variable for comparison purposes
      */
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    @BeforeAll
+    @BeforeEach
     public void setUpStream() {
         System.setOut(new PrintStream(outContent));
     }

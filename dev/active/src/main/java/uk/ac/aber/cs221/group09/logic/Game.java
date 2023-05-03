@@ -252,8 +252,13 @@ public class Game {
    }
 
    public void endGame(char c) {
-      //Call to update the last FEN string appended to Log.
-      //Buttons have been disabled on the front end by this point. No need to touch backend.
+      String winningPlayer = Character.toString(c);
+      gameBoard.updateFENStringWhenCheckMate(winningPlayer);
+      log.updateLog(gameBoard.getForsythEdwardsBoardNotation());
+      log.moveFileToFinishedGamesDir();
+      
+
+      System.out.println("\n" + gameBoard.getForsythEdwardsBoardNotation() + "\n");
    }
 
    public Board getGameBoard() {

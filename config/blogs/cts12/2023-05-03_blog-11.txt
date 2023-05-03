@@ -1,0 +1,23 @@
+Author: CTS12
+Week: 11 (03/05/23)
+
+Assigned actions
+==============
+
+Action 4: Prep screens for back-end logic
+
+Improved the functions for the move viewing during the current game
+Hours: 4
+
+
+
+
+
+
+
+Other project work
+================
+
+
+
+Total hours: 4

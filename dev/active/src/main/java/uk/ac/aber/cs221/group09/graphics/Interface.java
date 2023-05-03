@@ -184,8 +184,8 @@ public class Interface extends Application {
    }
 
    public void setGameFromSave(String filename) {
-      //game.createBoard(filename);
-      //playScreen.updatePlayScreen(game.gameNotation());
-      //primaryStage.setScene(playScreen.getScene());
+      game.createGame(filename);
+      playScreen.updatePlayScreen(game.gameNotation());
+      primaryStage.setScene(playScreen.getScene());
    }
 }

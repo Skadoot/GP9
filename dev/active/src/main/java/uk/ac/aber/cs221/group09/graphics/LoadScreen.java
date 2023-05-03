@@ -132,7 +132,7 @@ public class LoadScreen {
      * @param num
      */
     public void requestSave(String fileName) {
-
+        anInterface.setGameFromSave(fileName);
     }
 }
 

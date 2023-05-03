@@ -477,7 +477,8 @@ public class Board {
    }
 
    /**
-   /  method to update the win section in the fen notation to whatever the game status is.
+    * method to update the win section in the fen notation to whatever the game status is.
+    * 'w' is white win, 'b' = black win, draw = 'd', '-' unfinished
     */
    public void updateWinInFenString(String winStatus) {
       forsythEdwardsBoardNotationArray[6] = winStatus;

@@ -1,5 +1,5 @@
 /*
- * @(GP9) Log.java 1.0 2023/05/02
+ * @(GP9) Log.java 1.1 2023/05/02
  *
  * Copyright (c) 2023 Aberystwyth University
  * All rights reserved.
@@ -23,11 +23,10 @@ import java.util.List;
  * This class is used to read/write the FEN strings that are played in each turn.
  *
  * @author Jack Thompson
- * @version 1.0 (Release)
+ * @version 1.1 (Release)
  * @see uk.ac.aber.cs221.group09.logic.Main
  */
 public class Log {
-
    private String fileName;
    private int numberOfLines = 0; //to keep track of the number of lines in the file
    private String nameOfFolderToHoldUnfinishedGames = "./unfinishedGames";
@@ -35,66 +34,41 @@ public class Log {
 
 
    /**
-    * constructor for Log class. If load is set to false then makes a new text file for the FEN strings to be recorded in each turn.
-    * If the file name is the same as a file that already exists then it will be overwritten. If load is set to true then
-<<<<<<< HEAD
-    * an existing text file is used. If a new file is made then the FEN string for an initial board state is also added.
+    * Constructor for Log class.
+    * <p>
+    * If load is set to false, it makes a new text file to record FEN strings after each turn.
+    * If the file name already exists, it will be overwritten.
+    * If load is set to true then an existing text file is used.
+    * If a new file is made then the FEN string for an initial board state is also added.
     *
     * @param fileName the name of the file to be made or loaded
     */
    public Log(String fileName) {
-      //if the unfinished game directory does not exist, create it
+      // If the unfinished game directory does not exist, create it
       new File(nameOfFolderToHoldUnfinishedGames).mkdirs();
       File dir = new File(nameOfFolderToHoldUnfinishedGames);
-      //make log for new game
+      // Make log for new game
       this.fileName = fileName + ".txt"; //add .txt to make it a txt file
-      //make a new file called 'fileName' in the unfinishedGames Directory.
+      // Make a new file called 'fileName' in the unfinishedGames Directory.
       try {
          FileWriter fileWriter = new FileWriter(new File(dir, this.fileName));
          fileWriter.close();
       } catch (IOException e) {
          System.out.println("IO Error");
       }
-      updateLog("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"); //append the initial board state to the new log file
+      updateLog("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"); // Append the initial board state to the new log file
    }
 
    /**
-    * default constructor, used in loading games where the log class needs to be instantiated before filename is set.
+    * Simple constructor.
+    * <p>
+    * Used in loading games where the log class needs to be instantiated before filename is set.
     */
    public Log() {
    }
 
-   /**
-    * setter
-    * @param fileName the name of the file
-    */
    public void setFileName(String fileName) {
       this.fileName = fileName;
-   }
-
-   /**
-    * updates the text file with the FEN string that is passed as a parameter. It will append the FEN string to the
-    * next line in the file.
-    * an existing text file is used.
-    *
-    * @param fileName the name of the file to be made or loaded
-    * @param load     if set to true an existing file is loaded using the filename parameter
-    */
-   public Log(String fileName, boolean load) {
-      if (!load) {
-         //make log for new game
-         this.fileName = fileName + ".txt"; //add .txt to make it a txt file
-         //make a new file called 'fileName'.
-         try {
-            FileWriter fileWriter = new FileWriter(this.fileName);
-            fileWriter.close();
-         } catch (IOException e) {
-            System.out.println("IO Error");
-         }
-      } else {
-         //make log for load game
-         this.fileName = fileName;
-      }
    }
 
    /**
@@ -139,12 +113,13 @@ public class Log {
    }
 
    /**
-    * gets the number of lines in the file. Also sets the numberOfLines field.
-    * @return the number of lines in the file called fileName.
+    * Returns the number of lines in the file. Sets the numberOfLines field.
+    *
+    * @return integer of number of lines in the file called fileName.
     */
    public int getNumberOfLines(){
       try {
-         //assign variable the string at the requested line number of the file
+         // Assign variable the string at the requested line number of the file
          this.numberOfLines = Files.readAllLines(Paths.get(nameOfFolderToHoldUnfinishedGames, fileName)).size();
       } catch (IOException e) {
          System.out.println("IO Error");
@@ -157,18 +132,18 @@ public class Log {
     * By providing a path to the unfinishedGames directory, the files in that directory are checked to see if
     * they are a text file. All text files in this directory are known to be records of existing game files.
     *
-    * @return an ArrayList of file names in String format where each file is the record of a game.
+    * @return ArrayList of file names in String format where each file is the record of a game.
     */
    public ArrayList<String> displayExistingGameFiles() {
-      //declare new array list to hold names of existing game files
+      // Declare new array list to hold names of existing game files
       ArrayList<String> existingGameFiles = new ArrayList<String>();
-      //check all the files to see in the path to see if they are .txt files
+      // Check all the files to see in the path to see if they are .txt files
 
-      File currentFolder = new File("./unfinishedGames"); //the relative file path to where the files are saved
-      File[] allTheFiles = currentFolder.listFiles(); //store all the files in the current folder in an array
+      File currentFolder = new File("./unfinishedGames"); // The relative file path to where the files are saved
+      File[] allTheFiles = currentFolder.listFiles(); // Store all the files in the current folder in an array
       for (int i = 0; i < allTheFiles.length; i++) {
          String fileBeingChecked = allTheFiles[i].getName();
-         //check the extension of the file. If it's a .txt file, add it to the ArrayList existingGameFiles.
+         // Check the extension of the file. If it's a .txt file, add it to the ArrayList existingGameFiles.
          int index = fileBeingChecked.lastIndexOf('.');
          if (index > 0) {
             String extension = fileBeingChecked.substring(index + 1);
@@ -184,12 +159,12 @@ public class Log {
     * Moves the current file being used to track the log from the unfinished game to the finished game directory.
     */
    public void moveFileToFinishedGamesDir(){
-      //create a new directory to hold finished games if one does not exist already.
+      // Create a new directory to hold finished games if one does not exist already.
       new File(nameOfFolderToHoldFinishedGames).mkdirs();
-      //declare two string variables to hold the paths to where the file is and where it's going
+      // Declare two string variables to hold the paths to where the file is and where it's going
       String pathToCurrentFile = nameOfFolderToHoldUnfinishedGames+"/"+fileName;
       String pathToFinishedGamesFile = nameOfFolderToHoldFinishedGames+"/"+fileName;
-      //move the file from the unfinished games to the finished game directory
+      // Move the file from the unfinished games to the finished game directory
       File currentFile = new File(pathToCurrentFile);
       currentFile.renameTo(new File(pathToFinishedGamesFile));
    }

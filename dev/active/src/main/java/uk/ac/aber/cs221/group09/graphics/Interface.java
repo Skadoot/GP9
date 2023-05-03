@@ -70,9 +70,15 @@ public class Interface extends Application {
     */
    public void click(int column, int row) {
       game.move(row, column);
+
       if (game.isPromotionAvailable()) {
          playScreen.offerPromotion();
       }
+
+      if (game.isMoveMade()) {
+         game.updateBoard();
+      }
+
       playScreen.updatePlayScreen(game.gameNotation());
       playScreen.highlightTiles(game.validTiles(), game.checkedKing()); //might need to comment this out
    }
@@ -80,7 +86,7 @@ public class Interface extends Application {
 
    public int getTurnNumber() {
       String gameInfo[] = game.gameNotation().split(" ", 7);
-      int turn = Integer.parseInt(gameInfo[5]);
+      int turn = Integer.parseInt(gameInfo[4]);
       return turn;
    }
    public String getPreviousFEN(int turn){
@@ -98,6 +104,9 @@ public class Interface extends Application {
    public void toNewChessboard(String whiteName, String blackName, String filename) {
       game = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1 -", filename, false);
       //set the game.log.filename
+
+      playScreen = new PlayScreen(this);
+
       playScreen.setWhitePlayerName(whiteName);
       playScreen.setBlackPlayerName(blackName);
       playScreen.updatePlayScreen(game.gameNotation());
@@ -154,6 +163,6 @@ public class Interface extends Application {
    }
 
    public void updateGameOver(char c) {
-      //Send char to game to append to end of game. Added to FEN string when offer draw / resign is called.
+      game.endGame(c);
    }
 }

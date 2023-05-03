@@ -510,6 +510,7 @@ public class PlayScreen {
     int currentTurn;
     public void incrementThroughLog() {
         //a function triggered by a button. Push the next board state forwards
+
         if (!startedViewing) {
             currentTurn = (anInterface.getTurnNumber() - 1);
             startedViewing = true;
@@ -633,13 +634,15 @@ public class PlayScreen {
         victoryWindow.setBackground(bg);
 
         HBox textContainer = new HBox();
+        textContainer.setAlignment(Pos.CENTER);
         HBox imageContainer = new HBox();
+        imageContainer.setAlignment(Pos.CENTER);
 
         Text victoryText = new Text();
 
         ImageView victoryImage = new ImageView();
 
-        textContainer.getChildren().add(textContainer);
+        textContainer.getChildren().add(victoryText);
         imageContainer.getChildren().add(victoryImage);
 
         switch(c) {

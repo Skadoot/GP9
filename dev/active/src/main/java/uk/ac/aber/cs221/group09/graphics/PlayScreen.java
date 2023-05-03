@@ -377,12 +377,12 @@ public class PlayScreen {
             @Override
             public void handle(ActionEvent actionEvent) {
                 //Resign quit game ladi da
-                if(latestTurn%2 == 1) {
-                    anInterface.updateGameOver('W');
-                    gameOverOverlay('w');
-                } else {
+                if(turnTracker.getText().equals(whitePlayerName.getText())) {
                     anInterface.updateGameOver('B');
                     gameOverOverlay('b');
+                } else {
+                    anInterface.updateGameOver('W');
+                    gameOverOverlay('w');
                 }
                 dashboard.getChildren().remove(resignWindow);
             }

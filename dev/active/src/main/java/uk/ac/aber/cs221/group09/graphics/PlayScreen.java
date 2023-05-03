@@ -323,8 +323,7 @@ public class PlayScreen {
             @Override
             public void handle(ActionEvent actionEvent) {
                 anInterface.updateGameOver('D');
-                gameOverOverlay('D');
-                dashboard.getChildren().remove(drawWindow);
+                gameOverOverlay('d');
             }
         });
         Button reject = new Button("Reject Draw");
@@ -378,12 +377,12 @@ public class PlayScreen {
             @Override
             public void handle(ActionEvent actionEvent) {
                 //Resign quit game ladi da
-                if(latestTurn%2 == 1) {
-                    anInterface.updateGameOver('W');
-                    gameOverOverlay('W');
-                } else {
+                if(turnTracker.getText().equals(whitePlayerName.getText())) {
                     anInterface.updateGameOver('B');
-                    gameOverOverlay('B');
+                    gameOverOverlay('b');
+                } else {
+                    anInterface.updateGameOver('W');
+                    gameOverOverlay('w');
                 }
                 dashboard.getChildren().remove(resignWindow);
             }
@@ -634,25 +633,27 @@ public class PlayScreen {
         victoryWindow.setBackground(bg);
 
         HBox textContainer = new HBox();
+        textContainer.setAlignment(Pos.CENTER);
         HBox imageContainer = new HBox();
+        imageContainer.setAlignment(Pos.CENTER);
 
         Text victoryText = new Text();
 
         ImageView victoryImage = new ImageView();
 
-        textContainer.getChildren().add(textContainer);
+        textContainer.getChildren().add(victoryText);
         imageContainer.getChildren().add(victoryImage);
 
         switch(c) {
-            case('W'):
+            case('w'):
                 victoryText.setText("White's Victory!");
                 victoryImage.setImage(graphicsLoader.getImage('W'));
                 break;
-            case('B'):
+            case('b'):
                 victoryText.setText("Black's victory!");
                 victoryImage.setImage(graphicsLoader.getImage('B'));
                 break;
-            case('D'):
+            case('d'):
                 victoryText.setText("Game ended in draw.");
                 victoryImage.setImage(graphicsLoader.getImage('D'));
                 break;

@@ -735,8 +735,18 @@ class BoardTest {
             //check if the expected board is the same as the actual board - the king should be on f4, and the black pawn should be captured
         }Assertions.assertEquals("rnbqkbnr/pppp2pp/4p3/8/4PK2/8/PPPP1PPP/RNBQ1BNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
     }
-//pawn promotion test - check if available
 
+    @Test
+    public void testCanWhitePromote(){
+        testBoard = new Board("rnbqkbnP/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNR b KQq - 0 1");
+        Assertions.assertEquals(true, testBoard.canWhitePromote());
+    }
+
+    @Test
+    public void testCanBlackPromote(){
+        testBoard = new Board("rnbqkbnr/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNp w Qq - 0 1");
+        Assertions.assertEquals(true, testBoard.canBlackPromote());
+    }
 
 
 }

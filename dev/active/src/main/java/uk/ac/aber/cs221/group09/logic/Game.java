@@ -128,6 +128,18 @@ public class Game {
 
       calculateMoves();
       isMoveMade = false;
+
+      if (isGameOverByCheckMate()) {
+         determineCurrentPlayer();
+         String winningPlayer = "b";
+         if (attackingPlayer == 'b') {
+            winningPlayer = "w";
+         }
+
+         gameBoard.updateFENStringWhenCheckMate(winningPlayer);
+         log.updateLog(gameBoard.getForsythEdwardsBoardNotation());
+      }
+      System.out.println("\n" + gameBoard.getForsythEdwardsBoardNotation() + "\n");
    }
 
    public boolean isMoveMade() {
@@ -157,6 +169,11 @@ public class Game {
    }
 
    public boolean isGameOverByCheckMate() {
+      MoveCalculator moveCalculator = new MoveCalculator(attackingPlayer, gameBoard);
+
+      moveCalculator.findLegalMovesForPlayer(true);
+      moveCalculator.findLegalMovesForPlayer(false);
+
       return moveCalculator.isPlayerInCheckMate();
    }
 
@@ -234,8 +251,12 @@ public class Game {
    }
 
    public void endGame(char c) {
-      //Call to update the last FEN string appended to Log.
-      //Buttons have been disabled on the front end by this point. No need to touch backend.
+      String winningPlayer = Character.toString(c);
+      gameBoard.updateFENStringWhenCheckMate(winningPlayer);
+      log.updateLog(gameBoard.getForsythEdwardsBoardNotation());
+      
+
+      System.out.println("\n" + gameBoard.getForsythEdwardsBoardNotation() + "\n");
    }
 
    public Board getGameBoard() {

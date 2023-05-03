@@ -140,26 +140,9 @@ class MoveCalculatorTest {
         moveCalculator.findLegalMovesForPlayer(true);
         moveCalculator.findLegalMovesForPlayer(false);
 
-        //checks that white has no legal moves
-        Assertions.assertEquals("legal moves for w rook at a1 | \r\n" +
-              "legal moves for w knight at b1 | \r\n" +
-              "legal moves for w bishop at c1 | \r\n" +
-              "legal moves for w queen at d1 | \r\n" +
-              "legal moves for w king at e1 | \r\n" +
-              "legal moves for w bishop at f1 | \r\n" +
-              "legal moves for w knight at g1 | \r\n" +
-              "legal moves for w rook at h1 | \r\n" +
-              "legal moves for w pawn at a2 | \r\n" +
-              "legal moves for w pawn at b2 | \r\n" +
-              "legal moves for w pawn at c2 | \r\n" +
-              "legal moves for w pawn at d2 | \r\n" +
-              "legal moves for w pawn at e2 | \r\n" +
-              "legal moves for w pawn at h2 | \r\n" +
-              "legal moves for w pawn at f3 | \r\n" +
-              "legal moves for w pawn at g4 | \r\n", outContent.toString());
+        //checks that white is in checkmate
+        Assertions.assertEquals(true, moveCalculator.isPlayerInCheckMate());
     }
-
-    //does something happen in back-end when checkmate occurs? - ask Shaun
 
 
 

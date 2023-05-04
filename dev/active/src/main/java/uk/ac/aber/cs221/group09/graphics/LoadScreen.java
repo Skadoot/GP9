@@ -118,11 +118,11 @@ public class LoadScreen {
      * Populate the scrollpane containing the save buttons with a button for every save name passed to the function.
      * @param stringNames - String array of save names. Can be empty.
      */
-    public void populateButtonBar(String[] stringNames) {
+    public void populateButtonBar(String[] stringNames, boolean isFinished) {
         saveContainer.getChildren().clear();
         int length = stringNames.length;
         for (int counter = 0; counter < length; counter++) {
-            LoadGameButton button = new LoadGameButton(stringNames[counter], counter, this);
+            LoadGameButton button = new LoadGameButton(stringNames[counter], counter, this, isFinished);
             saveContainer.getChildren().add(button.getLoadButton());
         }
     }
@@ -131,8 +131,8 @@ public class LoadScreen {
      * Message to the interface the index of the save to send to the backend and load.
      * @param num
      */
-    public void requestSave(String fileName) {
-        anInterface.setGameFromSave(fileName);
+    public void requestSave(String fileName, boolean isFinished) {
+        anInterface.setGameFromSave(fileName, isFinished);
     }
 }
 

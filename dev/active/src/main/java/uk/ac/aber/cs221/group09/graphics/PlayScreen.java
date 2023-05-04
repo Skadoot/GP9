@@ -45,6 +45,7 @@ public class PlayScreen {
     private Text turnTracker;
     private ImageView symbol;
     private int latestTurn = 0;
+    private boolean gameFinished = false;
 
     /**
      * A getter for playscreen scene.
@@ -276,6 +277,8 @@ public class PlayScreen {
 
         //Update Game state from backend. I.e is the game over?
         char gameState = sectionedNotation[6].charAt(0);
+        System.out.println("Parsing game over character");
+        System.out.println(gameState);
         gameOverOverlay(gameState);
     }
 
@@ -322,7 +325,7 @@ public class PlayScreen {
         accept.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                anInterface.updateGameOver('D');
+                anInterface.updateGameOver('d');
                 gameOverOverlay('d');
             }
         });
@@ -378,10 +381,10 @@ public class PlayScreen {
             public void handle(ActionEvent actionEvent) {
                 //Resign quit game ladi da
                 if(turnTracker.getText().equals(whitePlayerName.getText())) {
-                    anInterface.updateGameOver('B');
+                    anInterface.updateGameOver('b');
                     gameOverOverlay('b');
                 } else {
-                    anInterface.updateGameOver('W');
+                    anInterface.updateGameOver('b');
                     gameOverOverlay('w');
                 }
                 dashboard.getChildren().remove(resignWindow);
@@ -520,7 +523,7 @@ public class PlayScreen {
         }
         chessboard.updateBoard(anInterface.getPreviousFEN(currentTurn));
 
-        if (currentTurn == anInterface.getTurnNumber()) {
+        if (currentTurn == anInterface.getTurnNumber() || gameFinished) {
             chessboard.disableChessboard(false);
         } else {
             chessboard.disableChessboard(true);
@@ -541,11 +544,11 @@ public class PlayScreen {
             // from the last turn we looked at
         } else {
             //makes sure we don't go beyond the array boundaries
-            if (currentTurn > 0) {
+            if (currentTurn > 1) {
                 currentTurn--;
             }
     }
-        if (currentTurn == anInterface.getTurnNumber()) {
+        if (currentTurn == anInterface.getTurnNumber() || gameFinished) {
             chessboard.disableChessboard(false);
         } else {
             chessboard.disableChessboard(true);
@@ -649,14 +652,17 @@ public class PlayScreen {
             case('w'):
                 victoryText.setText("White's Victory!");
                 victoryImage.setImage(graphicsLoader.getImage('W'));
+                this.gameFinished = true;
                 break;
             case('b'):
                 victoryText.setText("Black's victory!");
                 victoryImage.setImage(graphicsLoader.getImage('B'));
+                this.gameFinished = true;
                 break;
             case('d'):
                 victoryText.setText("Game ended in draw.");
                 victoryImage.setImage(graphicsLoader.getImage('D'));
+                this.gameFinished = true;
                 break;
         }
 

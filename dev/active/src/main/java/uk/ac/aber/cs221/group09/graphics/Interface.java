@@ -120,10 +120,11 @@ public class Interface extends Application {
     * Switch scene displayed to a scene that displays all the finished games to view through.
     */
    public void loadFGames() {
-      //loadScreen.populateButtonBar(list of finished games);
+      game = new Game();
+
       loadScreen.setLabel("Finished Games:");
       //creates an array list from the log function to display every game saved locally
-      ArrayList<String> existingGamesList = game.log.displayExistingGameFiles();
+      ArrayList<String> existingGamesList = game.log.displayExistingGameFiles(true);
       //creates an array for conversion to the correct format for the button bar
       String[] existingGamesArray = new String[existingGamesList.size()];
       //iterates through the games list and assigns each to its own index in the array
@@ -131,7 +132,7 @@ public class Interface extends Application {
          existingGamesArray[i] = existingGamesList.get(i);
       }
       //the array is sent to populate the scrollpane's button bar
-      loadScreen.populateButtonBar(existingGamesArray);
+      loadScreen.populateButtonBar(existingGamesArray, true);
       primaryStage.setScene(loadScreen.getScene());
    }
 
@@ -152,7 +153,7 @@ public class Interface extends Application {
          existingGamesArray[i] = existingGamesList.get(i);
       }
       //the array is sent to populate the scrollpane's button bar
-      loadScreen.populateButtonBar(existingGamesArray);
+      loadScreen.populateButtonBar(existingGamesArray, false);
       primaryStage.setScene(loadScreen.getScene());
    }
 
@@ -161,8 +162,8 @@ public class Interface extends Application {
     * It passes the filename of the save to the game in order set up the unfinished/finished game to play/view.
     * @param filename - Name of save.
     */
-   public void setGameFromSave(String filename) {
-      game.createGame(filename);
+   public void setGameFromSave(String filename, boolean isFinished) {
+      game.createGame(filename, isFinished);
       //Make a whole new playScreen.
       playScreen = new PlayScreen(this);
       playScreen.updatePlayScreen(game.gameNotation());

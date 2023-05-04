@@ -28,6 +28,7 @@ public class LoadGameButton {
     private int saveNumber;
     private String saveName;
     private LoadScreen loadScreen;
+    private boolean isFinishedGame;
 
     /**
      * Constructor for a LoadGame Button. Takes the save name as a string to display, the index of the save to return
@@ -36,10 +37,11 @@ public class LoadGameButton {
      * @param saveNumber - The index of the save in the backend
      * @param loadScreen - The class containing the screen displaying the LoadGameButton.
      */
-    public LoadGameButton(String saveName, int saveNumber, LoadScreen loadScreen) {
+    public LoadGameButton(String saveName, int saveNumber, LoadScreen loadScreen, boolean isFinished) {
         this.saveName = saveName;
         this.saveNumber = saveNumber;
         this.loadScreen = loadScreen;
+        this.isFinishedGame = isFinished;
 
         //Create the FX button
         loadButton = new Button(this.saveName);
@@ -60,6 +62,6 @@ public class LoadGameButton {
     }
 
     private void selected() {
-        loadScreen.requestSave(this.saveName);
+        loadScreen.requestSave(this.saveName, this.isFinishedGame);
     }
 }

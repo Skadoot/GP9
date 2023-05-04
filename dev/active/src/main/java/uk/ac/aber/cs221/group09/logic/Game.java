@@ -58,7 +58,8 @@ public class Game {
        this.selectedPiece = new Vector2();
    }
 
-   public void createGame(String fileName) {
+   public void createGame(String fileName, boolean isFinished) {
+      log.setFinishedGame(isFinished);
       log.setFileName(fileName);
       gameBoard = new Board(log.readLog(log.getNumberOfLines()-1));
    }

@@ -99,15 +99,6 @@ public class Game {
       } else {
          selectedPiece = selectedBoardCoordinate;
       }
-//      } else if (gameBoard.getPiece(selectedBoardCoordinate) != null) {
-//         if (gameBoard.getPiece(selectedBoardCoordinate).getColor() == attackingPlayer) {
-//            selectedPiece = selectedBoardCoordinate;
-//            System.out.println("selected piece is : " + selectedPiece.getVector2AsBoardNotation() + ",");
-//            if (gameBoard.getPiece(selectedPiece).getPossibleMoves().isEmpty()) {
-//               System.out.println("Did not find legal move.");
-//            }
-//         }
-//      }
    }
 
    /**
@@ -208,7 +199,7 @@ public class Game {
    // TODO Requires JavaDoc comment
    public ArrayList<int[]> validTiles() {
       Piece piece = gameBoard.getPiece(selectedPiece);
-      ArrayList<int[]> res = new ArrayList<int[]>();
+      ArrayList<int[]> res = new ArrayList<>();
       if(gameBoard.getPiece(selectedPiece) == null) {
          return res;
       }
@@ -227,7 +218,6 @@ public class Game {
 
    // TODO Requires JavaDoc comment
    public ArrayList<int[]> checkedKing() {
-      System.out.println("Checked Square stuff");
       ArrayList<int[]> res = new ArrayList<int[]>();
       MoveCalculator checkCheck = new MoveCalculator(attackingPlayer, gameBoard);
       checkCheck.findLegalMovesForPlayer(true);
@@ -236,12 +226,10 @@ public class Game {
          int[] coords = new int[2];
          if (attackingPlayer == 'w') {
             Vector2 wKPos = gameBoard.getWhiteKingPosition();
-            System.out.println("Checked Square "+ wKPos.x +":" + wKPos.y);
             coords[0] = wKPos.y;
             coords[1] = wKPos.x;
          } else {
             Vector2 wKPos = gameBoard.getBlackKingPosition();
-            System.out.println("Checked Square "+ wKPos.x +":" + wKPos.y);
             coords[0] = wKPos.y;
             coords[1] = wKPos.x;
          }

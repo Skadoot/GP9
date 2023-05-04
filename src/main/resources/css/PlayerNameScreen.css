@@ -1,0 +1,19 @@
+.root {
+    -fx-background-color: #DAE9F3;
+}
+
+.vbox {
+
+    -fx-spacing: 12;
+    -fx-padding: 15;
+    -fx-max-width: 200px;
+}
+
+.hbox {
+    -fx-alignment: center;
+    -fx-spacing: 15;
+}
+
+.label {
+    -fx-padding: 10,10,10,10;
+}

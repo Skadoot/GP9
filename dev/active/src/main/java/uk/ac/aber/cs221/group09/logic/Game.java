@@ -227,16 +227,21 @@ public class Game {
 
    // TODO Requires JavaDoc comment
    public ArrayList<int[]> checkedKing() {
+      System.out.println("Checked Square stuff");
       ArrayList<int[]> res = new ArrayList<int[]>();
       MoveCalculator checkCheck = new MoveCalculator(attackingPlayer, gameBoard);
+      checkCheck.findLegalMovesForPlayer(true);
+      checkCheck.findLegalMovesForPlayer(false);
       if (checkCheck.isPlayerInCheck()) {
          int[] coords = new int[2];
          if (attackingPlayer == 'w') {
             Vector2 wKPos = gameBoard.getWhiteKingPosition();
+            System.out.println("Checked Square "+ wKPos.x +":" + wKPos.y);
             coords[0] = wKPos.y;
             coords[1] = wKPos.x;
          } else {
             Vector2 wKPos = gameBoard.getBlackKingPosition();
+            System.out.println("Checked Square "+ wKPos.x +":" + wKPos.y);
             coords[0] = wKPos.y;
             coords[1] = wKPos.x;
          }

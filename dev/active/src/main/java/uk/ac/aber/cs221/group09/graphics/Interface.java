@@ -122,17 +122,17 @@ public class Interface extends Application {
       game = new Game();
 
       loadScreen.setLabel("Finished Games:");
-      //set the log to look for games in the finished games directory
+      // Set the log to look for games in the finished games directory
       game.log.setFinishedGame(true);
-      //creates an array list from the log function to display every game saved locally
+      // Creates an array list from the log function to display every game saved locally
       ArrayList<String> existingGamesList = game.log.displayExistingGameFiles();
-      //creates an array for conversion to the correct format for the button bar
+      // Creates an array for conversion to the correct format for the button bar
       String[] existingGamesArray = new String[existingGamesList.size()];
-      //iterates through the games list and assigns each to its own index in the array
+      // Iterates through the games list and assigns each to its own index in the array
       for (int i = 0; i < existingGamesList.size(); i++) {
          existingGamesArray[i] = existingGamesList.get(i);
       }
-      //the array is sent to populate the scrollpane's button bar
+      // The array is sent to populate the scrollpane's button bar
       loadScreen.populateButtonBar(existingGamesArray, true);
       primaryStage.setScene(loadScreen.getScene());
    }
@@ -141,20 +141,19 @@ public class Interface extends Application {
     * Switch the scene displayed to a scene that displays all the unfinished games to pick back up from.
     */
    public void loadUFGames() {
-      //loadScreen.populateButtonBar(list of unfinished games);
       game = new Game();
       loadScreen.setLabel("Unfinished Games:");
-      //set the log to look for games in the unfinished games directory
+      // Set the log to look for games in the unfinished games directory
       game.log.setFinishedGame(false);
-      //creates an array list from the log function to display every unfinished game saved locally
+      // Creates an array list from the log function to display every unfinished game saved locally
       ArrayList<String> existingGamesList = game.log.displayExistingGameFiles();
-      //creates an array for conversion to the correct format for the button bar
+      // Creates an array for conversion to the correct format for the button bar
       String[] existingGamesArray = new String[existingGamesList.size()];
-      //iterates through the games list and assigns each to its own index in the array
+      // Iterates through the games list and assigns each to its own index in the array
       for (int i = 0; i < existingGamesList.size(); i++) {
          existingGamesArray[i] = existingGamesList.get(i);
       }
-      //the array is sent to populate the scrollpane's button bar
+      // The array is sent to populate the scrollpane's button bar
       loadScreen.populateButtonBar(existingGamesArray, false);
       primaryStage.setScene(loadScreen.getScene());
    }
@@ -162,11 +161,12 @@ public class Interface extends Application {
    /**
     * This function is called to set up the board on an empty game based on a save's FEN string.
     * It passes the filename of the save to the game in order set up the unfinished/finished game to play/view.
-    * @param filename - Name of save.
+    *
+    * @param filename Name of save.
     */
    public void setGameFromSave(String filename, boolean isFinished) {
       game.createGame(filename, isFinished);
-      //Make a whole new playScreen.
+      // Make a whole new playScreen.
       playScreen = new PlayScreen(this);
       playScreen.updatePlayScreen(game.gameNotation());
       if(isFinished){

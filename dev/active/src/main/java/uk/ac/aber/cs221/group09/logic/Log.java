@@ -33,16 +33,14 @@ public class Log {
 
 
    /**
-    * Constructor for Log class.
-    * If load is set to false, it makes a new text file to record FEN strings after each turn.
-    * If the file name already exists, it will be overwritten.
-    * If load is set to true then an existing text file is used.
+    * Constructor for Log class. Used for creating new games. Creates a new .txt file using fileName param to record
+    * the game. If the file name already exists, it will be overwritten.
     * If a new file is made then the FEN string for an initial board state is also added.
     *
-    * @param fileName the name of the file to be made or loaded
+    * @param fileName the name of the file to be made
     */
    public Log(String fileName) {
-      //By default, the log should attach itself to the unfinished games folder when first constructed
+      // By default, the log should attach itself to the unfinished games folder when first constructed
       setFinishedGame(false);
       // If the unfinished game directory does not exist, create it
       new File(nameOfFolderToHoldUnfinishedGames).mkdirs();
@@ -61,14 +59,13 @@ public class Log {
 
    /**
     * Simple constructor.
-    * <p>
     * Used in loading games where the log class needs to be instantiated before filename is set.
     */
    public Log() {
    }
 
    /**
-    * sets the nameOfFolder field to either the path for finished or unfinished games.
+    * Sets the nameOfFolder field to either the path for finished or unfinished games.
     * @param finishedGame true if accessing finished games, false if accessing unfinished games
     */
    public void setFinishedGame(boolean finishedGame) {
@@ -80,7 +77,7 @@ public class Log {
    }
 
    /**
-    * sets the fileName field
+    * Sets the fileName field
     * @param fileName the String to set the fileName field
     */
    public void setFileName(String fileName) {
@@ -116,10 +113,10 @@ public class Log {
     * @return The string at the requested line number or null if an exception occurs.
     */
    public String readLog(int lineNumber) {
-      //initialise variable with null in case of IO Exception
+      // Initialise variable with null in case of IO Exception
       String fenAtLineNumber = null;
       try {
-         //assign variable the string at the requested line number of the file
+         // Assign variable the string at the requested line number of the file
          fenAtLineNumber = Files.readAllLines(Paths.get(nameOfFolder, fileName)).get(lineNumber);
       } catch (IOException e) {
          System.out.println("IO Error");
@@ -221,7 +218,7 @@ public class Log {
    }
 
    /**
-    * Deletes the current log file that is in unfinished games.
+    * Deletes the current log file from the relevant folder
     * Called when the user wishes to exit a game and not save the file.
     */
    public void deleteFile(){

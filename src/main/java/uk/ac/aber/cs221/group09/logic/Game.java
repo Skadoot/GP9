@@ -88,20 +88,16 @@ public class Game {
       selectedBoardCoordinate = new Vector2(column, row);
 
       // Get a list of all the legal moves for the chessboard
-      ArrayList<Vector2> currentLegalMoves = gameBoard.getPiece(selectedPiece).getPossibleMoves();
-
+      ArrayList<Vector2> currentLegalMoves = new ArrayList<Vector2>();
+      if(gameBoard.getPiece(selectedPiece) != null) {
+         currentLegalMoves = gameBoard.getPiece(selectedPiece).getPossibleMoves();
+      }
       // Check the selected coordinates are a legal move and the current selected piece is the attacking player's piece.
       if (currentLegalMoves.contains(selectedBoardCoordinate) && gameBoard.getPiece(selectedPiece).getColor() == attackingPlayer) {
          isMoveMade = true;
          gameBoard.movePiece(gameBoard.getPiece(selectedPiece), selectedBoardCoordinate);
-      } else if (gameBoard.getPiece(selectedBoardCoordinate) != null) {
-         if (gameBoard.getPiece(selectedBoardCoordinate).getColor() == attackingPlayer) {
-            selectedPiece = selectedBoardCoordinate;
-            System.out.println("selected piece is : " + selectedPiece.getVector2AsBoardNotation() + ",");
-            if (gameBoard.getPiece(selectedPiece).getPossibleMoves().isEmpty()) {
-               System.out.println("Did not find legal move.");
-            }
-         }
+      } else {
+         selectedPiece = selectedBoardCoordinate;
       }
    }
 
@@ -203,7 +199,10 @@ public class Game {
    // TODO Requires JavaDoc comment
    public ArrayList<int[]> validTiles() {
       Piece piece = gameBoard.getPiece(selectedPiece);
-      ArrayList<int[]> res = new ArrayList<int[]>();
+      ArrayList<int[]> res = new ArrayList<>();
+      if(gameBoard.getPiece(selectedPiece) == null) {
+         return res;
+      }
       if (piece.getColor() != attackingPlayer) {
          return res;
       }
@@ -221,6 +220,8 @@ public class Game {
    public ArrayList<int[]> checkedKing() {
       ArrayList<int[]> res = new ArrayList<int[]>();
       MoveCalculator checkCheck = new MoveCalculator(attackingPlayer, gameBoard);
+      checkCheck.findLegalMovesForPlayer(true);
+      checkCheck.findLegalMovesForPlayer(false);
       if (checkCheck.isPlayerInCheck()) {
          int[] coords = new int[2];
          if (attackingPlayer == 'w') {
@@ -246,7 +247,7 @@ public class Game {
     * @param n the unique identifier of the piece to promote.
     */
    public void promote(int n) {
-      gameBoard.piecePromotion(n);
+      gameBoard.promotePawn(n);
       log.replaceLine(gameBoard.getTurnNumber(), gameBoard.getForsythEdwardsBoardNotation());
       gameBoard.clearMoves();
       MoveCalculator promotionCheck = new MoveCalculator(attackingPlayer, gameBoard);

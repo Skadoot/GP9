@@ -25,6 +25,14 @@ import uk.ac.aber.cs221.group09.util.Vector2;
  */
 class PieceTest {
    @Test
+   /**
+    * A method to test whether the white king's position is properly tracked
+    *
+    * @param testBoard The setup of a board with a move available for the white king
+    * @param testPosition The initial position of the white king
+    * @param pieceToMove The white king piece
+    * @param testPosition2 The position for the white king to move to
+    */
    public void testGetWhiteKingPosition() {
       //creates a new board with a move available for the white king
       Board testBoard = new Board("rnbqkbnr/pppp1ppp/4p3/8/8/4P3/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
@@ -42,6 +50,14 @@ class PieceTest {
    }
 
    @Test
+   /**
+    * A method to test whether the black king's position is properly tracked
+    *
+    * @param testBoard The setup of a board with a move available for the black king
+    * @param testPosition The initial position of the black king
+    * @param pieceToMove The black king piece
+    * @param testPosition2 The position for the black king to move to
+    */
    public void testGetBlackKingPosition() {
       //creates a new board with a move available for the black king
       Board testBoard = new Board("rnbqkbnr/pppp1ppp/4p3/8/8/4P3/PPPPKPPP/RNBQ1BNR b kq - 0 1");
@@ -60,6 +76,12 @@ class PieceTest {
 
    @Test
    //FR2 Tests
+   /**
+    * A method to test whether a piece's colour is stored correctly
+    *
+    * @param testBoard The setup of a board in the starting position
+    * @param testPosition The position of the white rook on the a1 square
+    */
    public void testGetPieceColor() {
       //creates a new board
       Board testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
@@ -73,6 +95,12 @@ class PieceTest {
 
    @Test
    //FR2 Tests
+   /**
+    * A method to test whether a piece's type is stored correctly
+    *
+    * @param testBoard The setup of a board in the starting position
+    * @param testPosition The position of the white knight on the b1 square
+    */
    public void testGetPieceType() {
       //creates a new board
       Board testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
@@ -87,6 +115,11 @@ class PieceTest {
 
    @Test
    //FR2 Tests
+   /**
+    * A method to test whether a piece's position is stored correctly
+    *
+    * @param testPosition The F1 square of the board
+    */
    public void testGetPiecePosition() {
       //selects the f1 square
       Vector2 testPosition = new Vector2(5, 0);
@@ -97,6 +130,12 @@ class PieceTest {
    }
 
    @Test
+   /**
+    * A method to test that white is able to promote a pawn to a queen
+    *
+    * @param game The setup of a new game with a white pawn on the 8th rank, ready for promotion
+    * @param testPosition The position of the white pawn on the H8 square
+    */
    public void testPromoteWhiteQueen() {
       //creates a new game with a white pawn available to be promoted
       Game game = new Game("rnbqkbnP/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNR b KQq - 0 1", "test", false);
@@ -113,6 +152,12 @@ class PieceTest {
    }
 
    @Test
+   /**
+    * A method to test that white is able to promote a pawn to a rook
+    *
+    * @param game The setup of a new game with a white pawn on the 8th rank, ready for promotion
+    * @param testPosition The position of the white pawn on the H8 square
+    */
    public void promoteWhiteRook() {
       //creates a new game with a white pawn available to be promoted
       Game game = new Game("rnbqkbnP/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNR b KQq - 0 1", "test", false);
@@ -129,6 +174,12 @@ class PieceTest {
    }
 
    @Test
+   /**
+    * A method to test that white is able to promote a pawn to a bishop
+    *
+    * @param game The setup of a new game with a white pawn on the 8th rank, ready for promotion
+    * @param testPosition The position of the white pawn on the H8 square
+    */
    public void promoteWhiteBishop() {
       //creates a new game with a white pawn available to be promoted
       Game game = new Game("rnbqkbnP/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNR b KQq - 0 1", "test", false);
@@ -145,6 +196,12 @@ class PieceTest {
    }
 
    @Test
+   /**
+    * A method to test that white is able to promote a pawn to a knight
+    *
+    * @param game The setup of a new game with a white pawn on the 8th rank, ready for promotion
+    * @param testPosition The position of the white pawn on the H8 square
+    */
    public void promoteWhiteKnight() {
       //creates a new game with a white pawn available to be promoted
       Game game = new Game("rnbqkbnP/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNR b KQq - 0 1", "test", false);
@@ -162,6 +219,12 @@ class PieceTest {
 
 
    @Test
+   /**
+    * A method to test that black is able to promote a pawn to a queen
+    *
+    * @param game The setup of a new game with a black pawn on the 1st rank, ready for promotion
+    * @param testPosition The position of the black pawn on the H1 square
+    */
    public void promoteBlackQueen() {
       //creates a new game with a black pawn available to be promoted
       Game game = new Game("rnbqkbnr/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNp b Qq - 0 1", "test", false);
@@ -178,6 +241,12 @@ class PieceTest {
    }
 
    @Test
+   /**
+    * A method to test that black is able to promote a pawn to a rook
+    *
+    * @param game The setup of a new game with a black pawn on the 1st rank, ready for promotion
+    * @param testPosition The position of the black pawn on the H1 square
+    */
    public void promoteBlackRook() {
       //creates a new game with a black pawn available to be promoted
       Game game = new Game("rnbqkbnr/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNp b Qq - 0 1", "test", false);
@@ -194,6 +263,12 @@ class PieceTest {
    }
 
    @Test
+   /**
+    * A method to test that black is able to promote a pawn to a bishop
+    *
+    * @param game The setup of a new game with a black pawn on the 1st rank, ready for promotion
+    * @param testPosition The position of the black pawn on the H1 square
+    */
    public void promoteBlackBishop() {
       //creates a new game with a black pawn available to be promoted
       Game game = new Game("rnbqkbnr/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNp b Qq - 0 1", "test", false);
@@ -210,6 +285,12 @@ class PieceTest {
    }
 
    @Test
+   /**
+    * A method to test that black is able to promote a pawn to a knight
+    *
+    * @param game The setup of a new game with a black pawn on the 1st rank, ready for promotion
+    * @param testPosition The position of the black pawn on the H1 square
+    */
    public void promoteBlackKnight() {
       //creates a new game with a black pawn available to be promoted
       Game game = new Game("rnbqkbnr/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNp b Qq - 0 1", "test", false);
@@ -226,6 +307,13 @@ class PieceTest {
    }
 
    @Test
+   /**
+    * A method to test that a white queen moves correctly after promotion
+    *
+    * @param game The setup of a new game with a white pawn on the 8th rank, ready for promotion
+    * @param pieceToMove The promoted white queen piece
+    * @param testPosition The position for the selected piece to move to
+    */
    public void testMoveAfterPromoteWhiteQueen() {
       //creates a new game with a white pawn available to be promoted
       Game game = new Game("rnbqkbnP/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNR b KQq - 0 1", "test", false);
@@ -248,6 +336,13 @@ class PieceTest {
    }
 
    @Test
+   /**
+    * A method to test that a white rook moves correctly after promotion
+    *
+    * @param game The setup of a new game with a white pawn on the 8th rank, ready for promotion
+    * @param pieceToMove The promoted white rook piece
+    * @param testPosition The position for the selected piece to move to
+    */
    public void testMoveAfterPromoteWhiteRook() {
       //creates a new game with a white pawn available to be promoted
       Game game = new Game("rnbqkbnP/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNR b KQq - 0 1", "test", false);
@@ -270,6 +365,13 @@ class PieceTest {
    }
 
    @Test
+   /**
+    * A method to test that a white bishop moves correctly after promotion
+    *
+    * @param game The setup of a new game with a white pawn on the 8th rank, ready for promotion
+    * @param pieceToMove The promoted white bishop piece
+    * @param testPosition The position for the selected piece to move to
+    */
    public void testMoveAfterPromoteWhiteBishop() {
       //creates a new game with a white pawn available to be promoted
       Game game = new Game("rnbqkbnP/pppppp2/8/8/8/8/PPPPPPP1/RNBQKBNR b KQq - 0 1", "test", false);
@@ -292,6 +394,13 @@ class PieceTest {
    }
 
    @Test
+   /**
+    * A method to test that a white knight moves correctly after promotion
+    *
+    * @param game The setup of a new game with a white pawn on the 8th rank, ready for promotion
+    * @param pieceToMove The promoted white knight piece
+    * @param testPosition The position for the selected piece to move to
+    */
    public void testMoveAfterPromoteWhiteKnight() {
       //creates a new game with a white pawn available to be promoted
       Game game = new Game("rnbqkbnP/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNR b KQq - 0 1", "test", false);
@@ -314,6 +423,13 @@ class PieceTest {
    }
 
    @Test
+   /**
+    * A method to test that a black queen moves correctly after promotion
+    *
+    * @param game The setup of a new game with a black pawn on the 1st rank, ready for promotion
+    * @param pieceToMove The promoted black queen piece
+    * @param testPosition The position for the selected piece to move to
+    */
    public void testMoveAfterPromoteBlackQueen() {
       //creates a new game with a black pawn available to be promoted
       Game game = new Game("rnbqkbnr/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNp b Qq - 0 1", "test", false);
@@ -336,6 +452,13 @@ class PieceTest {
    }
 
    @Test
+   /**
+    * A method to test that a black rook moves correctly after promotion
+    *
+    * @param game The setup of a new game with a black pawn on the 1st rank, ready for promotion
+    * @param pieceToMove The promoted black rook piece
+    * @param testPosition The position for the selected piece to move to
+    */
    public void testMoveAfterPromoteBlackRook() {
       //creates a new game with a black pawn available to be promoted
       Game game = new Game("rnbqkbnr/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNp b Qq - 0 1", "test", false);
@@ -358,6 +481,13 @@ class PieceTest {
    }
 
    @Test
+   /**
+    * A method to test that a black bishop moves correctly after promotion
+    *
+    * @param game The setup of a new game with a black pawn on the 1st rank, ready for promotion
+    * @param pieceToMove The promoted black bishop piece
+    * @param testPosition The position for the selected piece to move to
+    */
    public void testMoveAfterPromoteBlackBishop() {
       //creates a new game with a black pawn available to be promoted
       Game game = new Game("rnbqkbnr/ppppppp1/8/8/8/8/PPPPPP2/RNBQKBNp b Qq - 0 1", "test", false);
@@ -380,6 +510,13 @@ class PieceTest {
    }
 
    @Test
+   /**
+    * A method to test that a black knight moves correctly after promotion
+    *
+    * @param game The setup of a new game with a black pawn on the 1st rank, ready for promotion
+    * @param pieceToMove The promoted black knight piece
+    * @param testPosition The position for the selected piece to move to
+    */
    public void testMoveAfterPromoteBlackKnight() {
       //creates a new game with a black pawn available to be promoted
       Game game = new Game("rnbqkbnr/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNp b Qq - 0 1", "test", false);

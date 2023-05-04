@@ -125,52 +125,50 @@ public class Chessboard {
      * @param boardNotation - A Forsyth Edwards notation written in string representing the state of the board.
      */
     public void updateBoard(String boardNotation) {
-        //Clear of the board of any graphics or highlighted tiles
+        // Clear of the board of any graphics or highlighted tiles
         clearChessBoard();
 
-        //sets starting positions to access the array from.
+        // Sets starting positions to access the array from.
         int column = 0;
         int row = 7;
 
-        //iterate through the Forsyth Edwards Notation string.
+        // Iterate through the Forsyth Edwards Notation string.
         for (int readHead = 0; readHead < boardNotation.length(); readHead++) {
-            //if we have arrived at a space then we no longer need to read from the string, as the information from this point on is not relevant to this method
+            // If we have arrived at a space then we no longer need to read from the string, as the information from this point on is not relevant to this method
             if (boardNotation.charAt(readHead) == ' ') {
                 return;
             }
 
-            //if we have arrived at a '/', this is the marker for going down a rank, so we decrement the rank and reset the file to the first file.
+            // If we have arrived at a '/', this is the marker for going down a rank, so we decrement the rank and reset the file to the first file.
             if (boardNotation.charAt(readHead) == '/') {
                 column = 0;
                 row--;
                 continue;
             }
 
-            //if we have arrived at a digit this is the marker for n amount of empty squares on the rank in a row before we find a piece. so we add this digit to out file variable.
+            // If we have arrived at a digit this is the marker for n amount of empty squares on the rank in a row before we find a piece. so we add this digit to out file variable.
             if (Character.isDigit(boardNotation.charAt(readHead))) {
                 column += Character.getNumericValue(boardNotation.charAt(readHead));
                 continue;
             }
 
 
-            //if the character representing the piece is upper case then it is a white piece, else it is a black piece.
+            // If the character representing the piece is upper case then it is a white piece, else it is a black piece.
             tiles[row][column].setGraphics(graphicsLoader.fetchTilePieceGraphic(boardNotation.charAt(readHead)));
-            //increment the file for the next position on the board.
+            // Increment the file for the next position on the board.
             column++;
         }
         return;
     }
 
     /**
-     * Unimplemented function. Pass is three arrays, possibly empty, of coordinates of buttons to highlights in different
-     * styles.
+     * Unimplemented function. Pass is three arrays, possibly empty, of coordinates of buttons to highlight in different styles.
      * @param validT - ArrayList of coordinates of valid tiles.
      * @param checkT - ArrayList of coordinates of checked pieces
-     * //@param attackT - ArrayList of coordinates containing attacking pieces.
      */
     public void highlightTiles(ArrayList<int[]> validT, ArrayList<int[]> checkT) {
         highlightValidTiles(validT);
-        //highlightCheckTile(checkT);
+        highlightCheckTile(checkT);
     }
 
     public void highlightValidTiles(ArrayList<int[]> validT) {
@@ -189,7 +187,9 @@ public class Chessboard {
     }
 
     private void highlightCheckTile(ArrayList<int[]> checkT) {
-        tiles[0][0].setStyleClass("check-tile");
+        for (int[] coords : checkT) {
+            tiles[coords[0]][coords[1]].setStyleClass("check-tile");
+        }
     }
 
     private void highlightAttackingTiles(ArrayList<int[]> attackT) {

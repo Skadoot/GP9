@@ -186,7 +186,7 @@ public class MoveCalculator {
    }
 
    /*
-   /  method that checks if a pawn can attack in a particular direction.
+   /  Checks if a pawn can attack in a particular direction.
     */
    private void canPawnAttack(Piece pawn, boolean isForCheckMap, Vector2 rightAttack) {
       if (board.getPiece(rightAttack) != null || isForCheckMap) {

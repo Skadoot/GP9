@@ -7,8 +7,6 @@
 
 package uk.ac.aber.cs221.group09.graphics;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -20,7 +18,7 @@ import javafx.scene.image.ImageView;
  * This class is used to store the actionable button graphic and tile data for use in the application.
  *
  * @author Gwion Hughes
- * @version 1.0 (Releease)
+ * @version 1.0 (Release)
  * @see Chessboard
  */
 public class Tile {
@@ -52,17 +50,12 @@ public class Tile {
       // Set action of button to send its coordinates upstream
       this.button.setPadding(Insets.EMPTY);
 
-      // Set the styleclass of the button to white or black
+      // Set the StyleClass of the button to white or black
       if (isWhite) button.getStyleClass().add("white-tile");
       else this.button.getStyleClass().add("black-tile");
 
       // Sets the action of the button to tell the chessboard the row and column of button pressed on the chessboard.
-      this.button.setOnAction(new EventHandler<ActionEvent>() {
-         @Override
-         public void handle(ActionEvent actionEvent) {
-            chessboard.click(column, row);
-         }
-      });
+      this.button.setOnAction(actionEvent -> chessboard.click(column, row));
    }
 
    public Button getButton() {
@@ -79,8 +72,8 @@ public class Tile {
    }
 
    /**
-    * Clear the tile of any styleclass or imageviews.
-    * Reset its styleclass to be a white black tile.
+    * Clear the tile of any StyleClass or ImageViews.
+    * Reset its StyleClass to be a white black tile.
     */
    public void clearTile() {
       this.button.setGraphic(null);
@@ -91,7 +84,7 @@ public class Tile {
    }
 
    /**
-    * Change the Tile's button to use a new styleclass.
+    * Change the Tile's button to use a new StyleClass.
     * Called usually to display valid tiles or positions in check and their attacking pieces.
     *
     * @param styleClass the new style class of the button.

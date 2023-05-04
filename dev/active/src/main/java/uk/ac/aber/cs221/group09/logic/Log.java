@@ -70,6 +70,7 @@ public class Log {
    public Log() {
    }
 
+   // TODO Requires JavaDoc comment
    public void setFinishedGame(boolean finishedGame) {
       if(finishedGame) {
          this.nameOfFolder = "./finishedGames";
@@ -194,7 +195,7 @@ public class Log {
     * @param replacementLine the line to replace the current one
     */
    public void replaceLine(int lineNumber, String replacementLine){
-      //declare a string to hold the path to where the log file is
+      // Declare a string to hold the path to where the log file is
       String pathToCurrentFile = nameOfFolder+"/"+fileName;
       Path path = Paths.get(pathToCurrentFile);
 

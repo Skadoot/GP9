@@ -60,13 +60,13 @@ public class LoadScreen {
 
    /**
     * Initialises the scene of the class that will be displayed on the primary stage.
-    * A gridpane is used to display buttons on a scrollable vertical box that will be mapped to saves in the backend.
+    * A GridPane is used to display buttons on a scrollable vertical box that will be mapped to saves in the backend.
     */
    private void createScene() {
-      // Gridpane. This is the root of the entire LoadScreen scene.
+      // GridPane. This is the root of the entire LoadScreen scene.
       GridPane layout = new GridPane();
       layout.setAlignment(Pos.CENTER);
-      // Setting up column and row width for the layout gridpane. Currently, an 18x12 grid.
+      // Setting up column and row width for the layout GridPane. Currently, an 18x12 grid.
       for (int counter = 0; counter < 18; counter++) {
          ColumnConstraints cConstraint = new ColumnConstraints(50);
          layout.getColumnConstraints().add(cConstraint);
@@ -77,7 +77,7 @@ public class LoadScreen {
          }
       }
 
-      // Label at top changes depending on whether your looking at finished or unfinished games
+      // Label at top changes depending on whether you're looking at finished or unfinished games
       Label label = new Label("Label");
       layout.add(label, 1, 0, 4, 1);
       this.lab = label;
@@ -111,27 +111,24 @@ public class LoadScreen {
       this.scene = scene;
    }
 
-   /**
-    * Populate the scrollpane containing the save buttons with a button for every save name passed to the function.
-    *
-    * @param stringNames - String array of save names. Can be empty.
-    */
-   public void populateButtonBar(String[] stringNames) {
-      saveContainer.getChildren().clear();
-      int length = stringNames.length;
-      for (int counter = 0; counter < length; counter++) {
-         LoadGameButton button = new LoadGameButton(stringNames[counter], counter, this);
-         saveContainer.getChildren().add(button.getLoadButton());
-      }
-   }
+    /**
+     * Populate the ScrollPane containing the save buttons with a button for every save name passed to the function.
+     * @param stringNames - String array of save names. Can be empty.
+     */
+    public void populateButtonBar(String[] stringNames, boolean isFinished) {
+        saveContainer.getChildren().clear();
+        int length = stringNames.length;
+        for (int counter = 0; counter < length; counter++) {
+            LoadGameButton button = new LoadGameButton(stringNames[counter], counter, this, isFinished);
+            saveContainer.getChildren().add(button.getLoadButton());
+        }
+    }
 
-   /**
-    * Message to the interface the index of the save to send to the backend and load.
-    *
-    * @param num
-    */
-   public void requestSave(String fileName) {
-      anInterface.setGameFromSave(fileName);
-   }
+    /**
+     * Message to the interface the index of the save to send to the backend and load.
+     */
+    public void requestSave(String fileName, boolean isFinished) {
+        anInterface.setGameFromSave(fileName, isFinished);
+    }
 }
 

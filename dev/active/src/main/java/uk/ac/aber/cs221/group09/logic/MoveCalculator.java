@@ -212,7 +212,7 @@ public class MoveCalculator {
     * @param isForCheckMap boolean to see if the method is being used to create a check map, if so we do not need to check if the moves put the player in check.
     */
    private void getKnightLegalMoves(Piece knight, boolean isForCheckMap) {
-      // These are the knights possible jumps, in vector2s relative to the knights position. positive values add to the knights current x or y, negative subtracts.
+      // These are the knights possible jumps, in Vector2's relative to the knights position. positive values add to the knights current x or y, negative subtracts.
       Vector2[] knightDirections = {new Vector2(2, 1), new Vector2(1, 2), new Vector2(-2, 1), new Vector2(-1, 2), new Vector2(2, -1), new Vector2(1, -2), new Vector2(-2, -1), new Vector2(-1, -2)};
 
       // For each of the directions in the knight's directions.

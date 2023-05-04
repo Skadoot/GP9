@@ -42,7 +42,7 @@ public class Game {
    private boolean isMoveMade = false;
 
    /**
-    * Simple constructor for game.
+    * Default constructor for game.
     *
     * @param boardState the initial board state string for the game (Forsyth Edwards Notation).
     */
@@ -52,12 +52,17 @@ public class Game {
       this.selectedPiece = new Vector2();
    }
 
+   /**
+    * Simple constructor.
+    */
    public Game() {
       this.log = new Log();
       this.selectedPiece = new Vector2();
    }
 
-   public void createGame(String fileName) {
+   // TODO Requires JavaDoc comment
+   public void createGame(String fileName, boolean isFinished) {
+      log.setFinishedGame(isFinished);
       log.setFileName(fileName);
       gameBoard = new Board(log.readLog(log.getNumberOfLines() - 1));
    }
@@ -190,6 +195,7 @@ public class Game {
       attackingPlayer = gameBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
    }
 
+   // TODO Requires JavaDoc comment
    public ArrayList<int[]> validTiles() {
       Piece piece = gameBoard.getPiece(selectedPiece);
       ArrayList<int[]> res = new ArrayList<int[]>();
@@ -206,6 +212,7 @@ public class Game {
       return res;
    }
 
+   // TODO Requires JavaDoc comment
    public ArrayList<int[]> checkedKing() {
       ArrayList<int[]> res = new ArrayList<int[]>();
       MoveCalculator checkCheck = new MoveCalculator(attackingPlayer, gameBoard);
@@ -245,13 +252,10 @@ public class Game {
     * @return boolean whether the player can promote a pawn.
     */
    public boolean isPromotionAvailable() {
-      if (gameBoard.canWhitePromote() || gameBoard.canBlackPromote()) {
-         return true;
-      } else {
-         return false;
-      }
+      return gameBoard.canWhitePromote() || gameBoard.canBlackPromote();
    }
 
+   // TODO Requires JavaDoc comment
    public void endGame(char c) {
       String winningPlayer = Character.toString(c);
       gameBoard.updateFENStringWhenCheckMate(winningPlayer);

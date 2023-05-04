@@ -7,8 +7,6 @@
 
 package uk.ac.aber.cs221.group09.graphics;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -32,7 +30,7 @@ import java.util.regex.Pattern;
  * @see PlayScreen
  */
 public class PlayerNameScreen {
-   private Interface anInterface;
+   private final Interface anInterface;
    private Scene scene;
    private TextField textFieldWhite, textFieldBlack, textFieldFile;
 
@@ -88,33 +86,25 @@ public class PlayerNameScreen {
 
       // Create a button that on click calls interface to swap scene to chessboard
       Button startGame = new Button("Start Game");
-      startGame.setOnAction(new EventHandler<ActionEvent>() {
-         @Override
-         public void handle(ActionEvent actionEvent) {
-            warningText.setText(" ");
-            if (nameIsBlank()) {
-               warningText.setText("Names cannot be blank or just whitespace.");
-               return;
-            } else if (nameCheckSpecChar()) {
-               warningText.setText("Names cannot contain special characters.");
-               return;
-            } else if (isNameTooLong()) {
-               warningText.setText("Names cannot exceed 32 character limit.");
-               return;
-            }
-
-            forwardsToNewGame(textFieldBlack.getText(), textFieldWhite.getText(), textFieldFile.getText());
+      startGame.setOnAction(actionEvent -> {
+         warningText.setText(" ");
+         if (nameIsBlank()) {
+            warningText.setText("Names cannot be blank or just whitespace.");
+            return;
+         } else if (nameCheckSpecChar()) {
+            warningText.setText("Names cannot contain special characters.");
+            return;
+         } else if (isNameTooLong()) {
+            warningText.setText("Names cannot exceed 32 character limit.");
+            return;
          }
+
+         forwardsToNewGame(textFieldBlack.getText(), textFieldWhite.getText(), textFieldFile.getText());
       });
       Button back = new Button("Back");
 
-      // Create a button that on click calls the interface to backtrack to thee start screen
-      back.setOnAction(new EventHandler<ActionEvent>() {
-         @Override
-         public void handle(ActionEvent actionEvent) {
-            backToMenu();
-         }
-      });
+      // Create a button that on click calls the interface to backtrack to the start screen
+      back.setOnAction(actionEvent -> backToMenu());
 
       playerWhite.getChildren().addAll(labelWhite, textFieldWhite);
       playerBlack.getChildren().addAll(labelBlack, textFieldBlack);
@@ -155,7 +145,7 @@ public class PlayerNameScreen {
    private void backToMenu() {
       anInterface.toMenu();
    }
-   
+
    private void forwardsToNewGame(String blackN, String whiteN, String fileName) {
       anInterface.toNewChessboard(whiteN, blackN, fileName);
    }

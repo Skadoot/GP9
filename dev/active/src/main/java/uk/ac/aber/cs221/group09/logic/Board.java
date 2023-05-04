@@ -8,7 +8,7 @@
 package uk.ac.aber.cs221.group09.logic;
 
 import uk.ac.aber.cs221.group09.logic.pieces.Piece;
-import uk.ac.aber.cs221.group09.logic.vector.Vector2;
+import uk.ac.aber.cs221.group09.util.Vector2;
 
 /**
  * Board - Stores the logical representation of a chess board.
@@ -17,7 +17,7 @@ import uk.ac.aber.cs221.group09.logic.vector.Vector2;
  *
  * @author Shaun Royle
  * @version 1.0 (Release)
- * @see uk.ac.aber.cs221.group09.logic.MoveCalculator
+ * @see MoveCalculator
  */
 public class Board {
    // Board size.
@@ -260,7 +260,7 @@ public class Board {
          if (rook.getPosition().x == 0) {
             forsythEdwardsBoardNotationArray[2] = castlingNotation.replaceAll("Q", "");
          }
-         //if it's the king side rook moving.
+         // if it's the king side rook moving.
          else {
             forsythEdwardsBoardNotationArray[2] = castlingNotation.replaceAll("K", "");
          }
@@ -313,9 +313,9 @@ public class Board {
     * Method to update the Forsyth Edwards Notation based on the current state of the board array, and game.
     */
    private void updateForsythEdwardsBoardNotation(boolean newTurn) {
-      // Update the board string. represented by forsythEdwardsBoardNotationArray[0].
       // Create a new string builder.
       StringBuilder newBoardRepresentationString = new StringBuilder();
+      // Update the board string. represented by forsythEdwardsBoardNotationArray[0].
       // Variable to keep track of how many empty spaces there have been.
       int skippedPieces = 0;
       // Loop through the array backwards.
@@ -347,10 +347,11 @@ public class Board {
             }
          }
       }
+
+      // Set the new board state part of the fen string.
       forsythEdwardsBoardNotationArray[0] = newBoardRepresentationString.toString();
 
       // Update the current player string. represented by forsythEdwardsBoardNotationArray[1].
-
       if (newTurn) {
          if (forsythEdwardsBoardNotationArray[1].equals("w")) {
             forsythEdwardsBoardNotationArray[1] = "b";
@@ -364,9 +365,8 @@ public class Board {
          forsythEdwardsBoardNotationArray[2] = "-";
       }
 
-      // En Passant represented by forsythEdwardsBoardNotationArray[3], should already be updated by this point.
       // The half move clock represented by forsythEdwardsBoardNotationArray[4].
-      if(newTurn) {
+      if (newTurn) {
          forsythEdwardsBoardNotationArray[4] = Integer.toString(Integer.parseInt(forsythEdwardsBoardNotationArray[4]) + 1);
       }
       // Update the full move number represented by forsythEdwardsBoardNotationArray[5], by incrementing it by 1.
@@ -387,7 +387,8 @@ public class Board {
             newBoardState.append(" ");
          }
       }
-      // Set the board state.
+
+      // Set the new board state.
       forsythEdwardsBoardNotation = newBoardState.toString();
    }
 
@@ -446,59 +447,6 @@ public class Board {
    }
 
    /**
-    * Prints the board in text form to the console window.
-    */
-   public void printBoardStateToConsole() {
-      // Loop through the array in reverse so that the board is printed in the correct orientation.
-      for (int rank = BOARD_SIZE - 1; rank > -1; rank--) {
-         for (int file = 0; file < BOARD_SIZE; file++) {
-
-            // Create the vector2 for the position of the current piece to be printed.
-            Vector2 boardPosition = new Vector2(file, rank);
-
-            // Get the piece at the current board position.
-            Piece piece = getPiece(boardPosition);
-
-            // If the piece is null, print a '/' character and continue the loop.
-            if (piece == null) {
-               System.out.print("  /  ");
-               continue;
-            }
-
-            // If the piece's color is white, print the piece's type in uppercase, else in lower case.
-            if (piece.getColor() == 'w') {
-               System.out.print("  " + Character.toUpperCase(piece.getType()) + "  ");
-            } else {
-               System.out.print("  " + piece.getType() + "  ");
-            }
-         }
-         // New line to separate each rank.
-         System.out.print("\n\n");
-      }
-   }
-
-   /**
-    * Updates the win section in the FEN string to whatever the game status is.
-    * 'w' is white win, 'b' = black win, draw = 'd', '-' = unfinished
-    */
-   public void updateWinInFenString(String winStatus) {
-      forsythEdwardsBoardNotationArray[6] = winStatus;
-   }
-
-   /**
-    * method to clear all the moves for every piece on the board.
-    */
-   public void clearMoves() {
-      for (int rank = 0; rank < BOARD_SIZE; rank++) {
-         for (int file = 0; file < BOARD_SIZE; file++) {
-            if (board[rank][file] != null) {
-               board[rank][file].clearMoves();
-            }
-         }
-      }
-   }
-
-   /**
     * Returns whether the black player can promote. Searches the white camp to find a black pawn.
     *
     * @return boolean - Whether the black player can promote a pawn
@@ -535,7 +483,7 @@ public class Board {
     *
     * @param n abstract number representing desired promotion.
     */
-   public void piecePromotion(int n) {
+   public void promotePawn(int n) {
       switch (n) {
          case (0):
             getPiece(getAvailablePromotion()).setType('q');
@@ -554,6 +502,56 @@ public class Board {
       availablePromotion = null;
    }
 
+   /**
+    * Prints the board in text form to the console window.
+    */
+   public void printBoardStateToConsole() {
+      // Loop through the array in reverse so that the board is printed in the correct orientation.
+      for (int rank = BOARD_SIZE - 1; rank > -1; rank--) {
+         for (int file = 0; file < BOARD_SIZE; file++) {
+
+            // Create the vector2 for the position of the current piece to be printed.
+            Vector2 boardPosition = new Vector2(file, rank);
+
+            // Get the piece at the current board position.
+            Piece piece = getPiece(boardPosition);
+
+            // If the piece is null, print a '/' character and continue the loop.
+            if (piece == null) {
+               System.out.print("  /  ");
+               continue;
+            }
+
+            // If the piece's color is white, print the piece's type in uppercase, else in lower case.
+            if (piece.getColor() == 'w') {
+               System.out.print("  " + Character.toUpperCase(piece.getType()) + "  ");
+            } else {
+               System.out.print("  " + piece.getType() + "  ");
+            }
+         }
+         // New line to separate each rank.
+         System.out.print("\n\n");
+      }
+   }
+
+   /**
+    * Clears all the moves for every piece on the board.
+    */
+   public void clearMoves() {
+      for (int rank = 0; rank < BOARD_SIZE; rank++) {
+         for (int file = 0; file < BOARD_SIZE; file++) {
+            if (board[rank][file] != null) {
+               board[rank][file].clearMoves();
+            }
+         }
+      }
+   }
+
+   /**
+    * Updates the FEN string when a checkmate is found.
+    *
+    * @param winningPlayer the player who won the game.
+    */
    public void updateFENStringWhenCheckMate(String winningPlayer) {
       String[] fenArray = forsythEdwardsBoardNotation.split(" ", 7);
       fenArray[6] = winningPlayer;
@@ -572,6 +570,11 @@ public class Board {
       forsythEdwardsBoardNotation = newFenString.toString();
    }
 
+   /**
+    * Returns the full move number.
+    *
+    * @return the full move number
+    */
    public int getTurnNumber() {
       return Integer.parseInt(forsythEdwardsBoardNotationArray[4]);
    }

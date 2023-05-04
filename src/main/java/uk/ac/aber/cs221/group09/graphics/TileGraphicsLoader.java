@@ -21,7 +21,7 @@ import java.util.HashMap;
  *
  * @author Gwion Hughes
  * @version 1.0 (Release)
- * @see uk.ac.aber.cs221.group09.graphics.Tile
+ * @see Tile
  */
 public class TileGraphicsLoader {
    private HashMap<Character, Image> graphicsMap;

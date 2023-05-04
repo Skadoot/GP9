@@ -8,7 +8,7 @@
 package uk.ac.aber.cs221.group09.logic;
 
 import uk.ac.aber.cs221.group09.logic.pieces.Piece;
-import uk.ac.aber.cs221.group09.logic.vector.Vector2;
+import uk.ac.aber.cs221.group09.util.Vector2;
 
 import java.util.ArrayList;
 
@@ -21,7 +21,7 @@ import java.util.ArrayList;
  *
  * @author Shaun Royle
  * @version 1.1 (Release)
- * @see uk.ac.aber.cs221.group09.logic.MoveCalculator
+ * @see MoveCalculator
  */
 public class Game {
 
@@ -60,7 +60,12 @@ public class Game {
       this.selectedPiece = new Vector2();
    }
 
-   // TODO Requires JavaDoc comment
+   /**
+   *  method to create a game giving a file name, and weather or not the game has not finished
+   *
+   * @param fileName the file name
+   * @param isFinished is the game finished?
+    */
    public void createGame(String fileName, boolean isFinished) {
       log.setFinishedGame(isFinished);
       log.setFileName(fileName);
@@ -232,6 +237,9 @@ public class Game {
       return res;
    }
 
+
+
+
    /**
     * Requests that the board promotes a piece.
     *
@@ -239,11 +247,16 @@ public class Game {
     */
    public void promote(int n) {
       gameBoard.piecePromotion(n);
+      log.replaceLine(gameBoard.getTurnNumber(), gameBoard.getForsythEdwardsBoardNotation());
       gameBoard.clearMoves();
       MoveCalculator promotionCheck = new MoveCalculator(attackingPlayer, gameBoard);
       promotionCheck.findLegalMovesForPlayer(true);
       promotionCheck.findLegalMovesForPlayer(false);
    }
+
+
+
+
 
    /**
     * Checks whether a promotion is available.
@@ -255,13 +268,15 @@ public class Game {
       return gameBoard.canWhitePromote() || gameBoard.canBlackPromote();
    }
 
-   // TODO Requires JavaDoc comment
+   /**
+    * method that checks if the game is over by checkmate
+    * @param c the player.
+    */
    public void endGame(char c) {
       String winningPlayer = Character.toString(c);
       gameBoard.updateFENStringWhenCheckMate(winningPlayer);
       log.updateLog(gameBoard.getForsythEdwardsBoardNotation());
       log.moveFileToFinishedGamesDir();
-
 
       System.out.println("\n" + gameBoard.getForsythEdwardsBoardNotation() + "\n");
    }

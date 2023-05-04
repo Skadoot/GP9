@@ -33,13 +33,11 @@ public class Log {
 
 
    /**
-    * Constructor for Log class.
-    * If load is set to false, it makes a new text file to record FEN strings after each turn.
-    * If the file name already exists, it will be overwritten.
-    * If load is set to true then an existing text file is used.
+    * Constructor for Log class. Used for creating new games. Creates a new .txt file using fileName param to record
+    * the game. If the file name already exists, it will be overwritten.
     * If a new file is made then the FEN string for an initial board state is also added.
     *
-    * @param fileName the name of the file to be made or loaded
+    * @param fileName the name of the file to be made
     */
    public Log(String fileName) {
       //By default, the log should attach itself to the unfinished games folder when first constructed
@@ -61,7 +59,6 @@ public class Log {
 
    /**
     * Simple constructor.
-    * <p>
     * Used in loading games where the log class needs to be instantiated before filename is set.
     */
    public Log() {

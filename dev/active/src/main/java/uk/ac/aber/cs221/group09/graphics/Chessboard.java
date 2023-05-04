@@ -170,7 +170,7 @@ public class Chessboard {
      */
     public void highlightTiles(ArrayList<int[]> validT, ArrayList<int[]> checkT) {
         highlightValidTiles(validT);
-        //highlightCheckTile(checkT);
+        highlightCheckTile(checkT);
     }
 
     public void highlightValidTiles(ArrayList<int[]> validT) {
@@ -189,7 +189,10 @@ public class Chessboard {
     }
 
     private void highlightCheckTile(ArrayList<int[]> checkT) {
-        tiles[0][0].setStyleClass("check-tile");
+        for (int[] coords : checkT) {
+            tiles[coords[0]][coords[1]].setStyleClass("check-tile");
+        }
+        //tiles[0][0].setStyleClass("check-tile");
     }
 
     private void highlightAttackingTiles(ArrayList<int[]> attackT) {

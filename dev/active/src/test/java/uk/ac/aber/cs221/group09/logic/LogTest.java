@@ -1,5 +1,5 @@
 /*
- * @(#) LogTest.java 0.1 2023-05-02
+ * @(GP9) LogTest.java 1.0 2023-05-02
  *
  * Copyright (c) 2023 Aberystwyth University.
  * All rights reserved.
@@ -15,16 +15,14 @@ import uk.ac.aber.cs221.group09.logic.pieces.Piece;
 import uk.ac.aber.cs221.group09.util.Vector2;
 
 public class LogTest {
-
    @Test
-   public void testReadLog(){
+   public void testReadLog() {
       Game testGame = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "testGame", false);
-      Piece pieceToMove = testGame.getGameBoard().getPiece(new Vector2(0,1));
+      Piece pieceToMove = testGame.getGameBoard().getPiece(new Vector2(0, 1));
       testGame.calculateMoves();
       Vector2 testPosition = new Vector2(0, 3);
-      for(Vector2 currentMove : pieceToMove.getPossibleMoves()) {
-         if(currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation()))
-         {
+      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testGame.getGameBoard().movePiece(pieceToMove, testPosition);
          }
       }
@@ -48,9 +46,9 @@ public class LogTest {
       }
       testGame.log.updateLog(testGame.getGameBoard().getForsythEdwardsBoardNotation());
 
-      pieceToMove = testGame.getGameBoard().getPiece(new Vector2(1,1));
+      pieceToMove = testGame.getGameBoard().getPiece(new Vector2(1, 1));
       testGame.calculateMoves();
-      testPosition = new Vector2(1,3);
+      testPosition = new Vector2(1, 3);
       for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testGame.getGameBoard().movePiece(pieceToMove, testPosition);
@@ -63,7 +61,7 @@ public class LogTest {
    }
 
    @Test
-   public void testUpdateLog(){
+   public void testUpdateLog() {
       Game testGame = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "testGame", false);
       Piece pieceToMove = testGame.getGameBoard().getPiece(new Vector2(0, 1));
       testGame.calculateMoves();
@@ -78,7 +76,7 @@ public class LogTest {
    }
 
    @Test
-   public void testsetFilename(){
+   public void testsetFilename() {
       Game testGame = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "testGame", false);
       testGame.log.updateLog(testGame.getGameBoard().getForsythEdwardsBoardNotation());
       Assertions.assertEquals(2, testGame.log.getNumberOfLines());
@@ -86,7 +84,7 @@ public class LogTest {
    }
 
    @Test
-   public void testsetFinishedGame(){
+   public void testsetFinishedGame() {
       Game testGame = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "testGame", false);
       Piece pieceToMove = testGame.getGameBoard().getPiece(new Vector2(0, 1));
       testGame.calculateMoves();
@@ -104,7 +102,7 @@ public class LogTest {
    }
 
    @Test
-   public void testdeleteFile(){
+   public void testdeleteFile() {
       Game testGame = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "testGame", false);
       Piece pieceToMove = testGame.getGameBoard().getPiece(new Vector2(0, 1));
       testGame.calculateMoves();
@@ -121,12 +119,9 @@ public class LogTest {
    }
 
    @Test
-   public void testReplaceLine(){
+   public void testReplaceLine() {
       Game testGame = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "testGame", false);
-      testGame.log.replaceLine(0,"rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
+      testGame.log.replaceLine(0, "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
       Assertions.assertEquals("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1", testGame.log.readLog(0));
    }
-
-
-
 }

@@ -7,6 +7,8 @@
 
 package uk.ac.aber.cs221.group09.logic;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import uk.ac.aber.cs221.group09.logic.pieces.Piece;
@@ -73,4 +75,53 @@ public class LogTest {
       Assertions.assertEquals(2, testGame.log.getNumberOfLines());
    }
 
+   @Test
+   public void testsetFilename() {
+      Game testGame = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "testGame", false);
+      testGame.log.updateLog(testGame.getGameBoard().getForsythEdwardsBoardNotation());
+      Assertions.assertEquals(2, testGame.log.getNumberOfLines());
+
+   }
+
+   @Test
+   public void testsetFinishedGame() {
+      Game testGame = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "testGame", false);
+      Piece pieceToMove = testGame.getGameBoard().getPiece(new Vector2(0, 1));
+      testGame.calculateMoves();
+      Vector2 testPosition = new Vector2(0, 3);
+      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+            testGame.getGameBoard().movePiece(pieceToMove, testPosition);
+         }
+      }
+      testGame.log.updateLog(testGame.getGameBoard().getForsythEdwardsBoardNotation());
+      Assertions.assertEquals(2, testGame.log.getNumberOfLines());
+      testGame.log.setFinishedGame(true);
+
+
+   }
+
+   @Test
+   public void testdeleteFile() {
+      Game testGame = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "testGame", false);
+      Piece pieceToMove = testGame.getGameBoard().getPiece(new Vector2(0, 1));
+      testGame.calculateMoves();
+      Vector2 testPosition = new Vector2(0, 3);
+      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+            testGame.getGameBoard().movePiece(pieceToMove, testPosition);
+         }
+      }
+      testGame.log.updateLog(testGame.getGameBoard().getForsythEdwardsBoardNotation());
+      Assertions.assertEquals(2, testGame.log.getNumberOfLines());
+      testGame.log.deleteFile();
+
+   }
+
+   @Test
+   public void testReplaceLine() {
+      Game testGame = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "testGame", false);
+      testGame.log.replaceLine(0, "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
+      Assertions.assertEquals("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1", testGame.log.readLog(0));
+   }
 }

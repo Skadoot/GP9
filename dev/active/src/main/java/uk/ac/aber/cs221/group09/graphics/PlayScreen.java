@@ -53,7 +53,6 @@ public class PlayScreen {
    private Button prevB;
    private Button nextB;
 
-
    /**
     * Constructor method for the Play Screen.
     *
@@ -537,7 +536,6 @@ public class PlayScreen {
          currentTurn++;
       }
       chessboard.updateBoard(anInterface.getPreviousFEN(currentTurn));
-
    }
 
    /**
@@ -698,6 +696,7 @@ public class PlayScreen {
       prevB.setDisable(b);
       nextB.setDisable(b);
    }
+
    public void setGameFinished(){
       gameFinished=true;
    }

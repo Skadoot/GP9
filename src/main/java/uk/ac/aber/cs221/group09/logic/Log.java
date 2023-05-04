@@ -220,7 +220,7 @@ public class Log {
    }
 
    /**
-    * Deletes the current log file that is in unfinished games.
+    * Deletes the current log file from the relevant folder
     * Called when the user wishes to exit a game and not save the file.
     */
    public void deleteFile(){

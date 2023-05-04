@@ -532,7 +532,7 @@ public class PlayScreen {
             currentTurn = (anInterface.getTurnNumber());
             startedViewing = true;
         }
-        if (currentTurn <= anInterface.getTurnNumber()) {
+        if (currentTurn < anInterface.getTurnNumber()) {
             //increases the turn we are looking at by 1
             currentTurn++;
         }

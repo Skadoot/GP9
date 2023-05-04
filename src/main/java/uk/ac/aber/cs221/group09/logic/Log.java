@@ -31,6 +31,7 @@ public class Log {
    private int numberOfLines = 0; //to keep track of the number of lines in the file
    private String nameOfFolderToHoldUnfinishedGames = "./unfinishedGames";
    private String nameOfFolderToHoldFinishedGames = "./finishedGames";
+   private String nameOfFolder;
 
 
    /**
@@ -44,6 +45,8 @@ public class Log {
     * @param fileName the name of the file to be made or loaded
     */
    public Log(String fileName) {
+      //By default, the log should attach itself to the unfinished games folder when first constructed
+      setFinishedGame(false);
       // If the unfinished game directory does not exist, create it
       new File(nameOfFolderToHoldUnfinishedGames).mkdirs();
       File dir = new File(nameOfFolderToHoldUnfinishedGames);
@@ -67,6 +70,15 @@ public class Log {
    public Log() {
    }
 
+   // TODO Requires JavaDoc comment
+   public void setFinishedGame(boolean finishedGame) {
+      if(finishedGame) {
+         this.nameOfFolder = "./finishedGames";
+      } else {
+         this.nameOfFolder = "./unfinishedGames";
+      }
+   }
+
    public void setFileName(String fileName) {
       this.fileName = fileName;
    }
@@ -78,7 +90,7 @@ public class Log {
     * @param FEN the Forsyth Edwards Notation representing the board state. This is what gets appended to the txt file.
     */
    public void updateLog(String FEN) {
-      File dir = new File(nameOfFolderToHoldUnfinishedGames);
+      File dir = new File(this.nameOfFolder);
       try {
          FileWriter fileWriter = new FileWriter(new File(dir, this.fileName), true);
          fileWriter.append(FEN).append("\n");
@@ -103,7 +115,7 @@ public class Log {
       String fenAtLineNumber = null;
       try {
          //assign variable the string at the requested line number of the file
-         fenAtLineNumber = Files.readAllLines(Paths.get(nameOfFolderToHoldUnfinishedGames, fileName)).get(lineNumber);
+         fenAtLineNumber = Files.readAllLines(Paths.get(nameOfFolder, fileName)).get(lineNumber);
       } catch (IOException e) {
          System.out.println("IO Error");
       } catch (IndexOutOfBoundsException er) {
@@ -120,7 +132,7 @@ public class Log {
    public int getNumberOfLines(){
       try {
          // Assign variable the string at the requested line number of the file
-         this.numberOfLines = Files.readAllLines(Paths.get(nameOfFolderToHoldUnfinishedGames, fileName)).size();
+         this.numberOfLines = Files.readAllLines(Paths.get(nameOfFolder, fileName)).size();
       } catch (IOException e) {
          System.out.println("IO Error");
       }
@@ -134,12 +146,17 @@ public class Log {
     *
     * @return ArrayList of file names in String format where each file is the record of a game.
     */
-   public ArrayList<String> displayExistingGameFiles() {
+   public ArrayList<String> displayExistingGameFiles(boolean finished) {
       // Declare new array list to hold names of existing game files
       ArrayList<String> existingGameFiles = new ArrayList<String>();
-      // Check all the files to see in the path to see if they are .txt files
+      // Check all the files to see if in the path to see if they are .txt files
+      File currentFolder;
+      if (finished){
+         currentFolder = new File("./finishedGames"); // The relative file path to where the files are saved
+      }else {
+         currentFolder = new File("./unfinishedGames"); // The relative file path to where the files are saved
+      }
 
-      File currentFolder = new File("./unfinishedGames"); // The relative file path to where the files are saved
       File[] allTheFiles = currentFolder.listFiles(); // Store all the files in the current folder in an array
       for (int i = 0; i < allTheFiles.length; i++) {
          String fileBeingChecked = allTheFiles[i].getName();
@@ -179,7 +196,7 @@ public class Log {
     */
    public void replaceLine(int lineNumber, String replacementLine){
       // Declare a string to hold the path to where the log file is
-      String pathToCurrentFile = nameOfFolderToHoldUnfinishedGames+"/"+fileName;
+      String pathToCurrentFile = nameOfFolder+"/"+fileName;
       Path path = Paths.get(pathToCurrentFile);
 
       // Make sure the line number is in the bounds of the file otherwise do not try
@@ -207,7 +224,7 @@ public class Log {
     * Called when the user wishes to exit a game and not save the file.
     */
    public void deleteFile(){
-      String pathToCurrentFile = nameOfFolderToHoldUnfinishedGames+"/"+fileName;
+      String pathToCurrentFile = nameOfFolder+"/"+fileName;
       File currentFile = new File(pathToCurrentFile);
       currentFile.delete();
    }

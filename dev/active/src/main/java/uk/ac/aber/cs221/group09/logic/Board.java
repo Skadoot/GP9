@@ -66,7 +66,6 @@ public class Board {
     * Set the coordinates of the available pawn promotion to pawn ready for promotion or null.
     *
     * @param position Vector2 position of a pawn ready for promotion.
-    * @return
     */
    public void setAvailablePromotion(Vector2 position) {
       this.availablePromotion = position;
@@ -367,10 +366,11 @@ public class Board {
 
       // En Passant represented by forsythEdwardsBoardNotationArray[3], should already be updated by this point.
       // The half move clock represented by forsythEdwardsBoardNotationArray[4].
-      forsythEdwardsBoardNotationArray[4] = Integer.toString(Integer.parseInt(forsythEdwardsBoardNotationArray[4]) + 1);
-
+      if(newTurn) {
+         forsythEdwardsBoardNotationArray[4] = Integer.toString(Integer.parseInt(forsythEdwardsBoardNotationArray[4]) + 1);
+      }
       // Update the full move number represented by forsythEdwardsBoardNotationArray[5], by incrementing it by 1.
-      if (((Integer.parseInt(forsythEdwardsBoardNotationArray[4])) % 2 == 0) && ((Integer.parseInt(forsythEdwardsBoardNotationArray[4])) != 0)) {
+      if (((Integer.parseInt(forsythEdwardsBoardNotationArray[4])) % 2 == 0) && ((Integer.parseInt(forsythEdwardsBoardNotationArray[4])) != 0) && newTurn) {
          forsythEdwardsBoardNotationArray[5] = Integer.toString(Integer.parseInt(forsythEdwardsBoardNotationArray[5]) + 1);
       }
 
@@ -538,24 +538,16 @@ public class Board {
    public void piecePromotion(int n) {
       switch (n) {
          case (0):
-
-               getPiece(getAvailablePromotion()).setType('q');
-
+            getPiece(getAvailablePromotion()).setType('q');
             break;
          case (1):
-
-               getPiece(getAvailablePromotion()).setType('r');
-
+            getPiece(getAvailablePromotion()).setType('r');
             break;
          case (2):
-
-               getPiece(getAvailablePromotion()).setType('b');
-
+            getPiece(getAvailablePromotion()).setType('b');
             break;
          case (3):
-
-               getPiece(getAvailablePromotion()).setType('n');
-
+            getPiece(getAvailablePromotion()).setType('n');
             break;
       }
       updateForsythEdwardsBoardNotation(false);
@@ -578,5 +570,9 @@ public class Board {
       }
       // Set the board state.
       forsythEdwardsBoardNotation = newFenString.toString();
+   }
+
+   public int getTurnNumber() {
+      return Integer.parseInt(forsythEdwardsBoardNotationArray[4]);
    }
 }

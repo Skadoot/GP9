@@ -42,7 +42,7 @@ public class Game {
    private boolean isMoveMade = false;
 
    /**
-    * Simple constructor for game.
+    * Default constructor for game.
     *
     * @param boardState the initial board state string for the game (Forsyth Edwards Notation).
     */
@@ -52,11 +52,20 @@ public class Game {
       this.selectedPiece = new Vector2();
    }
 
+   /**
+    * Simple constructor.
+    */
    public Game() {
       this.log = new Log();
       this.selectedPiece = new Vector2();
    }
 
+   /**
+   *  method to create a game giving a file name, and weather or not the game has not finished
+   *
+   * @param fileName the file name
+   * @param isFinished is the game finished?
+    */
    public void createGame(String fileName, boolean isFinished) {
       log.setFinishedGame(isFinished);
       log.setFileName(fileName);
@@ -191,6 +200,7 @@ public class Game {
       attackingPlayer = gameBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
    }
 
+   // TODO Requires JavaDoc comment
    public ArrayList<int[]> validTiles() {
       Piece piece = gameBoard.getPiece(selectedPiece);
       ArrayList<int[]> res = new ArrayList<int[]>();
@@ -207,6 +217,7 @@ public class Game {
       return res;
    }
 
+   // TODO Requires JavaDoc comment
    public ArrayList<int[]> checkedKing() {
       ArrayList<int[]> res = new ArrayList<int[]>();
       MoveCalculator checkCheck = new MoveCalculator(attackingPlayer, gameBoard);
@@ -226,6 +237,9 @@ public class Game {
       return res;
    }
 
+
+
+   
    /**
     * Requests that the board promotes a piece.
     *
@@ -233,11 +247,16 @@ public class Game {
     */
    public void promote(int n) {
       gameBoard.piecePromotion(n);
+      log.replaceLine(gameBoard.getTurnNumber(), gameBoard.getForsythEdwardsBoardNotation());
       gameBoard.clearMoves();
       MoveCalculator promotionCheck = new MoveCalculator(attackingPlayer, gameBoard);
       promotionCheck.findLegalMovesForPlayer(true);
       promotionCheck.findLegalMovesForPlayer(false);
    }
+
+
+
+
 
    /**
     * Checks whether a promotion is available.
@@ -246,19 +265,21 @@ public class Game {
     * @return boolean whether the player can promote a pawn.
     */
    public boolean isPromotionAvailable() {
-      if (gameBoard.canWhitePromote() || gameBoard.canBlackPromote()) {
-         return true;
-      } else {
-         return false;
-      }
+      return gameBoard.canWhitePromote() || gameBoard.canBlackPromote();
    }
 
+
+
+
+   /**
+    * method that checks if the game is over by checkmate
+    * @param c the player.
+    */
    public void endGame(char c) {
       String winningPlayer = Character.toString(c);
       gameBoard.updateFENStringWhenCheckMate(winningPlayer);
       log.updateLog(gameBoard.getForsythEdwardsBoardNotation());
       log.moveFileToFinishedGamesDir();
-
 
       System.out.println("\n" + gameBoard.getForsythEdwardsBoardNotation() + "\n");
    }

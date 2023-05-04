@@ -233,6 +233,7 @@ public class Game {
     */
    public void promote(int n) {
       gameBoard.piecePromotion(n);
+      log.replaceLine(gameBoard.getTurnNumber(), gameBoard.getForsythEdwardsBoardNotation());
       gameBoard.clearMoves();
       MoveCalculator promotionCheck = new MoveCalculator(attackingPlayer, gameBoard);
       promotionCheck.findLegalMovesForPlayer(true);

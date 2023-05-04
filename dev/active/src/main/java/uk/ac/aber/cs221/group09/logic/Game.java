@@ -196,44 +196,40 @@ public class Game {
       attackingPlayer = gameBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
    }
 
-   // TODO Requires JavaDoc comment
-   public ArrayList<int[]> validTiles() {
+   /**
+    * Creates and ArrayList containing the coordinates of valid tiles to display on the front end.
+    * @return res - An ArrayList of int pairs.
+    */
+   public ArrayList<Vector2> validTiles() {
       Piece piece = gameBoard.getPiece(selectedPiece);
-      ArrayList<int[]> res = new ArrayList<>();
+      ArrayList<Vector2> res = new ArrayList<>();
       if(gameBoard.getPiece(selectedPiece) == null) {
          return res;
       }
       if (piece.getColor() != attackingPlayer) {
          return res;
       }
-      ArrayList<Vector2> tiles = piece.getPossibleMoves();
-      for (Vector2 vTiles : tiles) {
-         int[] coords = new int[2];
-         coords[0] = vTiles.y;
-         coords[1] = vTiles.x;
-         res.add(coords);
-      }
+      res = piece.getPossibleMoves();
       return res;
    }
 
-   // TODO Requires JavaDoc comment
-   public ArrayList<int[]> checkedKing() {
-      ArrayList<int[]> res = new ArrayList<int[]>();
+   /**
+    * Return the position of any king in check in order to display on the front end.
+    * @return res - ArrayList containing an int pair resembling a coordinate.
+    */
+   public ArrayList<Vector2> checkedKing() {
+      ArrayList<Vector2> res = new ArrayList<Vector2>();
       MoveCalculator checkCheck = new MoveCalculator(attackingPlayer, gameBoard);
       checkCheck.findLegalMovesForPlayer(true);
       checkCheck.findLegalMovesForPlayer(false);
       if (checkCheck.isPlayerInCheck()) {
-         int[] coords = new int[2];
+         Vector2 kCheck = new Vector2();
          if (attackingPlayer == 'w') {
-            Vector2 wKPos = gameBoard.getWhiteKingPosition();
-            coords[0] = wKPos.y;
-            coords[1] = wKPos.x;
+            kCheck = gameBoard.getWhiteKingPosition();
          } else {
-            Vector2 wKPos = gameBoard.getBlackKingPosition();
-            coords[0] = wKPos.y;
-            coords[1] = wKPos.x;
+            kCheck = gameBoard.getBlackKingPosition();
          }
-         res.add(coords);
+         res.add(kCheck);
       }
       return res;
    }

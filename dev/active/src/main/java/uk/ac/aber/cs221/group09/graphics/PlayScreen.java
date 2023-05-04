@@ -19,6 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import uk.ac.aber.cs221.group09.util.Vector2;
 
 import java.util.ArrayList;
 
@@ -289,8 +290,8 @@ public class PlayScreen {
       gameOverOverlay(gameState);
    }
 
-   // TODO Requires JavaDoc comment
-   public void updatePlayerDashboard(char player) {
+   private void updatePlayerDashboard(char player) {
+      //Update the playerDashboard to display the active player.
       if (player == 'w') {
          this.symbol.setImage(graphicsLoader.getImage('W'));
          turnTracker.setText(whitePlayerName.getText());
@@ -679,13 +680,18 @@ public class PlayScreen {
       StackPane.setAlignment(victoryWindow, Pos.CENTER);
    }
 
-   // TODO Requires JavaDoc comment
-   public void highlightTiles(ArrayList<int[]> vTiles, ArrayList<int[]> checkTiles) {
+   /**
+    * Function call to visually highlight tiles. Passed two arrays of coordinates to highlight. One is the coordinates
+    * of valid tiles for the selected piece to move to, the other the coordinates of the king if there is a king in check.
+    * @param vTiles - Coordinates of valid tiles for selected piece to move to
+    * @param checkTiles - Coordinates of any kings in check.
+    */
+   public void highlightTiles(ArrayList<Vector2> vTiles, ArrayList<Vector2> checkTiles) {
       chessboard.highlightTiles(vTiles, checkTiles);
    }
 
-   // TODO Requires JavaDoc comment
    private void setLogDisabled(boolean b) {
+      //Set to disable or enable both buttons to replay the game on the chessboard.
       prevB.setDisable(b);
       nextB.setDisable(b);
    }

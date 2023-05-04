@@ -10,6 +10,7 @@ package uk.ac.aber.cs221.group09.graphics;
 
 import javafx.geometry.Insets;
 import javafx.scene.layout.GridPane;
+import uk.ac.aber.cs221.group09.util.Vector2;
 
 import java.util.ArrayList;
 
@@ -166,18 +167,24 @@ public class Chessboard {
      * @param validT - ArrayList of coordinates of valid tiles.
      * @param checkT - ArrayList of coordinates of checked pieces
      */
-    public void highlightTiles(ArrayList<int[]> validT, ArrayList<int[]> checkT) {
+    public void highlightTiles(ArrayList<Vector2> validT, ArrayList<Vector2> checkT) {
         highlightValidTiles(validT);
         highlightCheckTile(checkT);
     }
 
-    public void highlightValidTiles(ArrayList<int[]> validT) {
+    private void highlightValidTiles(ArrayList<Vector2> validT) {
         if(validT.size() == 0) return;
-        for (int[] coords : validT) {
-            tiles[coords[0]][coords[1]].setStyleClass("valid-tile");
+        for (Vector2 coords : validT) {
+            tiles[coords.y][coords.x].setStyleClass("valid-tile");
         }
     }
 
+    /**
+     * Function call to itterate over every chess button and set whether it is pressable based on the passed boolean.
+     * If the boolean is false, the chessboard is no longer interactable. If it is set to truth thereafter, the chessboard
+     * is enabled.
+     * @param b - Boolean to turn every button on or off.
+     */
     public void disableChessboard(boolean b) {
         for (int row = 0; row < 8; row++) {
             for (int column = 0; column < 8; column++) {
@@ -186,17 +193,9 @@ public class Chessboard {
         }
     }
 
-    private void highlightCheckTile(ArrayList<int[]> checkT) {
-        for (int[] coords : checkT) {
-            tiles[coords[0]][coords[1]].setStyleClass("check-tile");
+    private void highlightCheckTile(ArrayList<Vector2> checkT) {
+        for (Vector2 coords : checkT) {
+            tiles[coords.y][coords.x].setStyleClass("check-tile");
         }
     }
-
-    private void highlightAttackingTiles(ArrayList<int[]> attackT) {
-        if(attackT.size() == 0) return;
-        for (int[] coords : attackT) {
-            tiles[coords[0]][coords[1]].setStyleClass("attacking-tile");
-        }
-    }
-
 }

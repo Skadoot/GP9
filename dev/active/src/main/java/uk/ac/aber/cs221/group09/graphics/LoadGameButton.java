@@ -45,7 +45,7 @@ public class LoadGameButton {
 
       // Create the FX button
       loadButton = new Button(this.saveName);
-      loadButton.setPrefSize(150, 50);
+      loadButton.setPrefSize(200, 50);
 
       // Set the action of the button
       loadButton.setOnAction(new EventHandler<ActionEvent>() {

@@ -80,8 +80,6 @@ public class Interface extends Application {
 
       playScreen.updatePlayScreen(game.gameNotation());
       playScreen.highlightTiles(game.validTiles(), game.checkedKing()); //might need to comment this out
-
-
    }
 
 
@@ -169,6 +167,9 @@ public class Interface extends Application {
       // Make a whole new playScreen.
       playScreen = new PlayScreen(this);
       playScreen.updatePlayScreen(game.gameNotation());
+      if(isFinished){
+         playScreen.setGameFinished();
+      }
       primaryStage.setScene(playScreen.getScene());
    }
 

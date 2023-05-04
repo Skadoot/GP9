@@ -136,7 +136,7 @@ public class PlayerNameScreen {
    }
 
    private boolean isNameTooLong() {
-      String whiteName = textFieldFile.getText();
+      String whiteName = textFieldWhite.getText();
       String blackName = textFieldBlack.getText();
       String fileName = textFieldFile.getText();
       return (whiteName.length() > 32 || blackName.length() > 32 || fileName.length() > 32);

@@ -98,7 +98,7 @@ public class LoadScreen {
             anInterface.toMenu();
          }
       });
-      layout.add(backButton, 6, 1);
+      layout.add(backButton, 6, 1, 2, 2);
 
       // Makes the gridlines visible in layout. Useful for debugging
       // layout.setGridLinesVisible(true);

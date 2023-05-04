@@ -123,7 +123,9 @@ public class Game {
 
       // Print debugging
       System.out.println("Moved piece to " + selectedBoardCoordinate.getVector2AsBoardNotation());
-      System.out.println("\n         ,....,----------------------------------------------------\n" +
+      System.out.println(
+
+            "\n         ,....,----------------------------------------------------\n" +
             "      ,::::::<-----------------------------------------------------\n" +
             "     ,::/^\\\"``.----------------------------------------------------\n" +
             "    ,::/, `   e`.--------------------------------------------------\n" +
@@ -139,7 +141,9 @@ public class Game {
             "     /          \\--------------------------------------------------\n" +
             "    ('--......--')-------------------------------------------------\n" +
             "    /'--......--'\\-------------------------------------------------\n" +
-            "    `\"--......--\"--------------------------------------------------\n");
+            "    `\"--......--\"--------------------------------------------------\n"
+
+      );
 
       calculateMoves();
       isMoveMade = false;
@@ -245,9 +249,6 @@ public class Game {
       return res;
    }
 
-
-
-
    /**
     * Requests that the board promotes a piece.
     *
@@ -261,10 +262,6 @@ public class Game {
       promotionCheck.findLegalMovesForPlayer(true);
       promotionCheck.findLegalMovesForPlayer(false);
    }
-
-
-
-
 
    /**
     * Checks whether a promotion is available.

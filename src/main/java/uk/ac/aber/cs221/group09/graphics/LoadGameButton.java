@@ -23,24 +23,24 @@ import javafx.scene.control.Button;
  * @see uk.ac.aber.cs221.group9.graphics.LoadScreen
  */
 public class LoadGameButton {
-    private Button loadButton;
-    private int saveNumber;
-    private String saveName;
-    private LoadScreen loadScreen;
-    private boolean isFinishedGame;
+   private Button loadButton;
+   private int saveNumber;
+   private String saveName;
+   private LoadScreen loadScreen;
 
-    /**
-     * Constructor for a LoadGame Button. Takes the save name as a string to display, the index of the save to return
-     * when its button is pressed, and the LoadScreen to message information to.
-     * @param saveName - String of the save's name. i.e "White v Black[Date]"
-     * @param saveNumber - The index of the save in the backend
-     * @param loadScreen - The class containing the screen displaying the LoadGameButton.
-     */
-    public LoadGameButton(String saveName, int saveNumber, LoadScreen loadScreen, boolean isFinished) {
-        this.saveName = saveName;
-        this.saveNumber = saveNumber;
-        this.loadScreen = loadScreen;
-        this.isFinishedGame = isFinished;
+   /**
+    * Constructor for a LoadGame Button.
+    * Takes the save name as a string to display, the index of the save to return
+    * when its button is pressed, and the LoadScreen to message information to.
+    *
+    * @param saveName   String of the save's name. i.e "White v Black[Date]"
+    * @param saveNumber The index of the save in the backend
+    * @param loadScreen The class containing the screen displaying the LoadGameButton.
+    */
+   public LoadGameButton(String saveName, int saveNumber, LoadScreen loadScreen) {
+      this.saveName = saveName;
+      this.saveNumber = saveNumber;
+      this.loadScreen = loadScreen;
 
       // Create the FX button
       loadButton = new Button(this.saveName);
@@ -60,7 +60,7 @@ public class LoadGameButton {
       return loadButton;
    }
 
-    private void selected() {
-        loadScreen.requestSave(this.saveName, this.isFinishedGame);
-    }
+   private void selected() {
+      loadScreen.requestSave(this.saveName);
+   }
 }

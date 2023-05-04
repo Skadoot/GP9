@@ -1,5 +1,5 @@
 /*
- * @(GP9) Game.java 1.0 2023/05/02
+ * @(GP9) Game.java 1.1 2023/05/02
  *
  * Copyright (c) 2023 Aberystwyth University.
  * All rights reserved.
@@ -20,15 +20,15 @@ import java.util.ArrayList;
  * and contains the Log object that records the game.
  *
  * @author Shaun Royle
- * @version 1.0 (Release)
+ * @version 1.1 (Release)
  * @see uk.ac.aber.cs221.group09.logic.MoveCalculator
  */
 public class Game {
 
-   private Board gameBoard;
    public Log log;
    // Whether this is the first move of the game
    boolean firstMove = true;
+   private Board gameBoard;
    // This is the player taking the current move.
    private char attackingPlayer;
    // Keep track of which move it is.
@@ -42,7 +42,6 @@ public class Game {
    private boolean isMoveMade = false;
 
    /**
-    * Constructor for game.
     * Simple constructor for game.
     *
     * @param boardState the initial board state string for the game (Forsyth Edwards Notation).
@@ -53,15 +52,15 @@ public class Game {
       this.selectedPiece = new Vector2();
    }
 
-   public Game(){
-       this.log = new Log();
-       this.selectedPiece = new Vector2();
+   public Game() {
+      this.log = new Log();
+      this.selectedPiece = new Vector2();
    }
 
    public void createGame(String fileName, boolean isFinished) {
       log.setFinishedGame(isFinished);
       log.setFileName(fileName);
-      gameBoard = new Board(log.readLog(log.getNumberOfLines()-1));
+      gameBoard = new Board(log.readLog(log.getNumberOfLines() - 1));
    }
 
    /**
@@ -98,34 +97,35 @@ public class Game {
    }
 
    /**
-    * this method updates the board.
+    * Updates the active log file after every move.
+    * Updates the logical positioning of the pieces on the board.
     */
    public void updateBoard() {
-      log.updateLog(gameBoard.getForsythEdwardsBoardNotation()); //should update the log after a move is made
+      log.updateLog(gameBoard.getForsythEdwardsBoardNotation()); // Should update the log after a move is made
       selectedPiece = selectedBoardCoordinate;
       moveCount += (attackingPlayer == 'b') ? 1 : 0;
       isMovesCalculated = false;
       gameBoard.clearMoves();
 
-      //print debugging
+      // Print debugging
       System.out.println("Moved piece to " + selectedBoardCoordinate.getVector2AsBoardNotation());
       System.out.println("\n         ,....,----------------------------------------------------\n" +
-         "      ,::::::<-----------------------------------------------------\n" +
-         "     ,::/^\\\"``.----------------------------------------------------\n" +
-         "    ,::/, `   e`.--------------------------------------------------\n" +
-         "   ,::; |        '.------------------------------------------------\n" +
-         "   ,::|  \\___,-.  c)-----------------------------------------------\n" +
-         "   ;::|     \\   '-'------------------------------------------------\n" +
-         "   ;::|      \\-----------------------------------------------------\n" +
-         "   ;::|   _.=`\\----------------------------------------------------\n" +
-         "   `;:|.=` _.=`\\---------------------------------------------------\n" +
-         "     '|_.=`   __\\--------------------------------------------------\n" +
-         "     `\\_..==`` /---------------------------------------------------\n" +
-         "      .'.___.-'.---------------------------------------------------\n" +
-         "     /          \\--------------------------------------------------\n" +
-         "    ('--......--')-------------------------------------------------\n" +
-         "    /'--......--'\\-------------------------------------------------\n" +
-         "    `\"--......--\"--------------------------------------------------\n");
+            "      ,::::::<-----------------------------------------------------\n" +
+            "     ,::/^\\\"``.----------------------------------------------------\n" +
+            "    ,::/, `   e`.--------------------------------------------------\n" +
+            "   ,::; |        '.------------------------------------------------\n" +
+            "   ,::|  \\___,-.  c)-----------------------------------------------\n" +
+            "   ;::|     \\   '-'------------------------------------------------\n" +
+            "   ;::|      \\-----------------------------------------------------\n" +
+            "   ;::|   _.=`\\----------------------------------------------------\n" +
+            "   `;:|.=` _.=`\\---------------------------------------------------\n" +
+            "     '|_.=`   __\\--------------------------------------------------\n" +
+            "     `\\_..==`` /---------------------------------------------------\n" +
+            "      .'.___.-'.---------------------------------------------------\n" +
+            "     /          \\--------------------------------------------------\n" +
+            "    ('--......--')-------------------------------------------------\n" +
+            "    /'--......--'\\-------------------------------------------------\n" +
+            "    `\"--......--\"--------------------------------------------------\n");
 
       calculateMoves();
       isMoveMade = false;
@@ -229,7 +229,7 @@ public class Game {
    /**
     * Requests that the board promotes a piece.
     *
-    * @param n
+    * @param n the unique identifier of the piece to promote.
     */
    public void promote(int n) {
       gameBoard.piecePromotion(n);
@@ -240,7 +240,8 @@ public class Game {
    }
 
    /**
-    * Checks whether a promotion is available. Called after every move to update the class field.
+    * Checks whether a promotion is available.
+    * Called after every move to update the class field.
     *
     * @return boolean whether the player can promote a pawn.
     */
@@ -257,7 +258,7 @@ public class Game {
       gameBoard.updateFENStringWhenCheckMate(winningPlayer);
       log.updateLog(gameBoard.getForsythEdwardsBoardNotation());
       log.moveFileToFinishedGamesDir();
-      
+
 
       System.out.println("\n" + gameBoard.getForsythEdwardsBoardNotation() + "\n");
    }

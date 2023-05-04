@@ -30,7 +30,7 @@ public class TileGraphicsLoader {
     * Simple constructor. Creates and initializes a new TileGraphicsLoader with preset graphics.
     */
    public TileGraphicsLoader() {
-      //Initialise the map containing all the graphics
+      // Initialise the map containing all the graphics
       setGraphics();
    }
 
@@ -39,24 +39,24 @@ public class TileGraphicsLoader {
     * returns an imageview of the graphic representing that piece from a map of images mapped to those characters to
     * display on the board.
     *
-    * @param symbol - Char representing a piece in a FEN string
-    * @return - ImageView container with piece graphic.
+    * @param symbol Char representing a piece in a FEN string
+    * @return ImageView container with piece graphic.
     */
    public ImageView fetchTilePieceGraphic(char symbol) {
-      //Return a new ImageView object for displaying the graphics in JavaFX
+      // Return a new ImageView object for displaying the graphics in JavaFX
       ImageView graphic = new ImageView(graphicsMap.get(symbol));
-      //Set to fit in 50x50 pixel space
+      // Set to fit in 50x50 pixel space
       graphic.setFitHeight(50);
       graphic.setFitWidth(50);
       return graphic;
    }
 
    private void setGraphics() {
-      //Initialise the HashMap.
+      // Initialise the HashMap.
       graphicsMap = new HashMap<>();
 
-      //Add an image to every char that represents a piece in the Forsyth Edwards Notation
-      //The path is the distance from /resources file.
+      // Add an image to every char that represents a piece in the Forsyth Edwards Notation
+      // The path is the distance from /resources file.
       graphicsMap.put('p', new Image("/images/BlackPawn.png"));
       graphicsMap.put('r', new Image("/images/BlackRook.png"));
       graphicsMap.put('n', new Image("/images/BlackKnight.png"));

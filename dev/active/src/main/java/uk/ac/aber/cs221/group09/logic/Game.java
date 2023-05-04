@@ -60,7 +60,12 @@ public class Game {
       this.selectedPiece = new Vector2();
    }
 
-   // TODO Requires JavaDoc comment
+   /**
+   *  method to create a game giving a file name, and weather or not the game has not finished
+   *
+   * @param fileName the file name
+   * @param isFinished is the game finished?
+    */
    public void createGame(String fileName, boolean isFinished) {
       log.setFinishedGame(isFinished);
       log.setFileName(fileName);
@@ -262,7 +267,6 @@ public class Game {
       gameBoard.updateFENStringWhenCheckMate(winningPlayer);
       log.updateLog(gameBoard.getForsythEdwardsBoardNotation());
       log.moveFileToFinishedGamesDir();
-
 
       System.out.println("\n" + gameBoard.getForsythEdwardsBoardNotation() + "\n");
    }

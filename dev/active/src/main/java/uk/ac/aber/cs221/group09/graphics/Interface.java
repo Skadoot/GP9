@@ -12,8 +12,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 import uk.ac.aber.cs221.group09.logic.Game;
-import uk.ac.aber.cs221.group09.logic.pieces.Piece;
-import uk.ac.aber.cs221.group09.logic.vector.Vector2;
+import uk.ac.aber.cs221.group09.util.Vector2;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -121,15 +120,17 @@ public class Interface extends Application {
       game = new Game();
 
       loadScreen.setLabel("Finished Games:");
-      //creates an array list from the log function to display every game saved locally
-      ArrayList<String> existingGamesList = game.log.displayExistingGameFiles(true);
-      //creates an array for conversion to the correct format for the button bar
+      // Set the log to look for games in the finished games directory
+      game.log.setFinishedGame(true);
+      // Creates an array list from the log function to display every game saved locally
+      ArrayList<String> existingGamesList = game.log.displayExistingGameFiles();
+      // Creates an array for conversion to the correct format for the button bar
       String[] existingGamesArray = new String[existingGamesList.size()];
-      //iterates through the games list and assigns each to its own index in the array
+      // Iterates through the games list and assigns each to its own index in the array
       for (int i = 0; i < existingGamesList.size(); i++) {
          existingGamesArray[i] = existingGamesList.get(i);
       }
-      //the array is sent to populate the scrollpane's button bar
+      // The array is sent to populate the scrollpane's button bar
       loadScreen.populateButtonBar(existingGamesArray, true);
       primaryStage.setScene(loadScreen.getScene());
    }
@@ -138,19 +139,19 @@ public class Interface extends Application {
     * Switch the scene displayed to a scene that displays all the unfinished games to pick back up from.
     */
    public void loadUFGames() {
-      //loadScreen.populateButtonBar(list of unfinished games);
       game = new Game();
       loadScreen.setLabel("Unfinished Games:");
-
-      //creates an array list from the log function to display every unfinished game saved locally
-      ArrayList<String> existingGamesList = game.log.displayExistingGameFiles(false);
-      //creates an array for conversion to the correct format for the button bar
+      // Set the log to look for games in the unfinished games directory
+      game.log.setFinishedGame(false);
+      // Creates an array list from the log function to display every unfinished game saved locally
+      ArrayList<String> existingGamesList = game.log.displayExistingGameFiles();
+      // Creates an array for conversion to the correct format for the button bar
       String[] existingGamesArray = new String[existingGamesList.size()];
-      //iterates through the games list and assigns each to its own index in the array
+      // Iterates through the games list and assigns each to its own index in the array
       for (int i = 0; i < existingGamesList.size(); i++) {
          existingGamesArray[i] = existingGamesList.get(i);
       }
-      //the array is sent to populate the scrollpane's button bar
+      // The array is sent to populate the scrollpane's button bar
       loadScreen.populateButtonBar(existingGamesArray, false);
       primaryStage.setScene(loadScreen.getScene());
    }
@@ -158,13 +159,17 @@ public class Interface extends Application {
    /**
     * This function is called to set up the board on an empty game based on a save's FEN string.
     * It passes the filename of the save to the game in order set up the unfinished/finished game to play/view.
-    * @param filename - Name of save.
+    *
+    * @param filename Name of save.
     */
    public void setGameFromSave(String filename, boolean isFinished) {
       game.createGame(filename, isFinished);
-      //Make a whole new playScreen.
+      // Make a whole new playScreen.
       playScreen = new PlayScreen(this);
       playScreen.updatePlayScreen(game.gameNotation());
+      if(isFinished){
+         playScreen.setGameFinished();
+      }
       primaryStage.setScene(playScreen.getScene());
    }
 

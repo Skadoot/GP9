@@ -8,7 +8,7 @@
 package uk.ac.aber.cs221.group09.logic;
 
 import uk.ac.aber.cs221.group09.logic.pieces.Piece;
-import uk.ac.aber.cs221.group09.logic.vector.Vector2;
+import uk.ac.aber.cs221.group09.util.Vector2;
 
 import java.util.ArrayList;
 
@@ -19,7 +19,7 @@ import java.util.ArrayList;
  *
  * @author Shaun Royle
  * @version 1.1 (Release)
- * @see uk.ac.aber.cs221.group09.logic.Board
+ * @see Board
  */
 public class MoveCalculator {
    private final char currentPlayer; // The player that you want to calculate the moves for.
@@ -185,6 +185,9 @@ public class MoveCalculator {
       System.out.println();
    }
 
+   /*
+   /  Checks if a pawn can attack in a particular direction.
+    */
    private void canPawnAttack(Piece pawn, boolean isForCheckMap, Vector2 rightAttack) {
       if (board.getPiece(rightAttack) != null || isForCheckMap) {
          if (isForCheckMap) {

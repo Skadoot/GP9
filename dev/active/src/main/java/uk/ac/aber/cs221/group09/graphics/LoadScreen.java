@@ -98,8 +98,7 @@ public class LoadScreen {
             anInterface.toMenu();
          }
       });
-      layout.add(backButton, 6, 1);
-
+      layout.add(backButton, 6, 1, 2, 2);
 
       // Makes the gridlines visible in layout. Useful for debugging
       // layout.setGridLinesVisible(true);
@@ -111,24 +110,25 @@ public class LoadScreen {
       this.scene = scene;
    }
 
-    /**
-     * Populate the ScrollPane containing the save buttons with a button for every save name passed to the function.
-     * @param stringNames - String array of save names. Can be empty.
-     */
-    public void populateButtonBar(String[] stringNames, boolean isFinished) {
-        saveContainer.getChildren().clear();
-        int length = stringNames.length;
-        for (int counter = 0; counter < length; counter++) {
-            LoadGameButton button = new LoadGameButton(stringNames[counter], counter, this, isFinished);
-            saveContainer.getChildren().add(button.getLoadButton());
-        }
-    }
+   /**
+    * Populate the ScrollPane containing the save buttons with a button for every save name passed to the function.
+    *
+    * @param stringNames - String array of save names. Can be empty.
+    */
+   public void populateButtonBar(String[] stringNames, boolean isFinished) {
+      saveContainer.getChildren().clear();
+      int length = stringNames.length;
+      for (int counter = 0; counter < length; counter++) {
+         LoadGameButton button = new LoadGameButton(stringNames[counter], counter, this, isFinished);
+         saveContainer.getChildren().add(button.getLoadButton());
+      }
+   }
 
-    /**
-     * Message to the interface the index of the save to send to the backend and load.
-     */
-    public void requestSave(String fileName, boolean isFinished) {
-        anInterface.setGameFromSave(fileName, isFinished);
-    }
+   /**
+    * Message to the interface the index of the save to send to the backend and load.
+    */
+   public void requestSave(String fileName, boolean isFinished) {
+      anInterface.setGameFromSave(fileName, isFinished);
+   }
 }
 

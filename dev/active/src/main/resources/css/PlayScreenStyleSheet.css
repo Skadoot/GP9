@@ -1,22 +1,27 @@
 .root {
     -fx-background-color: #DAE9F3;
+    -fx-font-size: 16;
 }
 
 .white-tile {
-    -fx-background-color: #b9b49d;
+    -fx-background-color: #e7d5a9;
     -fx-background-radius: 0;
 }
 
 .black-tile {
-    -fx-background-color: #305433;
+    -fx-background-color: #5d5031;
     -fx-background-radius: 0;
 }
 
 .valid-tile {
     -fx-background-color: #3aafdc;
     -fx-background-radius: 0;
+    -fx-border-color: #86784c;
 }
 .selected-tile {
     -fx-background-color: #5bde5b;
     -fx-background-radius: 0;
-}
+}.check-tile {
+     -fx-background-color: #FF3131;
+     -fx-background-radius: 0;
+ }

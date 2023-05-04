@@ -130,6 +130,7 @@ class PieceTest {
    }
 
    @Test
+   //FR5 Tests
    /**
     * A method to test that white is able to promote a pawn to a queen
     *
@@ -152,6 +153,7 @@ class PieceTest {
    }
 
    @Test
+   //FR5 Tests
    /**
     * A method to test that white is able to promote a pawn to a rook
     *
@@ -174,6 +176,7 @@ class PieceTest {
    }
 
    @Test
+   //FR5 Tests
    /**
     * A method to test that white is able to promote a pawn to a bishop
     *
@@ -196,6 +199,7 @@ class PieceTest {
    }
 
    @Test
+   //FR5 Tests
    /**
     * A method to test that white is able to promote a pawn to a knight
     *
@@ -219,6 +223,7 @@ class PieceTest {
 
 
    @Test
+   //FR5 Tests
    /**
     * A method to test that black is able to promote a pawn to a queen
     *
@@ -241,6 +246,7 @@ class PieceTest {
    }
 
    @Test
+   //FR5 Tests
    /**
     * A method to test that black is able to promote a pawn to a rook
     *
@@ -263,6 +269,7 @@ class PieceTest {
    }
 
    @Test
+   //FR5 Tests
    /**
     * A method to test that black is able to promote a pawn to a bishop
     *
@@ -285,6 +292,7 @@ class PieceTest {
    }
 
    @Test
+   //FR5 Tests
    /**
     * A method to test that black is able to promote a pawn to a knight
     *
@@ -307,6 +315,7 @@ class PieceTest {
    }
 
    @Test
+   //FR5 Tests
    /**
     * A method to test that a white queen moves correctly after promotion
     *
@@ -336,6 +345,7 @@ class PieceTest {
    }
 
    @Test
+   //FR5 Tests
    /**
     * A method to test that a white rook moves correctly after promotion
     *
@@ -365,6 +375,7 @@ class PieceTest {
    }
 
    @Test
+   //FR5 Tests
    /**
     * A method to test that a white bishop moves correctly after promotion
     *
@@ -394,6 +405,7 @@ class PieceTest {
    }
 
    @Test
+   //FR5 Tests
    /**
     * A method to test that a white knight moves correctly after promotion
     *
@@ -423,6 +435,7 @@ class PieceTest {
    }
 
    @Test
+   //FR5 Tests
    /**
     * A method to test that a black queen moves correctly after promotion
     *
@@ -452,6 +465,7 @@ class PieceTest {
    }
 
    @Test
+   //FR5 Tests
    /**
     * A method to test that a black rook moves correctly after promotion
     *
@@ -481,6 +495,7 @@ class PieceTest {
    }
 
    @Test
+   //FR5 Tests
    /**
     * A method to test that a black bishop moves correctly after promotion
     *
@@ -510,6 +525,7 @@ class PieceTest {
    }
 
    @Test
+   //FR5 Tests
    /**
     * A method to test that a black knight moves correctly after promotion
     *

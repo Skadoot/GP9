@@ -100,15 +100,33 @@ public class LogTest {
    }
 
    @Test
+   //FR11 Tests
+   /**
+    * A method to test whether the filename is the same as the actual game
+    *
+    * @param testGame The setup of a new game with a starting board
+    */
    public void testsetFilename() {
+      //creates a new game with a starting board
       Game testGame = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "testGame", false);
+
+      //check if the log for the filename is the same as the following game
       testGame.log.updateLog(testGame.getGameBoard().getForsythEdwardsBoardNotation());
       Assertions.assertEquals(2, testGame.log.getNumberOfLines());
 
    }
 
    @Test
+   //FR11 Tests
+   /**
+    * A method to test whether the finished game is applied to the log
+    *
+    * @param testGame The setup of a new game with a starting board
+    * @param pieceToMove the white pawn
+    * @param testPosition position for the white pawn to move to
+    */
    public void testsetFinishedGame() {
+      //creates a new game with a starting board
       Game testGame = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "testGame", false);
       Piece pieceToMove = testGame.getGameBoard().getPiece(new Vector2(0, 1));
       testGame.calculateMoves();
@@ -120,13 +138,24 @@ public class LogTest {
       }
       testGame.log.updateLog(testGame.getGameBoard().getForsythEdwardsBoardNotation());
       Assertions.assertEquals(2, testGame.log.getNumberOfLines());
+
+      //checks whether finished games are saved correctly
       testGame.log.setFinishedGame(true);
 
 
    }
 
    @Test
+   //FR11 Tests
+   /**
+    * A method to test whether the deleted file or game is removed from the log
+    *
+    * @param testGame The setup of a new game with a starting board
+    * @param pieceToMove the white pawn
+    * @param testPosition position for the white pawn to move to
+    */
    public void testdeleteFile() {
+      //creates a new game with a starting board
       Game testGame = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "testGame", false);
       Piece pieceToMove = testGame.getGameBoard().getPiece(new Vector2(0, 1));
       testGame.calculateMoves();
@@ -138,13 +167,24 @@ public class LogTest {
       }
       testGame.log.updateLog(testGame.getGameBoard().getForsythEdwardsBoardNotation());
       Assertions.assertEquals(2, testGame.log.getNumberOfLines());
+
+      //checks whether deleted files are removed
       testGame.log.deleteFile();
 
    }
 
    @Test
+   //FR11 Tests
+   /**
+    * A method to test whether the lines are replaced if a new game is created
+    *
+    * @param testGame The setup of a new game with a starting board
+    */
    public void testReplaceLine() {
+      //creates a new game with a starting board
       Game testGame = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "testGame", false);
+
+      //replaces line of the log if check whether it has been updated
       testGame.log.replaceLine(0, "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
       Assertions.assertEquals("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1", testGame.log.readLog(0));
    }

@@ -52,6 +52,7 @@ public class PlayScreen {
    private Button prevB;
    private Button nextB;
 
+
    /**
     * Constructor method for the Play Screen.
     *
@@ -524,6 +525,8 @@ public class PlayScreen {
     */
    public void incrementThroughLog() {
       // A function triggered by a button. Push the next board state forwards
+      chessboard.disableChessboard(currentTurn != anInterface.getTurnNumber());
+      chessboard.disableChessboard(gameFinished);
       if (!startedViewing) {
          currentTurn = (anInterface.getTurnNumber());
          startedViewing = true;
@@ -534,7 +537,6 @@ public class PlayScreen {
       }
       chessboard.updateBoard(anInterface.getPreviousFEN(currentTurn));
 
-      chessboard.disableChessboard(currentTurn != anInterface.getTurnNumber() && !gameFinished);
    }
 
    /**
@@ -542,7 +544,8 @@ public class PlayScreen {
     */
    public void decrementThroughLog() {
       // A function triggered by a button. View the past through a spooky crystal ball ooooo
-
+      chessboard.disableChessboard(currentTurn != anInterface.getTurnNumber());
+      chessboard.disableChessboard(gameFinished);
       if (!startedViewing) {
          // Sets the index for navigation through the played moves to be the last move played
          currentTurn = (anInterface.getTurnNumber());
@@ -555,7 +558,7 @@ public class PlayScreen {
             currentTurn--;
          }
       }
-      chessboard.disableChessboard(currentTurn != anInterface.getTurnNumber() && !gameFinished);
+
       if (currentTurn >= 0) {
          chessboard.updateBoard(anInterface.getPreviousFEN(currentTurn));
       }
@@ -688,5 +691,8 @@ public class PlayScreen {
    private void setLogDisabled(boolean b) {
       prevB.setDisable(b);
       nextB.setDisable(b);
+   }
+   public void setGameFinished(){
+      gameFinished=true;
    }
 }

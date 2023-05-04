@@ -237,6 +237,9 @@ public class Game {
       return res;
    }
 
+
+
+   
    /**
     * Requests that the board promotes a piece.
     *
@@ -251,6 +254,10 @@ public class Game {
       promotionCheck.findLegalMovesForPlayer(false);
    }
 
+
+
+
+
    /**
     * Checks whether a promotion is available.
     * Called after every move to update the class field.
@@ -261,7 +268,13 @@ public class Game {
       return gameBoard.canWhitePromote() || gameBoard.canBlackPromote();
    }
 
-   // TODO Requires JavaDoc comment
+
+
+
+   /**
+    * method that checks if the game is over by checkmate
+    * @param c the player.
+    */
    public void endGame(char c) {
       String winningPlayer = Character.toString(c);
       gameBoard.updateFENStringWhenCheckMate(winningPlayer);

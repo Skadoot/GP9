@@ -274,6 +274,7 @@ public class Game {
       gameBoard.updateFENStringWhenCheckMate(winningPlayer);
       log.updateLog(gameBoard.getForsythEdwardsBoardNotation());
       log.moveFileToFinishedGamesDir();
+      log.setFinishedGame(true);
 
       System.out.println("\n" + gameBoard.getForsythEdwardsBoardNotation() + "\n");
    }

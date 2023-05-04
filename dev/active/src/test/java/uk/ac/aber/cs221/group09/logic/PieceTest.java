@@ -1,5 +1,5 @@
 /*
- * @(#) BoardTest.java 0.1 2023-05-02
+ * @(#) PieceTest.java 0.1 2023-05-02
  *
  * Copyright (c) 2023 Aberystwyth University.
  * All rights reserved.
@@ -112,7 +112,8 @@ class PieceTest{
 
       //checks that the piece on h8 is now a white queen
       Vector2 testPosition = new Vector2(7,7);
-      Assertions.assertEquals('Q', game.getGameBoard().getPiece(testPosition).getType());
+      Assertions.assertEquals('q', game.getGameBoard().getPiece(testPosition).getType());
+      Assertions.assertEquals('w', game.getGameBoard().getPiece(testPosition).getColor());
    }
 
    @Test
@@ -127,7 +128,8 @@ class PieceTest{
 
       //checks that the piece on h8 is now a white rook
       Vector2 testPosition = new Vector2(7,7);
-      Assertions.assertEquals('R', game.getGameBoard().getPiece(testPosition).getType());
+      Assertions.assertEquals('r', game.getGameBoard().getPiece(testPosition).getType());
+      Assertions.assertEquals('w', game.getGameBoard().getPiece(testPosition).getColor());
    }
 
    @Test
@@ -142,7 +144,8 @@ class PieceTest{
 
       //checks that the piece on h8 is now a white bishop
       Vector2 testPosition = new Vector2(7,7);
-      Assertions.assertEquals('B', game.getGameBoard().getPiece(testPosition).getType());
+      Assertions.assertEquals('b', game.getGameBoard().getPiece(testPosition).getType());
+      Assertions.assertEquals('w', game.getGameBoard().getPiece(testPosition).getColor());
    }
 
    @Test
@@ -157,7 +160,8 @@ class PieceTest{
 
       //checks that the piece on h8 is now a white knight
       Vector2 testPosition = new Vector2(7,7);
-      Assertions.assertEquals('N', game.getGameBoard().getPiece(testPosition).getType());
+      Assertions.assertEquals('n', game.getGameBoard().getPiece(testPosition).getType());
+      Assertions.assertEquals('w', game.getGameBoard().getPiece(testPosition).getColor());
    }
 
 
@@ -174,6 +178,7 @@ class PieceTest{
       //checks that the piece on h1 is now a black queen
       Vector2 testPosition = new Vector2(7,0);
       Assertions.assertEquals('q', game.getGameBoard().getPiece(testPosition).getType());
+      Assertions.assertEquals('b', game.getGameBoard().getPiece(testPosition).getColor());
    }
 
    @Test
@@ -189,6 +194,7 @@ class PieceTest{
       //checks that the piece on h1 is now a black rook
       Vector2 testPosition = new Vector2(7,0);
       Assertions.assertEquals('r', game.getGameBoard().getPiece(testPosition).getType());
+      Assertions.assertEquals('b', game.getGameBoard().getPiece(testPosition).getColor());
    }
 
    @Test
@@ -204,6 +210,7 @@ class PieceTest{
       //checks that the piece on h1 is now a black bishop
       Vector2 testPosition = new Vector2(7,0);
       Assertions.assertEquals('b', game.getGameBoard().getPiece(testPosition).getType());
+      Assertions.assertEquals('b', game.getGameBoard().getPiece(testPosition).getColor());
    }
 
    @Test
@@ -219,6 +226,7 @@ class PieceTest{
       //checks that the piece on h1 is now a black bishop
       Vector2 testPosition = new Vector2(7,0);
       Assertions.assertEquals('n', game.getGameBoard().getPiece(testPosition).getType());
+      Assertions.assertEquals('b', game.getGameBoard().getPiece(testPosition).getColor());
    }
 
 }

@@ -184,7 +184,7 @@ public class PlayScreen {
         layout.add(quitB, 14, 0, 2, 1);
 
         //Makes the gridlines visible in layout. Useful for debugging
-        //layout.setGridLinesVisible(true);
+        layout.setGridLinesVisible(true);
 
 
         Scene playScreen = new Scene(root, 1280, 720);
@@ -544,7 +544,7 @@ public class PlayScreen {
             // from the last turn we looked at
         } else {
             //makes sure we don't go beyond the array boundaries
-            if (currentTurn > 1) {
+            if (currentTurn > 0) {
                 currentTurn--;
             }
     }
@@ -553,7 +553,9 @@ public class PlayScreen {
         } else {
             chessboard.disableChessboard(true);
         }
-        chessboard.updateBoard(anInterface.getPreviousFEN(currentTurn));
+        if (currentTurn > 0) {
+            chessboard.updateBoard(anInterface.getPreviousFEN(currentTurn));
+        }
     }
 
 

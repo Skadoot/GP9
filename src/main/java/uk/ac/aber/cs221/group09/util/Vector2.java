@@ -5,7 +5,7 @@
  * All rights reserved.
  */
 
-package uk.ac.aber.cs221.group09.logic.vector;
+package uk.ac.aber.cs221.group09.util;
 
 /**
  * Vector2 - A class to represent a set of board coordinates.

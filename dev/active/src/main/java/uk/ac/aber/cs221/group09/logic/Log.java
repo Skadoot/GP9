@@ -23,7 +23,6 @@ import java.util.List;
  *
  * @author Jack Thompson, Gwionn
  * @version 1.1 (Release)
- * @see uk.ac.aber.cs221.group09.logic.Main
  */
 public class Log {
    private String fileName; //the name of the file

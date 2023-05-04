@@ -8,7 +8,7 @@
 package uk.ac.aber.cs221.group09.logic;
 
 import uk.ac.aber.cs221.group09.logic.pieces.Piece;
-import uk.ac.aber.cs221.group09.logic.vector.Vector2;
+import uk.ac.aber.cs221.group09.util.Vector2;
 
 /**
  * Board - Stores the logical representation of a chess board.
@@ -17,7 +17,7 @@ import uk.ac.aber.cs221.group09.logic.vector.Vector2;
  *
  * @author Shaun Royle
  * @version 1.0 (Release)
- * @see uk.ac.aber.cs221.group09.logic.MoveCalculator
+ * @see MoveCalculator
  */
 public class Board {
    // Board size.
@@ -348,7 +348,7 @@ public class Board {
          }
       }
 
-      // set the new board state part of the fen string.
+      // Set the new board state part of the fen string.
       forsythEdwardsBoardNotationArray[0] = newBoardRepresentationString.toString();
 
       // Update the current player string. represented by forsythEdwardsBoardNotationArray[1].
@@ -366,7 +366,7 @@ public class Board {
       }
 
       // The half move clock represented by forsythEdwardsBoardNotationArray[4].
-      if(newTurn) {
+      if (newTurn) {
          forsythEdwardsBoardNotationArray[4] = Integer.toString(Integer.parseInt(forsythEdwardsBoardNotationArray[4]) + 1);
       }
       // Update the full move number represented by forsythEdwardsBoardNotationArray[5], by incrementing it by 1.
@@ -543,7 +543,7 @@ public class Board {
    }
 
    /**
-    * method to clear all the moves for every piece on the board.
+    * Clears all the moves for every piece on the board.
     */
    public void clearMoves() {
       for (int rank = 0; rank < BOARD_SIZE; rank++) {
@@ -555,8 +555,11 @@ public class Board {
       }
    }
 
-
-
+   /**
+    * Updates the FEN string when a checkmate is found.
+    *
+    * @param winningPlayer the player who won the game.
+    */
    public void updateFENStringWhenCheckMate(String winningPlayer) {
       String[] fenArray = forsythEdwardsBoardNotation.split(" ", 7);
       fenArray[6] = winningPlayer;

@@ -20,7 +20,7 @@ import javafx.scene.layout.VBox;
  *
  * @author Gwion Hughes
  * @version 1.0 (Release)
- * @see uk.ac.aber.cs221.group09.graphics.Interface
+ * @see Interface
  */
 public class StartScreen {
    private final Interface anInterface;

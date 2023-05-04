@@ -239,7 +239,7 @@ public class Game {
 
 
 
-   
+
    /**
     * Requests that the board promotes a piece.
     *
@@ -267,9 +267,6 @@ public class Game {
    public boolean isPromotionAvailable() {
       return gameBoard.canWhitePromote() || gameBoard.canBlackPromote();
    }
-
-
-
 
    /**
     * method that checks if the game is over by checkmate

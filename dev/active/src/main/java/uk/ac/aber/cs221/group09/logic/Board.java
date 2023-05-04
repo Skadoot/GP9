@@ -260,7 +260,7 @@ public class Board {
          if (rook.getPosition().x == 0) {
             forsythEdwardsBoardNotationArray[2] = castlingNotation.replaceAll("Q", "");
          }
-         //if it's the king side rook moving.
+         // if it's the king side rook moving.
          else {
             forsythEdwardsBoardNotationArray[2] = castlingNotation.replaceAll("K", "");
          }
@@ -313,9 +313,9 @@ public class Board {
     * Method to update the Forsyth Edwards Notation based on the current state of the board array, and game.
     */
    private void updateForsythEdwardsBoardNotation(boolean newTurn) {
-      // Update the board string. represented by forsythEdwardsBoardNotationArray[0].
       // Create a new string builder.
       StringBuilder newBoardRepresentationString = new StringBuilder();
+      // Update the board string. represented by forsythEdwardsBoardNotationArray[0].
       // Variable to keep track of how many empty spaces there have been.
       int skippedPieces = 0;
       // Loop through the array backwards.
@@ -347,10 +347,11 @@ public class Board {
             }
          }
       }
+
+      // set the new board state part of the fen string.
       forsythEdwardsBoardNotationArray[0] = newBoardRepresentationString.toString();
 
       // Update the current player string. represented by forsythEdwardsBoardNotationArray[1].
-
       if (newTurn) {
          if (forsythEdwardsBoardNotationArray[1].equals("w")) {
             forsythEdwardsBoardNotationArray[1] = "b";
@@ -364,7 +365,6 @@ public class Board {
          forsythEdwardsBoardNotationArray[2] = "-";
       }
 
-      // En Passant represented by forsythEdwardsBoardNotationArray[3], should already be updated by this point.
       // The half move clock represented by forsythEdwardsBoardNotationArray[4].
       if(newTurn) {
          forsythEdwardsBoardNotationArray[4] = Integer.toString(Integer.parseInt(forsythEdwardsBoardNotationArray[4]) + 1);
@@ -387,7 +387,8 @@ public class Board {
             newBoardState.append(" ");
          }
       }
-      // Set the board state.
+
+      // Set the new board state.
       forsythEdwardsBoardNotation = newBoardState.toString();
    }
 
@@ -446,6 +447,62 @@ public class Board {
    }
 
    /**
+    * Returns whether the black player can promote. Searches the white camp to find a black pawn.
+    *
+    * @return boolean - Whether the black player can promote a pawn
+    */
+   public boolean canBlackPromote() {
+      for (int file = 0; file < BOARD_SIZE; file++) {
+         Vector2 coordinate = new Vector2(file, 0);
+         if (getPiece(coordinate) != null && getPiece(coordinate).getType() == 'p') {
+            setAvailablePromotion(coordinate);
+            return true;
+         }
+      }
+      return false;
+   }
+
+   /**
+    * Returns whether the white player can promote. Searches the black camp to find a white pawn.
+    *
+    * @return boolean - Whether the white player can promote a pawn
+    */
+   public boolean canWhitePromote() {
+      for (int file = 0; file < BOARD_SIZE; file++) {
+         Vector2 coordinate = new Vector2(file, BOARD_SIZE - 1);
+         if (getPiece(coordinate) != null && getPiece(coordinate).getType() == 'p') {
+            setAvailablePromotion(coordinate);
+            return true;
+         }
+      }
+      return false;
+   }
+
+   /**
+    * Promote an available piece to a queen piece.
+    *
+    * @param n abstract number representing desired promotion.
+    */
+   public void promotePawn(int n) {
+      switch (n) {
+         case (0):
+            getPiece(getAvailablePromotion()).setType('q');
+            break;
+         case (1):
+            getPiece(getAvailablePromotion()).setType('r');
+            break;
+         case (2):
+            getPiece(getAvailablePromotion()).setType('b');
+            break;
+         case (3):
+            getPiece(getAvailablePromotion()).setType('n');
+            break;
+      }
+      updateForsythEdwardsBoardNotation(false);
+      availablePromotion = null;
+   }
+
+   /**
     * Prints the board in text form to the console window.
     */
    public void printBoardStateToConsole() {
@@ -498,61 +555,7 @@ public class Board {
       }
    }
 
-   /**
-    * Returns whether the black player can promote. Searches the white camp to find a black pawn.
-    *
-    * @return boolean - Whether the black player can promote a pawn
-    */
-   public boolean canBlackPromote() {
-      for (int file = 0; file < BOARD_SIZE; file++) {
-         Vector2 coordinate = new Vector2(file, 0);
-         if (getPiece(coordinate) != null && getPiece(coordinate).getType() == 'p') {
-            setAvailablePromotion(coordinate);
-            return true;
-         }
-      }
-      return false;
-   }
 
-   /**
-    * Returns whether the white player can promote. Searches the black camp to find a white pawn.
-    *
-    * @return boolean - Whether the white player can promote a pawn
-    */
-   public boolean canWhitePromote() {
-      for (int file = 0; file < BOARD_SIZE; file++) {
-         Vector2 coordinate = new Vector2(file, BOARD_SIZE - 1);
-         if (getPiece(coordinate) != null && getPiece(coordinate).getType() == 'p') {
-            setAvailablePromotion(coordinate);
-            return true;
-         }
-      }
-      return false;
-   }
-
-   /**
-    * Promote an available piece to a queen piece.
-    *
-    * @param n abstract number representing desired promotion.
-    */
-   public void piecePromotion(int n) {
-      switch (n) {
-         case (0):
-            getPiece(getAvailablePromotion()).setType('q');
-            break;
-         case (1):
-            getPiece(getAvailablePromotion()).setType('r');
-            break;
-         case (2):
-            getPiece(getAvailablePromotion()).setType('b');
-            break;
-         case (3):
-            getPiece(getAvailablePromotion()).setType('n');
-            break;
-      }
-      updateForsythEdwardsBoardNotation(false);
-      availablePromotion = null;
-   }
 
    public void updateFENStringWhenCheckMate(String winningPlayer) {
       String[] fenArray = forsythEdwardsBoardNotation.split(" ", 7);

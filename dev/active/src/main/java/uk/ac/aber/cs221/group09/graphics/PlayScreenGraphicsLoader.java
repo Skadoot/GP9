@@ -8,7 +8,6 @@
 package uk.ac.aber.cs221.group09.graphics;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 import java.util.HashMap;
 
@@ -34,7 +33,7 @@ public class PlayScreenGraphicsLoader {
     * Retrieves the graphics from the specified file and stores it in a HashMap.
     */
    private void setGraphics() {
-      graphicsMap = new HashMap<Character, Image>();
+      graphicsMap = new HashMap<>();
 
       graphicsMap.put('W', new Image("/images/playscenepieces/WhiteKing.png"));
       graphicsMap.put('B', new Image("/images/playscenepieces/BlackKing.png"));

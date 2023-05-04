@@ -66,7 +66,6 @@ public class Board {
     * Set the coordinates of the available pawn promotion to pawn ready for promotion or null.
     *
     * @param position Vector2 position of a pawn ready for promotion.
-    * @return
     */
    public void setAvailablePromotion(Vector2 position) {
       this.availablePromotion = position;
@@ -536,35 +535,18 @@ public class Board {
     * @param n abstract number representing desired promotion.
     */
    public void piecePromotion(int n) {
-      char team = getPiece(getAvailablePromotion()).getColor();
       switch (n) {
          case (0):
-            if (team == 'w') {
-               getPiece(getAvailablePromotion()).setType('Q');
-            } else {
-               getPiece(getAvailablePromotion()).setType('q');
-            }
+            getPiece(getAvailablePromotion()).setType('q');
             break;
          case (1):
-            if (team == 'w') {
-               getPiece(getAvailablePromotion()).setType('R');
-            } else {
-               getPiece(getAvailablePromotion()).setType('r');
-            }
+            getPiece(getAvailablePromotion()).setType('r');
             break;
          case (2):
-            if (team == 'w') {
-               getPiece(getAvailablePromotion()).setType('B');
-            } else {
-               getPiece(getAvailablePromotion()).setType('b');
-            }
+            getPiece(getAvailablePromotion()).setType('b');
             break;
          case (3):
-            if (team == 'w') {
-               getPiece(getAvailablePromotion()).setType('N');
-            } else {
-               getPiece(getAvailablePromotion()).setType('n');
-            }
+            getPiece(getAvailablePromotion()).setType('n');
             break;
       }
       updateForsythEdwardsBoardNotation(false);

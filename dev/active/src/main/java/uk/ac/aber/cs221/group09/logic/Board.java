@@ -366,10 +366,11 @@ public class Board {
 
       // En Passant represented by forsythEdwardsBoardNotationArray[3], should already be updated by this point.
       // The half move clock represented by forsythEdwardsBoardNotationArray[4].
-      forsythEdwardsBoardNotationArray[4] = Integer.toString(Integer.parseInt(forsythEdwardsBoardNotationArray[4]) + 1);
-
+      if(newTurn) {
+         forsythEdwardsBoardNotationArray[4] = Integer.toString(Integer.parseInt(forsythEdwardsBoardNotationArray[4]) + 1);
+      }
       // Update the full move number represented by forsythEdwardsBoardNotationArray[5], by incrementing it by 1.
-      if (((Integer.parseInt(forsythEdwardsBoardNotationArray[4])) % 2 == 0) && ((Integer.parseInt(forsythEdwardsBoardNotationArray[4])) != 0)) {
+      if (((Integer.parseInt(forsythEdwardsBoardNotationArray[4])) % 2 == 0) && ((Integer.parseInt(forsythEdwardsBoardNotationArray[4])) != 0) && newTurn) {
          forsythEdwardsBoardNotationArray[5] = Integer.toString(Integer.parseInt(forsythEdwardsBoardNotationArray[5]) + 1);
       }
 
@@ -569,5 +570,9 @@ public class Board {
       }
       // Set the board state.
       forsythEdwardsBoardNotation = newFenString.toString();
+   }
+
+   public int getTurnNumber() {
+      return Integer.parseInt(forsythEdwardsBoardNotationArray[4]);
    }
 }

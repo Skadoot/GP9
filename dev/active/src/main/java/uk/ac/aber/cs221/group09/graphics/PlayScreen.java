@@ -47,6 +47,12 @@ public class PlayScreen {
     private int latestTurn = 0;
     private boolean gameFinished = false;
 
+    //Log button rescources
+    private boolean startedViewing = false;
+    private int currentTurn;
+    private Button prevB;
+    private Button nextB;
+
     /**
      * A getter for playscreen scene.
      *
@@ -130,14 +136,14 @@ public class PlayScreen {
         StackPane playerDashboard = createDashboard();
         layout.add(playerDashboard, 0, 1, 4, 6);
 
-
+/*
         //Log container.
         HBox log = new HBox();
         ScrollPane logContainer = new ScrollPane(log);
         layout.add(logContainer, 2, 10, 14, 1);
 
       //The below virtual box will be  used to track the game such as material captured.
-/*
+
         VBox extraLayout = new VBox();
         Text extraLayoutFill = new Text("Extra Stuff");
         extraLayout.setStyle("-fx-border-color: GREEN");
@@ -147,17 +153,16 @@ public class PlayScreen {
 */
 
    //adds a button for looking through previous moves
-   Button previousB = new Button("<-");
-      previousB.setOnAction(new EventHandler<ActionEvent>() {
+   this.prevB = new Button("<-");
+      prevB.setOnAction(new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent actionEvent) {
          decrementThroughLog();
       }
    });
-      layout.add(previousB, 5, 9, 2, 1);
 
    //adds a button for seeking ahead through moves
-   Button nextB = new Button("->");
+   this.nextB = new Button("->");
 
       nextB.setOnAction(new EventHandler<ActionEvent>() {
       @Override
@@ -166,8 +171,14 @@ public class PlayScreen {
       }
    });
 
+        HBox logButtons = new HBox();
+        logButtons.getChildren().addAll(prevB,nextB);
+        logButtons.setAlignment(Pos.CENTER);
+
+        layout.add(logButtons, 8,10,2,1);
+        logButtons.setSpacing(20);
+
    //looks nice but idk
-      layout.add(nextB, 7, 9, 2, 1);
    //layout.add(nextB,12,9,2,1);
         //The quit button for exiting the game.
         Button quitB = new Button("Quit.");
@@ -184,7 +195,7 @@ public class PlayScreen {
         layout.add(quitB, 14, 0, 2, 1);
 
         //Makes the gridlines visible in layout. Useful for debugging
-        layout.setGridLinesVisible(true);
+        //layout.setGridLinesVisible(true);
 
 
         Scene playScreen = new Scene(root, 1280, 720);
@@ -419,6 +430,8 @@ public class PlayScreen {
         //Disable the chessboard to stop play until promotion selected.
         chessboard.disableChessboard(true);
 
+        setLogDisabled(true);
+
         //Root container for the promotion window.
         VBox promotionWindow = new VBox();
         promotionWindow.setSpacing(12);
@@ -463,6 +476,7 @@ public class PlayScreen {
                 //Request queen promotion
                 anInterface.requestPromotion(0);
                 //reenable chessboard
+                setLogDisabled(false);
                 chessboard.disableChessboard(false);
             }
         });
@@ -473,6 +487,7 @@ public class PlayScreen {
                 dashboard.getChildren().remove(promotionWindow);
                 anInterface.requestPromotion(1);
                 //reenable chessboard
+                setLogDisabled(false);
                 chessboard.disableChessboard(false);
             }
         });
@@ -483,6 +498,7 @@ public class PlayScreen {
                 dashboard.getChildren().remove(promotionWindow);
                 anInterface.requestPromotion(2);
                 //reenable chessboard
+                setLogDisabled(false);
                 chessboard.disableChessboard(false);
             }
         });
@@ -493,6 +509,7 @@ public class PlayScreen {
                 dashboard.getChildren().remove(promotionWindow);
                 anInterface.requestPromotion(3);
                 //reenable chessboard
+                setLogDisabled(false);
                 chessboard.disableChessboard(false);
             }
         });
@@ -508,8 +525,6 @@ public class PlayScreen {
     /**
      * Call to backend to show the next move in the log. Activated by pressing a log button. Deactivate chess buttons
      */
-    boolean startedViewing = false;
-    int currentTurn;
     public void incrementThroughLog() {
         //a function triggered by a button. Push the next board state forwards
 
@@ -517,7 +532,7 @@ public class PlayScreen {
             currentTurn = (anInterface.getTurnNumber());
             startedViewing = true;
         }
-        if (currentTurn < anInterface.getTurnNumber()) {
+        if (currentTurn <= anInterface.getTurnNumber()) {
             //increases the turn we are looking at by 1
             currentTurn++;
         }
@@ -677,5 +692,10 @@ public class PlayScreen {
 
     public void highlightTiles(ArrayList<int[]> vTiles, ArrayList<int[]> checkTiles) {
         chessboard.highlightTiles(vTiles, checkTiles);
+    }
+
+    private void setLogDisabled(boolean b) {
+        prevB.setDisable(b);
+        nextB.setDisable(b);
     }
 }

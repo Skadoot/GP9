@@ -19,24 +19,21 @@ import java.util.List;
 
 /**
  * Log - Records the progress of the game.
- * <p>
  * This class is used to read/write the FEN strings that are played in each turn.
  *
- * @author Jack Thompson
+ * @author Jack Thompson, Gwionn
  * @version 1.1 (Release)
- * @see uk.ac.aber.cs221.group09.logic.Main
  */
 public class Log {
-   private String fileName;
+   private String fileName; //the name of the file
    private int numberOfLines = 0; //to keep track of the number of lines in the file
-   private String nameOfFolderToHoldUnfinishedGames = "./unfinishedGames";
-   private String nameOfFolderToHoldFinishedGames = "./finishedGames";
-   private String nameOfFolder;
+   private String nameOfFolderToHoldUnfinishedGames = "./unfinishedGames"; //the relative path to the unfinishedGames directory
+   private String nameOfFolderToHoldFinishedGames = "./finishedGames"; //the relative path to the finishedGames directory
+   private String nameOfFolder; //holds either the path to the finished or unfinished games folder.
 
 
    /**
     * Constructor for Log class.
-    * <p>
     * If load is set to false, it makes a new text file to record FEN strings after each turn.
     * If the file name already exists, it will be overwritten.
     * If load is set to true then an existing text file is used.
@@ -70,15 +67,22 @@ public class Log {
    public Log() {
    }
 
-   // TODO Requires JavaDoc comment
+   /**
+    * sets the nameOfFolder field to either the path for finished or unfinished games.
+    * @param finishedGame true if accessing finished games, false if accessing unfinished games
+    */
    public void setFinishedGame(boolean finishedGame) {
       if(finishedGame) {
-         this.nameOfFolder = "./finishedGames";
+         this.nameOfFolder = nameOfFolderToHoldFinishedGames; //set name of folder field to be same as finishedGame field
       } else {
-         this.nameOfFolder = "./unfinishedGames";
+         this.nameOfFolder = nameOfFolderToHoldUnfinishedGames; //set name of folder field to be same as unfinishedGame field
       }
    }
 
+   /**
+    * sets the fileName field
+    * @param fileName the String to set the fileName field
+    */
    public void setFileName(String fileName) {
       this.fileName = fileName;
    }
@@ -90,12 +94,13 @@ public class Log {
     * @param FEN the Forsyth Edwards Notation representing the board state. This is what gets appended to the txt file.
     */
    public void updateLog(String FEN) {
-      File dir = new File(this.nameOfFolder);
+      File dir = new File(this.nameOfFolder); //instantiate a file object for the directory the log file is in
       try {
+         //make a fileWriter with the path to the log file and append set to true, to append FEN strings to the log
          FileWriter fileWriter = new FileWriter(new File(dir, this.fileName), true);
          fileWriter.append(FEN).append("\n");
          fileWriter.close();
-         numberOfLines++;
+         numberOfLines++; //keep track of the lines in the file
       } catch (IOException e) {
          System.out.println("IO Error");
       }
@@ -107,7 +112,7 @@ public class Log {
     * line as a string. THE FIRST LINE IS 0. If an IO error occurs a null string will be returned. If the line number requested
     * is not in the file, a null string is also returned.
     *
-    * @param lineNumber The line number of the file to be returned
+    * @param lineNumber The line number of the file to be returned starting at 0
     * @return The string at the requested line number or null if an exception occurs.
     */
    public String readLog(int lineNumber) {
@@ -146,17 +151,13 @@ public class Log {
     *
     * @return ArrayList of file names in String format where each file is the record of a game.
     */
-   public ArrayList<String> displayExistingGameFiles(boolean finished) {
+   public ArrayList<String> displayExistingGameFiles() {
       // Declare new array list to hold names of existing game files
       ArrayList<String> existingGameFiles = new ArrayList<String>();
-      // Check all the files to see if in the path to see if they are .txt files
-      File currentFolder;
-      if (finished){
-         currentFolder = new File("./finishedGames"); // The relative file path to where the files are saved
-      }else {
-         currentFolder = new File("./unfinishedGames"); // The relative file path to where the files are saved
-      }
 
+      File currentFolder = new File(nameOfFolder);
+
+      // Check all the files to see if they are .txt files
       File[] allTheFiles = currentFolder.listFiles(); // Store all the files in the current folder in an array
       for (int i = 0; i < allTheFiles.length; i++) {
          String fileBeingChecked = allTheFiles[i].getName();
@@ -187,7 +188,7 @@ public class Log {
    }
 
    /**
-    * Replaces the line in the file. Designed to be used in comparison with the Log field number of The lines.
+    * Replaces the line in the file. Designed to be used in comparison with the Log field number of lines.
     * Numbering in the file starts at 0. The Log field number of lines counts the lines.
     * So, to replace the last line use Log.numberOfLines - 1 as parameter.
     *

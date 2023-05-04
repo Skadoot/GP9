@@ -1,0 +1,11 @@
+Blog - week 11
+
+01/04/23 
+Merged the remote branch feature_save_and_load_integration_gwionn branch into main. This meant the main branch had the finished back end functions for save and load. Made functions in the log class to:
+delete files - so that if the user does not wish to save there game then the file is deleted. 
+replace lines in the file - so that a particular FEN string in the file can be updated. 
+move a file to the finishedGame directory - Makes it easy to differentiate between which games are finished and which are unfinished.
+
+Worked with Sean and Gwionn to integrate the changes in the Log class to the rest of the program. The program now succesfully moves the log to the finishedGames folder after a draw, resignation or checkmate. The file is deleted if exit with without save is pressed on the interface. 
+
+total 9 hours 

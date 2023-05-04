@@ -514,10 +514,10 @@ public class PlayScreen {
         //a function triggered by a button. Push the next board state forwards
 
         if (!startedViewing) {
-            currentTurn = (anInterface.getTurnNumber() - 1);
+            currentTurn = (anInterface.getTurnNumber());
             startedViewing = true;
         }
-        if (!(currentTurn > anInterface.getTurnNumber() - 1)) {
+        if (currentTurn < anInterface.getTurnNumber()) {
             //increases the turn we are looking at by 1
             currentTurn++;
         }
@@ -537,7 +537,7 @@ public class PlayScreen {
 
         if (!startedViewing) {
             //sets the index for navigation through the played moves to be the last move played
-            currentTurn = (anInterface.getTurnNumber() - 1);
+            currentTurn = (anInterface.getTurnNumber());
             //sets the boolean to true, so we can iterate through the moves without causing errors
             startedViewing = true;
             //if we've already started looking at our played moves we just continue to iterate backwards
@@ -553,7 +553,7 @@ public class PlayScreen {
         } else {
             chessboard.disableChessboard(true);
         }
-        if (currentTurn > 0) {
+        if (currentTurn >= 0) {
             chessboard.updateBoard(anInterface.getPreviousFEN(currentTurn));
         }
     }

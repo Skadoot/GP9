@@ -246,7 +246,7 @@ public class Game {
     * @param n the unique identifier of the piece to promote.
     */
    public void promote(int n) {
-      gameBoard.piecePromotion(n);
+      gameBoard.promotePawn(n);
       log.replaceLine(gameBoard.getTurnNumber(), gameBoard.getForsythEdwardsBoardNotation());
       gameBoard.clearMoves();
       MoveCalculator promotionCheck = new MoveCalculator(attackingPlayer, gameBoard);

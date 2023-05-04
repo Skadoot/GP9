@@ -1,5 +1,6 @@
 .root {
     -fx-background-color: #DAE9F3;
+    -fx-font-size: 16;
 }
 
 .white-tile {
@@ -19,4 +20,7 @@
 .selected-tile {
     -fx-background-color: #5bde5b;
     -fx-background-radius: 0;
-}
+}.check-tile {
+     -fx-background-color: #FF3131;
+     -fx-background-radius: 0;
+ }

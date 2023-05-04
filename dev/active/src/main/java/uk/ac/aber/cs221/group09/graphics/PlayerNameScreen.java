@@ -91,12 +91,10 @@ public class PlayerNameScreen {
          if (nameIsBlank()) {
             warningText.setText("Names cannot be blank or just whitespace.");
             return;
-         }
-         else if (nameCheckSpecChar()) {
+         } else if (nameCheckSpecChar()) {
             warningText.setText("Names cannot contain special characters.");
             return;
-         }
-         else if (isNameTooLong()) {
+         } else if (isNameTooLong()) {
             warningText.setText("Names cannot exceed 32 character limit.");
             return;
          }

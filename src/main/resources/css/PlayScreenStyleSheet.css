@@ -1,0 +1,22 @@
+.root {
+    -fx-background-color: #DAE9F3;
+}
+
+.white-tile {
+    -fx-background-color: #b9b49d;
+    -fx-background-radius: 0;
+}
+
+.black-tile {
+    -fx-background-color: #305433;
+    -fx-background-radius: 0;
+}
+
+.valid-tile {
+    -fx-background-color: #3aafdc;
+    -fx-background-radius: 0;
+}
+.selected-tile {
+    -fx-background-color: #5bde5b;
+    -fx-background-radius: 0;
+}

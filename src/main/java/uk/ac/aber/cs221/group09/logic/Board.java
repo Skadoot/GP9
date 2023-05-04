@@ -535,14 +535,6 @@ public class Board {
    }
 
    /**
-    * Updates the win section in the FEN string to whatever the game status is.
-    * 'w' is white win, 'b' = black win, draw = 'd', '-' = unfinished
-    */
-   public void updateWinInFenString(String winStatus) {
-      forsythEdwardsBoardNotationArray[6] = winStatus;
-   }
-
-   /**
     * Clears all the moves for every piece on the board.
     */
    public void clearMoves() {
@@ -578,6 +570,11 @@ public class Board {
       forsythEdwardsBoardNotation = newFenString.toString();
    }
 
+   /**
+    * Returns the full move number.
+    *
+    * @return the full move number
+    */
    public int getTurnNumber() {
       return Integer.parseInt(forsythEdwardsBoardNotationArray[4]);
    }

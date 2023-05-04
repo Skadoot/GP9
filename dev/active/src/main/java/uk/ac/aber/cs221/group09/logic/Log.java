@@ -40,7 +40,7 @@ public class Log {
     * @param fileName the name of the file to be made
     */
    public Log(String fileName) {
-      //By default, the log should attach itself to the unfinished games folder when first constructed
+      // By default, the log should attach itself to the unfinished games folder when first constructed
       setFinishedGame(false);
       // If the unfinished game directory does not exist, create it
       new File(nameOfFolderToHoldUnfinishedGames).mkdirs();
@@ -65,7 +65,7 @@ public class Log {
    }
 
    /**
-    * sets the nameOfFolder field to either the path for finished or unfinished games.
+    * Sets the nameOfFolder field to either the path for finished or unfinished games.
     * @param finishedGame true if accessing finished games, false if accessing unfinished games
     */
    public void setFinishedGame(boolean finishedGame) {
@@ -77,7 +77,7 @@ public class Log {
    }
 
    /**
-    * sets the fileName field
+    * Sets the fileName field
     * @param fileName the String to set the fileName field
     */
    public void setFileName(String fileName) {
@@ -113,10 +113,10 @@ public class Log {
     * @return The string at the requested line number or null if an exception occurs.
     */
    public String readLog(int lineNumber) {
-      //initialise variable with null in case of IO Exception
+      // Initialise variable with null in case of IO Exception
       String fenAtLineNumber = null;
       try {
-         //assign variable the string at the requested line number of the file
+         // Assign variable the string at the requested line number of the file
          fenAtLineNumber = Files.readAllLines(Paths.get(nameOfFolder, fileName)).get(lineNumber);
       } catch (IOException e) {
          System.out.println("IO Error");

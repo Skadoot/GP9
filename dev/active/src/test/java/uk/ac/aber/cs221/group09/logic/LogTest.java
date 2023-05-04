@@ -16,6 +16,14 @@ import uk.ac.aber.cs221.group09.util.Vector2;
 
 public class LogTest {
    @Test
+   //FR11 tests
+   /**
+    * A method to test whether the saved log is read properly
+    *
+    * @param testGame The setup of a game with the default starting position
+    * @param pieceToMove The position of the white pawn on the A1 square
+    * @param testPosition The position for the selected piece to move to
+    */
    public void testReadLog() {
       Game testGame = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "testGame", false);
       Piece pieceToMove = testGame.getGameBoard().getPiece(new Vector2(0, 1));
@@ -34,6 +42,14 @@ public class LogTest {
    }
 
    @Test
+   //FR11 Tests
+   /**
+    * A method to test whether the number of lines in a saved log is read properly
+    *
+    * @param testGame The setup of a game with the default starting position
+    * @param pieceToMove The position of the white pawn on the A1 square
+    * @param testPosition The position for the selected piece to move to
+    */
    public void testGetNumberOfLines() {
       Game testGame = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "testGame", false);
       Piece pieceToMove = testGame.getGameBoard().getPiece(new Vector2(0, 1));
@@ -61,6 +77,14 @@ public class LogTest {
    }
 
    @Test
+   //FR11 Tests
+   /**
+    * A method to test whether the logs are updated properly during a game
+    *
+    * @param testGame The setup of a game with the default starting position
+    * @param pieceToMove The position of the white pawn on the A1 square
+    * @param testPosition The position for the selected piece to move to
+    */
    public void testUpdateLog() {
       Game testGame = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "testGame", false);
       Piece pieceToMove = testGame.getGameBoard().getPiece(new Vector2(0, 1));

@@ -1,0 +1,15 @@
+Author: seh25
+Week: 10 (04/05/23)
+
+Assigned Actions
+================
+Action 1: Finishing tests
+	Added tests to check that promoted pieces are able to move correctly
+	Added tests for the Log class
+Hours: 3
+
+Action 2: Comments/JavaDocs
+	Added comments where missing, and added JavaDocs to all methods
+Hours: 2
+
+Total Hours: 5

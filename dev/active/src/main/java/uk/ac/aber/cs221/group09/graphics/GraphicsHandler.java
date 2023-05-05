@@ -1,5 +1,5 @@
 /*
- * @(GP9) Interface.java 0.5 2023/04/27
+ * @(GP9) GraphicsHandler.java 0.5 2023/04/27
  *
  * Copyright (c) 2021 Aberystywth University
  * All rights reserved
@@ -12,35 +12,35 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 import uk.ac.aber.cs221.group09.logic.Game;
-import uk.ac.aber.cs221.group09.util.Vector2;
+import uk.ac.aber.cs221.group09.util.Coordinate;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Interface - The class contains the primary stage for displaying the chess tutor application
+ * GraphicsHandler - The class contains the primary stage for displaying the chess tutor application
  * <p>
  * The class is used to initialise the application. It's the top level of the system and messages information
- * to the backend. Information from the backend is then sent through to the GUI through this interface class.
+ * to the backend. Information from the backend is then sent through to the GUI through this GraphicsHandler class.
  *
  * @author Gwion Hughes, Ciaran Smith
  * @version 0.9 draft
  * @see StartScreen
  */
-public class Interface extends Application {
+public class GraphicsHandler extends Application {
    private Stage primaryStage;
    private PlayerNameScreen playerNameScreen;
    private PlayScreen playScreen;
    private StartScreen startScreen;
    private LoadScreen loadScreen;
    private Game game;
-   ArrayList<Vector2> movesToCompare;
+   ArrayList<Coordinate> movesToCompare;
 
    @Override
    public void start(Stage stage) throws IOException {
       primaryStage = stage;
 
-      //Create instances of the screen handling classes and attach this interface instance to those classes.
+      //Create instances of the screen handling classes and attach this graphics handler instance to those classes.
       playerNameScreen = new PlayerNameScreen(this);
       playScreen = new PlayScreen(this);
       startScreen = new StartScreen(this);

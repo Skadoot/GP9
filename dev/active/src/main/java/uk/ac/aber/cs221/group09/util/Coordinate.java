@@ -16,7 +16,7 @@ package uk.ac.aber.cs221.group09.util;
  * @version 1.0 (Release)
  * @see uk.ac.aber.cs221.group09.logic.pieces.Piece
  */
-public class Vector2 {
+public class Coordinate {
    // Board notation.
    private final char[] boardNotation = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
    // X coordinate for the board.
@@ -27,7 +27,7 @@ public class Vector2 {
    /**
     * A default constructor for the Vector2 class.
     */
-   public Vector2() {
+   public Coordinate() {
       this.x = 0;
       this.y = 0;
    }
@@ -38,7 +38,7 @@ public class Vector2 {
     * @param x the x coordinate for the board.
     * @param y the y coordinate for the board.
     */
-   public Vector2(int x, int y) {
+   public Coordinate(int x, int y) {
       this.x = x;
       this.y = y;
    }
@@ -54,10 +54,10 @@ public class Vector2 {
 
    @Override
    public boolean equals(Object o) {
-      if (!(o instanceof Vector2)) {
+      if (!(o instanceof Coordinate)) {
          return false;
       }
-      Vector2 compare = (Vector2) o;
+      Coordinate compare = (Coordinate) o;
       return this.x == compare.x && this.y == compare.y;
    }
 }

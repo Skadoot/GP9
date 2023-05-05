@@ -10,7 +10,7 @@ package uk.ac.aber.cs221.group09.logic;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import uk.ac.aber.cs221.group09.logic.pieces.Piece;
-import uk.ac.aber.cs221.group09.util.Vector2;
+import uk.ac.aber.cs221.group09.util.Coordinate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -77,11 +77,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       // Sets a test piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(0, 1));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(0, 1));
 
       // Moves piece into test position to check whether the legal moves are valid
-      Vector2 testPosition = new Vector2(0, 3);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(0, 3);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
@@ -105,11 +105,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       // Sets the pawn at e2 as a test piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(5, 1));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(5, 1));
 
       // Attempts to move the pinned pawn, which is an illegal move
-      Vector2 testPosition = new Vector2(5, 2);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(5, 2);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
@@ -133,11 +133,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       // Sets the pawn at a2 as a test piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(0, 1));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(0, 1));
 
       // Attempts to move the pawn at a2 to a6, which is an illegal move
-      Vector2 testPosition = new Vector2(0, 5);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(0, 5);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
@@ -161,11 +161,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       // Sets the pawn at a2 as a test piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(0, 1));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(0, 1));
 
       // Attempts to move the pawn at a2, which is an illegal move
-      Vector2 testPosition = new Vector2(0, 2);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(0, 2);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
@@ -189,11 +189,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       // Sets the white king as a test piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(4, 0));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(4, 0));
 
       // Castles the white king by moving it two spaces to the right
-      Vector2 testPosition = new Vector2(6, 0);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(6, 0);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
@@ -216,11 +216,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       // Sets the white king as a test piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(4, 0));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(4, 0));
 
       // Attempts to castle the white king by moving it two spaces to the right, which is an illegal move
-      Vector2 testPosition = new Vector2(6, 0);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(6, 0);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
@@ -244,11 +244,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       // Sets the white king as a test piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(4, 0));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(4, 0));
 
       // Attempts to castle the white king on the king side, by moving it two spaces to the right
-      Vector2 testPosition = new Vector2(6, 0);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(6, 0);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
@@ -272,11 +272,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       // Sets the white king as a test piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(4, 0));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(4, 0));
 
       // Attempts to castle the white king on the queen side, by moving it two spaces to the left
-      Vector2 testPosition = new Vector2(2, 0);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(2, 0);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
@@ -300,11 +300,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       // Sets the black king as a test piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(4, 7));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(4, 7));
 
       // Attempts to castle the black king on the king side, by moving it two spaces to the right
-      Vector2 testPosition = new Vector2(6, 7);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(6, 7);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
@@ -328,11 +328,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       //sets the black king as a test piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(4, 7));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(4, 7));
 
       //attempts to castle the black king on the queen side, by moving it two spaces to the left
-      Vector2 testPosition = new Vector2(2, 7);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(2, 7);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
@@ -357,11 +357,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       //sets the pawn at e5 as a test piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(4, 4));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(4, 4));
 
       //moves the pawn at e5 to d6, capturing the black pawn at d5 in the process
-      Vector2 testPosition = new Vector2(3, 5);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(3, 5);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
@@ -385,11 +385,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       //sets the pawn at a2 as a test piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(0, 1));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(0, 1));
 
       //moves the pawn at a2 forward two spaces
-      Vector2 testPosition = new Vector2(0, 3);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(0, 3);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
@@ -413,11 +413,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       //sets the white knight at b1 as a test piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(1, 0));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(1, 0));
 
       //moves the knight from b1 to c3
-      Vector2 testPosition = new Vector2(2, 2);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(2, 2);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
@@ -441,11 +441,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       //sets the rook at a1 as a testing piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(0, 0));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(0, 0));
 
       //moves the rook from a1 to c1
-      Vector2 testPosition = new Vector2(2, 0);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(2, 0);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
@@ -469,11 +469,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       //sets the white bishop at f1 as a testing piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(5, 0));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(5, 0));
 
       //moves the bishop from f1 to c4
-      Vector2 testPosition = new Vector2(2, 3);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(2, 3);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
@@ -497,11 +497,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       //sets the white queen as a testing piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(3, 0));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(3, 0));
 
       //moves the queen from d1 to g4
-      Vector2 testPosition = new Vector2(6, 3);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(6, 3);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
@@ -525,11 +525,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       //sets the white king as a testing piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(4, 0));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(4, 0));
 
       //moves the king from e1 to d1
-      Vector2 testPosition = new Vector2(3, 0);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(3, 0);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
@@ -552,11 +552,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       //sets the pawn at e4 as a testing piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(4, 3));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(4, 3));
 
       //moves the pawn from e4 to d5, capturing the black pawn which was previously there
-      Vector2 testPosition = new Vector2(3, 4);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(3, 4);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
@@ -579,11 +579,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       //sets the pawn at a3 as a testing piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(0, 2));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(0, 2));
 
       //moves the pawn to capture the bishop at b4, stopping the check
-      Vector2 testPosition = new Vector2(1, 3);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(1, 3);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
@@ -606,11 +606,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       //sets the knight at c3 as a testing piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(2, 2));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(2, 2));
 
       //moves the knight to capture the pawn at d5
-      Vector2 testPosition = new Vector2(3, 4);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(3, 4);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
@@ -633,11 +633,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       //sets the bishop at c1 as a testing piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(2, 0));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(2, 0));
 
       //moves the bishop to capture the pawn at g5
-      Vector2 testPosition = new Vector2(6, 4);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(6, 4);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
@@ -661,11 +661,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       //sets the rook at a4 as a testing piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(0, 3));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(0, 3));
 
       //moves the rook to capture the pawn at e4
-      Vector2 testPosition = new Vector2(4, 3);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(4, 3);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
@@ -689,11 +689,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       //sets the white queen as a testing piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(3, 0));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(3, 0));
 
       //moves the queen to capture the pawn at h5
-      Vector2 testPosition = new Vector2(7, 4);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(7, 4);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
@@ -717,11 +717,11 @@ class BoardTest {
       moveCalculator.findLegalMovesForPlayer(false);
 
       //sets the white king as a testing piece to move
-      Piece pieceToMove = testBoard.getPiece(new Vector2(5, 2));
+      Piece pieceToMove = testBoard.getPiece(new Coordinate(5, 2));
 
       //moves the king to capture the pawn at f4
-      Vector2 testPosition = new Vector2(5, 3);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      Coordinate testPosition = new Coordinate(5, 3);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }

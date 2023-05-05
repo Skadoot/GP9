@@ -8,7 +8,7 @@
 package uk.ac.aber.cs221.group09.logic;
 
 import uk.ac.aber.cs221.group09.logic.pieces.Piece;
-import uk.ac.aber.cs221.group09.util.Vector2;
+import uk.ac.aber.cs221.group09.util.Coordinate;
 
 import java.util.ArrayList;
 
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class MoveCalculator {
    private final char currentPlayer; // The player that you want to calculate the moves for.
    private final Board board; // The board that you want to calculate the moves for.
-   private final ArrayList<Vector2> checkMap = new ArrayList<>(); // The map of threatened squares
+   private final ArrayList<Coordinate> checkMap = new ArrayList<>(); // The map of threatened squares
    private boolean canWhiteCastleKingSide; // Can white castle king side?
    private boolean canWhiteCastleQueenSide; // Can white castle queen side?
    private boolean canBlackCastleKingSide; // Can black castle king side?
@@ -85,7 +85,7 @@ public class MoveCalculator {
       for (int rank = 0; rank < 8; rank++) {
          for (int file = 0; file < 8; file++) {
             // Create the current board position vector2.
-            Vector2 piecePosition = new Vector2(file, rank);
+            Coordinate piecePosition = new Coordinate(file, rank);
 
             // Get the piece at the current board position.
             Piece piece = board.getPiece(piecePosition);
@@ -140,14 +140,14 @@ public class MoveCalculator {
     */
    private void getPawnLegalMoves(Piece pawn, boolean isForCheckMap) {
       // Calculate the single advance square position. the y should be positive for white pieces and negative for black pieces.
-      Vector2 singleAdvance = new Vector2(pawn.getPosition().x, ((pawn.getColor() == 'w') ? pawn.getPosition().y + 1 : pawn.getPosition().y - 1));
+      Coordinate singleAdvance = new Coordinate(pawn.getPosition().x, ((pawn.getColor() == 'w') ? pawn.getPosition().y + 1 : pawn.getPosition().y - 1));
 
       // Calculate the double advance square position. the y should be positive for white pieces and negative for black pieces.
-      Vector2 doubleAdvance = new Vector2(pawn.getPosition().x, ((pawn.getColor() == 'w') ? singleAdvance.y + 1 : singleAdvance.y - 1));
+      Coordinate doubleAdvance = new Coordinate(pawn.getPosition().x, ((pawn.getColor() == 'w') ? singleAdvance.y + 1 : singleAdvance.y - 1));
 
       // Calculate left and right attack square positions.
-      Vector2 leftAttack = new Vector2(singleAdvance.x - 1, singleAdvance.y);
-      Vector2 rightAttack = new Vector2(singleAdvance.x + 1, singleAdvance.y);
+      Coordinate leftAttack = new Coordinate(singleAdvance.x - 1, singleAdvance.y);
+      Coordinate rightAttack = new Coordinate(singleAdvance.x + 1, singleAdvance.y);
 
       // Check if the single advance is a valid position on the board. and that there are no pieces occupying it.
       if (!isForCheckMap) {
@@ -179,7 +179,7 @@ public class MoveCalculator {
       }
       System.out.print("legal moves for " + pawn.getColor() + " " + "pawn" + " at " + pawn.getPosition().getVector2AsBoardNotation());
       System.out.print(" | ");
-      for (Vector2 square : pawn.getPossibleMoves()) {
+      for (Coordinate square : pawn.getPossibleMoves()) {
          System.out.print(square.getVector2AsBoardNotation() + " ");
       }
       System.out.println();
@@ -188,7 +188,7 @@ public class MoveCalculator {
    /*
    /  Checks if a pawn can attack in a particular direction.
     */
-   private void canPawnAttack(Piece pawn, boolean isForCheckMap, Vector2 rightAttack) {
+   private void canPawnAttack(Piece pawn, boolean isForCheckMap, Coordinate rightAttack) {
       if (board.getPiece(rightAttack) != null || isForCheckMap) {
          if (isForCheckMap) {
             addPieceLegalMove(pawn, rightAttack, true);
@@ -216,13 +216,13 @@ public class MoveCalculator {
     */
    private void getKnightLegalMoves(Piece knight, boolean isForCheckMap) {
       // These are the knights possible jumps, in Vector2's relative to the knights position. positive values add to the knights current x or y, negative subtracts.
-      Vector2[] knightDirections = {new Vector2(2, 1), new Vector2(1, 2), new Vector2(-2, 1), new Vector2(-1, 2), new Vector2(2, -1), new Vector2(1, -2), new Vector2(-2, -1), new Vector2(-1, -2)};
+      Coordinate[] knightDirections = {new Coordinate(2, 1), new Coordinate(1, 2), new Coordinate(-2, 1), new Coordinate(-1, 2), new Coordinate(2, -1), new Coordinate(1, -2), new Coordinate(-2, -1), new Coordinate(-1, -2)};
 
       // For each of the directions in the knight's directions.
-      for (Vector2 d : knightDirections) {
+      for (Coordinate d : knightDirections) {
 
          // Find what the move square is.
-         Vector2 move = new Vector2(knight.getPosition().x + d.x, knight.getPosition().y + d.y);
+         Coordinate move = new Coordinate(knight.getPosition().x + d.x, knight.getPosition().y + d.y);
 
          // If the move square is outside the board, skip to the next direction.
          if (move.x > 7 || move.y > 7 || move.x < 0 || move.y < 0) {
@@ -241,7 +241,7 @@ public class MoveCalculator {
 
       System.out.print("legal moves for " + knight.getColor() + " " + "knight" + " at " + knight.getPosition().getVector2AsBoardNotation());
       System.out.print(" | ");
-      for (Vector2 square : knight.getPossibleMoves()) {
+      for (Coordinate square : knight.getPossibleMoves()) {
          System.out.print(square.getVector2AsBoardNotation() + " ");
       }
       System.out.println();
@@ -255,16 +255,16 @@ public class MoveCalculator {
     */
    private void getBishopLegalMoves(Piece bishop, boolean isForCheckMap) {
       // The bishop's directions: north-west, north-east, south-west, south-east.
-      Vector2[] bishopDirections = {new Vector2(1, 1), new Vector2(-1, -1), new Vector2(1, -1), new Vector2(-1, 1)};
+      Coordinate[] bishopDirections = {new Coordinate(1, 1), new Coordinate(-1, -1), new Coordinate(1, -1), new Coordinate(-1, 1)};
 
       // For every direction in the bishop's directions.
-      for (Vector2 d : bishopDirections) {
+      for (Coordinate d : bishopDirections) {
 
          // For n squares in that direction until the bishop is blocked. maximum 8 squares.
          for (int n = 1; n < 8; n++) {
 
             // Find out which square the move is.
-            Vector2 move = new Vector2(bishop.getPosition().x + (d.x * n), bishop.getPosition().y + (d.y * n));
+            Coordinate move = new Coordinate(bishop.getPosition().x + (d.x * n), bishop.getPosition().y + (d.y * n));
 
             // If the move square is outside the board, skip to the next direction.
             if (move.x > 7 || move.y > 7 || move.x < 0 || move.y < 0) {
@@ -289,7 +289,7 @@ public class MoveCalculator {
       System.out.print("legal moves for " + bishop.getColor() + " " + "bishop" + " at " + bishop.getPosition().getVector2AsBoardNotation());
       System.out.print(" | ");
 
-      for (Vector2 square : bishop.getPossibleMoves()) {
+      for (Coordinate square : bishop.getPossibleMoves()) {
          System.out.print(square.getVector2AsBoardNotation() + " ");
       }
       System.out.println();
@@ -303,16 +303,16 @@ public class MoveCalculator {
     */
    private void getRookLegalMoves(Piece rook, boolean isForCheckMap) {
       // The rook's directions: north, east, west, south.
-      Vector2[] rookDirections = {new Vector2(0, 1), new Vector2(0, -1), new Vector2(1, 0), new Vector2(-1, 0)};
+      Coordinate[] rookDirections = {new Coordinate(0, 1), new Coordinate(0, -1), new Coordinate(1, 0), new Coordinate(-1, 0)};
 
       // For every direction in the rook's directions.
-      for (Vector2 d : rookDirections) {
+      for (Coordinate d : rookDirections) {
 
          // For n squares in that direction until the rook is blocked. maximum 8 squares.
          for (int n = 1; n < 8; n++) {
 
             // Find out which square the move is.
-            Vector2 move = new Vector2(rook.getPosition().x + (d.x * n), rook.getPosition().y + (d.y * n));
+            Coordinate move = new Coordinate(rook.getPosition().x + (d.x * n), rook.getPosition().y + (d.y * n));
 
             // If the move square is outside the board, skip to the next direction.
             if (move.x > 7 || move.y > 7 || move.x < 0 || move.y < 0) {
@@ -337,7 +337,7 @@ public class MoveCalculator {
       System.out.print("legal moves for " + rook.getColor() + " " + "rook" + " at " + rook.getPosition().getVector2AsBoardNotation());
       System.out.print(" | ");
 
-      for (Vector2 square : rook.getPossibleMoves()) {
+      for (Coordinate square : rook.getPossibleMoves()) {
          System.out.print(square.getVector2AsBoardNotation() + " ");
       }
 
@@ -352,16 +352,16 @@ public class MoveCalculator {
     */
    private void getQueenLegalMoves(Piece queen, boolean isForCheckMap) {
       // The queen's directions: north-west, north-east, south-west, south-east, north, south, east, west.
-      Vector2[] queenDirections = {new Vector2(0, 1), new Vector2(0, -1), new Vector2(1, 0), new Vector2(-1, 0), new Vector2(1, 1), new Vector2(-1, -1), new Vector2(1, -1), new Vector2(-1, 1)};
+      Coordinate[] queenDirections = {new Coordinate(0, 1), new Coordinate(0, -1), new Coordinate(1, 0), new Coordinate(-1, 0), new Coordinate(1, 1), new Coordinate(-1, -1), new Coordinate(1, -1), new Coordinate(-1, 1)};
 
       // For each direction in the queen's directions.
-      for (Vector2 d : queenDirections) {
+      for (Coordinate d : queenDirections) {
 
          // For n squares in that direction until the queen is blocked. maximum 8 squares.
          for (int n = 1; n < 8; n++) {
 
             // Find out which square the move is.
-            Vector2 move = new Vector2(queen.getPosition().x + (d.x * n), queen.getPosition().y + (d.y * n));
+            Coordinate move = new Coordinate(queen.getPosition().x + (d.x * n), queen.getPosition().y + (d.y * n));
 
             // If the move square is outside the board, skip to the next direction.
             if (move.x > 7 || move.y > 7 || move.x < 0 || move.y < 0) {
@@ -386,7 +386,7 @@ public class MoveCalculator {
       System.out.print("legal moves for " + queen.getColor() + " " + "queen" + " at " + queen.getPosition().getVector2AsBoardNotation());
       System.out.print(" | ");
 
-      for (Vector2 square : queen.getPossibleMoves()) {
+      for (Coordinate square : queen.getPossibleMoves()) {
          System.out.print(square.getVector2AsBoardNotation() + " ");
       }
 
@@ -401,13 +401,13 @@ public class MoveCalculator {
     */
    private void getKingLegalMoves(Piece king, boolean isForCheckMap) {
       // The king's directions: north-west, north-east, south-west, south-east, north, south, east, west.
-      Vector2[] kingDirections = {new Vector2(0, 1), new Vector2(0, -1), new Vector2(1, 0), new Vector2(-1, 0), new Vector2(1, 1), new Vector2(-1, -1), new Vector2(1, -1), new Vector2(-1, 1)};
+      Coordinate[] kingDirections = {new Coordinate(0, 1), new Coordinate(0, -1), new Coordinate(1, 0), new Coordinate(-1, 0), new Coordinate(1, 1), new Coordinate(-1, -1), new Coordinate(1, -1), new Coordinate(-1, 1)};
 
       // For each direction in the king's directions.
-      for (Vector2 d : kingDirections) {
+      for (Coordinate d : kingDirections) {
 
          // Find out which square the move is.
-         Vector2 move = new Vector2(king.getPosition().x + (d.x), king.getPosition().y + (d.y));
+         Coordinate move = new Coordinate(king.getPosition().x + (d.x), king.getPosition().y + (d.y));
 
          // If the move square is outside the board, skip to the next direction.
          if (move.x > 7 || move.y > 7 || move.x < 0 || move.y < 0) {
@@ -424,7 +424,7 @@ public class MoveCalculator {
       // Check if castling king side is legal.
       if (canPlayerCastleKingSide(king.getColor())) {
          for (int i = 1; i < 8; i++) {
-            Vector2 move = new Vector2(king.getPosition().x + i, king.getPosition().y);
+            Coordinate move = new Coordinate(king.getPosition().x + i, king.getPosition().y);
             if (board.getPiece(move) == null) {
                continue;
             }
@@ -433,7 +433,7 @@ public class MoveCalculator {
             }
 
             // If we find a rook in the direction.
-            addPieceLegalMove(king, new Vector2(move.x - 1, move.y), isForCheckMap);
+            addPieceLegalMove(king, new Coordinate(move.x - 1, move.y), isForCheckMap);
             break;
          }
       }
@@ -441,7 +441,7 @@ public class MoveCalculator {
       // Check if castling queen side is legal.
       if (canPlayerCastleQueenSide(king.getColor())) {
          for (int i = 1; i < 8; i++) {
-            Vector2 move = new Vector2(king.getPosition().x - i, king.getPosition().y);
+            Coordinate move = new Coordinate(king.getPosition().x - i, king.getPosition().y);
             if (board.getPiece(move) == null) {
                continue;
             }
@@ -450,7 +450,7 @@ public class MoveCalculator {
             }
 
             // If we find a rook in the direction.
-            addPieceLegalMove(king, new Vector2(move.x + 2, move.y), isForCheckMap);
+            addPieceLegalMove(king, new Coordinate(move.x + 2, move.y), isForCheckMap);
             break;
          }
       }
@@ -462,7 +462,7 @@ public class MoveCalculator {
       System.out.print("legal moves for " + king.getColor() + " " + "king" + " at " + king.getPosition().getVector2AsBoardNotation());
       System.out.print(" | ");
 
-      for (Vector2 square : king.getPossibleMoves()) {
+      for (Coordinate square : king.getPossibleMoves()) {
          System.out.print(square.getVector2AsBoardNotation() + " ");
       }
 
@@ -548,7 +548,7 @@ public class MoveCalculator {
     * @param move          the move that we want to add
     * @param isForCheckMap if this is true then we can ignore weather or not the move will leave us in check or not since we are creating the check map.
     */
-   private void addPieceLegalMove(Piece piece, Vector2 move, boolean isForCheckMap) {
+   private void addPieceLegalMove(Piece piece, Coordinate move, boolean isForCheckMap) {
       if (isForCheckMap) {
          piece.addMove(move);
       } else if (!isMoveSafe(piece, move)) {
@@ -563,7 +563,7 @@ public class MoveCalculator {
     * @param move  the move to assess.
     * @return a boolean which determines if the move will leave the player in check or not.
     */
-   private boolean isMoveSafe(Piece piece, Vector2 move) {
+   private boolean isMoveSafe(Piece piece, Coordinate move) {
       Board projectionOfMove = new Board(board.getForsythEdwardsBoardNotation());
       projectionOfMove.movePiece(projectionOfMove.getPiece(piece.getPosition()), move);
 
@@ -580,13 +580,13 @@ public class MoveCalculator {
     */
    public boolean isPlayerInCheck() {
       if (currentPlayer == 'w') {
-         for (Vector2 attackedSquare : checkMap) {
+         for (Coordinate attackedSquare : checkMap) {
             if (board.getWhiteKingPosition().getVector2AsBoardNotation().equals(attackedSquare.getVector2AsBoardNotation())) {
                return true;
             }
          }
       } else {
-         for (Vector2 attackedSquare : checkMap) {
+         for (Coordinate attackedSquare : checkMap) {
             if (board.getBlackKingPosition().getVector2AsBoardNotation().equals(attackedSquare.getVector2AsBoardNotation())) {
                return true;
             }
@@ -606,8 +606,8 @@ public class MoveCalculator {
 
       for (int rank = 0; rank < 8; rank++) {
          for (int file = 0; file < 8; file++) {
-            if (board.getPiece((new Vector2(rank, file))) != null) {
-               if (!board.getPiece(new Vector2(rank, file)).getPossibleMoves().isEmpty() && board.getPiece(new Vector2(rank, file)).getColor() == currentPlayer) {
+            if (board.getPiece((new Coordinate(rank, file))) != null) {
+               if (!board.getPiece(new Coordinate(rank, file)).getPossibleMoves().isEmpty() && board.getPiece(new Coordinate(rank, file)).getColor() == currentPlayer) {
                   playerHasMoves = true;
                }
             }
@@ -623,7 +623,7 @@ public class MoveCalculator {
     */
    public void printCheckMap() {
       System.out.print("unsafe squares for player " + currentPlayer + " : ");
-      for (Vector2 attackedSquare : checkMap) {
+      for (Coordinate attackedSquare : checkMap) {
          System.out.print(attackedSquare.getVector2AsBoardNotation() + " ");
       }
       System.out.println();

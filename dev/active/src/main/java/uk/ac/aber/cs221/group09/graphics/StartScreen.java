@@ -20,19 +20,19 @@ import javafx.scene.layout.VBox;
  *
  * @author Gwion Hughes
  * @version 1.0 (Release)
- * @see Interface
+ * @see GraphicsHandler
  */
 public class StartScreen {
-   private final Interface anInterface;
+   private final GraphicsHandler anGraphicsHandler;
    private Scene startScreen;
 
    /**
-    * Simple constructor for the StartScreen class. Takes an Interface object as a parameter.
+    * Simple constructor for the StartScreen class. Takes an GraphicsHandler object as a parameter.
     *
-    * @param anInterface - Class containing the application window.
+    * @param anGraphicsHandler - Class containing the application window.
     */
-   public StartScreen(Interface anInterface) {
-      this.anInterface = anInterface;
+   public StartScreen(GraphicsHandler anGraphicsHandler) {
+      this.anGraphicsHandler = anGraphicsHandler;
       constructScreen();
    }
 
@@ -79,14 +79,14 @@ public class StartScreen {
    }
 
    private void requestNewGame() {
-      anInterface.toPNScreen();
+      anGraphicsHandler.toPNScreen();
    }
 
    private void requestToViewFinishedGames() {
-      anInterface.loadFGames();
+      anGraphicsHandler.loadFGames();
    }
 
    private void requestToUnfinishedGames() {
-      anInterface.loadUFGames();
+      anGraphicsHandler.loadUFGames();
    }
 }

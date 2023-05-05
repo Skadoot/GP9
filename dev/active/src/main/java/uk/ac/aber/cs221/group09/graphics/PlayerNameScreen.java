@@ -30,17 +30,17 @@ import java.util.regex.Pattern;
  * @see PlayScreen
  */
 public class PlayerNameScreen {
-   private final Interface anInterface;
+   private final GraphicsHandler anGraphicsHandler;
    private Scene scene;
    private TextField textFieldWhite, textFieldBlack, textFieldFile;
 
    /**
     * Simple constructor.
     *
-    * @param anInterface Interface containing the application window for this class' scene.
+    * @param anGraphicsHandler GraphicsHandler containing the application window for this class' scene.
     */
-   public PlayerNameScreen(Interface anInterface) {
-      this.anInterface = anInterface;
+   public PlayerNameScreen(GraphicsHandler anGraphicsHandler) {
+      this.anGraphicsHandler = anGraphicsHandler;
       createScreen();
    }
 
@@ -84,7 +84,7 @@ public class PlayerNameScreen {
       Label labelBlack = new Label("Black:");
       Label labelFile = new Label("Name of File");
 
-      // Create a button that on click calls interface to swap scene to chessboard
+      // Create a button that on click calls GraphicsHandler to swap scene to chessboard
       Button startGame = new Button("Start Game");
       startGame.setOnAction(actionEvent -> {
          warningText.setText(" ");
@@ -103,7 +103,7 @@ public class PlayerNameScreen {
       });
       Button back = new Button("Back");
 
-      // Create a button that on click calls the interface to backtrack to the start screen
+      // Create a button that on click calls the GraphicsHandler to backtrack to the start screen
       back.setOnAction(actionEvent -> backToMenu());
 
       playerWhite.getChildren().addAll(labelWhite, textFieldWhite);
@@ -143,10 +143,10 @@ public class PlayerNameScreen {
    }
 
    private void backToMenu() {
-      anInterface.toMenu();
+      anGraphicsHandler.toMenu();
    }
 
    private void forwardsToNewGame(String blackN, String whiteN, String fileName) {
-      anInterface.toNewChessboard(whiteN, blackN, fileName);
+      anGraphicsHandler.toNewChessboard(whiteN, blackN, fileName);
    }
 }

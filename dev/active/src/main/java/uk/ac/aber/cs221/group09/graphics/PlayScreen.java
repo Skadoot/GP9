@@ -19,7 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import uk.ac.aber.cs221.group09.util.Vector2;
+import uk.ac.aber.cs221.group09.util.Coordinate;
 
 import java.util.ArrayList;
 
@@ -34,7 +34,7 @@ import java.util.ArrayList;
  */
 public class PlayScreen {
 
-   private final Interface anInterface;
+   private final GraphicsHandler anGraphicsHandler;
    private Scene scene;
    private final Chessboard chessboard;
    private Text whitePlayerName, blackPlayerName;
@@ -57,11 +57,11 @@ public class PlayScreen {
    /**
     * Constructor method for the Play Screen.
     *
-    * @param anInterface The GUI handler class
+    * @param anGraphicsHandler The GUI handler class
     */
-   public PlayScreen(Interface anInterface) {
+   public PlayScreen(GraphicsHandler anGraphicsHandler) {
       this.chessboard = new Chessboard(this);
-      this.anInterface = anInterface;
+      this.anGraphicsHandler = anGraphicsHandler;
       this.graphicsLoader = new PlayScreenGraphicsLoader();
       constructPlayScreen();
    }
@@ -256,13 +256,13 @@ public class PlayScreen {
    }
 
    /**
-    * Pass the coordinates of the button pressed up to the backend-frontend interface class.
+    * Pass the coordinates of the button pressed up to the frontend GraphicsHandler class.
     *
     * @param column The file or vertical column of the pressed tile.
     * @param row    The rank or horizontal row of the pressed tile.
     */
    public void alertPressedTile(int column, int row) {
-      anInterface.click(column, row);
+      anGraphicsHandler.click(column, row);
       startedViewing = false;
    }
 
@@ -334,7 +334,7 @@ public class PlayScreen {
       accept.setOnAction(new EventHandler<ActionEvent>() {
          @Override
          public void handle(ActionEvent actionEvent) {
-            anInterface.updateGameOver('d');
+            anGraphicsHandler.updateGameOver('d');
             gameOverOverlay('d');
          }
       });
@@ -390,10 +390,10 @@ public class PlayScreen {
          public void handle(ActionEvent actionEvent) {
             // Resign quit game ladi da
             if (turnTracker.getText().equals(whitePlayerName.getText())) {
-               anInterface.updateGameOver('b');
+               anGraphicsHandler.updateGameOver('b');
                gameOverOverlay('b');
             } else {
-               anInterface.updateGameOver('b');
+               anGraphicsHandler.updateGameOver('b');
                gameOverOverlay('w');
             }
             dashboard.getChildren().remove(resignWindow);
@@ -423,7 +423,7 @@ public class PlayScreen {
    /**
     * Function to called when a promotion is available for a pawn. Overlays the player Dashboard with a new container
     * containing four buttons. The chessboard is disabled until the player chooses a promotion. The button's display
-    * the graphics of the available pieces to promote to. Will notify the interface of the user's selection.
+    * the graphics of the available pieces to promote to. Will notify the GraphicsHandler of the user's selection.
     */
    public void offerPromotion() {
       // Disable the chessboard to stop play until promotion selected.
@@ -473,7 +473,7 @@ public class PlayScreen {
          public void handle(ActionEvent actionEvent) {
             dashboard.getChildren().remove(promotionWindow);
             // Request queen promotion
-            anInterface.requestPromotion(0);
+            anGraphicsHandler.requestPromotion(0);
             // Re-enable chessboard
             setLogDisabled(false);
             chessboard.disableChessboard(false);
@@ -484,7 +484,7 @@ public class PlayScreen {
          @Override
          public void handle(ActionEvent actionEvent) {
             dashboard.getChildren().remove(promotionWindow);
-            anInterface.requestPromotion(1);
+            anGraphicsHandler.requestPromotion(1);
             //reenable chessboard
             setLogDisabled(false);
             chessboard.disableChessboard(false);
@@ -495,7 +495,7 @@ public class PlayScreen {
          @Override
          public void handle(ActionEvent actionEvent) {
             dashboard.getChildren().remove(promotionWindow);
-            anInterface.requestPromotion(2);
+            anGraphicsHandler.requestPromotion(2);
             // Re-enable chessboard
             setLogDisabled(false);
             chessboard.disableChessboard(false);
@@ -506,7 +506,7 @@ public class PlayScreen {
          @Override
          public void handle(ActionEvent actionEvent) {
             dashboard.getChildren().remove(promotionWindow);
-            anInterface.requestPromotion(3);
+            anGraphicsHandler.requestPromotion(3);
             // Re-enable chessboard
             setLogDisabled(false);
             chessboard.disableChessboard(false);
@@ -526,17 +526,17 @@ public class PlayScreen {
     */
    public void incrementThroughLog() {
       // A function triggered by a button. Push the next board state forwards
-      chessboard.disableChessboard(currentTurn != anInterface.getTurnNumber());
+      chessboard.disableChessboard(currentTurn != anGraphicsHandler.getTurnNumber());
       chessboard.disableChessboard(gameFinished);
       if (!startedViewing) {
-         currentTurn = (anInterface.getTurnNumber());
+         currentTurn = (anGraphicsHandler.getTurnNumber());
          startedViewing = true;
       }
-      if (currentTurn < anInterface.getTurnNumber()) {
+      if (currentTurn < anGraphicsHandler.getTurnNumber()) {
          // Increases the turn we are looking at by 1
          currentTurn++;
       }
-      chessboard.updateBoard(anInterface.getPreviousFEN(currentTurn));
+      chessboard.updateBoard(anGraphicsHandler.getPreviousFEN(currentTurn));
 
    }
 
@@ -545,11 +545,11 @@ public class PlayScreen {
     */
    public void decrementThroughLog() {
       // A function triggered by a button. View the past through a spooky crystal ball ooooo
-      chessboard.disableChessboard(currentTurn != anInterface.getTurnNumber());
+      chessboard.disableChessboard(currentTurn != anGraphicsHandler.getTurnNumber());
       chessboard.disableChessboard(gameFinished);
       if (!startedViewing) {
          // Sets the index for navigation through the played moves to be the last move played
-         currentTurn = (anInterface.getTurnNumber());
+         currentTurn = (anGraphicsHandler.getTurnNumber());
          // Sets the boolean to true, so we can iterate through the moves without causing errors
          startedViewing = true;
          // If we've already started looking at our played moves we just continue to iterate backwards from the last turn we looked at
@@ -561,7 +561,7 @@ public class PlayScreen {
       }
 
       if (currentTurn >= 0) {
-         chessboard.updateBoard(anInterface.getPreviousFEN(currentTurn));
+         chessboard.updateBoard(anGraphicsHandler.getPreviousFEN(currentTurn));
       }
    }
 
@@ -594,8 +594,8 @@ public class PlayScreen {
          @Override
          public void handle(ActionEvent actionEvent) {
             // Call game to be deleted
-            anInterface.toMenu();
-            anInterface.deleteGame();
+            anGraphicsHandler.toMenu();
+            anGraphicsHandler.deleteGame();
          }
       });
 
@@ -604,7 +604,7 @@ public class PlayScreen {
          @Override
          public void handle(ActionEvent actionEvent) {
             // Game is saved in the background so just quit
-            anInterface.toMenu();
+            anGraphicsHandler.toMenu();
          }
       });
 
@@ -689,7 +689,7 @@ public class PlayScreen {
     * @param vTiles - Coordinates of valid tiles for selected piece to move to
     * @param checkTiles - Coordinates of any kings in check.
     */
-   public void highlightTiles(ArrayList<Vector2> vTiles, ArrayList<Vector2> checkTiles) {
+   public void highlightTiles(ArrayList<Coordinate> vTiles, ArrayList<Coordinate> checkTiles) {
       chessboard.highlightTiles(vTiles, checkTiles);
    }
 

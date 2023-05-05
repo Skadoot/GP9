@@ -7,7 +7,7 @@
 
 package uk.ac.aber.cs221.group09.logic.pieces;
 
-import uk.ac.aber.cs221.group09.util.Vector2;
+import uk.ac.aber.cs221.group09.util.Coordinate;
 
 import java.util.ArrayList;
 
@@ -19,17 +19,17 @@ import java.util.ArrayList;
  *
  * @author Shaun Royle
  * @version 1.0 (Release)
- * @see Vector2
+ * @see Coordinate
  */
 public class Piece {
    // Storing the pieces color.
    private final char color;
    // The possible moves for a pieces.piece, ignoring if the moves are legal or not.
-   private final ArrayList<Vector2> possibleMoves;
+   private final ArrayList<Coordinate> possibleMoves;
    // Storing the type of the pieces.piece for notation.
    private char type;
    // The pieces position.
-   private Vector2 position;
+   private Coordinate position;
    // To keep track if the piece has moved during the course of the game.
    private boolean hasMoved;
 
@@ -40,7 +40,7 @@ public class Piece {
     * @param position the position of the piece: a Vector2.
     * @param type     the type of the piece: 'p' for pawn, 'n' for knight, 'r' for rook, 'b' for bishop, 'q' for queen, 'k' for king.
     */
-   public Piece(char color, Vector2 position, char type) {
+   public Piece(char color, Coordinate position, char type) {
       // Initializing the possible moves arrayList.
       possibleMoves = new ArrayList<>();
 
@@ -63,7 +63,7 @@ public class Piece {
     *
     * @return the Vector2 object which stores its position.
     */
-   public Vector2 getPosition() {
+   public Coordinate getPosition() {
       return position;
    }
 
@@ -72,7 +72,7 @@ public class Piece {
     *
     * @param position the new position to set the piece's position to.
     */
-   public void setPosition(Vector2 position) {
+   public void setPosition(Coordinate position) {
       this.position = position;
    }
 
@@ -81,7 +81,7 @@ public class Piece {
     *
     * @return the ArrayList of legal moves.
     */
-   public ArrayList<Vector2> getPossibleMoves() {
+   public ArrayList<Coordinate> getPossibleMoves() {
       return possibleMoves;
    }
 
@@ -90,7 +90,7 @@ public class Piece {
     *
     * @param position the position of the move.
     */
-   public void addMove(Vector2 position) {
+   public void addMove(Coordinate position) {
       if (possibleMoves.contains(position)) {
          return;
       }

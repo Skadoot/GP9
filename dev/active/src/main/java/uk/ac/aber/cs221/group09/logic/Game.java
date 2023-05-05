@@ -8,7 +8,7 @@
 package uk.ac.aber.cs221.group09.logic;
 
 import uk.ac.aber.cs221.group09.logic.pieces.Piece;
-import uk.ac.aber.cs221.group09.util.Vector2;
+import uk.ac.aber.cs221.group09.util.Coordinate;
 
 import java.util.ArrayList;
 
@@ -34,10 +34,10 @@ public class Game {
    // Keep track of which move it is.
    private int moveCount;
    private MoveCalculator moveCalculator;
-   private Vector2 selectedPiece;
+   private Coordinate selectedPiece;
    private boolean isMovesCalculated = false;
 
-   private Vector2 selectedBoardCoordinate;
+   private Coordinate selectedBoardCoordinate;
 
    private boolean isMoveMade = false;
 
@@ -49,7 +49,7 @@ public class Game {
    public Game(String boardState, String fileName, boolean load) {
       gameBoard = new Board(boardState);
       this.log = new Log(fileName);
-      this.selectedPiece = new Vector2();
+      this.selectedPiece = new Coordinate();
    }
 
    /**
@@ -57,7 +57,7 @@ public class Game {
     */
    public Game() {
       this.log = new Log();
-      this.selectedPiece = new Vector2();
+      this.selectedPiece = new Coordinate();
    }
 
    /**
@@ -85,10 +85,10 @@ public class Game {
       }
 
       // Wait for the UI to return a selected piece, here we would set it to be the coordinate that the ui passes back to us.
-      selectedBoardCoordinate = new Vector2(column, row);
+      selectedBoardCoordinate = new Coordinate(column, row);
 
       // Get a list of all the legal moves for the chessboard
-      ArrayList<Vector2> currentLegalMoves = new ArrayList<Vector2>();
+      ArrayList<Coordinate> currentLegalMoves = new ArrayList<Coordinate>();
       if(gameBoard.getPiece(selectedPiece) != null) {
          currentLegalMoves = gameBoard.getPiece(selectedPiece).getPossibleMoves();
       }
@@ -204,9 +204,9 @@ public class Game {
     * Creates and ArrayList containing the coordinates of valid tiles to display on the front end.
     * @return res - An ArrayList of int pairs.
     */
-   public ArrayList<Vector2> validTiles() {
+   public ArrayList<Coordinate> validTiles() {
       Piece piece = gameBoard.getPiece(selectedPiece);
-      ArrayList<Vector2> res = new ArrayList<>();
+      ArrayList<Coordinate> res = new ArrayList<>();
       if(gameBoard.getPiece(selectedPiece) == null) {
          return res;
       }
@@ -221,13 +221,13 @@ public class Game {
     * Return the position of any king in check in order to display on the front end.
     * @return res - ArrayList containing an int pair resembling a coordinate.
     */
-   public ArrayList<Vector2> checkedKing() {
-      ArrayList<Vector2> res = new ArrayList<Vector2>();
+   public ArrayList<Coordinate> checkedKing() {
+      ArrayList<Coordinate> res = new ArrayList<Coordinate>();
       MoveCalculator checkCheck = new MoveCalculator(attackingPlayer, gameBoard);
       checkCheck.findLegalMovesForPlayer(true);
       checkCheck.findLegalMovesForPlayer(false);
       if (checkCheck.isPlayerInCheck()) {
-         Vector2 kCheck = new Vector2();
+         Coordinate kCheck = new Coordinate();
          if (attackingPlayer == 'w') {
             kCheck = gameBoard.getWhiteKingPosition();
          } else {

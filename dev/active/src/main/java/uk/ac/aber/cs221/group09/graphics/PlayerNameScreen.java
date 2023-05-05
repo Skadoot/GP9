@@ -95,7 +95,7 @@ public class PlayerNameScreen {
             warningText.setText("Names cannot contain special characters.");
             return;
          } else if (isNameTooLong()) {
-            warningText.setText("Names cannot exceed 32 character limit.");
+            warningText.setText("Names cannot exceed 24 character limit.");
             return;
          }
 
@@ -139,7 +139,7 @@ public class PlayerNameScreen {
       String whiteName = textFieldWhite.getText();
       String blackName = textFieldBlack.getText();
       String fileName = textFieldFile.getText();
-      return (whiteName.length() > 32 || blackName.length() > 32 || fileName.length() > 32);
+      return (whiteName.length() > 24 || blackName.length() > 24 || fileName.length() > 24);
    }
 
    private void backToMenu() {

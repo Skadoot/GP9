@@ -30,7 +30,7 @@ import javafx.scene.layout.VBox;
  * @see LoadScreen
  */
 public class LoadScreen {
-   private final Interface anInterface;
+   private final GraphicsHandler anGraphicsHandler;
    private Scene scene;
    private VBox saveContainer;
    private Label lab;
@@ -38,10 +38,10 @@ public class LoadScreen {
    /**
     * Constructor for instance of LoadScreen
     *
-    * @param anInterface The calls containing the primary stage displaying this class' scene.
+    * @param anGraphicsHandler The calls containing the primary stage displaying this class' scene.
     */
-   public LoadScreen(Interface anInterface) {
-      this.anInterface = anInterface;
+   public LoadScreen(GraphicsHandler anGraphicsHandler) {
+      this.anGraphicsHandler = anGraphicsHandler;
       createScene();
    }
 
@@ -95,7 +95,7 @@ public class LoadScreen {
       backButton.setOnAction(new EventHandler<ActionEvent>() {
          @Override
          public void handle(ActionEvent actionEvent) {
-            anInterface.toMenu();
+            anGraphicsHandler.toMenu();
          }
       });
       layout.add(backButton, 6, 1, 2, 2);
@@ -125,10 +125,10 @@ public class LoadScreen {
    }
 
    /**
-    * Message to the interface the index of the save to send to the backend and load.
+    * Message to the GraphicsHandler the index of the save to send to the backend and load.
     */
    public void requestSave(String fileName, boolean isFinished) {
-      anInterface.setGameFromSave(fileName, isFinished);
+      anGraphicsHandler.setGameFromSave(fileName, isFinished);
    }
 }
 

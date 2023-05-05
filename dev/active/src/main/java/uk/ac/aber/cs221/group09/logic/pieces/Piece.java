@@ -37,7 +37,7 @@ public class Piece {
     * Simple constructor for piece.
     *
     * @param color    the color of the piece: 'w' for white, 'b' for black.
-    * @param position the position of the piece: a Vector2.
+    * @param position the position of the piece: a Coordinate.
     * @param type     the type of the piece: 'p' for pawn, 'n' for knight, 'r' for rook, 'b' for bishop, 'q' for queen, 'k' for king.
     */
    public Piece(char color, Coordinate position, char type) {
@@ -61,7 +61,7 @@ public class Piece {
    /**
     * Returns the position of the piece.
     *
-    * @return the Vector2 object which stores its position.
+    * @return the Coordinate object which stores its position.
     */
    public Coordinate getPosition() {
       return position;

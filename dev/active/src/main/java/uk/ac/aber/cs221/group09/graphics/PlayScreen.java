@@ -35,10 +35,10 @@ import java.util.ArrayList;
 public class PlayScreen {
 
    private final GraphicsHandler anGraphicsHandler;
-   private Scene scene;
    private final Chessboard chessboard;
    // Player Dashboard
    private final PlayScreenGraphicsLoader graphicsLoader;
+   private Scene scene;
    private Text whitePlayerName, blackPlayerName;
    private StackPane dashboard;
    private Text turnTracker;
@@ -109,7 +109,7 @@ public class PlayScreen {
 
       // Adding the chessboard to size 5-13x0-8
 
-      layout.add(this.chessboard.getChessBoard(), 5, 1, 8, 8);
+      layout.add(this.chessboard.getChessBoard(), 6, 1, 8, 8);
 
       // Adding container to display white player's name
       Label whiteP = new Label("White: ");
@@ -117,7 +117,7 @@ public class PlayScreen {
       this.whitePlayerName = whiteName;
       HBox whiteContainer = new HBox(whiteP, whiteName);
       whiteContainer.setAlignment(Pos.CENTER);
-      layout.add(whiteContainer, 5, 9, 8, 1);
+      layout.add(whiteContainer, 6, 9, 8, 1);
 
 
       // Adding container to display Black player's name
@@ -126,11 +126,11 @@ public class PlayScreen {
       this.blackPlayerName = blackName;
       HBox blackContainer = new HBox(blackP, blackName);
       blackContainer.setAlignment(Pos.CENTER);
-      layout.add(blackContainer, 5, 0, 8, 1);
+      layout.add(blackContainer, 6, 0, 8, 1);
 
       // Player Dashboard. Is a StackPane.
       StackPane playerDashboard = createDashboard();
-      layout.add(playerDashboard, 0, 1, 4, 6);
+      layout.add(playerDashboard, 0, 2, 5, 6);
 
 /*
       //The below virtual box could be  used to track material captured.
@@ -166,7 +166,7 @@ public class PlayScreen {
       logButtons.getChildren().addAll(prevB, nextB);
       logButtons.setAlignment(Pos.CENTER);
 
-      layout.add(logButtons, 8, 10, 2, 1);
+      layout.add(logButtons, 9, 10, 2, 1);
       logButtons.setSpacing(20);
 
       //looks nice but idk
@@ -183,7 +183,7 @@ public class PlayScreen {
 
       layout.setAlignment(Pos.CENTER);
 
-      layout.add(quitB, 14, 0, 2, 1);
+      layout.add(quitB, 15, 0, 2, 1);
 
       // Makes the gridlines visible in layout. Useful for debugging
       // layout.setGridLinesVisible(true);
@@ -315,7 +315,7 @@ public class PlayScreen {
       textContainer.setAlignment(Pos.CENTER);
 
       // Text is drawn into two different objects so they display center properly.
-      Text drawTextOne = new Text("Player has offered a draw.\n");
+      Text drawTextOne = new Text(turnTracker.getText() + " has offered a draw.\n");
       Text drawTextTwo = new Text("The game will be saved and viewable.\n");
 
       // Creating the button container and its contents.
@@ -367,7 +367,7 @@ public class PlayScreen {
       textContainer.setAlignment(Pos.CENTER);
 
       // Text content broken into two texts so they align properly.
-      Text resTextOne = new Text("Player is choosing to resign.\n");
+      Text resTextOne = new Text(turnTracker.getText() + " is choosing to resign.\n");
       Text resTextTwo = new Text("The game will be saved and viewable.\n");
 
       // Button and button containers
@@ -530,7 +530,6 @@ public class PlayScreen {
          currentTurn++;
       }
       chessboard.updateBoard(anGraphicsHandler.getPreviousFEN(currentTurn));
-
    }
 
    /**

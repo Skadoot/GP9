@@ -26,10 +26,10 @@ import java.util.ArrayList;
  * @see Tile
  */
 public class Chessboard {
+   private final PlayScreen playScreen;
    private TileGraphicsLoader graphicsLoader;
    private Tile[][] tiles;
    private GridPane chessBoard;
-   private final PlayScreen playScreen;
 
    /**
     * Class constructor. Takes a scene containing class as a parameter to display the chessboard on.
@@ -166,22 +166,23 @@ public class Chessboard {
       return;
    }
 
-    /**
-     * Unimplemented function. Pass is three arrays, possibly empty, of coordinates of buttons to highlight in different styles.
-     * @param validT - ArrayList of coordinates of valid tiles.
-     * @param checkT - ArrayList of coordinates of checked pieces
-     */
-    public void highlightTiles(ArrayList<Coordinate> validT, ArrayList<Coordinate> checkT) {
-        highlightValidTiles(validT);
-        highlightCheckTile(checkT);
-    }
+   /**
+    * Unimplemented function. Pass is three arrays, possibly empty, of coordinates of buttons to highlight in different styles.
+    *
+    * @param validT - ArrayList of coordinates of valid tiles.
+    * @param checkT - ArrayList of coordinates of checked pieces
+    */
+   public void highlightTiles(ArrayList<Coordinate> validT, ArrayList<Coordinate> checkT) {
+      highlightValidTiles(validT);
+      highlightCheckTile(checkT);
+   }
 
-    private void highlightValidTiles(ArrayList<Coordinate> validT) {
-        if(validT.size() == 0) return;
-        for (Coordinate coords : validT) {
-            tiles[coords.y][coords.x].setStyleClass("valid-tile");
-        }
-    }
+   private void highlightValidTiles(ArrayList<Coordinate> validT) {
+      if (validT.size() == 0) return;
+      for (Coordinate coords : validT) {
+         tiles[coords.y][coords.x].setStyleClass("valid-tile");
+      }
+   }
 
    /**
     * Function call to itterate over every chess button and set whether it is pressable based on the passed boolean.
@@ -198,9 +199,9 @@ public class Chessboard {
       }
    }
 
-    private void highlightCheckTile(ArrayList<Coordinate> checkT) {
-        for (Coordinate coords : checkT) {
-            tiles[coords.y][coords.x].setStyleClass("check-tile");
-        }
-    }
+   private void highlightCheckTile(ArrayList<Coordinate> checkT) {
+      for (Coordinate coords : checkT) {
+         tiles[coords.y][coords.x].setStyleClass("check-tile");
+      }
+   }
 }

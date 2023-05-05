@@ -1,0 +1,26 @@
+Author: Shr27
+Week: 10 Integration & Testing (2023/05/03)
+
+Actions
+
+Action 1: fixed fenstring being wrong
+
+hours: 1
+
+Action 2: made slight code improvments
+
+hours: 2
+
+Action 3: added extra fenstring notation for winning player
+
+hours: 1 hours
+
+Action 4: fixed full and half move clock
+
+Hours: 3
+
+Action 5: fixed promotion bugs and index out of bounds exception with moving pawns
+
+Hours: 2
+
+Total Hours: 9

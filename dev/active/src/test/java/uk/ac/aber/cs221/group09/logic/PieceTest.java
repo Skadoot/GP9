@@ -331,10 +331,10 @@ public class PieceTest {
       game.promote(0);
 
       //sets the promoted piece as a test piece to move
-      Piece pieceToMove = game.getGameBoard().getPiece(new Vector2(7, 7));
-      Vector2 testPosition = new Vector2(7, 3);
+      Piece pieceToMove = game.getGameBoard().getPiece(new Coordinate(7, 7));
+      Coordinate testPosition = new Coordinate(7, 3);
 
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             game.getGameBoard().movePiece(pieceToMove, testPosition);
          }
@@ -361,10 +361,10 @@ public class PieceTest {
       game.promote(1);
 
       //sets the promoted piece as a test piece to move
-      Piece pieceToMove = game.getGameBoard().getPiece(new Vector2(7, 7));
-      Vector2 testPosition = new Vector2(7, 3);
+      Piece pieceToMove = game.getGameBoard().getPiece(new Coordinate(7, 7));
+      Coordinate testPosition = new Coordinate(7, 3);
 
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             game.getGameBoard().movePiece(pieceToMove, testPosition);
          }
@@ -391,10 +391,10 @@ public class PieceTest {
       game.promote(2);
 
       //sets the promoted piece as a test piece to move
-      Piece pieceToMove = game.getGameBoard().getPiece(new Vector2(7, 7));
-      Vector2 testPosition = new Vector2(3, 3);
+      Piece pieceToMove = game.getGameBoard().getPiece(new Coordinate(7, 7));
+      Coordinate testPosition = new Coordinate(3, 3);
 
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             game.getGameBoard().movePiece(pieceToMove, testPosition);
          }
@@ -421,10 +421,10 @@ public class PieceTest {
       game.promote(3);
 
       //sets the promoted piece as a test piece to move
-      Piece pieceToMove = game.getGameBoard().getPiece(new Vector2(7, 7));
-      Vector2 testPosition = new Vector2(6, 5);
+      Piece pieceToMove = game.getGameBoard().getPiece(new Coordinate(7, 7));
+      Coordinate testPosition = new Coordinate(6, 5);
 
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             game.getGameBoard().movePiece(pieceToMove, testPosition);
          }
@@ -451,10 +451,10 @@ public class PieceTest {
       game.promote(0);
 
       //sets the promoted piece as a piece to move
-      Piece pieceToMove = game.getGameBoard().getPiece(new Vector2(7, 0));
-      Vector2 testPosition = new Vector2(7, 5);
+      Piece pieceToMove = game.getGameBoard().getPiece(new Coordinate(7, 0));
+      Coordinate testPosition = new Coordinate(7, 5);
 
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             game.getGameBoard().movePiece(pieceToMove, testPosition);
          }
@@ -481,10 +481,10 @@ public class PieceTest {
       game.promote(1);
 
       //sets the promoted piece as a piece to move
-      Piece pieceToMove = game.getGameBoard().getPiece(new Vector2(7, 0));
-      Vector2 testPosition = new Vector2(7, 5);
+      Piece pieceToMove = game.getGameBoard().getPiece(new Coordinate(7, 0));
+      Coordinate testPosition = new Coordinate(7, 5);
 
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             game.getGameBoard().movePiece(pieceToMove, testPosition);
          }
@@ -511,10 +511,10 @@ public class PieceTest {
       game.promote(2);
 
       //sets the promoted piece as a piece to move
-      Piece pieceToMove = game.getGameBoard().getPiece(new Vector2(7, 0));
-      Vector2 testPosition = new Vector2(4, 3);
+      Piece pieceToMove = game.getGameBoard().getPiece(new Coordinate(7, 0));
+      Coordinate testPosition = new Coordinate(4, 3);
 
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             game.getGameBoard().movePiece(pieceToMove, testPosition);
          }
@@ -541,10 +541,10 @@ public class PieceTest {
       game.promote(3);
 
       //sets the promoted piece as a piece to move
-      Piece pieceToMove = game.getGameBoard().getPiece(new Vector2(7, 0));
-      Vector2 testPosition = new Vector2(6, 2);
+      Piece pieceToMove = game.getGameBoard().getPiece(new Coordinate(7, 0));
+      Coordinate testPosition = new Coordinate(6, 2);
 
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
          if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
             game.getGameBoard().movePiece(pieceToMove, testPosition);
          }

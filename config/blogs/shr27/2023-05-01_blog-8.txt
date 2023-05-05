@@ -1,0 +1,22 @@
+Author: Shr27
+Week: 10 Integration & Testing (2023/05/01)
+
+Actions
+
+Action 1: added checkmate function 
+
+hours: 1
+
+Action 2: fixed castling logic
+
+hours: 2
+
+Action 3: fixed issues with black moving into check
+
+hours: 2 hours
+
+Action 2: discussed interation of back and front end.
+
+Hours: 1
+
+Total Hours: 6

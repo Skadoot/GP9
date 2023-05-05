@@ -26,8 +26,8 @@ import javafx.scene.layout.VBox;
  */
 public class StartScreen {
    private final GraphicsHandler anGraphicsHandler;
+   private final ImageView title;
    private Scene startScreen;
-   private ImageView title;
 
    /**
     * Simple constructor for the StartScreen class. Takes an GraphicsHandler object as a parameter.
@@ -77,7 +77,7 @@ public class StartScreen {
       btnSelection.getChildren().add(viewGameButton);
 
       //Add title and buttons to start menu.
-      rootMenu.getChildren().addAll(title,btnSelection);
+      rootMenu.getChildren().addAll(title, btnSelection);
       rootMenu.setAlignment(Pos.CENTER);
       rootMenu.setSpacing(24);
 

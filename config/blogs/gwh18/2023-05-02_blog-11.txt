@@ -2,3 +2,29 @@ Author: GWH18
 Week: 10 Integration & Testing (2023/05/02)
 
 Actions: 
+
+Action 1: Offer Draw, Resign, and Quit.
+
+Linked to FR specifying player should be abe to end game by mutual agreement or resignation. Buttons made on the front end as well as
+private function connected to buttons. Also redid quit screen. It now displays that the player can quit and save or quit without saving. 
+The player also has the option to return to the chessboard without quitting.
+Added player Dashboard area to left of screen. Dashboard tracks active player and contains offer draw and resign button.
+Just needs attaching to backend.
+
+Hours: 4
+
+Action 2: Pawn Promotion FrontEnd
+
+Created backend functions for searching the white and black player camps for pawns to promote, store the available promotion, and switch a
+value the frontend can check to display a promotion is available for a user.
+
+Hours: 3
+
+Action 3: Fixed LoadGameScreen problems.
+
+LoadGameScreen wasn't utilising LoadGameScreen class buttons. Fixed that.
+Fixed problem with the save screen displaying duplicate saves.
+
+Hours: 1
+
+Total Hours: 8

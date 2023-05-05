@@ -1,0 +1,13 @@
+Author: GWH18
+Week: 10 Integration & Testing (2023/05/05)
+
+Actions:
+
+Action 1: Added Title to menu screen
+
+Added Gorpu Chess title made by the brilliant Shaun to the menu screen. Victory achieved over group project.
+-Also refactored interface and Vector2 class named to Coordinate and Graphics Handler. Spent time refactoring comments as well.
+
+Hours: 2
+
+Total Hours: 1

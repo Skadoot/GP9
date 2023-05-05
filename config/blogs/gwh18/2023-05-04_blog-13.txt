@@ -1,0 +1,28 @@
+Author: GWH18
+Week: 10 Integration & Testing (2023/05/04)
+
+Actions:
+
+Action 1: Updating Log class
+
+Log has a function that changes the current file it searches in from finished to unfinished or unfinished to finished games depending on the parameter passed.
+
+Hours: 2
+
+Actions 2: Bug fixes
+
+Fixed promoted piece doesn't move after its promoted.
+Promoting a pawn produces a duplicate FEN line in the logs that messes with logs. Promotions should occur in "one move" as soon as the pawn reaches the opposing players
+camp. 
+Fix blog that allows user to view past the number of moves made and before the board has even been constructed. Player should not be able to see a byeond the temporal timeline
+of chess.
+Fix bug where selecting a new tile that is not a valid tile not reseting the highlighted valid tiles on the chessboard. This is due to the backend not allowing null or opposing
+player pieces being selected. Anyway, it's fixed and I want to drink.
+Fixed player's being able to add names larger than the character limit.
+Fixed bug caused by reckless function name change. Not naming names. My team's lovely.
+Fixed a bug caused when current game ends by checkmate, resignation or agreement, and the player doesn't quit but decides to replay the chessboard. The log for the game
+has moved to a new folder when the game ends but the log still searched in the old folder for the chessboard's history. Now it looks in the right folder.
+
+Hours: 3
+
+Total Hours: 5

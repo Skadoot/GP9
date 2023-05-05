@@ -27,8 +27,8 @@ import java.util.List;
 public class Log {
    private String fileName; //the name of the file
    private int numberOfLines = 0; //to keep track of the number of lines in the file
-   private String nameOfFolderToHoldUnfinishedGames = "./unfinishedGames"; //the relative path to the unfinishedGames directory
-   private String nameOfFolderToHoldFinishedGames = "./finishedGames"; //the relative path to the finishedGames directory
+   private final String nameOfFolderToHoldUnfinishedGames = "./unfinishedGames"; //the relative path to the unfinishedGames directory
+   private final String nameOfFolderToHoldFinishedGames = "./finishedGames"; //the relative path to the finishedGames directory
    private String nameOfFolder; //holds either the path to the finished or unfinished games folder.
 
 
@@ -68,10 +68,11 @@ public class Log {
 
    /**
     * Sets the nameOfFolder field to either the path for finished or unfinished games.
+    *
     * @param finishedGame true if accessing finished games, false if accessing unfinished games
     */
    public void setFinishedGame(boolean finishedGame) {
-      if(finishedGame) {
+      if (finishedGame) {
          this.nameOfFolder = nameOfFolderToHoldFinishedGames; //set name of folder field to be same as finishedGame field
       } else {
          this.nameOfFolder = nameOfFolderToHoldUnfinishedGames; //set name of folder field to be same as unfinishedGame field
@@ -80,6 +81,7 @@ public class Log {
 
    /**
     * Sets the fileName field
+    *
     * @param fileName the String to set the fileName field
     */
    public void setFileName(String fileName) {
@@ -133,7 +135,7 @@ public class Log {
     *
     * @return integer of number of lines in the file called fileName.
     */
-   public int getNumberOfLines(){
+   public int getNumberOfLines() {
       try {
          // Assign variable the string at the requested line number of the file
          this.numberOfLines = Files.readAllLines(Paths.get(nameOfFolder, fileName)).size();
@@ -175,12 +177,12 @@ public class Log {
    /**
     * Moves the current file being used to track the log from the unfinished game to the finished game directory.
     */
-   public void moveFileToFinishedGamesDir(){
+   public void moveFileToFinishedGamesDir() {
       // Create a new directory to hold finished games if one does not exist already.
       new File(nameOfFolderToHoldFinishedGames).mkdirs();
       // Declare two string variables to hold the paths to where the file is and where it's going
-      String pathToCurrentFile = nameOfFolderToHoldUnfinishedGames+"/"+fileName;
-      String pathToFinishedGamesFile = nameOfFolderToHoldFinishedGames+"/"+fileName;
+      String pathToCurrentFile = nameOfFolderToHoldUnfinishedGames + "/" + fileName;
+      String pathToFinishedGamesFile = nameOfFolderToHoldFinishedGames + "/" + fileName;
       // Move the file from the unfinished games to the finished game directory
       File currentFile = new File(pathToCurrentFile);
       currentFile.renameTo(new File(pathToFinishedGamesFile));
@@ -191,17 +193,17 @@ public class Log {
     * Numbering in the file starts at 0. The Log field number of lines counts the lines.
     * So, to replace the last line use Log.numberOfLines - 1 as parameter.
     *
-    * @param lineNumber the line in the file to be replaced. File line numbering starts at 0.
+    * @param lineNumber      the line in the file to be replaced. File line numbering starts at 0.
     * @param replacementLine the line to replace the current one
     */
-   public void replaceLine(int lineNumber, String replacementLine){
+   public void replaceLine(int lineNumber, String replacementLine) {
       // Declare a string to hold the path to where the log file is
-      String pathToCurrentFile = nameOfFolder+"/"+fileName;
+      String pathToCurrentFile = nameOfFolder + "/" + fileName;
       Path path = Paths.get(pathToCurrentFile);
 
       // Make sure the line number is in the bounds of the file otherwise do not try
-      if (lineNumber < this.numberOfLines && lineNumber > -1){
-         try{
+      if (lineNumber < this.numberOfLines && lineNumber > -1) {
+         try {
             // Add all the lines in the file to a list, each item in the list is a line
             List<String> logLines = Files.readAllLines(path, StandardCharsets.UTF_8);
             // Remove the specified line
@@ -210,7 +212,7 @@ public class Log {
             logLines.add(lineNumber, replacementLine);
             // Write back to file
             Files.write(path, logLines, StandardCharsets.UTF_8);
-         } catch (IOException e){
+         } catch (IOException e) {
             System.out.println("IO Error");
          }
       } else {
@@ -220,11 +222,11 @@ public class Log {
    }
 
    /**
-    * Deletes the current log file that is in unfinished games.
+    * Deletes the current log file from the relevant folder
     * Called when the user wishes to exit a game and not save the file.
     */
-   public void deleteFile(){
-      String pathToCurrentFile = nameOfFolder+"/"+fileName;
+   public void deleteFile() {
+      String pathToCurrentFile = nameOfFolder + "/" + fileName;
       File currentFile = new File(pathToCurrentFile);
       currentFile.delete();
    }

@@ -61,10 +61,10 @@ public class Game {
    }
 
    /**
-   *  method to create a game giving a file name, and weather or not the game has not finished
-   *
-   * @param fileName the file name
-   * @param isFinished is the game finished?
+    * method to create a game giving a file name, and weather or not the game has not finished
+    *
+    * @param fileName   the file name
+    * @param isFinished is the game finished?
     */
    public void createGame(String fileName, boolean isFinished) {
       log.setFinishedGame(isFinished);
@@ -88,8 +88,13 @@ public class Game {
       selectedBoardCoordinate = new Coordinate(column, row);
 
       // Get a list of all the legal moves for the chessboard
+<<<<<<< HEAD
       ArrayList<Coordinate> currentLegalMoves = new ArrayList<Coordinate>();
       if(gameBoard.getPiece(selectedPiece) != null) {
+=======
+      ArrayList<Vector2> currentLegalMoves = new ArrayList<Vector2>();
+      if (gameBoard.getPiece(selectedPiece) != null) {
+>>>>>>> 824369959aa9b43c112f7d1be7e9db6685316c9b
          currentLegalMoves = gameBoard.getPiece(selectedPiece).getPossibleMoves();
       }
       // Check the selected coordinates are a legal move and the current selected piece is the attacking player's piece.
@@ -116,7 +121,7 @@ public class Game {
       System.out.println("Moved piece to " + selectedBoardCoordinate.getVector2AsBoardNotation());
       System.out.println(
 
-            "\n         ,....,----------------------------------------------------\n" +
+         "\n         ,....,----------------------------------------------------\n" +
             "      ,::::::<-----------------------------------------------------\n" +
             "     ,::/^\\\"``.----------------------------------------------------\n" +
             "    ,::/, `   e`.--------------------------------------------------\n" +
@@ -202,12 +207,18 @@ public class Game {
 
    /**
     * Creates and ArrayList containing the coordinates of valid tiles to display on the front end.
+    *
     * @return res - An ArrayList of int pairs.
     */
    public ArrayList<Coordinate> validTiles() {
       Piece piece = gameBoard.getPiece(selectedPiece);
+<<<<<<< HEAD
       ArrayList<Coordinate> res = new ArrayList<>();
       if(gameBoard.getPiece(selectedPiece) == null) {
+=======
+      ArrayList<Vector2> res = new ArrayList<>();
+      if (gameBoard.getPiece(selectedPiece) == null) {
+>>>>>>> 824369959aa9b43c112f7d1be7e9db6685316c9b
          return res;
       }
       if (piece.getColor() != attackingPlayer) {
@@ -219,6 +230,7 @@ public class Game {
 
    /**
     * Return the position of any king in check in order to display on the front end.
+    *
     * @return res - ArrayList containing an int pair resembling a coordinate.
     */
    public ArrayList<Coordinate> checkedKing() {
@@ -264,6 +276,7 @@ public class Game {
 
    /**
     * method that checks if the game is over by checkmate
+    *
     * @param c the player.
     */
    public void endGame(char c) {

@@ -10,7 +10,6 @@ package uk.ac.aber.cs221.group09.graphics;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-
 import uk.ac.aber.cs221.group09.logic.Game;
 import uk.ac.aber.cs221.group09.util.Coordinate;
 
@@ -34,7 +33,10 @@ public class GraphicsHandler extends Application {
    private StartScreen startScreen;
    private LoadScreen loadScreen;
    private Game game;
-   ArrayList<Coordinate> movesToCompare;
+
+   public static void main(String[] args) {
+      launch();
+   }
 
    @Override
    public void start(Stage stage) throws IOException {
@@ -50,10 +52,6 @@ public class GraphicsHandler extends Application {
       stage.setTitle("Gorpu Chess!");
       stage.setScene(startScreen.getStartScreen());
       stage.show();
-   }
-
-   public static void main(String[] args) {
-      launch();
    }
 
    public Stage getStage() {
@@ -84,11 +82,12 @@ public class GraphicsHandler extends Application {
 
 
    public int getTurnNumber() {
-      String gameInfo[] = game.gameNotation().split(" ", 7);
+      String[] gameInfo = game.gameNotation().split(" ", 7);
       int turn = Integer.parseInt(gameInfo[4]);
       return turn;
    }
-   public String getPreviousFEN(int turn){
+
+   public String getPreviousFEN(int turn) {
       return game.log.readLog(turn);
    }
 
@@ -167,7 +166,7 @@ public class GraphicsHandler extends Application {
       // Make a whole new playScreen.
       playScreen = new PlayScreen(this);
       playScreen.updatePlayScreen(game.gameNotation());
-      if(isFinished){
+      if (isFinished) {
          playScreen.setGameFinished();
       }
       primaryStage.setScene(playScreen.getScene());

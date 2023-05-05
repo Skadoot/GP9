@@ -1,0 +1,20 @@
+Author: TYW
+Week: 10 (04/05/23)
+
+Assigned actions
+==============
+
+n/a
+
+Other project work
+================
+
+1. Documentation work (design spec, maintenance manual)
+
+Hours: 3
+
+2. Reviewing completed code, QA checks
+
+Hours: 4
+
+Total hours: 7

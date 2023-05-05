@@ -1,0 +1,22 @@
+Author: ckc2
+Week: 10(03/05/23)
+
+Assigned actions
+==============
+
+- mostly adding javadoc comments to test methods 
+- implementing back-end log tests to check for loadings and savings 
+- running system tests to examine the game while finding for potential bugs
+- further polishing test report to fix system bugs 
+
+Hours: 5
+
+
+
+
+Other project work
+================
+
+
+
+Total hours: 5

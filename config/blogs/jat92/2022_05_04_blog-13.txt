@@ -1,0 +1,9 @@
+Blog - week 10
+
+01/04/23 
+Few ammendments to general code to reflect changes in Log class. 
+Adjusted comments in Log class. 
+Made changes to design doc 
+Made changes to UI Spec
+
+total 6 hours 

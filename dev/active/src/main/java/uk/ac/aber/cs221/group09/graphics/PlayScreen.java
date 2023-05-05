@@ -37,10 +37,10 @@ public class PlayScreen {
    private final GraphicsHandler anGraphicsHandler;
    private Scene scene;
    private final Chessboard chessboard;
-   private Text whitePlayerName, blackPlayerName;
-
    // Player Dashboard
    private final PlayScreenGraphicsLoader graphicsLoader;
+   private Scene scene;
+   private Text whitePlayerName, blackPlayerName;
    private StackPane dashboard;
    private Text turnTracker;
    private ImageView symbol;
@@ -52,7 +52,6 @@ public class PlayScreen {
    private int currentTurn;
    private Button prevB;
    private Button nextB;
-
 
    /**
     * Constructor method for the Play Screen.
@@ -135,12 +134,7 @@ public class PlayScreen {
       layout.add(playerDashboard, 0, 1, 4, 6);
 
 /*
-        //Log container.
-        HBox log = new HBox();
-        ScrollPane logContainer = new ScrollPane(log);
-        layout.add(logContainer, 2, 10, 14, 1);
-
-      //The below virtual box will be  used to track the game such as material captured.
+      //The below virtual box could be  used to track material captured.
 
         VBox extraLayout = new VBox();
         Text extraLayoutFill = new Text("Extra Stuff");
@@ -536,8 +530,12 @@ public class PlayScreen {
          // Increases the turn we are looking at by 1
          currentTurn++;
       }
+<<<<<<< HEAD
       chessboard.updateBoard(anGraphicsHandler.getPreviousFEN(currentTurn));
 
+=======
+      chessboard.updateBoard(anInterface.getPreviousFEN(currentTurn));
+>>>>>>> 824369959aa9b43c112f7d1be7e9db6685316c9b
    }
 
    /**
@@ -686,7 +684,8 @@ public class PlayScreen {
    /**
     * Function call to visually highlight tiles. Passed two arrays of coordinates to highlight. One is the coordinates
     * of valid tiles for the selected piece to move to, the other the coordinates of the king if there is a king in check.
-    * @param vTiles - Coordinates of valid tiles for selected piece to move to
+    *
+    * @param vTiles     - Coordinates of valid tiles for selected piece to move to
     * @param checkTiles - Coordinates of any kings in check.
     */
    public void highlightTiles(ArrayList<Coordinate> vTiles, ArrayList<Coordinate> checkTiles) {
@@ -698,7 +697,8 @@ public class PlayScreen {
       prevB.setDisable(b);
       nextB.setDisable(b);
    }
-   public void setGameFinished(){
-      gameFinished=true;
+
+   public void setGameFinished() {
+      gameFinished = true;
    }
 }

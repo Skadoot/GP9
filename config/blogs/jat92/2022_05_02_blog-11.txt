@@ -1,4 +1,4 @@
-Blog - week 11
+Blog - week 10
 
 01/04/23 
 Finished integrating the back end so that a game will save all the FEN strings to a text file. Editted the Log class so that a new folder is made (using a relative path) called unfinished games where all the unfinished games are saved. Finished integration so that fundamentals of the save feature is implmented. Spike work with Cieran on viewing games.

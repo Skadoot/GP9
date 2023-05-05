@@ -1,0 +1,22 @@
+Author: ckc2
+Week: 10(03/05/23)
+
+Assigned actions
+==============
+
+- continue implementing more tests while adding comments to different classes and methods respectively 
+- plan for future actions with jim and sean for testing to run smoothly 
+- running system tests to examine the game while finding for potential bugs
+- Started working on Test Report while refering to the test spec 
+
+Hours: 4
+
+
+
+
+Other project work
+================
+
+
+
+Total hours: 4

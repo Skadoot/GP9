@@ -61,10 +61,10 @@ public class Game {
    }
 
    /**
-   *  method to create a game giving a file name, and weather or not the game has not finished
-   *
-   * @param fileName the file name
-   * @param isFinished is the game finished?
+    * method to create a game giving a file name, and weather or not the game has not finished
+    *
+    * @param fileName   the file name
+    * @param isFinished is the game finished?
     */
    public void createGame(String fileName, boolean isFinished) {
       log.setFinishedGame(isFinished);
@@ -89,7 +89,7 @@ public class Game {
 
       // Get a list of all the legal moves for the chessboard
       ArrayList<Vector2> currentLegalMoves = new ArrayList<Vector2>();
-      if(gameBoard.getPiece(selectedPiece) != null) {
+      if (gameBoard.getPiece(selectedPiece) != null) {
          currentLegalMoves = gameBoard.getPiece(selectedPiece).getPossibleMoves();
       }
       // Check the selected coordinates are a legal move and the current selected piece is the attacking player's piece.
@@ -114,7 +114,9 @@ public class Game {
 
       // Print debugging
       System.out.println("Moved piece to " + selectedBoardCoordinate.getVector2AsBoardNotation());
-      System.out.println("\n         ,....,----------------------------------------------------\n" +
+      System.out.println(
+
+         "\n         ,....,----------------------------------------------------\n" +
             "      ,::::::<-----------------------------------------------------\n" +
             "     ,::/^\\\"``.----------------------------------------------------\n" +
             "    ,::/, `   e`.--------------------------------------------------\n" +
@@ -130,7 +132,9 @@ public class Game {
             "     /          \\--------------------------------------------------\n" +
             "    ('--......--')-------------------------------------------------\n" +
             "    /'--......--'\\-------------------------------------------------\n" +
-            "    `\"--......--\"--------------------------------------------------\n");
+            "    `\"--......--\"--------------------------------------------------\n"
+
+      );
 
       calculateMoves();
       isMoveMade = false;
@@ -196,50 +200,45 @@ public class Game {
       attackingPlayer = gameBoard.getForsythEdwardsBoardNotationArrayIndex(1).toCharArray()[0];
    }
 
-   // TODO Requires JavaDoc comment
-   public ArrayList<int[]> validTiles() {
+   /**
+    * Creates and ArrayList containing the coordinates of valid tiles to display on the front end.
+    *
+    * @return res - An ArrayList of int pairs.
+    */
+   public ArrayList<Vector2> validTiles() {
       Piece piece = gameBoard.getPiece(selectedPiece);
-      ArrayList<int[]> res = new ArrayList<>();
-      if(gameBoard.getPiece(selectedPiece) == null) {
+      ArrayList<Vector2> res = new ArrayList<>();
+      if (gameBoard.getPiece(selectedPiece) == null) {
          return res;
       }
       if (piece.getColor() != attackingPlayer) {
          return res;
       }
-      ArrayList<Vector2> tiles = piece.getPossibleMoves();
-      for (Vector2 vTiles : tiles) {
-         int[] coords = new int[2];
-         coords[0] = vTiles.y;
-         coords[1] = vTiles.x;
-         res.add(coords);
-      }
+      res = piece.getPossibleMoves();
       return res;
    }
 
-   // TODO Requires JavaDoc comment
-   public ArrayList<int[]> checkedKing() {
-      ArrayList<int[]> res = new ArrayList<int[]>();
+   /**
+    * Return the position of any king in check in order to display on the front end.
+    *
+    * @return res - ArrayList containing an int pair resembling a coordinate.
+    */
+   public ArrayList<Vector2> checkedKing() {
+      ArrayList<Vector2> res = new ArrayList<Vector2>();
       MoveCalculator checkCheck = new MoveCalculator(attackingPlayer, gameBoard);
       checkCheck.findLegalMovesForPlayer(true);
       checkCheck.findLegalMovesForPlayer(false);
       if (checkCheck.isPlayerInCheck()) {
-         int[] coords = new int[2];
+         Vector2 kCheck = new Vector2();
          if (attackingPlayer == 'w') {
-            Vector2 wKPos = gameBoard.getWhiteKingPosition();
-            coords[0] = wKPos.y;
-            coords[1] = wKPos.x;
+            kCheck = gameBoard.getWhiteKingPosition();
          } else {
-            Vector2 wKPos = gameBoard.getBlackKingPosition();
-            coords[0] = wKPos.y;
-            coords[1] = wKPos.x;
+            kCheck = gameBoard.getBlackKingPosition();
          }
-         res.add(coords);
+         res.add(kCheck);
       }
       return res;
    }
-
-
-
 
    /**
     * Requests that the board promotes a piece.
@@ -255,10 +254,6 @@ public class Game {
       promotionCheck.findLegalMovesForPlayer(false);
    }
 
-
-
-
-
    /**
     * Checks whether a promotion is available.
     * Called after every move to update the class field.
@@ -271,6 +266,7 @@ public class Game {
 
    /**
     * method that checks if the game is over by checkmate
+    *
     * @param c the player.
     */
    public void endGame(char c) {
@@ -278,6 +274,7 @@ public class Game {
       gameBoard.updateFENStringWhenCheckMate(winningPlayer);
       log.updateLog(gameBoard.getForsythEdwardsBoardNotation());
       log.moveFileToFinishedGamesDir();
+      log.setFinishedGame(true);
 
       System.out.println("\n" + gameBoard.getForsythEdwardsBoardNotation() + "\n");
    }

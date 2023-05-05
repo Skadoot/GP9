@@ -129,9 +129,9 @@ public class PlayerNameScreen {
    }
 
    private boolean nameIsBlank() {
-      boolean fileNameBad = textFieldFile.getText().isBlank() || textFieldFile.getText().isEmpty();
-      boolean whiteNameBad = textFieldWhite.getText().isBlank() || textFieldWhite.getText().isEmpty();
-      boolean blackNameBad = textFieldBlack.getText().isBlank() || textFieldBlack.getText().isEmpty();
+      boolean fileNameBad = textFieldFile.getText().isEmpty() || textFieldFile.getText().isEmpty();
+      boolean whiteNameBad = textFieldWhite.getText().isEmpty() || textFieldWhite.getText().isEmpty();
+      boolean blackNameBad = textFieldBlack.getText().isEmpty() || textFieldBlack.getText().isEmpty();
       return (fileNameBad || whiteNameBad || blackNameBad);
    }
 

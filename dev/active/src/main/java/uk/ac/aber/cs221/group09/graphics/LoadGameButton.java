@@ -23,11 +23,11 @@ import javafx.scene.control.Button;
  * @see LoadScreen
  */
 public class LoadGameButton {
-   private Button loadButton;
-   private int saveNumber;
-   private String saveName;
-   private LoadScreen loadScreen;
-   private boolean isFinishedGame;
+   private final Button loadButton;
+   private final int saveNumber;
+   private final String saveName;
+   private final LoadScreen loadScreen;
+   private final boolean isFinishedGame;
 
    /**
     * Constructor for a LoadGame Button. Takes the save name as a string to display, the index of the save to return

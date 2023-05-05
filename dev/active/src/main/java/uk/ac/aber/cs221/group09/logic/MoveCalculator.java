@@ -199,11 +199,7 @@ public class MoveCalculator {
          }
       } else if (board.getPiece(rightAttack) == null || isForCheckMap) {
          if (rightAttack.getVector2AsBoardNotation().equals(board.getForsythEdwardsBoardNotationArrayIndex(3))) {
-            if (isForCheckMap) {
-               addPieceLegalMove(pawn, rightAttack, true);
-            } else {
-               addPieceLegalMove(pawn, rightAttack, false);
-            }
+            addPieceLegalMove(pawn, rightAttack, isForCheckMap);
          }
       }
    }

@@ -26,7 +26,7 @@ import java.io.PrintStream;
  * @version 1.0 (Release)
  * @see MoveCalculatorTest
  */
-class MoveCalculatorTest {
+public class MoveCalculatorTest {
    private static Board testBoard;
    private static MoveCalculator moveCalculator;
    //Methods to catch console outputs as a variable for comparison purposes
@@ -45,10 +45,10 @@ class MoveCalculatorTest {
    @Test
    //FR6 Tests
    /**
-    * A method to test whether the white side's king is in checked state
+    * A method to test whether the white side's king is in check
     *
-    * @param board the setup of board for white king to be checked
-    * @param MoveCalculator determine player's turn and inserting Board to compare board status
+    * @param testBoard The setup of a board with the white king in check
+    * @param moveCalculator Determine current player's turn and inserting Board to calculate moves
     */
    public void testisWhiteInCheck() {
       //creates a new board with the white king in check
@@ -66,10 +66,10 @@ class MoveCalculatorTest {
    @Test
    //FR6 Tests
    /**
-    * A method to test whether the black side's king is in checked state
+    * A method to test whether the black side's king is in check
     *
-    * @param board the setup of board for black side's king to be checked
-    * @param MoveCalculator determine player's turn and inserting Board to compare board status
+    * @param testBoard the setup of a board with the black king in check
+    * @param moveCalculator Determine current player's turn and inserting Board to calculate moves
     */
    public void testisBlackInCheck() {
       //creates a new board with the white king in check
@@ -84,14 +84,15 @@ class MoveCalculatorTest {
       Assertions.assertEquals(true, moveCalculator.isPlayerInCheck());
    }
 
-   @Test
    //FR5 Tests
    /**
-    * A method to test whether all legal moves for the pieces are eligible
+    * A method to test whether all legal moves for the pieces are calculated
     *
-    * @param board the setup of a chessboard with the black king in check
-    * @param MoveCalculator determine player's possible moves to avoid the check
+    * @param testBoard      the setup of a board with the black king in check
+    * @param moveCalculator determine player's possible moves to avoid the check
     */
+   @Test
+   //FR5 Tests
    public void testFindLegalMoves() {
       //creates a new board with black in check
       testBoard = new Board("rnbqkbnr/ppppp1pp/5p2/7Q/4P3/8/PPPP1PPP/RNB1KBNR b KQkq - 1 2");
@@ -118,15 +119,16 @@ class MoveCalculatorTest {
             "legal moves for b bishop at f8 | \r\n" +
             "legal moves for b knight at g8 | \r\n" +
             "legal moves for b rook at h8 | \r\n", outContent.toString());
+      // TODO verify that this test is correct
    }
 
    @Test
    //FR7 Tests
    /**
-    * A method to test whether any moves are available in checkmate
+    * A method to test whether the current player is in checkmate
     *
-    * @param board the setup of a checkmate board state
-    * @param MoveCalculator determine player's available moves
+    * @param testBoard the setup of a checkmate board state
+    * @param moveCalculator determine player's available moves
     */
    public void testCheckmate() {
       //creates a new board with white in checkmate

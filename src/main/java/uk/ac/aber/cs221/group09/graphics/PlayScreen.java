@@ -19,6 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import uk.ac.aber.cs221.group09.util.Vector2;
 
 import java.util.ArrayList;
 
@@ -34,12 +35,11 @@ import java.util.ArrayList;
 public class PlayScreen {
 
    private final Interface anInterface;
-   private Scene scene;
    private final Chessboard chessboard;
-   private Text whitePlayerName, blackPlayerName;
-
    // Player Dashboard
    private final PlayScreenGraphicsLoader graphicsLoader;
+   private Scene scene;
+   private Text whitePlayerName, blackPlayerName;
    private StackPane dashboard;
    private Text turnTracker;
    private ImageView symbol;
@@ -289,8 +289,8 @@ public class PlayScreen {
       gameOverOverlay(gameState);
    }
 
-   // TODO Requires JavaDoc comment
-   public void updatePlayerDashboard(char player) {
+   private void updatePlayerDashboard(char player) {
+      //Update the playerDashboard to display the active player.
       if (player == 'w') {
          this.symbol.setImage(graphicsLoader.getImage('W'));
          turnTracker.setText(whitePlayerName.getText());
@@ -524,6 +524,8 @@ public class PlayScreen {
     */
    public void incrementThroughLog() {
       // A function triggered by a button. Push the next board state forwards
+      chessboard.disableChessboard(currentTurn != anInterface.getTurnNumber());
+      chessboard.disableChessboard(gameFinished);
       if (!startedViewing) {
          currentTurn = (anInterface.getTurnNumber());
          startedViewing = true;
@@ -533,8 +535,6 @@ public class PlayScreen {
          currentTurn++;
       }
       chessboard.updateBoard(anInterface.getPreviousFEN(currentTurn));
-
-      chessboard.disableChessboard(currentTurn != anInterface.getTurnNumber() && !gameFinished);
    }
 
    /**
@@ -542,7 +542,8 @@ public class PlayScreen {
     */
    public void decrementThroughLog() {
       // A function triggered by a button. View the past through a spooky crystal ball ooooo
-
+      chessboard.disableChessboard(currentTurn != anInterface.getTurnNumber());
+      chessboard.disableChessboard(gameFinished);
       if (!startedViewing) {
          // Sets the index for navigation through the played moves to be the last move played
          currentTurn = (anInterface.getTurnNumber());
@@ -555,7 +556,7 @@ public class PlayScreen {
             currentTurn--;
          }
       }
-      chessboard.disableChessboard(currentTurn != anInterface.getTurnNumber() && !gameFinished);
+
       if (currentTurn >= 0) {
          chessboard.updateBoard(anInterface.getPreviousFEN(currentTurn));
       }
@@ -679,14 +680,24 @@ public class PlayScreen {
       StackPane.setAlignment(victoryWindow, Pos.CENTER);
    }
 
-   // TODO Requires JavaDoc comment
-   public void highlightTiles(ArrayList<int[]> vTiles, ArrayList<int[]> checkTiles) {
+   /**
+    * Function call to visually highlight tiles. Passed two arrays of coordinates to highlight. One is the coordinates
+    * of valid tiles for the selected piece to move to, the other the coordinates of the king if there is a king in check.
+    *
+    * @param vTiles     - Coordinates of valid tiles for selected piece to move to
+    * @param checkTiles - Coordinates of any kings in check.
+    */
+   public void highlightTiles(ArrayList<Vector2> vTiles, ArrayList<Vector2> checkTiles) {
       chessboard.highlightTiles(vTiles, checkTiles);
    }
 
-   // TODO Requires JavaDoc comment
    private void setLogDisabled(boolean b) {
+      //Set to disable or enable both buttons to replay the game on the chessboard.
       prevB.setDisable(b);
       nextB.setDisable(b);
+   }
+
+   public void setGameFinished() {
+      gameFinished = true;
    }
 }

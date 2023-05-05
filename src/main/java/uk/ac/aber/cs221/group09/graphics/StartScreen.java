@@ -11,6 +11,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 /**
@@ -20,19 +22,21 @@ import javafx.scene.layout.VBox;
  *
  * @author Gwion Hughes
  * @version 1.0 (Release)
- * @see Interface
+ * @see GraphicsHandler
  */
 public class StartScreen {
-   private final Interface anInterface;
+   private final GraphicsHandler anGraphicsHandler;
+   private final ImageView title;
    private Scene startScreen;
 
    /**
-    * Simple constructor for the StartScreen class. Takes an Interface object as a parameter.
+    * Simple constructor for the StartScreen class. Takes an GraphicsHandler object as a parameter.
     *
-    * @param anInterface - Class containing the application window.
+    * @param anGraphicsHandler - Class containing the application window.
     */
-   public StartScreen(Interface anInterface) {
-      this.anInterface = anInterface;
+   public StartScreen(GraphicsHandler anGraphicsHandler) {
+      this.anGraphicsHandler = anGraphicsHandler;
+      title = new ImageView(new Image("/images/gorupchess.png"));
       constructScreen();
    }
 
@@ -45,6 +49,8 @@ public class StartScreen {
     * unfinished games, or starting a new game.
     */
    private void constructScreen() {
+      VBox rootMenu = new VBox();
+
       VBox btnSelection = new VBox();
       Button newGameButton = new Button();
       Button continueGameButton = new Button();
@@ -70,23 +76,28 @@ public class StartScreen {
       btnSelection.getChildren().add(continueGameButton);
       btnSelection.getChildren().add(viewGameButton);
 
+      //Add title and buttons to start menu.
+      rootMenu.getChildren().addAll(title, btnSelection);
+      rootMenu.setAlignment(Pos.CENTER);
+      rootMenu.setSpacing(24);
+
       btnSelection.setAlignment(Pos.CENTER);
 
-      Scene menu = new Scene(btnSelection, 1280, 720);
+      Scene menu = new Scene(rootMenu, 1280, 720);
       menu.getStylesheets().add(StartScreen.class.getResource("/css/StartScreenStyleSheet.css").toExternalForm());
 
       this.startScreen = menu;
    }
 
    private void requestNewGame() {
-      anInterface.toPNScreen();
+      anGraphicsHandler.toPNScreen();
    }
 
    private void requestToViewFinishedGames() {
-      anInterface.loadFGames();
+      anGraphicsHandler.loadFGames();
    }
 
    private void requestToUnfinishedGames() {
-      anInterface.loadUFGames();
+      anGraphicsHandler.loadUFGames();
    }
 }

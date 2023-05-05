@@ -35,10 +35,10 @@ import java.util.ArrayList;
 public class PlayScreen {
 
    private final GraphicsHandler anGraphicsHandler;
-   private Scene scene;
    private final Chessboard chessboard;
    // Player Dashboard
    private final PlayScreenGraphicsLoader graphicsLoader;
+   private Scene scene;
    private Text whitePlayerName, blackPlayerName;
    private StackPane dashboard;
    private Text turnTracker;
@@ -530,7 +530,6 @@ public class PlayScreen {
          currentTurn++;
       }
       chessboard.updateBoard(anGraphicsHandler.getPreviousFEN(currentTurn));
-
    }
 
    /**

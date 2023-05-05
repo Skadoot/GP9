@@ -30,17 +30,17 @@ import java.util.regex.Pattern;
  * @see PlayScreen
  */
 public class PlayerNameScreen {
-   private final Interface anInterface;
+   private final GraphicsHandler anGraphicsHandler;
    private Scene scene;
    private TextField textFieldWhite, textFieldBlack, textFieldFile;
 
    /**
     * Simple constructor.
     *
-    * @param anInterface Interface containing the application window for this class' scene.
+    * @param anGraphicsHandler GraphicsHandler containing the application window for this class' scene.
     */
-   public PlayerNameScreen(Interface anInterface) {
-      this.anInterface = anInterface;
+   public PlayerNameScreen(GraphicsHandler anGraphicsHandler) {
+      this.anGraphicsHandler = anGraphicsHandler;
       createScreen();
    }
 
@@ -84,7 +84,7 @@ public class PlayerNameScreen {
       Label labelBlack = new Label("Black:");
       Label labelFile = new Label("Name of File");
 
-      // Create a button that on click calls interface to swap scene to chessboard
+      // Create a button that on click calls GraphicsHandler to swap scene to chessboard
       Button startGame = new Button("Start Game");
       startGame.setOnAction(actionEvent -> {
          warningText.setText(" ");
@@ -95,7 +95,7 @@ public class PlayerNameScreen {
             warningText.setText("Names cannot contain special characters.");
             return;
          } else if (isNameTooLong()) {
-            warningText.setText("Names cannot exceed 32 character limit.");
+            warningText.setText("Names cannot exceed 24 character limit.");
             return;
          }
 
@@ -103,7 +103,7 @@ public class PlayerNameScreen {
       });
       Button back = new Button("Back");
 
-      // Create a button that on click calls the interface to backtrack to the start screen
+      // Create a button that on click calls the GraphicsHandler to backtrack to the start screen
       back.setOnAction(actionEvent -> backToMenu());
 
       playerWhite.getChildren().addAll(labelWhite, textFieldWhite);
@@ -139,14 +139,14 @@ public class PlayerNameScreen {
       String whiteName = textFieldWhite.getText();
       String blackName = textFieldBlack.getText();
       String fileName = textFieldFile.getText();
-      return (whiteName.length() > 32 || blackName.length() > 32 || fileName.length() > 32);
+      return (whiteName.length() > 24 || blackName.length() > 24 || fileName.length() > 24);
    }
 
    private void backToMenu() {
-      anInterface.toMenu();
+      anGraphicsHandler.toMenu();
    }
 
    private void forwardsToNewGame(String blackN, String whiteN, String fileName) {
-      anInterface.toNewChessboard(whiteN, blackN, fileName);
+      anGraphicsHandler.toNewChessboard(whiteN, blackN, fileName);
    }
 }

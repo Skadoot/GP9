@@ -11,7 +11,6 @@ package uk.ac.aber.cs221.group09.graphics;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import uk.ac.aber.cs221.group09.logic.Game;
-import uk.ac.aber.cs221.group09.util.Coordinate;
 
 import java.io.IOException;
 import java.util.ArrayList;

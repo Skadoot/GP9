@@ -126,11 +126,11 @@ public class LogTest {
    public void testsetFinishedGame() {
       //creates a new game with a starting board
       Game testGame = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "testGame", false);
-      Piece pieceToMove = testGame.getGameBoard().getPiece(new Vector2(0, 1));
+      Piece pieceToMove = testGame.getGameBoard().getPiece(new Coordinate(0, 1));
       testGame.calculateMoves();
-      Vector2 testPosition = new Vector2(0, 3);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+      Coordinate testPosition = new Coordinate(0, 3);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testGame.getGameBoard().movePiece(pieceToMove, testPosition);
          }
       }
@@ -153,11 +153,11 @@ public class LogTest {
    public void testdeleteFile() {
       //creates a new game with a starting board
       Game testGame = new Game("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "testGame", false);
-      Piece pieceToMove = testGame.getGameBoard().getPiece(new Vector2(0, 1));
+      Piece pieceToMove = testGame.getGameBoard().getPiece(new Coordinate(0, 1));
       testGame.calculateMoves();
-      Vector2 testPosition = new Vector2(0, 3);
-      for (Vector2 currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+      Coordinate testPosition = new Coordinate(0, 3);
+      for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testGame.getGameBoard().movePiece(pieceToMove, testPosition);
          }
       }

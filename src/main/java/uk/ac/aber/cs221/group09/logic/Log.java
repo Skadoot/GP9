@@ -25,10 +25,10 @@ import java.util.List;
  * @version 1.1 (Release)
  */
 public class Log {
-   private String fileName; //the name of the file
-   private int numberOfLines = 0; //to keep track of the number of lines in the file
    private final String nameOfFolderToHoldUnfinishedGames = "./unfinishedGames"; //the relative path to the unfinishedGames directory
    private final String nameOfFolderToHoldFinishedGames = "./finishedGames"; //the relative path to the finishedGames directory
+   private String fileName; //the name of the file
+   private int numberOfLines = 0; //to keep track of the number of lines in the file
    private String nameOfFolder; //holds either the path to the finished or unfinished games folder.
 
 

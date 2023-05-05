@@ -89,7 +89,7 @@ public class Game {
 
       // Get a list of all the legal moves for the chessboard
       ArrayList<Coordinate> currentLegalMoves = new ArrayList<Coordinate>();
-      if(gameBoard.getPiece(selectedPiece) != null) {
+      if (gameBoard.getPiece(selectedPiece) != null) {
          currentLegalMoves = gameBoard.getPiece(selectedPiece).getPossibleMoves();
       }
       // Check the selected coordinates are a legal move and the current selected piece is the attacking player's piece.
@@ -208,7 +208,7 @@ public class Game {
    public ArrayList<Coordinate> validTiles() {
       Piece piece = gameBoard.getPiece(selectedPiece);
       ArrayList<Coordinate> res = new ArrayList<>();
-      if(gameBoard.getPiece(selectedPiece) == null) {
+      if (gameBoard.getPiece(selectedPiece) == null) {
          return res;
       }
       if (piece.getColor() != attackingPlayer) {

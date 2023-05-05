@@ -10,7 +10,7 @@ package uk.ac.aber.cs221.group09.graphics;
 
 import javafx.geometry.Insets;
 import javafx.scene.layout.GridPane;
-import uk.ac.aber.cs221.group09.util.Vector2;
+import uk.ac.aber.cs221.group09.util.Coordinate;
 
 import java.util.ArrayList;
 
@@ -26,10 +26,10 @@ import java.util.ArrayList;
  * @see Tile
  */
 public class Chessboard {
+   private final PlayScreen playScreen;
    private TileGraphicsLoader graphicsLoader;
    private Tile[][] tiles;
    private GridPane chessBoard;
-   private final PlayScreen playScreen;
 
    /**
     * Class constructor. Takes a scene containing class as a parameter to display the chessboard on.
@@ -172,14 +172,14 @@ public class Chessboard {
     * @param validT - ArrayList of coordinates of valid tiles.
     * @param checkT - ArrayList of coordinates of checked pieces
     */
-   public void highlightTiles(ArrayList<Vector2> validT, ArrayList<Vector2> checkT) {
+   public void highlightTiles(ArrayList<Coordinate> validT, ArrayList<Coordinate> checkT) {
       highlightValidTiles(validT);
       highlightCheckTile(checkT);
    }
 
-   private void highlightValidTiles(ArrayList<Vector2> validT) {
+   private void highlightValidTiles(ArrayList<Coordinate> validT) {
       if (validT.size() == 0) return;
-      for (Vector2 coords : validT) {
+      for (Coordinate coords : validT) {
          tiles[coords.y][coords.x].setStyleClass("valid-tile");
       }
    }
@@ -199,8 +199,8 @@ public class Chessboard {
       }
    }
 
-   private void highlightCheckTile(ArrayList<Vector2> checkT) {
-      for (Vector2 coords : checkT) {
+   private void highlightCheckTile(ArrayList<Coordinate> checkT) {
+      for (Coordinate coords : checkT) {
          tiles[coords.y][coords.x].setStyleClass("check-tile");
       }
    }

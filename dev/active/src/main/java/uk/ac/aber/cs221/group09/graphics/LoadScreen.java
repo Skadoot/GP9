@@ -30,7 +30,7 @@ import javafx.scene.layout.VBox;
  * @see LoadScreen
  */
 public class LoadScreen {
-   private GraphicsHandler anGraphicsHandler;
+   private final GraphicsHandler anGraphicsHandler;
    private Scene scene;
    private VBox saveContainer;
    private Label lab;

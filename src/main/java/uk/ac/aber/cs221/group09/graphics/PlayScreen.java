@@ -19,7 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import uk.ac.aber.cs221.group09.util.Vector2;
+import uk.ac.aber.cs221.group09.util.Coordinate;
 
 import java.util.ArrayList;
 
@@ -34,7 +34,7 @@ import java.util.ArrayList;
  */
 public class PlayScreen {
 
-   private final Interface anInterface;
+   private final GraphicsHandler anGraphicsHandler;
    private final Chessboard chessboard;
    // Player Dashboard
    private final PlayScreenGraphicsLoader graphicsLoader;
@@ -55,11 +55,11 @@ public class PlayScreen {
    /**
     * Constructor method for the Play Screen.
     *
-    * @param anInterface The GUI handler class
+    * @param anGraphicsHandler The GUI handler class
     */
-   public PlayScreen(Interface anInterface) {
+   public PlayScreen(GraphicsHandler anGraphicsHandler) {
       this.chessboard = new Chessboard(this);
-      this.anInterface = anInterface;
+      this.anGraphicsHandler = anGraphicsHandler;
       this.graphicsLoader = new PlayScreenGraphicsLoader();
       constructPlayScreen();
    }
@@ -109,7 +109,7 @@ public class PlayScreen {
 
       // Adding the chessboard to size 5-13x0-8
 
-      layout.add(this.chessboard.getChessBoard(), 5, 1, 8, 8);
+      layout.add(this.chessboard.getChessBoard(), 6, 1, 8, 8);
 
       // Adding container to display white player's name
       Label whiteP = new Label("White: ");
@@ -117,7 +117,7 @@ public class PlayScreen {
       this.whitePlayerName = whiteName;
       HBox whiteContainer = new HBox(whiteP, whiteName);
       whiteContainer.setAlignment(Pos.CENTER);
-      layout.add(whiteContainer, 5, 9, 8, 1);
+      layout.add(whiteContainer, 6, 9, 8, 1);
 
 
       // Adding container to display Black player's name
@@ -126,27 +126,11 @@ public class PlayScreen {
       this.blackPlayerName = blackName;
       HBox blackContainer = new HBox(blackP, blackName);
       blackContainer.setAlignment(Pos.CENTER);
-      layout.add(blackContainer, 5, 0, 8, 1);
+      layout.add(blackContainer, 6, 0, 8, 1);
 
       // Player Dashboard. Is a StackPane.
       StackPane playerDashboard = createDashboard();
-      layout.add(playerDashboard, 0, 1, 4, 6);
-
-/*
-        //Log container.
-        HBox log = new HBox();
-        ScrollPane logContainer = new ScrollPane(log);
-        layout.add(logContainer, 2, 10, 14, 1);
-
-      //The below virtual box will be  used to track the game such as material captured.
-
-        VBox extraLayout = new VBox();
-        Text extraLayoutFill = new Text("Extra Stuff");
-        extraLayout.setStyle("-fx-border-color: GREEN");
-        extraLayout.getChildren().add(extraLayoutFill);
-
-        layout.add(extraLayout, 14, 0, 18, 8);
-*/
+      layout.add(playerDashboard, 0, 2, 5, 6);
 
       // Adds a button for looking through previous moves
       this.prevB = new Button("<-");
@@ -171,7 +155,7 @@ public class PlayScreen {
       logButtons.getChildren().addAll(prevB, nextB);
       logButtons.setAlignment(Pos.CENTER);
 
-      layout.add(logButtons, 8, 10, 2, 1);
+      layout.add(logButtons, 9, 10, 2, 1);
       logButtons.setSpacing(20);
 
       //looks nice but idk
@@ -188,7 +172,7 @@ public class PlayScreen {
 
       layout.setAlignment(Pos.CENTER);
 
-      layout.add(quitB, 14, 0, 2, 1);
+      layout.add(quitB, 15, 0, 2, 1);
 
       // Makes the gridlines visible in layout. Useful for debugging
       // layout.setGridLinesVisible(true);
@@ -254,13 +238,13 @@ public class PlayScreen {
    }
 
    /**
-    * Pass the coordinates of the button pressed up to the backend-frontend interface class.
+    * Pass the coordinates of the button pressed up to the frontend GraphicsHandler class.
     *
     * @param column The file or vertical column of the pressed tile.
     * @param row    The rank or horizontal row of the pressed tile.
     */
    public void alertPressedTile(int column, int row) {
-      anInterface.click(column, row);
+      anGraphicsHandler.click(column, row);
       startedViewing = false;
    }
 
@@ -320,7 +304,7 @@ public class PlayScreen {
       textContainer.setAlignment(Pos.CENTER);
 
       // Text is drawn into two different objects so they display center properly.
-      Text drawTextOne = new Text("Player has offered a draw.\n");
+      Text drawTextOne = new Text(turnTracker.getText() + " has offered a draw.\n");
       Text drawTextTwo = new Text("The game will be saved and viewable.\n");
 
       // Creating the button container and its contents.
@@ -332,7 +316,7 @@ public class PlayScreen {
       accept.setOnAction(new EventHandler<ActionEvent>() {
          @Override
          public void handle(ActionEvent actionEvent) {
-            anInterface.updateGameOver('d');
+            anGraphicsHandler.updateGameOver('d');
             gameOverOverlay('d');
          }
       });
@@ -372,7 +356,7 @@ public class PlayScreen {
       textContainer.setAlignment(Pos.CENTER);
 
       // Text content broken into two texts so they align properly.
-      Text resTextOne = new Text("Player is choosing to resign.\n");
+      Text resTextOne = new Text(turnTracker.getText() + " is choosing to resign.\n");
       Text resTextTwo = new Text("The game will be saved and viewable.\n");
 
       // Button and button containers
@@ -388,10 +372,10 @@ public class PlayScreen {
          public void handle(ActionEvent actionEvent) {
             // Resign quit game ladi da
             if (turnTracker.getText().equals(whitePlayerName.getText())) {
-               anInterface.updateGameOver('b');
+               anGraphicsHandler.updateGameOver('b');
                gameOverOverlay('b');
             } else {
-               anInterface.updateGameOver('b');
+               anGraphicsHandler.updateGameOver('b');
                gameOverOverlay('w');
             }
             dashboard.getChildren().remove(resignWindow);
@@ -421,7 +405,7 @@ public class PlayScreen {
    /**
     * Function to called when a promotion is available for a pawn. Overlays the player Dashboard with a new container
     * containing four buttons. The chessboard is disabled until the player chooses a promotion. The button's display
-    * the graphics of the available pieces to promote to. Will notify the interface of the user's selection.
+    * the graphics of the available pieces to promote to. Will notify the GraphicsHandler of the user's selection.
     */
    public void offerPromotion() {
       // Disable the chessboard to stop play until promotion selected.
@@ -471,7 +455,7 @@ public class PlayScreen {
          public void handle(ActionEvent actionEvent) {
             dashboard.getChildren().remove(promotionWindow);
             // Request queen promotion
-            anInterface.requestPromotion(0);
+            anGraphicsHandler.requestPromotion(0);
             // Re-enable chessboard
             setLogDisabled(false);
             chessboard.disableChessboard(false);
@@ -482,7 +466,7 @@ public class PlayScreen {
          @Override
          public void handle(ActionEvent actionEvent) {
             dashboard.getChildren().remove(promotionWindow);
-            anInterface.requestPromotion(1);
+            anGraphicsHandler.requestPromotion(1);
             //reenable chessboard
             setLogDisabled(false);
             chessboard.disableChessboard(false);
@@ -493,7 +477,7 @@ public class PlayScreen {
          @Override
          public void handle(ActionEvent actionEvent) {
             dashboard.getChildren().remove(promotionWindow);
-            anInterface.requestPromotion(2);
+            anGraphicsHandler.requestPromotion(2);
             // Re-enable chessboard
             setLogDisabled(false);
             chessboard.disableChessboard(false);
@@ -504,7 +488,7 @@ public class PlayScreen {
          @Override
          public void handle(ActionEvent actionEvent) {
             dashboard.getChildren().remove(promotionWindow);
-            anInterface.requestPromotion(3);
+            anGraphicsHandler.requestPromotion(3);
             // Re-enable chessboard
             setLogDisabled(false);
             chessboard.disableChessboard(false);
@@ -524,17 +508,17 @@ public class PlayScreen {
     */
    public void incrementThroughLog() {
       // A function triggered by a button. Push the next board state forwards
-      chessboard.disableChessboard(currentTurn != anInterface.getTurnNumber());
+      chessboard.disableChessboard(currentTurn != anGraphicsHandler.getTurnNumber());
       chessboard.disableChessboard(gameFinished);
       if (!startedViewing) {
-         currentTurn = (anInterface.getTurnNumber());
+         currentTurn = (anGraphicsHandler.getTurnNumber());
          startedViewing = true;
       }
-      if (currentTurn < anInterface.getTurnNumber()) {
+      if (currentTurn < anGraphicsHandler.getTurnNumber()) {
          // Increases the turn we are looking at by 1
          currentTurn++;
       }
-      chessboard.updateBoard(anInterface.getPreviousFEN(currentTurn));
+      chessboard.updateBoard(anGraphicsHandler.getPreviousFEN(currentTurn));
    }
 
    /**
@@ -542,11 +526,11 @@ public class PlayScreen {
     */
    public void decrementThroughLog() {
       // A function triggered by a button. View the past through a spooky crystal ball ooooo
-      chessboard.disableChessboard(currentTurn != anInterface.getTurnNumber());
+      chessboard.disableChessboard(currentTurn != anGraphicsHandler.getTurnNumber());
       chessboard.disableChessboard(gameFinished);
       if (!startedViewing) {
          // Sets the index for navigation through the played moves to be the last move played
-         currentTurn = (anInterface.getTurnNumber());
+         currentTurn = (anGraphicsHandler.getTurnNumber());
          // Sets the boolean to true, so we can iterate through the moves without causing errors
          startedViewing = true;
          // If we've already started looking at our played moves we just continue to iterate backwards from the last turn we looked at
@@ -558,7 +542,7 @@ public class PlayScreen {
       }
 
       if (currentTurn >= 0) {
-         chessboard.updateBoard(anInterface.getPreviousFEN(currentTurn));
+         chessboard.updateBoard(anGraphicsHandler.getPreviousFEN(currentTurn));
       }
    }
 
@@ -591,8 +575,8 @@ public class PlayScreen {
          @Override
          public void handle(ActionEvent actionEvent) {
             // Call game to be deleted
-            anInterface.toMenu();
-            anInterface.deleteGame();
+            anGraphicsHandler.toMenu();
+            anGraphicsHandler.deleteGame();
          }
       });
 
@@ -601,7 +585,7 @@ public class PlayScreen {
          @Override
          public void handle(ActionEvent actionEvent) {
             // Game is saved in the background so just quit
-            anInterface.toMenu();
+            anGraphicsHandler.toMenu();
          }
       });
 
@@ -687,7 +671,7 @@ public class PlayScreen {
     * @param vTiles     - Coordinates of valid tiles for selected piece to move to
     * @param checkTiles - Coordinates of any kings in check.
     */
-   public void highlightTiles(ArrayList<Vector2> vTiles, ArrayList<Vector2> checkTiles) {
+   public void highlightTiles(ArrayList<Coordinate> vTiles, ArrayList<Coordinate> checkTiles) {
       chessboard.highlightTiles(vTiles, checkTiles);
    }
 

@@ -113,7 +113,7 @@ public class Game {
       gameBoard.clearMoves();
 
       // Print debugging
-      System.out.println("Moved piece to " + selectedBoardCoordinate.getVector2AsBoardNotation());
+      System.out.println("Moved piece to " + selectedBoardCoordinate.getCoordinateAsBoardNotation());
       System.out.println(
 
          "\n         ,....,----------------------------------------------------\n" +

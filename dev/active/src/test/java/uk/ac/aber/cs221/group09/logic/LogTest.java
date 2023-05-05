@@ -28,7 +28,7 @@ public class LogTest {
       testGame.calculateMoves();
       Coordinate testPosition = new Coordinate(0, 3);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testGame.getGameBoard().movePiece(pieceToMove, testPosition);
          }
       }
@@ -54,7 +54,7 @@ public class LogTest {
       testGame.calculateMoves();
       Coordinate testPosition = new Coordinate(0, 3);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testGame.getGameBoard().movePiece(pieceToMove, testPosition);
          }
       }
@@ -64,7 +64,7 @@ public class LogTest {
       testGame.calculateMoves();
       testPosition = new Coordinate(1, 3);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testGame.getGameBoard().movePiece(pieceToMove, testPosition);
          }
       }
@@ -89,7 +89,7 @@ public class LogTest {
       testGame.calculateMoves();
       Coordinate testPosition = new Coordinate(0, 3);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testGame.getGameBoard().movePiece(pieceToMove, testPosition);
          }
       }

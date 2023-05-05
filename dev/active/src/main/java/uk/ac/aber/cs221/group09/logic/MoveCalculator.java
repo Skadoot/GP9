@@ -84,7 +84,7 @@ public class MoveCalculator {
       // Loop over every piece in the board array.
       for (int rank = 0; rank < 8; rank++) {
          for (int file = 0; file < 8; file++) {
-            // Create the current board position vector2.
+            // Create the current board position Coordinate.
             Coordinate piecePosition = new Coordinate(file, rank);
 
             // Get the piece at the current board position.
@@ -177,10 +177,10 @@ public class MoveCalculator {
       if (isForCheckMap) {
          return;
       }
-      System.out.print("legal moves for " + pawn.getColor() + " " + "pawn" + " at " + pawn.getPosition().getVector2AsBoardNotation());
+      System.out.print("legal moves for " + pawn.getColor() + " " + "pawn" + " at " + pawn.getPosition().getCoordinateAsBoardNotation());
       System.out.print(" | ");
       for (Coordinate square : pawn.getPossibleMoves()) {
-         System.out.print(square.getVector2AsBoardNotation() + " ");
+         System.out.print(square.getCoordinateAsBoardNotation() + " ");
       }
       System.out.println();
    }
@@ -198,7 +198,7 @@ public class MoveCalculator {
             addPieceLegalMove(pawn, rightAttack, false);
          }
       } else if (board.getPiece(rightAttack) == null || isForCheckMap) {
-         if (rightAttack.getVector2AsBoardNotation().equals(board.getForsythEdwardsBoardNotationArrayIndex(3))) {
+         if (rightAttack.getCoordinateAsBoardNotation().equals(board.getForsythEdwardsBoardNotationArrayIndex(3))) {
             addPieceLegalMove(pawn, rightAttack, isForCheckMap);
          }
       }
@@ -211,7 +211,7 @@ public class MoveCalculator {
     * @param isForCheckMap boolean to see if the method is being used to create a check map, if so we do not need to check if the moves put the player in check.
     */
    private void getKnightLegalMoves(Piece knight, boolean isForCheckMap) {
-      // These are the knights possible jumps, in Vector2's relative to the knights position. positive values add to the knights current x or y, negative subtracts.
+      // These are the knights possible jumps, in Coordinate's relative to the knights position. positive values add to the knights current x or y, negative subtracts.
       Coordinate[] knightDirections = {new Coordinate(2, 1), new Coordinate(1, 2), new Coordinate(-2, 1), new Coordinate(-1, 2), new Coordinate(2, -1), new Coordinate(1, -2), new Coordinate(-2, -1), new Coordinate(-1, -2)};
 
       // For each of the directions in the knight's directions.
@@ -235,10 +235,10 @@ public class MoveCalculator {
          return;
       }
 
-      System.out.print("legal moves for " + knight.getColor() + " " + "knight" + " at " + knight.getPosition().getVector2AsBoardNotation());
+      System.out.print("legal moves for " + knight.getColor() + " " + "knight" + " at " + knight.getPosition().getCoordinateAsBoardNotation());
       System.out.print(" | ");
       for (Coordinate square : knight.getPossibleMoves()) {
-         System.out.print(square.getVector2AsBoardNotation() + " ");
+         System.out.print(square.getCoordinateAsBoardNotation() + " ");
       }
       System.out.println();
    }
@@ -282,11 +282,11 @@ public class MoveCalculator {
          return;
       }
 
-      System.out.print("legal moves for " + bishop.getColor() + " " + "bishop" + " at " + bishop.getPosition().getVector2AsBoardNotation());
+      System.out.print("legal moves for " + bishop.getColor() + " " + "bishop" + " at " + bishop.getPosition().getCoordinateAsBoardNotation());
       System.out.print(" | ");
 
       for (Coordinate square : bishop.getPossibleMoves()) {
-         System.out.print(square.getVector2AsBoardNotation() + " ");
+         System.out.print(square.getCoordinateAsBoardNotation() + " ");
       }
       System.out.println();
    }
@@ -330,11 +330,11 @@ public class MoveCalculator {
          return;
       }
 
-      System.out.print("legal moves for " + rook.getColor() + " " + "rook" + " at " + rook.getPosition().getVector2AsBoardNotation());
+      System.out.print("legal moves for " + rook.getColor() + " " + "rook" + " at " + rook.getPosition().getCoordinateAsBoardNotation());
       System.out.print(" | ");
 
       for (Coordinate square : rook.getPossibleMoves()) {
-         System.out.print(square.getVector2AsBoardNotation() + " ");
+         System.out.print(square.getCoordinateAsBoardNotation() + " ");
       }
 
       System.out.println();
@@ -379,11 +379,11 @@ public class MoveCalculator {
          return;
       }
 
-      System.out.print("legal moves for " + queen.getColor() + " " + "queen" + " at " + queen.getPosition().getVector2AsBoardNotation());
+      System.out.print("legal moves for " + queen.getColor() + " " + "queen" + " at " + queen.getPosition().getCoordinateAsBoardNotation());
       System.out.print(" | ");
 
       for (Coordinate square : queen.getPossibleMoves()) {
-         System.out.print(square.getVector2AsBoardNotation() + " ");
+         System.out.print(square.getCoordinateAsBoardNotation() + " ");
       }
 
       System.out.println();
@@ -455,11 +455,11 @@ public class MoveCalculator {
          return;
       }
 
-      System.out.print("legal moves for " + king.getColor() + " " + "king" + " at " + king.getPosition().getVector2AsBoardNotation());
+      System.out.print("legal moves for " + king.getColor() + " " + "king" + " at " + king.getPosition().getCoordinateAsBoardNotation());
       System.out.print(" | ");
 
       for (Coordinate square : king.getPossibleMoves()) {
-         System.out.print(square.getVector2AsBoardNotation() + " ");
+         System.out.print(square.getCoordinateAsBoardNotation() + " ");
       }
 
       System.out.println();
@@ -577,13 +577,13 @@ public class MoveCalculator {
    public boolean isPlayerInCheck() {
       if (currentPlayer == 'w') {
          for (Coordinate attackedSquare : checkMap) {
-            if (board.getWhiteKingPosition().getVector2AsBoardNotation().equals(attackedSquare.getVector2AsBoardNotation())) {
+            if (board.getWhiteKingPosition().getCoordinateAsBoardNotation().equals(attackedSquare.getCoordinateAsBoardNotation())) {
                return true;
             }
          }
       } else {
          for (Coordinate attackedSquare : checkMap) {
-            if (board.getBlackKingPosition().getVector2AsBoardNotation().equals(attackedSquare.getVector2AsBoardNotation())) {
+            if (board.getBlackKingPosition().getCoordinateAsBoardNotation().equals(attackedSquare.getCoordinateAsBoardNotation())) {
                return true;
             }
          }
@@ -620,7 +620,7 @@ public class MoveCalculator {
    public void printCheckMap() {
       System.out.print("unsafe squares for player " + currentPlayer + " : ");
       for (Coordinate attackedSquare : checkMap) {
-         System.out.print(attackedSquare.getVector2AsBoardNotation() + " ");
+         System.out.print(attackedSquare.getCoordinateAsBoardNotation() + " ");
       }
       System.out.println();
    }

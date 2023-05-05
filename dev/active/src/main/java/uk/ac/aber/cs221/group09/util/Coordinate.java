@@ -48,7 +48,7 @@ public class Coordinate {
     *
     * @return String containing the chess board position as a FEN String.
     */
-   public String getVector2AsBoardNotation() {
+   public String getCoordinateAsBoardNotation() {
       return boardNotation[x] + Integer.toString(y + 1);
    }
 

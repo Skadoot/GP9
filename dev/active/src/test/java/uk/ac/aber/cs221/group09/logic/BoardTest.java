@@ -104,7 +104,7 @@ public class BoardTest {
       // Moves piece into test position to check whether the legal moves are valid
       Coordinate testPosition = new Coordinate(0, 3);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
          // Checks if the expected board is the same as actual board
@@ -139,7 +139,7 @@ public class BoardTest {
       // Attempts to move the pinned pawn, which is an illegal move
       Coordinate testPosition = new Coordinate(5, 2);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
          // Check if the expected board is the same as actual board - the pawn should not have moved
@@ -174,7 +174,7 @@ public class BoardTest {
       // Attempts to move the pawn at a2 to a6, which is an illegal move
       Coordinate testPosition = new Coordinate(0, 5);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
          // Check if the expected board is the same as actual board - the pawn should not have moved
@@ -209,7 +209,7 @@ public class BoardTest {
       // Attempts to move the pawn at a2, which is an illegal move
       Coordinate testPosition = new Coordinate(0, 2);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
          // Check if the expected board is the same as actual board - the pawn should not have moved
@@ -244,7 +244,7 @@ public class BoardTest {
       // Castles the white king by moving it two spaces to the right
       Coordinate testPosition = new Coordinate(6, 0);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
       }
@@ -279,7 +279,7 @@ public class BoardTest {
       // Attempts to castle the white king by moving it two spaces to the right, which is an illegal move
       Coordinate testPosition = new Coordinate(6, 0);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
       }
@@ -314,7 +314,7 @@ public class BoardTest {
       // Attempts to castle the white king on the king side, by moving it two spaces to the right
       Coordinate testPosition = new Coordinate(6, 0);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
       }
@@ -349,7 +349,7 @@ public class BoardTest {
       // Attempts to castle the white king on the queen side, by moving it two spaces to the left
       Coordinate testPosition = new Coordinate(2, 0);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
       }
@@ -384,7 +384,7 @@ public class BoardTest {
       // Attempts to castle the black king on the king side, by moving it two spaces to the right
       Coordinate testPosition = new Coordinate(6, 7);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
       }
@@ -419,7 +419,7 @@ public class BoardTest {
       //attempts to castle the black king on the queen side, by moving it two spaces to the left
       Coordinate testPosition = new Coordinate(2, 7);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
       }
@@ -455,7 +455,7 @@ public class BoardTest {
       //moves the pawn at e5 to d6, capturing the black pawn at d5 in the process
       Coordinate testPosition = new Coordinate(3, 5);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
          //check if the expected board is the same as actual board
@@ -490,7 +490,7 @@ public class BoardTest {
       //moves the pawn at a2 forward two spaces
       Coordinate testPosition = new Coordinate(0, 3);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
          //check if the expected board is the same as actual board - the pawn should have moved
@@ -525,7 +525,7 @@ public class BoardTest {
       //moves the knight from b1 to c3
       Coordinate testPosition = new Coordinate(2, 2);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
          //check if the expected board is the same as actual board - the knight should be on the c3 square
@@ -560,7 +560,7 @@ public class BoardTest {
       //moves the rook from a1 to c1
       Coordinate testPosition = new Coordinate(2, 0);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
          //check if the expected board is the same as actual board - the rook should be on the c1 square
@@ -595,7 +595,7 @@ public class BoardTest {
       //moves the bishop from f1 to c4
       Coordinate testPosition = new Coordinate(2, 3);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
          //check if the expected board is the same as actual board - the bishop should be on the c4 square
@@ -630,7 +630,7 @@ public class BoardTest {
       //moves the queen from d1 to g4
       Coordinate testPosition = new Coordinate(6, 3);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
          //check if the expected board is the same as actual board - the queen should be on the g4 square
@@ -665,7 +665,7 @@ public class BoardTest {
       //moves the king from e1 to d1
       Coordinate testPosition = new Coordinate(3, 0);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
          //check if the expected board is the same as actual board - the king should be on the d1 square
@@ -700,7 +700,7 @@ public class BoardTest {
       //moves the pawn from e4 to d5, capturing the black pawn which was previously there
       Coordinate testPosition = new Coordinate(3, 4);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
          //check if the expected board is the same as actual board - the pawn should be on d5, and the black pawn should be captured
@@ -735,7 +735,7 @@ public class BoardTest {
       //moves the pawn to capture the bishop at b4, stopping the check
       Coordinate testPosition = new Coordinate(1, 3);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
          //check if the expected board is the same as actual board - the pawn should be on b4, and the black bishop should be captured
@@ -770,7 +770,7 @@ public class BoardTest {
       //moves the knight to capture the pawn at d5
       Coordinate testPosition = new Coordinate(3, 4);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
          //check if the expected board is the same as the actual board - the knight should be on d5, and the black pawn should be captured
@@ -805,7 +805,7 @@ public class BoardTest {
       //moves the bishop to capture the pawn at g5
       Coordinate testPosition = new Coordinate(6, 4);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
          //check if the expected board is the same as the actual board - the bishop should be on g5, and the black pawn should be captured
@@ -840,7 +840,7 @@ public class BoardTest {
       //moves the rook to capture the pawn at e4
       Coordinate testPosition = new Coordinate(4, 3);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
          //check if the expected board is the same as the actual board - the rook should be on e4, and the black pawn should be captured
@@ -875,7 +875,7 @@ public class BoardTest {
       //moves the queen to capture the pawn at h5
       Coordinate testPosition = new Coordinate(7, 4);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
          //check if the expected board is the same as the actual board - the queen should be on h5, and the black pawn should be captured
@@ -910,7 +910,7 @@ public class BoardTest {
       //moves the king to capture the pawn at f4
       Coordinate testPosition = new Coordinate(5, 3);
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             testBoard.movePiece(pieceToMove, testPosition);
          }
          //check if the expected board is the same as the actual board - the king should be on f4, and the black pawn should be captured

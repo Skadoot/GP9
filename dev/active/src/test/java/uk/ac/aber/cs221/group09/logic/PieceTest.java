@@ -23,7 +23,7 @@ import uk.ac.aber.cs221.group09.util.Vector2;
  * @version 1.0 (Release)
  * @see PieceTest
  */
-class PieceTest {
+public class PieceTest {
    /**
     * A method to test whether the white king's position is properly tracked
     *

@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @version 1.0 (Release)
  * @see BoardTest
  */
-class BoardTest {
+public class BoardTest {
    private static Board testBoard;
 
    /**

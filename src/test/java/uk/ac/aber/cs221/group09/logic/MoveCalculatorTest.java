@@ -84,6 +84,7 @@ public class MoveCalculatorTest {
       Assertions.assertEquals(true, moveCalculator.isPlayerInCheck());
    }
 
+   //FR5 Tests
    /**
     * A method to test whether all legal moves for the pieces are calculated
     *

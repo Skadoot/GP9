@@ -84,14 +84,15 @@ public class MoveCalculatorTest {
       Assertions.assertEquals(true, moveCalculator.isPlayerInCheck());
    }
 
-   @Test
    //FR5 Tests
    /**
     * A method to test whether all legal moves for the pieces are calculated
     *
-    * @param testBoard the setup of a board with the black king in check
+    * @param testBoard      the setup of a board with the black king in check
     * @param moveCalculator determine player's possible moves to avoid the check
     */
+   @Test
+   //FR5 Tests
    public void testFindLegalMoves() {
       //creates a new board with black in check
       testBoard = new Board("rnbqkbnr/ppppp1pp/5p2/7Q/4P3/8/PPPP1PPP/RNB1KBNR b KQkq - 1 2");
@@ -118,6 +119,7 @@ public class MoveCalculatorTest {
             "legal moves for b bishop at f8 | \r\n" +
             "legal moves for b knight at g8 | \r\n" +
             "legal moves for b rook at h8 | \r\n", outContent.toString());
+      // TODO verify that this test is correct
    }
 
    @Test

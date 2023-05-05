@@ -9,9 +9,9 @@ Added and improved JUnit tests and communicating with backend team to see whethe
 
 Hours: 2
 
-Action 2: Improved test spec 
+Action 2: Improved test spec and started test report
 
-Went over test Spec table and added improvements, also added some FEN strings to make tests more replicable
+Went over test Spec table and added improvements and started work on the test report which is linked to the test spec.
 
 Hours: 3
 

@@ -1,0 +1,26 @@
+Author: Shr27
+Week: 10 Integration & Testing (2023/05/02)
+
+Actions
+
+Action 1: fixed being able to move into check
+
+hours: 1
+
+Action 2: fixed en passant
+
+hours: 2
+
+Action 3: fixed checkmate method
+
+hours: 2 hours
+
+Action 4: fixed fenstring not including last space on the board
+
+Hours: 1
+
+Action 5: added debugging tools
+
+Hours: 1
+
+Total Hours: 7

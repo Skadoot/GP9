@@ -1,0 +1,22 @@
+Author: Shr27
+Week: 10 Integration & Testing (2023/05/04)
+
+Actions
+
+Action 1: added javadoc comments
+
+hours: 1
+
+Action 2: refactored code
+
+hours: 2
+
+Action 3: drew and added updated chess pieces
+
+hours: 4 
+
+Action 4: drew title screen logo
+
+hours: 2
+
+Total Hours: 9

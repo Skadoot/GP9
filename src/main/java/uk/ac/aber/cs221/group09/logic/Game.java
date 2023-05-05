@@ -61,10 +61,10 @@ public class Game {
    }
 
    /**
-   *  method to create a game giving a file name, and weather or not the game has not finished
-   *
-   * @param fileName the file name
-   * @param isFinished is the game finished?
+    * method to create a game giving a file name, and weather or not the game has not finished
+    *
+    * @param fileName   the file name
+    * @param isFinished is the game finished?
     */
    public void createGame(String fileName, boolean isFinished) {
       log.setFinishedGame(isFinished);
@@ -89,7 +89,7 @@ public class Game {
 
       // Get a list of all the legal moves for the chessboard
       ArrayList<Vector2> currentLegalMoves = new ArrayList<Vector2>();
-      if(gameBoard.getPiece(selectedPiece) != null) {
+      if (gameBoard.getPiece(selectedPiece) != null) {
          currentLegalMoves = gameBoard.getPiece(selectedPiece).getPossibleMoves();
       }
       // Check the selected coordinates are a legal move and the current selected piece is the attacking player's piece.
@@ -117,22 +117,22 @@ public class Game {
       System.out.println(
 
             "\n         ,....,----------------------------------------------------\n" +
-            "      ,::::::<-----------------------------------------------------\n" +
-            "     ,::/^\\\"``.----------------------------------------------------\n" +
-            "    ,::/, `   e`.--------------------------------------------------\n" +
-            "   ,::; |        '.------------------------------------------------\n" +
-            "   ,::|  \\___,-.  c)-----------------------------------------------\n" +
-            "   ;::|     \\   '-'------------------------------------------------\n" +
-            "   ;::|      \\-----------------------------------------------------\n" +
-            "   ;::|   _.=`\\----------------------------------------------------\n" +
-            "   `;:|.=` _.=`\\---------------------------------------------------\n" +
-            "     '|_.=`   __\\--------------------------------------------------\n" +
-            "     `\\_..==`` /---------------------------------------------------\n" +
-            "      .'.___.-'.---------------------------------------------------\n" +
-            "     /          \\--------------------------------------------------\n" +
-            "    ('--......--')-------------------------------------------------\n" +
-            "    /'--......--'\\-------------------------------------------------\n" +
-            "    `\"--......--\"--------------------------------------------------\n"
+                  "      ,::::::<-----------------------------------------------------\n" +
+                  "     ,::/^\\\"``.----------------------------------------------------\n" +
+                  "    ,::/, `   e`.--------------------------------------------------\n" +
+                  "   ,::; |        '.------------------------------------------------\n" +
+                  "   ,::|  \\___,-.  c)-----------------------------------------------\n" +
+                  "   ;::|     \\   '-'------------------------------------------------\n" +
+                  "   ;::|      \\-----------------------------------------------------\n" +
+                  "   ;::|   _.=`\\----------------------------------------------------\n" +
+                  "   `;:|.=` _.=`\\---------------------------------------------------\n" +
+                  "     '|_.=`   __\\--------------------------------------------------\n" +
+                  "     `\\_..==`` /---------------------------------------------------\n" +
+                  "      .'.___.-'.---------------------------------------------------\n" +
+                  "     /          \\--------------------------------------------------\n" +
+                  "    ('--......--')-------------------------------------------------\n" +
+                  "    /'--......--'\\-------------------------------------------------\n" +
+                  "    `\"--......--\"--------------------------------------------------\n"
 
       );
 
@@ -202,12 +202,13 @@ public class Game {
 
    /**
     * Creates and ArrayList containing the coordinates of valid tiles to display on the front end.
+    *
     * @return res - An ArrayList of int pairs.
     */
    public ArrayList<Vector2> validTiles() {
       Piece piece = gameBoard.getPiece(selectedPiece);
       ArrayList<Vector2> res = new ArrayList<>();
-      if(gameBoard.getPiece(selectedPiece) == null) {
+      if (gameBoard.getPiece(selectedPiece) == null) {
          return res;
       }
       if (piece.getColor() != attackingPlayer) {
@@ -219,6 +220,7 @@ public class Game {
 
    /**
     * Return the position of any king in check in order to display on the front end.
+    *
     * @return res - ArrayList containing an int pair resembling a coordinate.
     */
    public ArrayList<Vector2> checkedKing() {
@@ -264,6 +266,7 @@ public class Game {
 
    /**
     * method that checks if the game is over by checkmate
+    *
     * @param c the player.
     */
    public void endGame(char c) {

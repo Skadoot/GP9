@@ -103,21 +103,21 @@ class MoveCalculatorTest {
 
       //Checks whether legal moves for the given player is returned correctly
       Assertions.assertEquals("legal moves for b pawn at f6 | \r\n" +
-            "legal moves for b pawn at a7 | \r\n" +
-            "legal moves for b pawn at b7 | \r\n" +
-            "legal moves for b pawn at c7 | \r\n" +
-            "legal moves for b pawn at d7 | \r\n" +
-            "legal moves for b pawn at e7 | \r\n" +
-            "legal moves for b pawn at g7 | g6 \r\n" +
-            "legal moves for b pawn at h7 | \r\n" +
-            "legal moves for b rook at a8 | \r\n" +
-            "legal moves for b knight at b8 | \r\n" +
-            "legal moves for b bishop at c8 | \r\n" +
-            "legal moves for b queen at d8 | \r\n" +
-            "legal moves for b king at e8 | \r\n" +
-            "legal moves for b bishop at f8 | \r\n" +
-            "legal moves for b knight at g8 | \r\n" +
-            "legal moves for b rook at h8 | \r\n", outContent.toString());
+         "legal moves for b pawn at a7 | \r\n" +
+         "legal moves for b pawn at b7 | \r\n" +
+         "legal moves for b pawn at c7 | \r\n" +
+         "legal moves for b pawn at d7 | \r\n" +
+         "legal moves for b pawn at e7 | \r\n" +
+         "legal moves for b pawn at g7 | g6 \r\n" +
+         "legal moves for b pawn at h7 | \r\n" +
+         "legal moves for b rook at a8 | \r\n" +
+         "legal moves for b knight at b8 | \r\n" +
+         "legal moves for b bishop at c8 | \r\n" +
+         "legal moves for b queen at d8 | \r\n" +
+         "legal moves for b king at e8 | \r\n" +
+         "legal moves for b bishop at f8 | \r\n" +
+         "legal moves for b knight at g8 | \r\n" +
+         "legal moves for b rook at h8 | \r\n", outContent.toString());
    }
 
    @Test

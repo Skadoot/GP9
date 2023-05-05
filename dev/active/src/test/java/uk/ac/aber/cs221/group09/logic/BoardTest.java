@@ -28,13 +28,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class BoardTest {
    private static Board testBoard;
 
-   @Test
-   // FR3 Tests
    /**
     * A method to test whether the FEN string is returned correctly
     *
     * @param testBoard the setup of a starting board
     */
+   @Test
+   // FR3 Tests
    public void testGetForsythEdwardsNotation() {
       // Creates a new board
       testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
@@ -43,13 +43,13 @@ class BoardTest {
       assertEquals("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", testBoard.getForsythEdwardsBoardNotation());
    }
 
-   @Test
-   // FR3 Tests
    /**
     * A method to test whether the FEN string's index is returned correctly
     *
     * @param testBoard the setup of a starting board
     */
+   @Test
+   // FR3 Tests
    public void testGetForsythEdwardsBoardNotationArrayIndex() {
       // Creates a new board
       Board testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
@@ -62,13 +62,13 @@ class BoardTest {
       assertEquals(expected, result);
    }
 
-   @Test
-   // FR2 Tests
    /**
     * A method to check the current player
     *
     * @param testBoard the setup of a starting board
     */
+   @Test
+   // FR2 Tests
    public void testDetermineCurrentPlayer() {
       // Creates a new board
       testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
@@ -77,15 +77,15 @@ class BoardTest {
       Assertions.assertEquals("w", testBoard.getForsythEdwardsBoardNotationArrayIndex(1));
    }
 
-   @Test
-   // FR5 Tests
    /**
     * A method to check whether piece movement is working correctly
     *
-    * @param testBoard the setup of a starting board
-    * @param pieceToMove the white rook
+    * @param testBoard    the setup of a starting board
+    * @param pieceToMove  the white rook
     * @param testPosition position for the white rook to move to
     */
+   @Test
+   // FR5 Tests
    public void testMakeLegalMove() {
       // Creates a new board
       testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
@@ -112,15 +112,15 @@ class BoardTest {
       Assertions.assertEquals("rnbqkbnr/pppppppp/8/8/P7/8/1PPPPPPP/RNBQKBNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-   @Test
-   // FR5 and FR6 Tests
    /**
     * A method to check whether piece moved will allow king into check
     *
-    * @param testBoard the setup of a board where the white king will be checked if a white pawn is moved
-    * @param pieceToMove the white pawn
+    * @param testBoard    the setup of a board where the white king will be checked if a white pawn is moved
+    * @param pieceToMove  the white pawn
     * @param testPosition position for the white pawn to move to
     */
+   @Test
+   // FR5 and FR6 Tests
    public void testMoveIntoCheck() {
       // Creates a new board with the pawn at e2 pinned to the white king
       testBoard = new Board("rnb1kbnr/pppp1ppp/4p3/8/7q/PP6/2PPPPPP/RNBQKBNR w KQkq - 0 1");
@@ -147,15 +147,15 @@ class BoardTest {
       Assertions.assertEquals("rnb1kbnr/pppp1ppp/4p3/8/7q/PP6/2PPPPPP/RNBQKBNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-   @Test
-   // FR5 Tests
    /**
     * A method to check as illegal piece movement is not allowed
     *
-    * @param testBoard the setup of a starting board
-    * @param pieceToMove the white rook
+    * @param testBoard    the setup of a starting board
+    * @param pieceToMove  the white rook
     * @param testPosition position for the white rook to move to
     */
+   @Test
+   // FR5 Tests
    public void testMakeIllegalMove() {
       // Creates a new board
       testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
@@ -182,15 +182,15 @@ class BoardTest {
       Assertions.assertEquals("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-   @Test
-   // FR5 Tests
    /**
     * A method to check as illegal piece movement for king to be in check is not allowed
     *
-    * @param testBoard the setup of a board where the white king is in check
-    * @param pieceToMove the white pawn
+    * @param testBoard    the setup of a board where the white king is in check
+    * @param pieceToMove  the white pawn
     * @param testPosition position for the white pawn to move to
     */
+   @Test
+   // FR5 Tests
    public void testMakeIllegalMoveInCheck() {
       // Creates a new board with the white king in check
       testBoard = new Board("4k3/8/8/8/8/8/P7/4K2r w - - 0 1");
@@ -217,15 +217,15 @@ class BoardTest {
       Assertions.assertEquals("4k3/8/8/8/8/8/P7/4K2r", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-   @Test
-   // FR5 Tests
    /**
     * A method to check whether the castling function is working correctly
     *
-    * @param testBoard the setup of a board where the white king side knight and bishop is missing
-    * @param pieceToMove the white king
+    * @param testBoard    the setup of a board where the white king side knight and bishop is missing
+    * @param pieceToMove  the white king
     * @param testPosition position for the white king to move to
     */
+   @Test
+   // FR5 Tests
    public void testCastling() {
       // Creates a new board with the white king side knight and bishop missing, so that white can castle
       testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQK2R w KQkq - 0 1");
@@ -252,15 +252,15 @@ class BoardTest {
       Assertions.assertEquals("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQ1RK1", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-   @Test
-   //FR5 Tests
    /**
     * A method to check whether the castling function is not allowed when the king is blocked
     *
-    * @param testBoard the setup of a starting board
-    * @param pieceToMove the white king
+    * @param testBoard    the setup of a starting board
+    * @param pieceToMove  the white king
     * @param testPosition position for the white king to move to
     */
+   @Test
+   //FR5 Tests
    public void testCastlingBlocked() {
       // Create a new board with the initial setup of a chess game
       testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
@@ -287,15 +287,15 @@ class BoardTest {
       Assertions.assertEquals("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-   @Test
-   // FR5 Tests
    /**
     * A method to check whether castling on the white king's side is not allowed
     *
-    * @param testBoard the setup of a board where only white king and white rooks are available on the first line
-    * @param pieceToMove the white king
+    * @param testBoard    the setup of a board where only white king and white rooks are available on the first line
+    * @param pieceToMove  the white king
     * @param testPosition position for the white king to move to
     */
+   @Test
+   // FR5 Tests
    public void testCastlingIllegalWhiteKingSide() {
       // Creates a new board without any bishops, knights, or queens. White is unable to castle on the king side
       testBoard = new Board("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R w Qkq - 0 1");
@@ -322,15 +322,15 @@ class BoardTest {
       Assertions.assertEquals("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-   @Test
-   // FR5 Tests
    /**
     * A method to check whether castling on the white queen's side is not allowed
     *
-    * @param testBoard the setup of a board where only white king and white rooks are available on the first line
-    * @param pieceToMove the white king
+    * @param testBoard    the setup of a board where only white king and white rooks are available on the first line
+    * @param pieceToMove  the white king
     * @param testPosition position for the white king to move to
     */
+   @Test
+   // FR5 Tests
    public void testCastlingIllegalWhiteQueenSide() {
       // Creates a new board without any bishops, knights, or queens. White is unable to castle on the queen side
       testBoard = new Board("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R w Kkq - 0 1");
@@ -357,15 +357,15 @@ class BoardTest {
       Assertions.assertEquals("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-   @Test
-   // FR5 Tests
    /**
     * A method to check whether castling on the black king's side is not allowed
     *
-    * @param testBoard the setup of a board where only black king and black rooks are available on the first line
-    * @param pieceToMove the black king
+    * @param testBoard    the setup of a board where only black king and black rooks are available on the first line
+    * @param pieceToMove  the black king
     * @param testPosition position for the black king to move to
     */
+   @Test
+   // FR5 Tests
    public void testCastlingIllegalBlackKingSide() {
       // Creates a new board without any bishops, knights, or queens. Black is unable to castle on the king side
       testBoard = new Board("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R w KQq - 0 1");
@@ -392,15 +392,15 @@ class BoardTest {
       Assertions.assertEquals("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-   @Test
-   //FR5 Tests
    /**
     * A method to check whether castling on the black queen's side is not allowed
     *
-    * @param testBoard the setup of a board where only black king and black rooks are available on the first line
-    * @param pieceToMove the black king
+    * @param testBoard    the setup of a board where only black king and black rooks are available on the first line
+    * @param pieceToMove  the black king
     * @param testPosition position for the black king to move to
     */
+   @Test
+   //FR5 Tests
    public void testCastlingIllegalBlackQueenSide() {
       //creates a new board without any bishops, knights, or queens. Black is unable to castle on the queen side
       testBoard = new Board("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R w KQk - 0 1");
@@ -427,15 +427,15 @@ class BoardTest {
       Assertions.assertEquals("r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-   @Test
-   //FR5 Tests
    /**
     * A method to check whether the En Passant function is working correctly
     *
-    * @param testBoard the setup of a board where white pawn is at(4,4) while black pawn is at(3,4)
-    * @param pieceToMove the white pawn
+    * @param testBoard    the setup of a board where white pawn is at(4,4) while black pawn is at(3,4)
+    * @param pieceToMove  the white pawn
     * @param testPosition position for the white pawn to move to
     */
+   @Test
+   //FR5 Tests
    public void testEnPassant() {
       //creates a new board with an en passant move available for the white pawn at e5
       testBoard = new Board("rnbqkbnr/ppp1p1pp/5p2/3pP3/8/8/PPPP1PPP/RNBQKBNR w KQkq d6 0 1");
@@ -463,15 +463,15 @@ class BoardTest {
       Assertions.assertEquals("rnbqkbnr/ppp1p1pp/3P1p2/8/8/8/PPPP1PPP/RNBQKBNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-   @Test
-   //FR5 Tests
    /**
     * A method to check whether the Pawn Pieces are moving correctly
     *
-    * @param testBoard the setup of a starting board
-    * @param pieceToMove the white pawn
+    * @param testBoard    the setup of a starting board
+    * @param pieceToMove  the white pawn
     * @param testPosition position for the white pawn to move to
     */
+   @Test
+   //FR5 Tests
    public void testMakeLegalMovePawn() {
       //creates a new board
       testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
@@ -498,15 +498,15 @@ class BoardTest {
       Assertions.assertEquals("rnbqkbnr/pppppppp/8/8/P7/8/1PPPPPPP/RNBQKBNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-   @Test
-   //FR5 Tests
    /**
     * A method to check whether the Knight Pieces are moving correctly
     *
-    * @param testBoard the setup of a starting board
-    * @param pieceToMove the white knight
+    * @param testBoard    the setup of a starting board
+    * @param pieceToMove  the white knight
     * @param testPosition position for the white knight to move to
     */
+   @Test
+   //FR5 Tests
    public void testMakeLegalMoveKnight() {
       //creates a new board
       testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
@@ -533,15 +533,15 @@ class BoardTest {
       Assertions.assertEquals("rnbqkbnr/pppppppp/8/8/8/2N5/PPPPPPPP/R1BQKBNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-   @Test
-   //FR5 Tests
    /**
     * A method to check whether the Rook Pieces are moving correctly
     *
-    * @param testBoard the setup of a board allowing rook pieces to move
-    * @param pieceToMove the white rook
+    * @param testBoard    the setup of a board allowing rook pieces to move
+    * @param pieceToMove  the white rook
     * @param testPosition position for the white rook to move to
     */
+   @Test
+   //FR5 Tests
    public void testMakeLegalMoveRook() {
       //creates a new board without a white bishop or knight on b1 and c1
       testBoard = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/R2QKBNR w KQkq - 0 1");
@@ -568,15 +568,15 @@ class BoardTest {
       Assertions.assertEquals("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/2RQKBNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-   @Test
-   //FR5 Tests
    /**
     * A method to check whether the Bishop Pieces are moving correctly
     *
-    * @param testBoard the setup of a board allowing bishop pieces to move
-    * @param pieceToMove the white bishop
+    * @param testBoard    the setup of a board allowing bishop pieces to move
+    * @param pieceToMove  the white bishop
     * @param testPosition position for the white bishop to move to
     */
+   @Test
+   //FR5 Tests
    public void testMakeLegalMoveBishop() {
       //creates a new board with legal moves available for the white bishop at f1
       testBoard = new Board("rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1");
@@ -603,15 +603,15 @@ class BoardTest {
       Assertions.assertEquals("rnbqkbnr/pppp1ppp/8/4p3/2B1P3/8/PPPP1PPP/RNBQK1NR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-   @Test
-   //FR5 Tests
    /**
     * A method to check whether the Queen Piece is moving correctly
     *
-    * @param testBoard the setup of a board allowing queen piece to move
-    * @param pieceToMove the white queen
+    * @param testBoard    the setup of a board allowing queen piece to move
+    * @param pieceToMove  the white queen
     * @param testPosition position for the white queen to move to
     */
+   @Test
+   //FR5 Tests
    public void testMakeLegalMoveQueen() {
       //creates a new board with a legal move for the white queen
       testBoard = new Board("rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 1");
@@ -638,15 +638,15 @@ class BoardTest {
       Assertions.assertEquals("rnbqkbnr/pppp1ppp/8/4p3/4P1Q1/8/PPPP1PPP/RNB1KBNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-   @Test
-   //FR5 Tests
    /**
     * A method to check whether the King Piece is moving correctly
     *
-    * @param testBoard the setup of a board allowing king piece to move
-    * @param pieceToMove the white king
+    * @param testBoard    the setup of a board allowing king piece to move
+    * @param pieceToMove  the white king
     * @param testPosition position for the white king to move to
     */
+   @Test
+   //FR5 Tests
    public void testMakeLegalMoveKing() {
       //creates a new board with a legal move for the white king
       testBoard = new Board("rnbqkbnr/ppp2ppp/3p4/4p3/4P1Q1/8/PPPP1PPP/RNB1KBNR w KQkq - 0 1");
@@ -673,15 +673,15 @@ class BoardTest {
       Assertions.assertEquals("rnbqkbnr/ppp2ppp/3p4/4p3/4P1Q1/8/PPPP1PPP/RNBK1BNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-   @Test
-   //FR5 Tests
    /**
     * A method to check whether capturing as pawn is working correctly
     *
-    * @param testBoard the setup of a board allowing pawn piece to capture
-    * @param pieceToMove the white pawn
+    * @param testBoard    the setup of a board allowing pawn piece to capture
+    * @param pieceToMove  the white pawn
     * @param testPosition position for the white pawn to capture and move to
     */
+   @Test
+   //FR5 Tests
    public void testCapturePawn() {
       //creates a new board with a white pawn able to make a capture
       testBoard = new Board("rnbqkbnr/ppp1pppp/8/3p4/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
@@ -708,15 +708,15 @@ class BoardTest {
       Assertions.assertEquals("rnbqkbnr/ppp1pppp/8/3P4/8/8/PPPP1PPP/RNBQKBNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-   @Test
-   //FR5 Tests
    /**
     * A method to check whether capturing as pieces to avoid king in check
     *
-    * @param testBoard the setup of a board allowing pawn piece to capture other pieces to avoid king getting in check
-    * @param pieceToMove the white pawn
+    * @param testBoard    the setup of a board allowing pawn piece to capture other pieces to avoid king getting in check
+    * @param pieceToMove  the white pawn
     * @param testPosition position for the white pawn to capture and move to
     */
+   @Test
+   //FR5 Tests
    public void testCaptureInCheck() {
       //creates a new board with the white king in check from the bishop at b4, and a white pawn at a3 which can capture the bishop
       testBoard = new Board("rnbqk1nr/pp1p1ppp/2p1p3/8/1b6/P2P4/1PP1PPPP/RNBQKBNR w KQkq - 0 1");
@@ -743,15 +743,15 @@ class BoardTest {
       Assertions.assertEquals("rnbqk1nr/pp1p1ppp/2p1p3/8/1P6/3P4/1PP1PPPP/RNBQKBNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-   @Test
-   //FR5 Tests
    /**
     * A method to check whether capturing as knight is working correctly
     *
-    * @param testBoard the setup of a board allowing knight piece to capture
-    * @param pieceToMove the white knight
+    * @param testBoard    the setup of a board allowing knight piece to capture
+    * @param pieceToMove  the white knight
     * @param testPosition position for the white knight to capture and move to
     */
+   @Test
+   //FR5 Tests
    public void testCaptureKnight() {
       //creates a new board with a white knight able to make a capture
       testBoard = new Board("rnbqkbnr/ppp1pppp/8/3p4/8/2N5/PPPPPPPP/R1BQKBNR w KQkq - 0 1");
@@ -778,15 +778,15 @@ class BoardTest {
       Assertions.assertEquals("rnbqkbnr/ppp1pppp/8/3N4/8/8/PPPPPPPP/R1BQKBNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-   @Test
-   //FR5 Tests
    /**
     * A method to check whether capturing as bishop is working correctly
     *
-    * @param testBoard the setup of a board allowing bishop piece to capture
-    * @param pieceToMove the white bishop
+    * @param testBoard    the setup of a board allowing bishop piece to capture
+    * @param pieceToMove  the white bishop
     * @param testPosition position for the white bishop to capture and move to
     */
+   @Test
+   //FR5 Tests
    public void testCaptureBishop() {
       //creates a new board with a white bishop able to make a capture
       testBoard = new Board("rnbqkbnr/pppppp1p/8/6p1/8/3P4/PPP1PPPP/RNBQKBNR w KQkq - 0 1");
@@ -813,16 +813,15 @@ class BoardTest {
       Assertions.assertEquals("rnbqkbnr/pppppp1p/8/6B1/8/3P4/PPP1PPPP/RN1QKBNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-
-   @Test
-   //FR5 Tests
    /**
     * A method to check whether capturing as rook is working correctly
     *
-    * @param testBoard the setup of a board allowing rook piece to capture
-    * @param pieceToMove the white rook
+    * @param testBoard    the setup of a board allowing rook piece to capture
+    * @param pieceToMove  the white rook
     * @param testPosition position for the white rook to capture and move to
     */
+   @Test
+   //FR5 Tests
    public void testCaptureRook() {
       //creates a new board with a white rook able to make a capture
       testBoard = new Board("rnbqkbnr/ppp2ppp/3p4/P7/R3p3/8/1PPPPPPP/1NBQKBNR w Kkq - 0 4");
@@ -849,16 +848,15 @@ class BoardTest {
       Assertions.assertEquals("rnbqkbnr/ppp2ppp/3p4/P7/4R3/8/1PPPPPPP/1NBQKBNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-
-   @Test
-   //FR5 Tests
    /**
     * A method to check whether capturing as queen is working correctly
     *
-    * @param testBoard the setup of a board allowing queen piece to capture
-    * @param pieceToMove the white queen
+    * @param testBoard    the setup of a board allowing queen piece to capture
+    * @param pieceToMove  the white queen
     * @param testPosition position for the white queen to capture and move to
     */
+   @Test
+   //FR5 Tests
    public void testCaptureQueen() {
       //creates a new board with the white queen able to make a capture
       testBoard = new Board("rnbqkbnr/ppppppp1/8/7p/4P3/8/PPPP1PPP/RNBQKBNR w KQkq h6 0 2");
@@ -885,16 +883,15 @@ class BoardTest {
       Assertions.assertEquals("rnbqkbnr/ppppppp1/8/7Q/4P3/8/PPPP1PPP/RNB1KBNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-
-   @Test
-   //FR5 Tests
    /**
     * A method to check whether capturing as king is working correctly
     *
-    * @param testBoard the setup of a board allowing king piece to capture
-    * @param pieceToMove the white king
+    * @param testBoard    the setup of a board allowing king piece to capture
+    * @param pieceToMove  the white king
     * @param testPosition position for the white king to capture and move to
     */
+   @Test
+   //FR5 Tests
    public void testCaptureKing() {
       //creates a new board with the white king able to make a capture
       testBoard = new Board("rnbqkbnr/pppp2pp/4p3/8/4Pp2/5K2/PPPP1PPP/RNBQ1BNR w kq - 0 4");
@@ -921,13 +918,13 @@ class BoardTest {
       Assertions.assertEquals("rnbqkbnr/pppp2pp/4p3/8/4PK2/8/PPPP1PPP/RNBQ1BNR", testBoard.getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
-   @Test
-   //FR5 Tests
    /**
     * A method to check whether white side promotion is working correctly
     *
     * @param testBoard the setup of a board allowing white pawn to be promoted
     */
+   @Test
+   //FR5 Tests
    public void testCanWhitePromote() {
       //creates a new board where the white pawn is allowed to be promoted
       testBoard = new Board("rnbqkbnP/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNR b KQq - 0 1");
@@ -936,13 +933,13 @@ class BoardTest {
       Assertions.assertEquals(true, testBoard.canWhitePromote());
    }
 
-   @Test
-   //FR5 Tests
    /**
     * A method to check whether black side promotion is working correctly
     *
     * @param testBoard the setup of a board allowing black pawn to be promoted
     */
+   @Test
+   //FR5 Tests
    public void testCanBlackPromote() {
       //creates a new board where the black pawn is allowed to be promoted
       testBoard = new Board("rnbqkbnr/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNp w Qq - 0 1");

@@ -18,10 +18,13 @@
     -fx-background-radius: 0;
     -fx-border-color: #86784c;
 }
+
 .selected-tile {
     -fx-background-color: #5bde5b;
     -fx-background-radius: 0;
-}.check-tile {
-     -fx-background-color: #FF3131;
-     -fx-background-radius: 0;
- }
+}
+
+.check-tile {
+    -fx-background-color: #FF3131;
+    -fx-background-radius: 0;
+}

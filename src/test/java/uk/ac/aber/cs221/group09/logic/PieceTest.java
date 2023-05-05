@@ -24,6 +24,14 @@ import uk.ac.aber.cs221.group09.util.Vector2;
  * @see PieceTest
  */
 class PieceTest {
+   /**
+    * A method to test whether the white king's position is properly tracked
+    *
+    * @param testBoard     The setup of a board with a move available for the white king
+    * @param testPosition  The initial position of the white king
+    * @param pieceToMove   The white king piece
+    * @param testPosition2 The position for the white king to move to
+    */
    @Test
    public void testGetWhiteKingPosition() {
       //creates a new board with a move available for the white king
@@ -41,6 +49,14 @@ class PieceTest {
       Assertions.assertEquals(testPosition2, testBoard.getWhiteKingPosition());
    }
 
+   /**
+    * A method to test whether the black king's position is properly tracked
+    *
+    * @param testBoard     The setup of a board with a move available for the black king
+    * @param testPosition  The initial position of the black king
+    * @param pieceToMove   The black king piece
+    * @param testPosition2 The position for the black king to move to
+    */
    @Test
    public void testGetBlackKingPosition() {
       //creates a new board with a move available for the black king
@@ -58,6 +74,12 @@ class PieceTest {
       Assertions.assertEquals(testPosition2, testBoard.getBlackKingPosition());
    }
 
+   /**
+    * A method to test whether a piece's colour is stored correctly
+    *
+    * @param testBoard    The setup of a board in the starting position
+    * @param testPosition The position of the white rook on the a1 square
+    */
    @Test
    //FR2 Tests
    public void testGetPieceColor() {
@@ -71,6 +93,12 @@ class PieceTest {
       Assertions.assertEquals('w', testBoard.getPiece(testPosition).getColor());
    }
 
+   /**
+    * A method to test whether a piece's type is stored correctly
+    *
+    * @param testBoard    The setup of a board in the starting position
+    * @param testPosition The position of the white knight on the b1 square
+    */
    @Test
    //FR2 Tests
    public void testGetPieceType() {
@@ -84,7 +112,11 @@ class PieceTest {
       Assertions.assertEquals('n', testBoard.getPiece(testPosition).getType());
    }
 
-
+   /**
+    * A method to test whether a piece's position is stored correctly
+    *
+    * @param testPosition The F1 square of the board
+    */
    @Test
    //FR2 Tests
    public void testGetPiecePosition() {
@@ -96,7 +128,14 @@ class PieceTest {
       Assertions.assertEquals(0, testPosition.y);
    }
 
+   /**
+    * A method to test that white is able to promote a pawn to a queen
+    *
+    * @param game         The setup of a new game with a white pawn on the 8th rank, ready for promotion
+    * @param testPosition The position of the white pawn on the H8 square
+    */
    @Test
+   //FR5 Tests
    public void testPromoteWhiteQueen() {
       //creates a new game with a white pawn available to be promoted
       Game game = new Game("rnbqkbnP/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNR b KQq - 0 1", "test", false);
@@ -112,7 +151,14 @@ class PieceTest {
       Assertions.assertEquals('w', game.getGameBoard().getPiece(testPosition).getColor());
    }
 
+   /**
+    * A method to test that white is able to promote a pawn to a rook
+    *
+    * @param game         The setup of a new game with a white pawn on the 8th rank, ready for promotion
+    * @param testPosition The position of the white pawn on the H8 square
+    */
    @Test
+   //FR5 Tests
    public void promoteWhiteRook() {
       //creates a new game with a white pawn available to be promoted
       Game game = new Game("rnbqkbnP/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNR b KQq - 0 1", "test", false);
@@ -128,7 +174,14 @@ class PieceTest {
       Assertions.assertEquals('w', game.getGameBoard().getPiece(testPosition).getColor());
    }
 
+   /**
+    * A method to test that white is able to promote a pawn to a bishop
+    *
+    * @param game         The setup of a new game with a white pawn on the 8th rank, ready for promotion
+    * @param testPosition The position of the white pawn on the H8 square
+    */
    @Test
+   //FR5 Tests
    public void promoteWhiteBishop() {
       //creates a new game with a white pawn available to be promoted
       Game game = new Game("rnbqkbnP/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNR b KQq - 0 1", "test", false);
@@ -144,7 +197,14 @@ class PieceTest {
       Assertions.assertEquals('w', game.getGameBoard().getPiece(testPosition).getColor());
    }
 
+   /**
+    * A method to test that white is able to promote a pawn to a knight
+    *
+    * @param game         The setup of a new game with a white pawn on the 8th rank, ready for promotion
+    * @param testPosition The position of the white pawn on the H8 square
+    */
    @Test
+   //FR5 Tests
    public void promoteWhiteKnight() {
       //creates a new game with a white pawn available to be promoted
       Game game = new Game("rnbqkbnP/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNR b KQq - 0 1", "test", false);
@@ -160,8 +220,14 @@ class PieceTest {
       Assertions.assertEquals('w', game.getGameBoard().getPiece(testPosition).getColor());
    }
 
-
+   /**
+    * A method to test that black is able to promote a pawn to a queen
+    *
+    * @param game         The setup of a new game with a black pawn on the 1st rank, ready for promotion
+    * @param testPosition The position of the black pawn on the H1 square
+    */
    @Test
+   //FR5 Tests
    public void promoteBlackQueen() {
       //creates a new game with a black pawn available to be promoted
       Game game = new Game("rnbqkbnr/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNp b Qq - 0 1", "test", false);
@@ -177,7 +243,14 @@ class PieceTest {
       Assertions.assertEquals('b', game.getGameBoard().getPiece(testPosition).getColor());
    }
 
+   /**
+    * A method to test that black is able to promote a pawn to a rook
+    *
+    * @param game         The setup of a new game with a black pawn on the 1st rank, ready for promotion
+    * @param testPosition The position of the black pawn on the H1 square
+    */
    @Test
+   //FR5 Tests
    public void promoteBlackRook() {
       //creates a new game with a black pawn available to be promoted
       Game game = new Game("rnbqkbnr/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNp b Qq - 0 1", "test", false);
@@ -193,7 +266,14 @@ class PieceTest {
       Assertions.assertEquals('b', game.getGameBoard().getPiece(testPosition).getColor());
    }
 
+   /**
+    * A method to test that black is able to promote a pawn to a bishop
+    *
+    * @param game         The setup of a new game with a black pawn on the 1st rank, ready for promotion
+    * @param testPosition The position of the black pawn on the H1 square
+    */
    @Test
+   //FR5 Tests
    public void promoteBlackBishop() {
       //creates a new game with a black pawn available to be promoted
       Game game = new Game("rnbqkbnr/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNp b Qq - 0 1", "test", false);
@@ -209,7 +289,14 @@ class PieceTest {
       Assertions.assertEquals('b', game.getGameBoard().getPiece(testPosition).getColor());
    }
 
+   /**
+    * A method to test that black is able to promote a pawn to a knight
+    *
+    * @param game         The setup of a new game with a black pawn on the 1st rank, ready for promotion
+    * @param testPosition The position of the black pawn on the H1 square
+    */
    @Test
+   //FR5 Tests
    public void promoteBlackKnight() {
       //creates a new game with a black pawn available to be promoted
       Game game = new Game("rnbqkbnr/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNp b Qq - 0 1", "test", false);
@@ -225,7 +312,15 @@ class PieceTest {
       Assertions.assertEquals('b', game.getGameBoard().getPiece(testPosition).getColor());
    }
 
+   /**
+    * A method to test that a white queen moves correctly after promotion
+    *
+    * @param game         The setup of a new game with a white pawn on the 8th rank, ready for promotion
+    * @param pieceToMove  The promoted white queen piece
+    * @param testPosition The position for the selected piece to move to
+    */
    @Test
+   //FR5 Tests
    public void testMoveAfterPromoteWhiteQueen() {
       //creates a new game with a white pawn available to be promoted
       Game game = new Game("rnbqkbnP/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNR b KQq - 0 1", "test", false);
@@ -247,7 +342,15 @@ class PieceTest {
       Assertions.assertEquals("rnbqkbn1/ppppppp1/8/8/7Q/8/PPPPPPP1/RNBQKBNR", game.getGameBoard().getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
+   /**
+    * A method to test that a white rook moves correctly after promotion
+    *
+    * @param game         The setup of a new game with a white pawn on the 8th rank, ready for promotion
+    * @param pieceToMove  The promoted white rook piece
+    * @param testPosition The position for the selected piece to move to
+    */
    @Test
+   //FR5 Tests
    public void testMoveAfterPromoteWhiteRook() {
       //creates a new game with a white pawn available to be promoted
       Game game = new Game("rnbqkbnP/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNR b KQq - 0 1", "test", false);
@@ -269,7 +372,15 @@ class PieceTest {
       Assertions.assertEquals("rnbqkbn1/ppppppp1/8/8/7R/8/PPPPPPP1/RNBQKBNR", game.getGameBoard().getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
+   /**
+    * A method to test that a white bishop moves correctly after promotion
+    *
+    * @param game         The setup of a new game with a white pawn on the 8th rank, ready for promotion
+    * @param pieceToMove  The promoted white bishop piece
+    * @param testPosition The position for the selected piece to move to
+    */
    @Test
+   //FR5 Tests
    public void testMoveAfterPromoteWhiteBishop() {
       //creates a new game with a white pawn available to be promoted
       Game game = new Game("rnbqkbnP/pppppp2/8/8/8/8/PPPPPPP1/RNBQKBNR b KQq - 0 1", "test", false);
@@ -291,7 +402,15 @@ class PieceTest {
       Assertions.assertEquals("rnbqkbn1/pppppp2/8/8/3B4/8/PPPPPPP1/RNBQKBNR", game.getGameBoard().getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
+   /**
+    * A method to test that a white knight moves correctly after promotion
+    *
+    * @param game         The setup of a new game with a white pawn on the 8th rank, ready for promotion
+    * @param pieceToMove  The promoted white knight piece
+    * @param testPosition The position for the selected piece to move to
+    */
    @Test
+   //FR5 Tests
    public void testMoveAfterPromoteWhiteKnight() {
       //creates a new game with a white pawn available to be promoted
       Game game = new Game("rnbqkbnP/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNR b KQq - 0 1", "test", false);
@@ -313,7 +432,15 @@ class PieceTest {
       Assertions.assertEquals("rnbqkbn1/ppppppp1/6N1/8/8/8/PPPPPPP1/RNBQKBNR", game.getGameBoard().getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
+   /**
+    * A method to test that a black queen moves correctly after promotion
+    *
+    * @param game         The setup of a new game with a black pawn on the 1st rank, ready for promotion
+    * @param pieceToMove  The promoted black queen piece
+    * @param testPosition The position for the selected piece to move to
+    */
    @Test
+   //FR5 Tests
    public void testMoveAfterPromoteBlackQueen() {
       //creates a new game with a black pawn available to be promoted
       Game game = new Game("rnbqkbnr/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNp b Qq - 0 1", "test", false);
@@ -335,7 +462,15 @@ class PieceTest {
       Assertions.assertEquals("rnbqkbnr/ppppppp1/7q/8/8/8/PPPPPPP1/RNBQKBN1", game.getGameBoard().getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
+   /**
+    * A method to test that a black rook moves correctly after promotion
+    *
+    * @param game         The setup of a new game with a black pawn on the 1st rank, ready for promotion
+    * @param pieceToMove  The promoted black rook piece
+    * @param testPosition The position for the selected piece to move to
+    */
    @Test
+   //FR5 Tests
    public void testMoveAfterPromoteBlackRook() {
       //creates a new game with a black pawn available to be promoted
       Game game = new Game("rnbqkbnr/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNp b Qq - 0 1", "test", false);
@@ -357,7 +492,15 @@ class PieceTest {
       Assertions.assertEquals("rnbqkbnr/ppppppp1/7r/8/8/8/PPPPPPP1/RNBQKBN1", game.getGameBoard().getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
+   /**
+    * A method to test that a black bishop moves correctly after promotion
+    *
+    * @param game         The setup of a new game with a black pawn on the 1st rank, ready for promotion
+    * @param pieceToMove  The promoted black bishop piece
+    * @param testPosition The position for the selected piece to move to
+    */
    @Test
+   //FR5 Tests
    public void testMoveAfterPromoteBlackBishop() {
       //creates a new game with a black pawn available to be promoted
       Game game = new Game("rnbqkbnr/ppppppp1/8/8/8/8/PPPPPP2/RNBQKBNp b Qq - 0 1", "test", false);
@@ -379,7 +522,15 @@ class PieceTest {
       Assertions.assertEquals("rnbqkbnr/ppppppp1/8/8/4b3/8/PPPPPP2/RNBQKBN1", game.getGameBoard().getForsythEdwardsBoardNotationArrayIndex(0));
    }
 
+   /**
+    * A method to test that a black knight moves correctly after promotion
+    *
+    * @param game         The setup of a new game with a black pawn on the 1st rank, ready for promotion
+    * @param pieceToMove  The promoted black knight piece
+    * @param testPosition The position for the selected piece to move to
+    */
    @Test
+   //FR5 Tests
    public void testMoveAfterPromoteBlackKnight() {
       //creates a new game with a black pawn available to be promoted
       Game game = new Game("rnbqkbnr/ppppppp1/8/8/8/8/PPPPPPP1/RNBQKBNp b Qq - 0 1", "test", false);

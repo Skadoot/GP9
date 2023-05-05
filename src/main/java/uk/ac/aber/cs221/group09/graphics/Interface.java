@@ -10,7 +10,6 @@ package uk.ac.aber.cs221.group09.graphics;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-
 import uk.ac.aber.cs221.group09.logic.Game;
 import uk.ac.aber.cs221.group09.util.Vector2;
 
@@ -28,13 +27,17 @@ import java.util.ArrayList;
  * @see StartScreen
  */
 public class Interface extends Application {
+   ArrayList<Vector2> movesToCompare;
    private Stage primaryStage;
    private PlayerNameScreen playerNameScreen;
    private PlayScreen playScreen;
    private StartScreen startScreen;
    private LoadScreen loadScreen;
    private Game game;
-   ArrayList<Vector2> movesToCompare;
+
+   public static void main(String[] args) {
+      launch();
+   }
 
    @Override
    public void start(Stage stage) throws IOException {
@@ -50,10 +53,6 @@ public class Interface extends Application {
       stage.setTitle("Gorpu Chess!");
       stage.setScene(startScreen.getStartScreen());
       stage.show();
-   }
-
-   public static void main(String[] args) {
-      launch();
    }
 
    public Stage getStage() {
@@ -84,11 +83,12 @@ public class Interface extends Application {
 
 
    public int getTurnNumber() {
-      String gameInfo[] = game.gameNotation().split(" ", 7);
+      String[] gameInfo = game.gameNotation().split(" ", 7);
       int turn = Integer.parseInt(gameInfo[4]);
       return turn;
    }
-   public String getPreviousFEN(int turn){
+
+   public String getPreviousFEN(int turn) {
       return game.log.readLog(turn);
    }
 
@@ -167,7 +167,7 @@ public class Interface extends Application {
       // Make a whole new playScreen.
       playScreen = new PlayScreen(this);
       playScreen.updatePlayScreen(game.gameNotation());
-      if(isFinished){
+      if (isFinished) {
          playScreen.setGameFinished();
       }
       primaryStage.setScene(playScreen.getScene());

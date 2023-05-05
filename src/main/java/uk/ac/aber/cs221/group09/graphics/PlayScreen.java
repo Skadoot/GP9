@@ -35,12 +35,11 @@ import java.util.ArrayList;
 public class PlayScreen {
 
    private final Interface anInterface;
-   private Scene scene;
    private final Chessboard chessboard;
-   private Text whitePlayerName, blackPlayerName;
-
    // Player Dashboard
    private final PlayScreenGraphicsLoader graphicsLoader;
+   private Scene scene;
+   private Text whitePlayerName, blackPlayerName;
    private StackPane dashboard;
    private Text turnTracker;
    private ImageView symbol;
@@ -684,7 +683,8 @@ public class PlayScreen {
    /**
     * Function call to visually highlight tiles. Passed two arrays of coordinates to highlight. One is the coordinates
     * of valid tiles for the selected piece to move to, the other the coordinates of the king if there is a king in check.
-    * @param vTiles - Coordinates of valid tiles for selected piece to move to
+    *
+    * @param vTiles     - Coordinates of valid tiles for selected piece to move to
     * @param checkTiles - Coordinates of any kings in check.
     */
    public void highlightTiles(ArrayList<Vector2> vTiles, ArrayList<Vector2> checkTiles) {
@@ -697,7 +697,7 @@ public class PlayScreen {
       nextB.setDisable(b);
    }
 
-   public void setGameFinished(){
-      gameFinished=true;
+   public void setGameFinished() {
+      gameFinished = true;
    }
 }

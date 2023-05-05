@@ -335,7 +335,7 @@ public class PieceTest {
       Coordinate testPosition = new Coordinate(7, 3);
 
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             game.getGameBoard().movePiece(pieceToMove, testPosition);
          }
       }
@@ -365,7 +365,7 @@ public class PieceTest {
       Coordinate testPosition = new Coordinate(7, 3);
 
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             game.getGameBoard().movePiece(pieceToMove, testPosition);
          }
       }
@@ -395,7 +395,7 @@ public class PieceTest {
       Coordinate testPosition = new Coordinate(3, 3);
 
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             game.getGameBoard().movePiece(pieceToMove, testPosition);
          }
       }
@@ -425,7 +425,7 @@ public class PieceTest {
       Coordinate testPosition = new Coordinate(6, 5);
 
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             game.getGameBoard().movePiece(pieceToMove, testPosition);
          }
       }
@@ -455,7 +455,7 @@ public class PieceTest {
       Coordinate testPosition = new Coordinate(7, 5);
 
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             game.getGameBoard().movePiece(pieceToMove, testPosition);
          }
       }
@@ -485,7 +485,7 @@ public class PieceTest {
       Coordinate testPosition = new Coordinate(7, 5);
 
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             game.getGameBoard().movePiece(pieceToMove, testPosition);
          }
       }
@@ -515,7 +515,7 @@ public class PieceTest {
       Coordinate testPosition = new Coordinate(4, 3);
 
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             game.getGameBoard().movePiece(pieceToMove, testPosition);
          }
       }
@@ -545,7 +545,7 @@ public class PieceTest {
       Coordinate testPosition = new Coordinate(6, 2);
 
       for (Coordinate currentMove : pieceToMove.getPossibleMoves()) {
-         if (currentMove.getVector2AsBoardNotation().equals(testPosition.getVector2AsBoardNotation())) {
+         if (currentMove.getCoordinateAsBoardNotation().equals(testPosition.getCoordinateAsBoardNotation())) {
             game.getGameBoard().movePiece(pieceToMove, testPosition);
          }
       }

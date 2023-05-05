@@ -1,3 +1,23 @@
-Blog - week 8
-19/04/2023
+Author: JAT92
+Week: 8 (20/04/23)
+
+Assigned actions
+==============
+
+8. Work on connecting front and back end
+Assigned to: JAT92
+Status: ONGOING
+Notes: N/A
+Hours: 0
+
+11. Merge testing branch
+Assigned to: JAT92
+Notes: N/A
+Hours: 1
+
+Other project work
+================
+
 Team meeting - 1 hour
+
+Total: 2 hours

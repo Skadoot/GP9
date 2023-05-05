@@ -1,14 +1,45 @@
-Blog - week 3 
-20/02/2023
-Seminar 1 hour
-22/02/2023
-Team meeting 1 hour 
-UI Presentation 1 hour
-16/02/2023 
-Lecture 1 hour 
-Online lecture 1 hour
-UI Presentation 2 hour
-17/02/2023
-Tutorial 1 hour
+Author: JAT92
+Week: 3 (22/02/23)
+
+Assigned actions
+==============
+
+1. One or two people to read SE.QA.04 and start working on UI specification
+by making a list of possible use cases based on the requirements document.
+ACTION: SEH25, TYW1, JAT92
+Hours: 1
+
+2. UI specification
+- Powerpoint slides
+- More detail in UI spec
+ACTION: SEH25, TYW1, JAT92
+Hours: 1
+
+7. Add references to functional requirements in the UI Specification.
+ACTION: TYW1, SEH25, JAT92
+Hours: N/A
+
+8. Continue work on the UI Presentation.
+ACTION: TYW1, SEH25, JAT92
+Hours: 1
+
+Other project work
+================
+
+Seminar
+Hours: 1
+
+Team meeting
+Hours: 1
+
+
+Lecture
+Hours: 1
+Online lecture
+Hours: 1
+
+
+Tutorial
+Hours: 1
 
 Total 8 Hour

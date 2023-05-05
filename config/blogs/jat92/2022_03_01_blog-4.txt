@@ -1,11 +1,29 @@
-Blog - week 4 
-01/03/2023
-Team meeting and review of UI documention - 2 hour 
-UI Presentation 1 hour
-16/02/2023 
-Lecture 1 hour 
-Making amendments to the UI documentation and presentation according to feedback from review 2 hour
-17/02/2023
-Tutorial 1 hour
+Author: JAT92
+Week: 4 (01/03/23)
+
+Assigned actions
+==============
+
+3. Continue work on UI Specification Presentation.
+Assigned to: TYW1, SEH25, JAT92
+Status: ONGOING
+Notes: Multiple new screens created, 10-15 slides remaining.
+Hours: 4
+
+8. Change blog format and upload blog 3
+Action: JAT92
+Hours: N/A 
+
+Other project work
+================
+
+Team meeting 
+Hours: 1
+ 
+Lecture
+Hours: 1
+
+Tutorial
+Hours: 1
 
 Total 7 Hour

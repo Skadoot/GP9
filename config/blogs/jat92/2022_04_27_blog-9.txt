@@ -1,7 +1,23 @@
-Blog - week 9
-26/04/2023
-Team meeting - 1.5 hour 
-Integration spike work, tidying up remote branches on git 2.5 hour
+Author: JAT92
+Week: 9 (27/04/2023)
+
+Assigned actions
+==============
+
+6. Work on connecting front and back end
+Assigned to: JAT92
+Status: ONGOING
+Notes: Work started
+Hours: 2
+
+Other project work
+================
+
+Team meeting
+Hours: 1
+
+Tidying up remote branches on git
+Hours: 1
 
 Total 4 hours
 

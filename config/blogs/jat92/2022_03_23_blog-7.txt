@@ -1,8 +1,34 @@
-Blog - week 7
-21/3/2023
-Merged feature/save_and_load branch into main. - 2 hours
-22/3/2023
-Team meeting - 2 hours
-23/3/2023
-Manually copied changes from testing branch to main. Deleted testing branch until we agree project structure. - 1 hour
-Added Log info to Design Spec - 1 hour
+Author: JAT92
+Week: 7 (23/03/23)
+
+Assigned actions
+==============
+
+16. Work on connecting front and back end
+Assigned to: JAT92
+Hours: 0 
+
+9. Design specification (GWH18 - Front-end design. SHR27 - Back-end design (incl. Class Diagrams). TYW1 - Diagrams (excl. Class Diagrams) and formatting. JAT92 - Back-end (logs)
+Assigned to: GWH18, SHR27, TYW1, JAT92
+Status: ONGOING
+Notes: On track for review
+
+Added Log info to Design Spec
+Hours: 1
+
+Other project work
+================
+
+Merged feature/save_and_load branch into main
+Hours: 2
+
+Team meeting 
+Hours: 2
+
+Manually copied changes from testing branch to main. Deleted testing branch until we agree project structure
+Hours: 1
+
+Tutorial
+Hours: 1
+
+Total: 7 

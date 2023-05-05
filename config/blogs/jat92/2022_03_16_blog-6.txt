@@ -1,6 +1,27 @@
-Blog - week 6
-12/3/2023
-created Log class, made basic methods and tested functionality. 'Wired' up to the game class. - 3 hours
-13/3/2023
+Author: JAT92
+Week: 6 (16/03/23)
+
+Assigned actions
+==============
+
+11. Implement loading and saving to and from files
+Assigned to: JAT92
+Status: ONGOING
+Notes: Feature branch created, some functions in place
+
+created Log class, made basic methods and tested functionality. 'Wired' up to the game class.
 Refactored some code in the log class into the main class. Load game method and helper methods fully functional including exception handling. 
-feature/save_and_load branch ready for review before merging back into main. - 3 hours
+feature/save_and_load branch ready for review before merging back into main.
+
+Hours: 6 
+
+Other project work
+================
+
+Team meeting
+Hours: 1 
+
+Tutorial
+Hours: 1
+
+Total 8 Hours

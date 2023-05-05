@@ -1,6 +1,14 @@
-Blog - week 10
+Author: JAT92
+Week: 10 (05/05/2023)
 
+Assigned actions
+==============
+
+N/A
+
+Other project work
+================
 01/05/23 
 Double checked everything still worked
 
-total 1 hour
+total: 1 hour

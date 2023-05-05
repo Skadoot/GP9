@@ -1,9 +1,24 @@
-Blog - week 5
-08/03/2023 
-git research, reading code - 1.5 hours
-09/03/2023 
-Reading code, setting up git branch, save and load methods to logs - 4 hours
-10/03/2023
-Tutorial 1 hour
+Author: JAT92
+Week: 5 (09/03/23)
 
-Total 7 Hour
+Assigned actions
+==============
+
+16. Implement loading/saving to/from files
+Assigned to: JAT92
+Notes: Start spike work looking in to how to implement loading/saving to/from files using the F-E Notation.
+Hours: 3
+
+Other project work
+================
+
+Reading code, setting up git branch, git research
+Hours: 1
+
+Team meeting
+Hours: 1 
+
+Tutorial
+Hours: 1
+
+Total 7 Hours

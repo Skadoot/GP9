@@ -1,22 +1,37 @@
-Blog - week 1 
+Author: jat92
+Week: 1 (02/08/2023)
 
-3/02/2023
-Read design documentation - 1 hour 
-Drew out basic UML - 1 hour
+Assigned actions
+==============
 
-6/02/2023
-Seminar – 1 hour
-Design talk with Shaun and Gwion - 1 hour
+N/A
 
-08/02/2023
-watched lecture on UI, discord discussion of code implementation - 1 hour
-Team meeting in library – 1 hour
+Other project work
+================
 
-09/02/2023
-Lecture – 1 hour
-Research: Forsyth-Edwards Notation, other OO chess designs – 2 hour 
+Read design documentation
+Hours: 1   
+Drew out basic UML 
+Hours: 1 
 
-10/02/2023
-Tutorial – 1 hour 
+Seminar 
+Hours: 1 
+
+Design talk with Shaun and Gwion
+Hours: 1
+
+watched lecture on UI, discord discussion of code implementation
+Hours: 1
+Team meeting in library
+Hours: 1
+
+Lecture 
+Hours: 1
+
+Research Forsyth-Edwards Notation, other OO chess designs
+Hours: 2 
+
+Tutorial
+Hours: 1 
 
 Total 10 hours 

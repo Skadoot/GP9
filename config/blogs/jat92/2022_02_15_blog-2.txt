@@ -1,14 +1,34 @@
-Blog - Week 2 
-13/02/2023
-Seminar 1 hour
-15/02/2023
-Team meeting 1 hour 
-Install/trouble shoot javafx, set up presentation added to google drive – 1 hour
-16/02/2023 
-Lecture 1 hour 
-Online lecture 1 hour
-trouble shoot javafx, added to presentation 2 hour
-17/02/2023
-Tutorial 1 hour
+Author: JAT92
+Week: 2 (15/02/23)
+
+Assigned actions
+==============
+
+11. UI specification
+- Powerpoint slides
+- More detail in UI spec
+ACTION: SEH25, TYW1, JAT92
+Hours: 2
+
+Other project work
+================
+
+Seminar 
+Hours: 1
+
+Team meeting
+Hours: 1
+
+Install/trouble shoot javafx 
+Hours: 1
+
+Lecture 
+Hours: 1
+
+Online lecture
+Hours: 1
+
+Tutorial
+Hours: 1
 
 Total Hours 8

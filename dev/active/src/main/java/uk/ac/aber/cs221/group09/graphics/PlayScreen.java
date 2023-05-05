@@ -39,7 +39,6 @@ public class PlayScreen {
    private final Chessboard chessboard;
    // Player Dashboard
    private final PlayScreenGraphicsLoader graphicsLoader;
-   private Scene scene;
    private Text whitePlayerName, blackPlayerName;
    private StackPane dashboard;
    private Text turnTracker;
@@ -530,12 +529,8 @@ public class PlayScreen {
          // Increases the turn we are looking at by 1
          currentTurn++;
       }
-<<<<<<< HEAD
       chessboard.updateBoard(anGraphicsHandler.getPreviousFEN(currentTurn));
 
-=======
-      chessboard.updateBoard(anInterface.getPreviousFEN(currentTurn));
->>>>>>> 824369959aa9b43c112f7d1be7e9db6685316c9b
    }
 
    /**

@@ -1,0 +1,21 @@
+Author: jib16
+Week: 10 Integration & Testing (2023/05/01)
+
+Actions
+
+Action 1: Add to JUnit tests 
+
+Added and improved JUnit tests and communicating with backend team to see whether code is not working or Junit tests are incorrect.
+
+Hours: 3
+
+Action 2: Improved test spec 
+
+Went over test Spec table and added improvements, also added some FEN strings to make tests more replicable
+
+Hours: 2
+
+Additional notes.
+Had small meeting with test team to formulate plan for tommorow
+
+Total Hours: 5

@@ -1,1 +1,13 @@
-a
+Author: jib16
+Week: 10 Integration & Testing (2023/05/02)
+
+Actions:
+
+Action 1: Reviewing before submiting
+Reviewed all tests, test spec and test report to ensure all is working on final version.
+
+Hours: 1
+
+
+Total Hours: 1
+
